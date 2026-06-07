@@ -41,9 +41,9 @@ This file is the Plane 1 knowledge anchor for the job application workflow (ARCH
 
 | Entry Phrase | Pipeline Step | Files to Read |
 |--------------|---------------|---------------|
-| "Evaluate this job posting" | Step 1 — Fit Evaluation | `04-job-evaluation.md`, `01-candidate-profile.md` |
+| "Evaluate this job posting" | Step 1 — Fit Evaluation | `04-job-evaluation.md`, `01-candidate-profile.md`, `02-behavioral-profile.md` |
 | "Write a CV for [company]" | Step 2 — CV Generation | `05-cv-templates.md`, `01-candidate-profile.md`, `03-writing-style.md` |
-| "Write a cover letter for [company]" | Step 3 — Cover Letter | `06-cover-letter-templates.md`, `01-candidate-profile.md`, `03-writing-style.md` |
+| "Write a cover letter for [company]" | Step 3 — Cover Letter | `06-cover-letter-templates.md`, `01-candidate-profile.md`, `02-behavioral-profile.md`, `03-writing-style.md` |
 | "Prepare for interview with [company]" | Step 4 — Interview Prep | `07-interview-prep.md`, `01-candidate-profile.md` |
 
 **Missing context rule:** Each sub-command can run without upstream steps having completed. If upstream context is missing, prompt: "I need [X] first — want me to run that step now?" Never silently fail or fabricate missing information (ARCH-0007). All sub-commands share `03-writing-style.md` rules, the no-fabrication rule, and the verification checklist.
@@ -54,4 +54,5 @@ This file is the Plane 1 knowledge anchor for the job application workflow (ARCH
 - Respect `[UPPER_SNAKE_CASE]` placeholder tokens — do not overwrite them with invented data
 - Default AI tool name in all generated documents: **Claude Code** (unless `[AI_TOOL_NAME]` is set in `01-candidate-profile.md` — DEC-017)
 - Never fabricate skills, experience, or claims not present in the candidate profile (ARCH-0007)
-- The verification checklist (Step 6) runs exactly once at the end of the full pipeline — never during reviewer pass
+- The full application pipeline (ARCH-0030) has 7 steps: 0=Parse, 1=Evaluate, 2=Draft, 3=Reviewer Dispatch, 4=Revise, 5=Compile+Verify, 6=Final Checklist. The Sub-Commands table above labels user-facing entry points (Fit Evaluation, CV Gen, Cover Letter, Interview Prep) using shorthand step names — these are not the same as the pipeline step numbers.
+- The verification checklist (pipeline Step 6 — Final Checklist) runs exactly once at the end of the full `/apply` pipeline. It does NOT run during the reviewer pass (pipeline Step 3 — Reviewer Dispatch, a separate Claude Code invocation with fresh context per ARCH-0002). Never run the verification checklist inside the reviewer's context.
