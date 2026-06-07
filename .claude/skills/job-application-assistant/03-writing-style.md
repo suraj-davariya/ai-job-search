@@ -10,7 +10,7 @@ This file defines permanent rules that govern AI-generated CV and cover letter c
 
 | Rule | Example of Violation |
 |------|---------------------|
-| No em-dashes (`--`) | "My experience -- spanning..." → Use comma or period |
+| No em-dashes in running prose (`--` or `—` mid-sentence) | "My experience -- spanning..." or "My background—spanning..." → Use a comma or period. **Exception:** `—` as a visual separator in the Headline Formula subject line is permitted. |
 | No clichés/filler | "I am passionate about", "hit the ground running", "leverage my skills" |
 | No generic buzzwords without backing | "Results-driven" without a specific result |
 | No apologetic language | "I think I could contribute" → "I bring X, demonstrated by Y" |
