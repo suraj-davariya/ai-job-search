@@ -1,0 +1,111 @@
+% =============================================================================
+% CareerForge CV Template
+% Class:   cfcv.cls  (CareerForge custom CV class)
+% Compile: lualatex main_example.tex    (run from cv/ directory)
+% Output:  main_example.pdf             (target: 1 page)
+%
+% Generated copies: cv/main_<Company>.tex  (gitignored — never committed)
+% Tokens:  Fields marked  % {{TOKEN_NAME}}  are replaced by the AI skill.
+%          See .claude/skills/job-application-assistant/05-cv-templates.md
+% =============================================================================
+
+\documentclass[10pt, a4paper]{cfcv}
+\geometry{left=1.2cm,right=1.2cm,marginparwidth=6.8cm,marginparsep=1.2cm,top=1.2cm,bottom=1.2cm}
+\usepackage[default]{lato}
+\usepackage{multicol}
+\usepackage{hyperref}
+
+\begin{document}
+
+% ── Header ────────────────────────────────────────────────────────────────────
+\name{Jane Smith}                                        % {{CANDIDATE_NAME}}
+\tagline{ML Engineer $\bullet$ Python Developer}         % {{TAGLINE}}
+\personalinfo{%
+  \mailaddress{jane.smith@email.com}                     % {{EMAIL}}
+  \github{janesmith}{https://github.com/janesmith}      % {{GITHUB_USER}} {{GITHUB_URL}}
+  \phone{+1 (415) 555-0198}                             % {{PHONE}}
+  \location{San Francisco, CA}                          % {{LOCATION}}
+  \linkedin{janesmith}{https://www.linkedin.com/in/janesmith/}  % {{LINKEDIN_USER}} {{LINKEDIN_URL}}
+}
+\makecvheader
+\medskip
+
+% ── Summary ───────────────────────────────────────────────────────────────────
+\cvsection{Summary}
+Software engineer with five years of experience building production ML systems
+in Python. Proven track record of delivering data-driven products that move
+business metrics. Passionate about clean architecture and team collaboration.
+% {{PROFESSIONAL_SUMMARY}}
+
+\medskip
+
+% ── Experience ────────────────────────────────────────────────────────────────
+\cvsection{Professional Experience}
+
+\company{TechStart Inc.}{ML Engineer}{San Francisco, CA}{Jan 2022 – Present}  % {{COMPANY_1_*}}
+\project{Recommendation Engine}{TechStart Inc.}{Software Engineer}{Python, PyTorch, Redis, PostgreSQL}
+\smallskip
+Brief company description — what the company does and your role within the team.
+% {{COMPANY_1_DESCRIPTION}}
+\smallskip
+\begin{itemize}
+  \item Delivered real-time recommendation engine that increased CTR by 23\% in 3 months.  % {{ACHIEVEMENT_1}}
+  \item Collaborated with infrastructure team to meet <100ms p99 latency under 2M events/day.  % {{ACHIEVEMENT_2}}
+\end{itemize}
+
+\smallskip\divider\smallskip
+
+\company{PrevCorp}{Junior Developer}{New York, NY}{Jun 2019 – Dec 2021}  % {{COMPANY_2_*}}
+\smallskip
+Brief description of second role.
+% {{COMPANY_2_DESCRIPTION}}
+\smallskip
+\begin{itemize}
+  \item Built internal analytics dashboard reducing report generation time by 60\%.  % {{ACHIEVEMENT_3}}
+  \item Maintained and extended REST APIs serving 500K daily active users.  % {{ACHIEVEMENT_4}}
+\end{itemize}
+
+\medskip
+
+% ── Skills ────────────────────────────────────────────────────────────────────
+\cvsection{Skills}
+\medskip
+\skillset{Programming}{Python, JavaScript, Bash, SQL}               % {{SKILL_PROGRAMMING}}
+\skillset{Machine Learning}{PyTorch, TensorFlow, scikit-learn, MLflow}  % {{SKILL_ML}}
+\skillset{Infrastructure}{Docker, Kubernetes, AWS, PostgreSQL, Redis}   % {{SKILL_INFRA}}
+\medskip
+
+% ── Certificates ──────────────────────────────────────────────────────────────
+\cvsection{Certificates}
+\medskip
+\cvachievement{\certificatesymbol}
+  {AWS Certified Machine Learning – Specialty}          % {{CERT_1_NAME}}
+  {March 2024}                                          % {{CERT_1_DATE}}
+  {Professional certification for designing and deploying ML solutions on AWS.}  % {{CERT_1_DESC}}
+\par
+\button{\href{https://example.com/cert}{{\color{accent}\linksymbol}\hspace{0.5em}Certificate}}  % {{CERT_1_URL}}
+
+\medskip
+
+% ── Education + Languages (two-column) ────────────────────────────────────────
+\begin{multicols}{2}
+  \cvsection{Education}
+  \medskip
+  \education
+    {M.Sc. Computer Science}     % {{DEGREE}}
+    {Stanford University}        % {{UNIVERSITY}}
+    {Palo Alto, CA}             % {{UNI_LOCATION}}
+    {2017 – 2019}               % {{EDU_DATE_RANGE}}
+  \par
+
+  \columnbreak
+
+  \cvsection{Languages}
+  \medskip
+  \begin{itemize}
+    \item English – Native       % {{LANGUAGE_1}}
+    \item Spanish – B2           % {{LANGUAGE_2}}
+  \end{itemize}
+\end{multicols}
+
+\end{document}
