@@ -35,7 +35,8 @@ Weight total: 100% (Location is Pass/Fail, not weighted).
 
 ## Motivation Evaluation
 
-Beyond skill match, evaluate whether the role's tasks will **energize** the user:
+<!-- Populated by /setup, cleared by /reset -->
+Beyond skill match, evaluate whether the role's tasks will **energize** the user. This assessment feeds directly into the Career Alignment score.
 
 **Tasks that energize:**
 - [ENERGIZING_TASKS]
@@ -53,6 +54,8 @@ Non-task factors to also evaluate: leadership style, department culture, company
 | Remote with occasional office | PASS |
 | Requires relocation | FAIL (deal-breaker) |
 | Frequent international travel | FLAG (discuss with user) |
+
+> **Override rule:** When Location & Logistics = FAIL, the Verdict is automatically **Poor Fit** regardless of the weighted score. Do not override this with a high score.
 
 ## Skill Match Areas
 
@@ -99,8 +102,10 @@ Non-task factors to also evaluate: leadership style, department culture, company
 | Behavioral/Culture Fit | /100 | 15% | |
 | Career Alignment | /100 | 30% | |
 | Location & Logistics | PASS/FAIL | — | |
+| Salary Benchmark | [range / "Not available"] | — | vs. candidate expectation |
 
 **Weighted Total:** /100
+*(If Location = FAIL → Verdict = Poor Fit, skip weighted calculation)*
 **Verdict:** [Strong Fit / Good Fit / Moderate Fit / Weak Fit / Poor Fit]
 
 **Recommendation:** [one sentence]
