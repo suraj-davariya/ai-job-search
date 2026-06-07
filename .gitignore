@@ -7,14 +7,12 @@
 .reference/
 
 # ── Candidate profile content (populated by /setup — personal data) ───────────
-# The SKILL.md orchestrator file IS tracked; only the filled-in profile files are not.
-.claude/skills/job-application-assistant/01-candidate-profile.md
-.claude/skills/job-application-assistant/02-behavioral-profile.md
-.claude/skills/job-application-assistant/03-writing-style.md
-.claude/skills/job-application-assistant/04-job-evaluation.md
-.claude/skills/job-application-assistant/05-cv-templates.md
-.claude/skills/job-application-assistant/06-cover-letter-templates.md
-.claude/skills/job-application-assistant/07-interview-prep.md
+# In the FRAMEWORK repo, these are [UPPER_SNAKE_CASE] templates — tracked here.
+# In a USER FORK, add these lines back to YOUR .gitignore to protect personal data:
+#   .claude/skills/job-application-assistant/01-candidate-profile.md
+#   .claude/skills/job-application-assistant/02-behavioral-profile.md
+#   ... (and so on for all seven profile files)
+# CLAUDE.md (Role B user profile) is always gitignored in user forks — see below.
 
 # ── Application state (personal — changes per user) ───────────────────────────
 job_search_tracker.csv
