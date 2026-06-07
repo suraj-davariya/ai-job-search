@@ -4,10 +4,12 @@
 % Compile: lualatex main_example_two_col.tex    (run from cv/ directory)
 % Output:  main_example_two_col.pdf             (target: 1 page)
 %
-% Layout:  Header full-width  |  Left sidebar 33%  |  Right main 64%
+% Layout:  Header full-width  |  Left sidebar 33%  |  Right main 65%
+% Separator: vertical accent rule drawn via \smash\raisebox (zero layout height)
+%
 % ATS notes:
 %   - No letter-spacing on any text
-%   - Skills in plain text (sidebar) — ATS reads left-to-right, top-to-bottom
+%   - Skills in plain text — ATS reads left-to-right, top-to-bottom
 %   - Standard section names throughout
 %
 % Tokens:  Fields marked  % {{TOKEN}}  are replaced by the AI /apply skill.
@@ -34,15 +36,16 @@
 \makecvheader
 
 % ── Two-column body ───────────────────────────────────────────────────────────
+% Vertical separator drawn with \smash\raisebox so it has zero layout height —
+% preventing the blank-page gap caused by an inline full-height rule.
 \noindent%
 %
-% LEFT SIDEBAR (33%) — Skills, Education, Languages, Certifications
-%
+% ── LEFT SIDEBAR (33%) ───────────────────────────────────────────────────────
 \begin{minipage}[t]{0.33\linewidth}
 \vspace{0pt}
 
 \cvsection{Skills}
-\skillset{Programming}{Python, JavaScript, TypeScript, Bash, SQL}
+\skillset{Programming}{Python, JavaScript, Bash, SQL}
 % {{SKILL_PROGRAMMING}}
 \skillset{Machine Learning}{PyTorch, TensorFlow, scikit-learn, MLflow}
 % {{SKILL_ML}}
@@ -64,19 +67,26 @@
 
 \cvsection{Certifications}
 \begin{itemize}
-  \item \textbf{AWS ML Specialty}\\    % {{CERT_1_NAME}}
+  \item \textbf{AWS ML Specialty}\\        % {{CERT_1_NAME}}
         {\small\color{LightGrey}March 2024}\\  % {{CERT_1_DATE}}
         {\small\href{https://example.com/cert}{Verify \faExternalLink}}  % {{CERT_1_URL}}
 \end{itemize}
 
 \end{minipage}%
-\hspace{0.015\linewidth}%
-\textcolor{accent!25}{\rule[-0.5\textheight]{0.5pt}{0.85\textheight}}%
-\hspace{0.015\linewidth}%
 %
-% RIGHT MAIN (64%) — Summary, Professional Experience
+% ── VERTICAL SEPARATOR ───────────────────────────────────────────────────────
+% \smash + \raisebox[0pt][0pt] → draws a 0.88\textheight line starting at the
+% top of the content area, with zero contribution to layout (no blank gap).
+\hspace{0.01\linewidth}%
+\smash{%
+  \raisebox{-0.88\textheight}[0pt][0pt]{%
+    \textcolor{accent!30}{\rule{0.5pt}{0.88\textheight}}%
+  }%
+}%
+\hspace{0.01\linewidth}%
 %
-\begin{minipage}[t]{0.624\linewidth}
+% ── RIGHT MAIN (65%) ─────────────────────────────────────────────────────────
+\begin{minipage}[t]{0.65\linewidth}
 \vspace{0pt}
 
 \cvsection{Summary}
@@ -92,11 +102,13 @@ business metrics. Passionate about clean architecture and team collaboration.
 Brief company description — what the company does and your role within the team.
 % {{COMPANY_1_DESCRIPTION}}
 \begin{itemize}
-  \item Delivered real-time recommendation engine that increased CTR by 23\% within 3 months, processing 2M+ events/day via PyTorch and Redis.   % {{ACHIEVEMENT_1}}
+  \item Delivered real-time recommendation engine that increased CTR by 23\% within 3 months, processing 2M+ events/day via PyTorch and Redis.  % {{ACHIEVEMENT_1}}
   \item Met <100ms p99 latency SLA; reduced incidents by 40\% through improved monitoring.  % {{ACHIEVEMENT_2}}
 \end{itemize}
 
-\divider
+\medskip
+\textcolor{accent}{\rule{\linewidth}{0.8pt}}
+\medskip
 
 \company{PrevCorp}{Junior Software Developer}{New York, NY}{Jun 2019 – Dec 2021}
 % {{COMPANY_2_*}}
