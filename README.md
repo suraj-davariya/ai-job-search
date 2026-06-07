@@ -17,8 +17,11 @@ while keeping all your personal data on your own machine.
 | `/apply` | Takes a job URL or description → tailors your CV → writes a cover letter → compiles both to PDF |
 | `/expand` | Enriches your profile with new skills, courses, or certifications |
 | `/reset` | Clears profile sections or resets application state |
+| `/dashboard` | Starts a local tracking dashboard at `http://localhost:4480` — review your pipeline, update statuses, and add applications from the browser |
 
 All commands are Markdown files in `.claude/commands/` that Claude Code executes as slash commands.
+
+> **Note on skill activations:** `/scrape` (job search) and `upskill` (skill-gap analysis) are triggered as natural-language keywords within the assistant — they are Plane 1 skill activations, not separate slash commands.
 
 ---
 
