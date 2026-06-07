@@ -1,0 +1,112 @@
+% =============================================================================
+% CareerForge CV Template — Two Column (sidebar + main)
+% Class:   cfcv.cls
+% Compile: lualatex main_example_two_col.tex    (run from cv/ directory)
+% Output:  main_example_two_col.pdf             (target: 1 page)
+%
+% Layout:  Header full-width  |  Left sidebar 33%  |  Right main 64%
+% ATS notes:
+%   - No letter-spacing on any text
+%   - Skills in plain text (sidebar) — ATS reads left-to-right, top-to-bottom
+%   - Standard section names throughout
+%
+% Tokens:  Fields marked  % {{TOKEN}}  are replaced by the AI /apply skill.
+%          See .claude/skills/job-application-assistant/05-cv-templates.md
+% =============================================================================
+
+\documentclass[10pt, a4paper]{cfcv}
+\geometry{left=1.2cm,right=1.2cm,top=1.2cm,bottom=1.2cm}
+\usepackage[default]{lato}
+\usepackage{hyperref}
+
+\begin{document}
+
+% ── Header — full width ───────────────────────────────────────────────────────
+\name{Jane Smith}                                          % {{CANDIDATE_NAME}}
+\tagline{ML Engineer · Python Developer}                   % {{TAGLINE}}
+\personalinfo{%
+  \mailaddress{jane.smith@email.com}                       % {{EMAIL}}
+  \phone{+1 (415) 555-0198}                               % {{PHONE}}
+  \linkedin{linkedin.com/in/janesmith}{https://linkedin.com/in/janesmith}  % {{LINKEDIN}}
+  \github{github.com/janesmith}{https://github.com/janesmith}             % {{GITHUB}}
+  \location{San Francisco, CA}                             % {{LOCATION}}
+}
+\makecvheader
+
+% ── Two-column body ───────────────────────────────────────────────────────────
+\noindent%
+%
+% LEFT SIDEBAR (33%) — Skills, Education, Languages, Certifications
+%
+\begin{minipage}[t]{0.33\linewidth}
+\vspace{0pt}
+
+\cvsection{Skills}
+\skillset{Programming}{Python, JavaScript, TypeScript, Bash, SQL}
+% {{SKILL_PROGRAMMING}}
+\skillset{Machine Learning}{PyTorch, TensorFlow, scikit-learn, MLflow}
+% {{SKILL_ML}}
+\skillset{Infrastructure}{Docker, Kubernetes, AWS, PostgreSQL, Redis}
+% {{SKILL_INFRA}}
+
+\cvsection{Education}
+\education
+  {M.Sc. Computer Science}     % {{DEGREE}}
+  {Stanford University}        % {{UNIVERSITY}}
+  {Palo Alto, CA}              % {{UNI_LOCATION}}
+  {2017 – 2019}                % {{EDU_DATE_RANGE}}
+
+\cvsection{Languages}
+\begin{itemize}
+  \item English – Native       % {{LANGUAGE_1}}
+  \item Spanish – B2           % {{LANGUAGE_2}}
+\end{itemize}
+
+\cvsection{Certifications}
+\begin{itemize}
+  \item \textbf{AWS ML Specialty}\\    % {{CERT_1_NAME}}
+        {\small\color{LightGrey}March 2024}\\  % {{CERT_1_DATE}}
+        {\small\href{https://example.com/cert}{Verify \faExternalLink}}  % {{CERT_1_URL}}
+\end{itemize}
+
+\end{minipage}%
+\hspace{0.015\linewidth}%
+\textcolor{accent!25}{\rule[-0.5\textheight]{0.5pt}{0.85\textheight}}%
+\hspace{0.015\linewidth}%
+%
+% RIGHT MAIN (64%) — Summary, Professional Experience
+%
+\begin{minipage}[t]{0.624\linewidth}
+\vspace{0pt}
+
+\cvsection{Summary}
+Software engineer with five years of experience building production ML systems
+in Python. Proven track record of delivering data-driven products that move
+business metrics. Passionate about clean architecture and team collaboration.
+% {{PROFESSIONAL_SUMMARY}}
+
+\cvsection{Professional Experience}
+
+\company{TechStart Inc.}{ML Engineer}{San Francisco, CA}{Jan 2022 – Present}
+% {{COMPANY_1_*}}
+Brief company description — what the company does and your role within the team.
+% {{COMPANY_1_DESCRIPTION}}
+\begin{itemize}
+  \item Delivered real-time recommendation engine that increased CTR by 23\% within 3 months, processing 2M+ events/day via PyTorch and Redis.   % {{ACHIEVEMENT_1}}
+  \item Met <100ms p99 latency SLA; reduced incidents by 40\% through improved monitoring.  % {{ACHIEVEMENT_2}}
+\end{itemize}
+
+\divider
+
+\company{PrevCorp}{Junior Software Developer}{New York, NY}{Jun 2019 – Dec 2021}
+% {{COMPANY_2_*}}
+Brief description of second role and the team context.
+% {{COMPANY_2_DESCRIPTION}}
+\begin{itemize}
+  \item Built analytics dashboard adopted across 3 business units, cutting report generation time by 60\%.  % {{ACHIEVEMENT_3}}
+  \item Maintained REST APIs serving 500K daily active users with 99.9\% uptime over 18 months.            % {{ACHIEVEMENT_4}}
+\end{itemize}
+
+\end{minipage}
+
+\end{document}
