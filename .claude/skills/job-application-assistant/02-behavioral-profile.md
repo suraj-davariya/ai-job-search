@@ -30,10 +30,14 @@
 ## Posting Language Mapping
 
 **Strong Fit Keywords** — phrases in job postings that align with this profile:
-- [STRONG_FIT_KEYWORDS]
+<!-- One keyword or short phrase per bullet -->
+- [STRONG_FIT_KEYWORD]
+- [STRONG_FIT_KEYWORD]
 
 **Potential Friction Keywords** — phrases that may indicate misalignment:
-- [POTENTIAL_FRICTION_KEYWORDS]
+<!-- One keyword or short phrase per bullet -->
+- [POTENTIAL_FRICTION_KEYWORD]
+- [POTENTIAL_FRICTION_KEYWORD]
 
 ## Management Style Preferences
 
@@ -41,8 +45,11 @@
 
 ## Application Usage
 
+<!-- 1-2 sentences each: which behaviors to surface and where -->
 - **CV:** [USAGE_CV]
+  <!-- e.g. "Emphasise [BEHAVIOR] in profile summary and skills section." -->
 - **Cover Letter:** [USAGE_COVER_LETTER]
+  <!-- e.g. "Open with [BEHAVIOR] framing; use [BEHAVIOR] to explain motivation." -->
 
 ## Inferred Items
 
