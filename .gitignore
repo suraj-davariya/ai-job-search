@@ -24,18 +24,26 @@ job_scraper/seen_jobs.json
 salary_data.json
 
 # ── Generated documents (CV + cover letter outputs) ───────────────────────────
-cv/output/
-cover_letters/output/
+cv/output/*
+!cv/output/.gitkeep
+cover_letters/output/*
+!cover_letters/output/.gitkeep
 
 # ── Upskill reports (generated, personal) ─────────────────────────────────────
-upskill/
+upskill/*
+!upskill/.gitkeep
 
 # ── Source personal documents (uploaded by user during /setup) ────────────────
-documents/cv/
-documents/linkedin/
-documents/diplomas/
-documents/references/
-documents/applications/
+documents/cv/*
+!documents/cv/.gitkeep
+documents/linkedin/*
+!documents/linkedin/.gitkeep
+documents/diplomas/*
+!documents/diplomas/.gitkeep
+documents/references/*
+!documents/references/.gitkeep
+documents/applications/*
+!documents/applications/.gitkeep
 
 # ── LaTeX build artefacts ─────────────────────────────────────────────────────
 *.aux

@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(lualatex:*)",
+      "Bash(xelatex:*)",
+      "Bash(python3:*)",
+      "Bash(python:*)",
+      "Bash(bun:*)",
+      "Bash(git status)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)"
+    ],
+    "deny": []
+  }
+}
