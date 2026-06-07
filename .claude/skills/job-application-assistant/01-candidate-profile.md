@@ -10,7 +10,7 @@
 - **GitHub:** [GITHUB_URL]
 - **Languages:** [LANGUAGES]
 - **Employment Status:** [EMPLOYMENT_STATUS]
-- **Constraints:** [CONSTRAINTS]
+- **Constraints:** [CONSTRAINTS] *(commute distance, location, visa/work-permit, hours restrictions)*
 
 ---
 
@@ -19,7 +19,7 @@
 <!-- Repeat block per degree, most recent first -->
 - **Degree:** [DEGREE]
 - **Field:** [FIELD]
-- **Period:** [PERIOD]
+- **Period:** [EDU_PERIOD]
 - **Institution:** [INSTITUTION]
 - **Key Topics:** [KEY_TOPICS]
 - **Thesis:** [THESIS] *(optional — remove if not applicable)*
@@ -30,8 +30,9 @@
 
 <!-- Repeat block per role, most recent first -->
 ### [JOB_TITLE] — [COMPANY]
-**Period:** [PERIOD] | **Location:** [ROLE_LOCATION]
+**Period:** [ROLE_PERIOD] | **Location:** [ROLE_LOCATION]
 
+<!-- Bullet points; past-tense action verbs; quantified outcomes where available. No fabrication (ARCH-0007). -->
 [RESPONSIBILITIES_ACHIEVEMENTS]
 
 ---
