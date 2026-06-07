@@ -34,7 +34,7 @@ This file is the Plane 1 knowledge anchor for the job application workflow (ARCH
 | `03-writing-style.md` | Before generating any CV or cover letter content — rules always apply |
 | `04-job-evaluation.md` | When evaluating fit for a job posting (Step 1 of pipeline) |
 | `05-cv-templates.md` | When generating or tailoring a CV (Step 2 of pipeline) |
-| `06-cover-letter-templates.md` | When generating a cover letter (Step 2 of pipeline) |
+| `06-cover-letter-templates.md` | When generating a cover letter (Step 3 of pipeline) |
 | `07-interview-prep.md` | When preparing for an interview or running practice sessions |
 
 ## Sub-Commands (REQ-6003)
