@@ -8,7 +8,13 @@
       "Bash(bun:*)",
       "Bash(git status)",
       "Bash(git log:*)",
-      "Bash(git diff:*)"
+      "Bash(git diff:*)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git -C /Volumes/home/Code/Workspace/ai-job-search log --oneline --all)",
+      "Bash(git -C /Volumes/home/Code/Workspace/ai-job-search log --oneline)",
+      "Bash(git -C /Volumes/home/Code/Workspace/ai-job-search add README.md CONTRIBUTING.md)",
+      "Bash(git -C /Volumes/home/Code/Workspace/ai-job-search commit -m ' *)"
     ],
     "deny": []
   }
