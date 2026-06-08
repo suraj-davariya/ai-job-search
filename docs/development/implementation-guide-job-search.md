@@ -8,72 +8,66 @@
 
 ---
 
-## 1. Pluggable Adapter Pattern
+## 1. Plane-1 Web-Search Model
 
-The search engine separates search orchestration from site-specific markup parsing using a pluggable adapter pattern.
+The job-search engine is a **Plane-1 skill** (ARCH-0008, ARCH-0010): it uses the AI assistant's built-in `WebSearch` and `WebFetch` tools to discover job postings. There is no compiled scraper, no binary adapter, and no headless browser — the skill is a Markdown knowledge anchor at `.claude/skills/job-scraper/SKILL.md`.
 
-```mermaid
-classDiagram
-    class BaseJobAdapter {
-        <<Abstract>>
-        +search_jobs(keywords, location) List~JobRecord~
-        +fetch_job_details(url) JobDetails
-    }
-    class GenericScraperAdapter {
-        +search_jobs(keywords, location) List~JobRecord~
-        +fetch_job_details(url) JobDetails
-    }
-    class SpecificMarketAdapter {
-        +search_jobs(keywords, location) List~JobRecord~
-        +fetch_job_details(url) JobDetails
-    }
-    BaseJobAdapter <|-- GenericScraperAdapter
-    BaseJobAdapter <|-- SpecificMarketAdapter
-```
+**Why Plane-1?** Country-agnostic coverage (DEC-012, ADR-0004, NFR-0007) requires a universal mechanism. Web search works everywhere; compiled portal adapters would require a new binary per country. Plane-1 ships now with zero infrastructure; Plane-2 TypeScript portal adapters (optional, v1.2+) are a future extension for high-volume or authenticated portals.
 
-All portal adapters must inherit from `BaseJobAdapter` and implement its abstract methods. This architecture allows developers to add adapters for specific job boards (e.g. LinkedIn, Indeed, or national portals) without modifying the search command orchestration code.
+**Country-agnostic by design:** no portal name, `site:` string, country, or locale is hardcoded in the skill. Every search target comes from the user's `search-queries.md` config (data-req §17). Adding support for a new job board or geography means editing the config, not the skill.
+
+**Plane-2 (optional, v1.2 scope):** structured TypeScript portal adapters live at `.agents/skills/<portal>/cli/` and implement a pluggable provider interface (ADR-0004). They are out of scope for the current release and do not affect Plane-1 behavior.
 
 ---
 
-## 2. Scraping Mechanisms
+## 2. Search & Fetch Mechanism
 
-### Headless Fetching
-- Scrapers read target URLs using a standard client module (`tools/adapters/generic_scraper.ts`).
-- If a target page requires client-side rendering (SPA), the scraper falls back to a browser simulator or fetches a text fallback.
-- Read contents are cleaned: remove scripts, stylesheets, and irrelevant footers, then format the remaining content into readable Markdown before parsing.
+### Web Search
+- The skill builds `WebSearch` queries by combining the user's configured **portals** (from `search-queries.md` Search Sites), **query strings** (Priority groups), and **geography** — verbatim from the user's config.
+- Queries are constrained to the last 14 days (the Date Filter Rule in `search-queries.md`).
+- Multiple queries run in parallel where useful.
 
-### Target Parsing
-- Scrapers use metadata selectors or LLM-driven token extraction to parse critical fields (e.g. Job Title, Company Name, Location, Description, Date Posted).
+### Fetch & Parse
+- Pre-filter on snippet text to discard obvious non-matches before fetching (token efficiency).
+- `WebFetch` promising posting URLs. Extract: title, company, location, posting date (or "recent"), URL, key requirements, application deadline.
+- **On a fetch failure** (gated portal, auth wall, dead link): prompt the user to paste the posting. Pasted text is a first-class input, processed identically to a fetched page (DEC-011). Never abort on a single fetch failure.
+
+### No compiled scraper
+Plane-1 requires no binary scraper or adapter module. If a Plane-2 portal adapter is later contributed, it lives at `.agents/skills/<portal>/cli/` with its own `package.json`.
 
 ---
 
 ## 3. Deduplication Strategy (`seen_jobs.json`)
 
-To prevent the scraper from displaying identical jobs across multiple runs:
+To prevent the skill from presenting the same posting on repeated runs:
 
-1. **State Store**: Maintain a local JSON lookup table at `job_scraper/seen_jobs.json`.
-2. **Identification Hash**:
-   - Construct a unique hash for each job posting using: `MD5(Job_Title + Company_Name + URL)`.
-3. **Execution Filter**:
-   - During `/search`, compare discovered jobs against the keys in `seen_jobs.json`.
-   - Filter out matching entries from the output.
-   - For new applications generated via `/apply`, add the job hash to `seen_jobs.json` to prevent it from showing up in subsequent search listings.
+1. **State store**: a local JSON registry at `job_scraper/seen_jobs.json`. Create it with `{"seen": {}}` if missing (REQ-1002).
+2. **Dedup key** (data-req §10): `<url_or_company_title_key>` — the posting URL when stable, or a `<company>_<title>` string when no stable URL exists. The key is a plain string, not a computed hash.
+3. **Filter**:
+   - Before presenting results, skip any job whose key already appears in `seen_jobs.json` **or** whose company+role pair exists in `job_search_tracker.csv`.
+   - Record **every** fetched job — new and skipped — in the registry. The registry grows monotonically; entries are never removed.
+4. **Schema** (data-req §10):
+   ```json
+   { "seen": { "<url_or_company_title_key>": { "title": "...", "company": "...", "url": "...", "first_seen": "YYYY-MM-DD", "fit": "high|medium|low", "status": "new|skipped|evaluated" } } }
+   ```
+   - `status` transitions: `new` → `evaluated` when handed to `/apply`; `skipped` for filtered-out jobs.
+   - `first_seen` is set on first record and never overwritten on later runs.
 
 ---
 
 ## 4. Job Evaluation & Ranking
 
-Discovered jobs are scored using a quick-fit heuristics parser:
+The skill assigns each new job a **three-level quick-fit signal** (REQ-1005) used only for sorting. This is explicitly not a numeric score and not the full 5-dimension evaluation that happens later in `/apply`.
 
-```
-Score = (Keyword_Match * 0.4) + (Profile_Similarity * 0.4) + (Location_Fit * 0.2)
-```
+| Signal | Meaning |
+|--------|---------|
+| **High** | Role directly involves the user's core skills |
+| **Medium** | Role is adjacent to the user's experience |
+| **Low** | Role requires significant skills the user lacks |
 
-- **High Fit**: Score $\ge$ 80%
-- **Medium Fit**: Score $\ge$ 50% and < 80%
-- **Low Fit**: Score < 50%
+The fit signal is derived from the candidate's core skills in `01-candidate-profile.md` and the job's key requirements. There is no weighted formula — the signal is a qualitative sort key, not a percentage.
 
-Results are displayed in a clean console table sorted by Fit Level (descending order).
+Results are presented in a table sorted High → Medium → Low (REQ-1007).
 
 ---
 
