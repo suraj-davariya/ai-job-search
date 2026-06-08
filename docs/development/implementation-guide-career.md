@@ -15,7 +15,7 @@ The `/expand` command enriches the existing candidate profile with online contex
 ### Execution Loop
 1. **Source Scanning**: Fetch public HTML or JSON API responses for user-configured endpoints (e.g. GitHub repos, public portfolios).
 2. **LLM Extraction**: Send fetched text and the current profile to the LLM. Instruct the model to identify:
-   - Specific libraries, tools, or frameworks not documented in `settings/profile.json`.
+   - Specific libraries, tools, or frameworks not documented in the candidate profile files (`.claude/skills/job-application-assistant/01-candidate-profile.md` and the user-fork `CLAUDE.md`; file-as-DB per ARCH-0004).
    - Projects and architectural patterns described in public code/repositories.
 3. **Traceability Annotations**: When writing new elements into the profile, include source attribution tags:
    ```json
