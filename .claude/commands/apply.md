@@ -10,6 +10,7 @@ allowed-tools:
   - Grep
   - WebFetch
   - WebSearch
+  - Task
 ---
 
 # /apply — Job Application Pipeline
@@ -23,9 +24,9 @@ produce a tailored CV and cover letter, compiled to PDF and verified. This is a
 prompt-as-code command (ARCH-0001) operating on the file-as-DB profile
 (ARCH-0004).
 
-**Scope note (Epic 5):** this is the *basic* pipeline — Steps 0 → 1 → 2 → 5 → 6.
-The reviewer agent (Steps 3–4) ships in Epic 6; this command parses `--review`
-for forward-compatibility but currently routes to the no-reviewer path.
+**Pipeline:** Steps 0 → 1 → 2 → 3 → 4 → 5 → 6. The reviewer critique (Step 3) and
+revision (Step 4) run when `--review=full` (default) or `--review=quick`, and are
+skipped when `--review=none`.
 
 ---
 
@@ -166,24 +167,56 @@ assistant".
 
 ---
 
-## Steps 3–4 — Reviewer Critique & Revision  *(Epic 6 — not yet active)*
+## Step 3 — Reviewer Critique (REQ-2030–2034)
 
 Parse `--review` (`full` is the default; `quick`; `none`) and display the
-token-cost estimate line (REQ-2034):
-`~X tokens (full), ~Y tokens (quick), ~Z tokens (none)`.
+token-cost estimate line before spawning (REQ-2034):
+`~X tokens (full), ~Y tokens (quick), ~Z tokens (none)`. Record the chosen mode
+for the output metadata.
 
-The reviewer agent (REQ-2030–2033) and the revision engine (REQ-2040–2042) ship
-in **Epic 6 (T-050–T-055)**. Until then:
+- **`--review=none`:** skip Steps 3–4 entirely; the drafts proceed directly to
+  Step 5.
+- **`--review=full` (default) or `--review=quick`:** spawn the **`reviewer`**
+  agent (Task/Agent tool, `subagent_type: reviewer`) with a **fresh context**.
 
-- If `--review=full` or `--review=quick` is requested, print:
-  *"Reviewer arrives in Epic 6 — proceeding without it (equivalent to
-  `--review=none`)."*
-- Record the requested mode (for the future output-folder metadata hook).
-- Proceed directly to Step 5 for all modes.
+When spawning, pass **inline in the prompt** (not via file reads — REQ-2024,
+REQ-2030):
+- the CV draft text and its path (`cv/main_<company>.tex`),
+- the cover letter draft text and its path (`cover_letters/cover_<company>_<role>.tex`),
+- the parsed job posting (company, role, department, location, language, body),
+- the **review mode** (`full` or `quick` — in `quick`, the reviewer skips company
+  research and omits the company-angles category, per REQ-2030).
 
-<!-- EPIC 6 INSERTION POINT: spawn the reviewer agent here with the drafts passed
-     inline, apply Part A structured edits + Part B narrative revisions, and
-     verify every incorporated company claim before continuing to Step 5. -->
+The reviewer reads only the 4 profile files it needs, researches the company
+(full mode), checks voice against the behavioral profile (REQ-2033), and returns
+**Part A** (JSON array of `{file, old_string, new_string, reason}` edits) and
+**Part B** (narrative suggestions in four categories). The reviewer does not
+compile, edit files, or run the verification checklist.
+
+## Step 4 — Revision (REQ-2040–2042)
+
+Apply the reviewer's feedback to the draft text already in your context (don't
+re-read the `.tex` files unless an edit fails because text shifted).
+
+**Part A — structured edits (REQ-2040):** apply each edit with its exact
+`old_string` → `new_string`. **Skip any edit that would fabricate content**
+(ARCH-0007). Re-read a file only if an edit fails to match.
+
+**Part B — narrative revisions (REQ-2041):** address **every** category with
+judgment:
+- *Missed keywords* — add where they fit naturally, preferring experience bullets
+  over abstract claims.
+- *Company angles* — weave into the cover letter, but **only after independent
+  verification** (below).
+- *Action-oriented reframing* — rewrite passive/generic phrasing.
+- *Tone/style* — fix per `03-writing-style.md` and the behavioral profile.
+
+**Company claim verification (REQ-2042) — mandatory:** do not trust the
+reviewer's research at face value. Independently verify **every** company-specific
+claim via web search/fetch before including it. Unverifiable claims are rephrased
+in general terms or omitted.
+
+After revision, continue to Step 5.
 
 ---
 
@@ -266,7 +299,7 @@ Then:
 | REQ-2010–2013 fit eval + gate | Step 1 |
 | (data-req §11 tracker row) | Step 1.5 |
 | REQ-2020–2024 drafting | Step 2 |
-| REQ-2030–2033 reviewer | Steps 3–4 *(Epic 6)* |
-| REQ-2040–2042 revision | Steps 3–4 *(Epic 6)* |
+| REQ-2030–2034 reviewer critique | Step 3 |
+| REQ-2040–2042 revision + claim verify | Step 4 |
 | REQ-2050–2055 compile + fix loop | Step 5 |
 | REQ-2060–2062 verify + summary | Step 6 |
