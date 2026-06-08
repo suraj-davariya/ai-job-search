@@ -110,22 +110,6 @@ pre-application call guidance only when substantive questions exist.
 
 ---
 
-## Step 1.5 — Record the Application (data-req §11, business-rules §6.2)
-
-After the user approves, append **one new row** to `job_search_tracker.csv` (repo
-root). Never modify existing rows.
-
-Columns (data-req §11):
-`date, company, sector, role, role_type, channel, status, contact_person,
-fit_rating, notes, cv_file, cover_letter_file, source, last_updated`
-
-- `status` = `drafting` (canonical enum, business-rules §9).
-- `fit_rating` = the weighted total from Step 1.
-- `cv_file` / `cover_letter_file` = the planned output paths (Step 2).
-- `date` / `last_updated` = today's date.
-
----
-
 ## Step 2 — CV and Cover Letter Drafting (REQ-2020–2024)
 
 Draft both documents from the profile data already in context. Obey the writing
@@ -267,7 +251,16 @@ and `.pdf`.
 
 ---
 
-## Step 6 — Final Presentation (REQ-2060–2062)
+## Step 6 — Final Presentation (REQ-2060–2062, data-req §11)
+
+**Record the application (data-req §11, business-rules §6.2, TC-SEA-009):** now that the PDFs exist, append **one new row** to `job_search_tracker.csv` (repo root). Never modify existing rows.
+
+- If `job_search_tracker.csv` does not exist, create it first with the canonical 14-column header:
+  `date,company,sector,role,role_type,channel,status,contact_person,fit_rating,notes,cv_file,cover_letter_file,source,last_updated`
+- `status` = `Draft` (canonical enum, business-rules §9.1).
+- `fit_rating` = the weighted total from Step 1.
+- `cv_file` / `cover_letter_file` = the actual output paths confirmed after Step 5.
+- `date` / `last_updated` = today's date.
 
 Run the **full verification checklist exactly once** (business-rules §5). Re-read
 both `.tex` files once to confirm their on-disk state. Report each item pass/fail:
@@ -297,9 +290,9 @@ Then:
 |-----|-------|
 | REQ-2001/2002 input + language | Step 0 |
 | REQ-2010–2013 fit eval + gate | Step 1 |
-| (data-req §11 tracker row) | Step 1.5 |
 | REQ-2020–2024 drafting | Step 2 |
 | REQ-2030–2034 reviewer critique | Step 3 |
 | REQ-2040–2042 revision + claim verify | Step 4 |
 | REQ-2050–2055 compile + fix loop | Step 5 |
+| data-req §11 tracker row | Step 6 |
 | REQ-2060–2062 verify + summary | Step 6 |
