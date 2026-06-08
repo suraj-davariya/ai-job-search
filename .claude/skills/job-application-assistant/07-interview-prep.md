@@ -123,10 +123,12 @@ Always have at least 3 questions ready. If a question gets answered earlier in t
 
 ## Roleplay Guidelines
 
+<!-- AI role: evaluate and coach only. Do not generate or complete S/T/A/R answers on behalf of the user. -->
+
 How to run a practice session with the AI:
 
 1. Tell the AI: "Run a mock interview for [Role] at [Company]. Start with 'tell me about yourself'."
 2. Answer each question as you would in the real interview — do not pause to think aloud.
-3. After each answer, the AI will: flag any backtrack-test failures, suggest improvements, and note missing STAR structure.
+3. After each answer, the AI will: check for consistency gaps (i.e. would a follow-up rephrase expose a contradiction — see Interview Backtrack Test in `03-writing-style.md`), suggest improvements, and note missing STAR structure.
 4. After 5–7 questions, ask the AI for an overall assessment covering fluency, specificity, and question coverage.
 5. Repeat the session until you can answer all questions fluently without referencing notes.
