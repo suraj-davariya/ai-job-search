@@ -17,12 +17,12 @@ This file is the Plane 1 knowledge anchor for the job application workflow (ARCH
 
 ## Trigger Phrases
 
-- "Apply to [job/URL/company]"
+- "Apply to <job/URL/company>"
 - "Evaluate this job posting"
-- "Tailor my CV for [role/company]"
-- "Write a cover letter for [company]"
-- "Prepare me for an interview with [company]"
-- "Am I a good fit for [job]?"
+- "Tailor my CV for <role/company>"
+- "Write a cover letter for <company>"
+- "Prepare me for an interview with <company>"
+- "Am I a good fit for <job>?"
 - Any phrase about job applications, fit evaluation, or interview prep
 
 ## Companion Files
@@ -42,9 +42,9 @@ This file is the Plane 1 knowledge anchor for the job application workflow (ARCH
 | Entry Phrase | Pipeline Step | Files to Read |
 |--------------|---------------|---------------|
 | "Evaluate this job posting" | Step 1 — Fit Evaluation | `04-job-evaluation.md`, `01-candidate-profile.md`, `02-behavioral-profile.md` |
-| "Write a CV for [company]" | Step 2 — CV Generation | `05-cv-templates.md`, `01-candidate-profile.md`, `03-writing-style.md` |
-| "Write a cover letter for [company]" | Step 3 — Cover Letter | `06-cover-letter-templates.md`, `01-candidate-profile.md`, `02-behavioral-profile.md`, `03-writing-style.md` |
-| "Prepare for interview with [company]" | Step 4 — Interview Prep | `07-interview-prep.md`, `01-candidate-profile.md` |
+| "Write a CV for <company>" | Step 2 — CV Generation | `05-cv-templates.md`, `01-candidate-profile.md`, `03-writing-style.md` |
+| "Write a cover letter for <company>" | Step 3 — Cover Letter | `06-cover-letter-templates.md`, `01-candidate-profile.md`, `02-behavioral-profile.md`, `03-writing-style.md` |
+| "Prepare for interview with <company>" | Step 4 — Interview Prep | `07-interview-prep.md`, `01-candidate-profile.md` |
 
 **Missing context rule:** Each sub-command can run without upstream steps having completed. If upstream context is missing, prompt: "I need [X] first — want me to run that step now?" Never silently fail or fabricate missing information (ARCH-0007). All sub-commands share `03-writing-style.md` rules, the no-fabrication rule, and the verification checklist.
 
