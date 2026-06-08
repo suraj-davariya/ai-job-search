@@ -12,19 +12,23 @@
 
 | Case ID | Feature Area | Description | Target Requirement | Method | Pass Condition |
 |---|---|---|---|---|---|
-| **TC-ONB-001** | Onboarding | Scan files with unsupported extensions. | REQ-0002 | Unit / Integration | Files skipped; execution completes. |
-| **TC-ONB-002** | Onboarding | Process overlapping dates in scan. | REQ-0005 | Integration / LLM | Flags warnings; prompts user. |
-| **TC-ONB-003** | Onboarding | Folder scan writes to profile file. | REQ-0001 | Integration | Creates correct keys in profile.json. |
-| **TC-ONB-004** | Onboarding | Import single PDF resume. | REQ-0010 | Integration | Resume sections mapped to JSON. |
-| **TC-ONB-005** | Onboarding | Gap analyzer follow-ups. | REQ-0012 | Integration / LLM | Prompts exactly 3–5 gap questions. |
-| **TC-ONB-006** | Onboarding | Merge gap answers to profile. | REQ-0015 | Unit | Updates profile with user inputs. |
-| **TC-ONB-007** | Onboarding | 9-section interactive interview. | REQ-0016 | E2E | Outputs complete profile structure. |
-| **TC-ONB-008** | Onboarding | Interrupt interview preservation. | REQ-0017 | Integration | Answers stored in setup_temp.json. |
-| **TC-ONB-009** | Onboarding | Resume interrupted interview. | REQ-0017 | E2E | Prompts resume from last section. |
-| **TC-ONB-010** | Onboarding | Section-level re-run. | REQ-0020 | E2E | Only selected section changes. |
-| **TC-ONB-011** | Onboarding | Invalid section name on run. | REQ-0020 | Unit | Prints error; halts with exit code 1. |
-| **TC-ONB-012** | Onboarding | Case-insensitive skill deduplication. | REQ-0025 | Unit | Union merge filters duplicates. |
-| **TC-ONB-013** | Onboarding | Missing required name validation. | REQ-0028 | Unit | Merge fails; triggers schema alert. |
+| **TC-ONB-001** | Onboarding | Scan files with unsupported/unreadable extensions. | REQ-0002 | Integration | Files skipped; unreadable files flagged, none fabricated. |
+| **TC-ONB-002** | Onboarding | Overlapping dates for same employer in scan. | REQ-0008 | Integration / LLM | Cross-reference flags numbered item with both values; prompts user. |
+| **TC-ONB-003** | Onboarding | Folder scan replaces profile-file tokens. | REQ-0003 | Integration | `[UPPER_SNAKE_CASE]` tokens replaced in `01-candidate-profile.md`; none left for populated fields. |
+| **TC-ONB-004** | Onboarding | Import single CV (text or file). | REQ-0013 | Integration | All structured sections extracted into profile tokens. |
+| **TC-ONB-005** | Onboarding | Path B gap follow-ups. | REQ-0013 | Integration / LLM | Asks targeted follow-ups for behavioral/goals/deal-breakers/salary/refs. |
+| **TC-ONB-006** | Onboarding | Merge gap answers to profile files. | REQ-0009 | Integration | Answers merged additively without overwriting unrelated content. |
+| **TC-ONB-007** | Onboarding | 9-section interactive interview. | REQ-0014 | E2E | Sections walked in REQ-0014 order; tokens populated across files. |
+| **TC-ONB-008** | Onboarding | Idempotent re-run after partial setup. | REQ-0002 | Integration | Re-run reads existing files; proposes no duplicate changes (§7.3). |
+| **TC-ONB-009** | Onboarding | Optional sections skippable. | REQ-0014 | E2E | Skipped optional blocks removed/empty, not filled with invented data. |
+| **TC-ONB-010** | Onboarding | Section-level re-run (`--section skills`). | REQ-0001 | E2E | Only skills tokens in `01`/`04` change; others untouched. |
+| **TC-ONB-011** | Onboarding | Invalid `--section` value. | REQ-0001 | Integration | Assistant lists valid section values and stops without writing. |
+| **TC-ONB-012** | Onboarding | Case-insensitive skill deduplication. | REQ-0009 | Integration | Union merge keeps one canonical form (idempotent, §7.1). |
+| **TC-ONB-013** | Onboarding | Missing required Name. | REQ-0009 | Integration | Assistant asks user; token left in place; nothing fabricated (ARCH-0007). |
+| **TC-ONB-014** | Onboarding | Inferred behavioral item labeling. | REQ-0010 | Integration / LLM | Item written to "Inferred Items" with exact label; scored assessments untouched. |
+| **TC-ONB-015** | Onboarding | STAR stubs for uncovered achievements. | REQ-0012 | Integration / LLM | Stub created with empty S/T/A/R; no S/T/A/R fabricated. |
+| **TC-ONB-016** | Onboarding | `--section search` regenerates queries. | REQ-0015 | E2E | `search-queries.md` regenerated; no other profile file changes. |
+| **TC-ONB-017** | Onboarding | No write before user confirmation. | REQ-0009 | Integration | Additive checklist + conflicting one-at-a-time; no write until confirmed. |
 | **TC-APP-001** | Application | Zero match score classification. | REQ-2002 | Unit | Compatibility outputs 0% / Low. |
 | **TC-APP-002** | Application | Fuzzy matching salary benchmarking. | REQ-4003 | Unit / Integration | Fuzzy string matches excel titles. |
 | **TC-APP-003** | Application | LaTeX special characters escaping. | REQ-2022 | Unit | Characters escaped to safe TeX syntax. |
@@ -46,7 +50,7 @@
 | **TC-SEA-007** | Search | Tracker logging on apply. | REQ-1011 | Integration | Logged to tracker.csv with statuses. |
 | **TC-SEA-008** | Search | Tracker row status updating. | REQ-1012 | Integration | Status updated without duplicate rows. |
 | **TC-SEA-009** | Search | Init missing tracker file. | REQ-1011 | Unit | Creates new tracker file with headers. |
-| **TC-CAR-001** | Career | Expand profile with GitHub skills. | REQ-0050 | Integration / LLM | Skills appended to profile.json. |
+| **TC-CAR-001** | Career | Expand profile with GitHub skills. | REQ-0050 | Integration / LLM | Skills appended to `01-candidate-profile.md` with Markdown source annotation. |
 | **TC-CAR-002** | Career | Skill source annotation check. | REQ-0052 | Unit | Skills include source attribute tags. |
 | **TC-CAR-003** | Career | Expand keeps manual entries. | REQ-0054 | Unit | Manual records remain untouched. |
 | **TC-CAR-004** | Career | Targeted upskill gap report. | REQ-3001 | E2E | Writes report.md to upskill folder. |
