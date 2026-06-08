@@ -33,16 +33,16 @@ The font `Path=` directives in `cfcl.cls` are relative to the xelatex working di
 Always compile from the `cover_letters/` directory. Font paths in `cfcl.cls` resolve relative to the working directory — compiling from any other location breaks font loading.
 
 ```bash
-# Copy the template and name it after the company
-cp cover_letters/main_example.tex cover_letters/main_<company>.tex
+# Copy the template and name it after the company and role (data-req §15)
+cp cover_letters/main_example.tex cover_letters/cover_<company>_<role>.tex
 
 # Edit the copy with tailored content
 # (fill in recipient, role, paragraphs, salutation, date)
 
 # Compile from the cover_letters/ directory
 cd cover_letters
-xelatex main_<company>.tex
-# Output: main_<company>.pdf
+xelatex cover_<company>_<role>.tex
+# Output: cover_<company>_<role>.pdf
 ```
 
 **Generated files are gitignored** — they are personal application output and must never be committed.

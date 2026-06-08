@@ -22,10 +22,20 @@ job_scraper/seen_jobs.json
 salary_data.json
 
 # ── Generated documents (CV + cover letter outputs) ───────────────────────────
+# Canonical /apply outputs (data-req §15): cv/main_<company>.{tex,pdf} and
+# cover_letters/cover_<company>_<role>.{tex,pdf}. The example templates
+# (main_example*, *.cls) stay tracked.
+cv/main_*
+!cv/main_example*
+cover_letters/cover_*
+# Legacy output/ subdirs (kept for compatibility)
 cv/output/*
 !cv/output/.gitkeep
 cover_letters/output/*
 !cover_letters/output/.gitkeep
+
+# ── Agent state (layout-fix memory cache — REQ-2055 / data-req §16) ────────────
+.agents/state/
 
 # ── Upskill reports (generated, personal) ─────────────────────────────────────
 upskill/*
