@@ -30,9 +30,8 @@ When building CareerForge with an AI coding assistant (such as Claude Code or an
 > Output: Create directory structure, `.gitkeep` files, and `.gitignore`.
 
 #### Prompt Template for T-030 (Setup Command Structure)
-> Implement the entry point for the `/setup` CLI command following the requirements in [functional-requirements-onboarding.md](file:///Volumes/home/Code/Workspace/ai-job-search/docs/requirements/functional-requirements-onboarding.md).
-> Ensure the CLI supports the options `--path` (A: scanning, B: resume, C: interview) and `--section` (allowing re-running of specific profile sections).
-> Parse arguments, set up error boundaries, and create placeholder routes for each path. Log actions clearly to console.
+> Author the `/setup` command as a prompt-as-code Markdown document at `.claude/commands/setup.md` (ARCH-0001 — there is no compiled CLI and no `settings/profile.json`), following the requirements in [functional-requirements-onboarding.md](file:///Volumes/home/Code/Workspace/ai-job-search/docs/requirements/functional-requirements-onboarding.md).
+> The command must: detect `documents/` folder state and present the three paths (A: scanning, B: CV import, C: interview) with Path A recommended when documents exist; support the `--section <name>` argument for update-only flows; and converge all paths on token replacement across the profile files (REQ-0016). Spell out each step (path selection, extraction, cross-reference, additive/conflicting merge, convergence, summary) as explicit instructions to the assistant.
 
 ---
 
@@ -40,7 +39,7 @@ When building CareerForge with an AI coding assistant (such as Claude Code or an
 
 #### Prompt Template for T-042 & T-043 (LaTeX Draft Generation)
 > Implement the document drafting engine for `/apply` as specified in [component-design.md](file:///Volumes/home/Code/Workspace/ai-job-search/docs/architecture/component-design.md).
-> The system must read the candidate profile from `settings/profile.json` and generate:
+> The system must read the candidate profile from the profile files (`.claude/skills/job-application-assistant/01-candidate-profile.md` and the user-fork `CLAUDE.md`; file-as-DB per ARCH-0004) and generate:
 > 1. A CV LaTeX source based on `cv/templates/main_example.tex`.
 > 2. A Cover Letter LaTeX source using the class `cover.cls`.
 >

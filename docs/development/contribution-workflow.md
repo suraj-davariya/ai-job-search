@@ -36,7 +36,7 @@ stateDiagram-v2
    ```
    *The pre-commit hook checks that:*
    - No files containing secrets or keys are staged.
-   - `settings/profile.json` and generated PDFs in output folders are excluded from staging.
+   - Personal profile data (the populated user-fork `CLAUDE.md`, `documents/` contents) and generated PDFs in output folders are excluded from staging.
    - Code passes formatting and lint validation.
 
 ---
