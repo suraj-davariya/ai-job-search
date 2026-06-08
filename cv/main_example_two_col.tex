@@ -1,124 +1,290 @@
 % =============================================================================
-% CareerForge CV Template — Two Column (sidebar + main)
+% CareerForge CV Template — Two Column (paracol, modern, full-page)
 % Class:   cfcv.cls
 % Compile: lualatex main_example_two_col.tex    (run from cv/ directory)
-% Output:  main_example_two_col.pdf             (target: 1 page)
+% Output:  main_example_two_col.pdf             (target: 1 page, full-bleed)
 %
-% Layout:  Header full-width  |  Left sidebar 33%  |  Right main 65%
-% Separator: vertical accent rule drawn via \smash\raisebox (zero layout height)
+% Layout:  Left sidebar 32%  |  thin accent rule  |  Right main 68%
+%          White background; FontAwesome 4 icons via cfcv.cls symbols.
 %
-% ATS notes:
-%   - No letter-spacing on any text
-%   - Skills in plain text — ATS reads left-to-right, top-to-bottom
-%   - Standard section names throughout
+% Header alignment trick:
+%   Left column starts empty. \switchcolumn* switches to right, which gets
+%   the full header (name + tagline + contact + rule). The second \switchcolumn*
+%   advances the left column to match the right header height automatically.
+%   Result: About Me and Work Experience start at exactly the same Y position
+%   with no hardcoded \vspace.
+%
+% Page fill strategy:
+%   Left column  — 2 × \vfill distributes breathing room between sections.
+%   Right column — 1 × \vfill before Publications pins it to the page bottom.
+%
+% ATS: skill names are real text; bars are graphic-only.
+%      paracol outputs columns sequentially. No letter-spacing anywhere.
 %
 % Tokens:  Fields marked  % {{TOKEN}}  are replaced by the AI /apply skill.
-%          See .claude/skills/job-application-assistant/05-cv-templates.md
 % =============================================================================
 
 \documentclass[10pt, a4paper]{cfcv}
-\geometry{left=1.2cm,right=1.2cm,top=1.2cm,bottom=1.2cm}
+\geometry{left=1.0cm,right=1.2cm,top=0.9cm,bottom=0.9cm}
 \usepackage[default]{lato}
+\usepackage{paracol}
+\usepackage{eso-pic}
 \usepackage{hyperref}
 
+% ── Override cfcv.cls skip amounts (tighter rhythm for the right column) ───────
+\setlength{\bigskipamount}{3pt}
+\setlength{\medskipamount}{3pt}
+\setlength{\smallskipamount}{2pt}
+
+% ── Paracol: 32 / 68 split ─────────────────────────────────────────────────────
+\columnratio{0.32}
+\setlength{\columnsep}{0.65cm}
+
+% ── Thin accent rule at column boundary ────────────────────────────────────────
+\AddToShipoutPictureBG{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \draw[accent!22, line width=0.4pt]
+      ([xshift=0.350\paperwidth]current page.north west)
+      --
+      ([xshift=0.350\paperwidth]current page.south west);
+  \end{tikzpicture}}
+
+% ── Sidebar section header ─────────────────────────────────────────────────────
+\newcommand{\sidesection}[1]{%
+  \vspace{0.40cm}%
+  {\color{accent}\small\bfseries\MakeUppercase{#1}}\\[-1ex]%
+  {\color{accent}\rule{\linewidth}{1.2pt}\par}\smallskip}
+
+% ── Icon-prefixed contact item ─────────────────────────────────────────────────
+\newcommand{\iconitem}[2]{%
+  {\color{accent}#1}\hspace{0.35em}{\footnotesize\color{body}#2}\par\vspace{0.07cm}}
+
+% ── Skill progress bar ─────────────────────────────────────────────────────────
+\newcommand{\skillbar}[2]{%
+  {\footnotesize\color{body}\textbf{#1}}\\[0.02em]%
+  \begin{tikzpicture}
+    \fill[black!10] (0,0) rectangle (\linewidth,3.5pt);
+    \fill[accent]   (0,0) rectangle (#2\linewidth,3.5pt);
+  \end{tikzpicture}\par\vspace{0.13cm}}
+
+% ── Two-sub-column entry ───────────────────────────────────────────────────────
+% #1=org  #2=location  #3=dates (empty → omitted)
+% #4=role/degree/title  #5=description (empty → omitted)
+\newcommand{\jobentry}[5]{%
+  \smallskip\noindent
+  \begin{minipage}[t]{0.33\linewidth}
+    {\footnotesize\bfseries\color{body}\MakeUppercase{#1}\par}%
+    {\scriptsize\color{LightGrey}#2\par}%
+    \ifx&#3&\else{\scriptsize\color{accent}#3\par}\fi%
+  \end{minipage}%
+  \hspace{0.01\linewidth}%
+  \begin{minipage}[t]{0.66\linewidth}
+    {\footnotesize\bfseries\color{body}#4\par}%
+    \ifx&#5&\else{%
+      \scriptsize\linespread{1.35}\selectfont\color{body}#5\par}\fi%
+  \end{minipage}%
+  \par\vspace{0.14cm}}
+
 \begin{document}
+\begin{paracol}{2}
 
-% ── Header — full width ───────────────────────────────────────────────────────
-\name{Jane Smith}                                          % {{CANDIDATE_NAME}}
-\tagline{ML Engineer · Python Developer}                   % {{TAGLINE}}
-\personalinfo{%
-  \mailaddress{jane.smith@email.com}                       % {{EMAIL}}
-  \phone{+1 (415) 555-0198}                               % {{PHONE}}
-  \linkedin{linkedin.com/in/janesmith}{https://linkedin.com/in/janesmith}  % {{LINKEDIN}}
-  \github{github.com/janesmith}{https://github.com/janesmith}             % {{GITHUB}}
-  \location{San Francisco, CA}                             % {{LOCATION}}
-}
-\makecvheader
+% ═════════════════════════════════════════════════════════════════════════════
+% ALIGNMENT TRICK — left column is intentionally empty here.
+% \switchcolumn* (1st): switch to right at Y=0 (left has no content yet).
+% Right column gets the full header.
+% \switchcolumn* (2nd): switch back to left; paracol advances left to match
+%                       the right header height. Both columns now at same Y.
+% ═════════════════════════════════════════════════════════════════════════════
 
-% ── Two-column body ───────────────────────────────────────────────────────────
-% Vertical separator drawn with \smash\raisebox so it has zero layout height —
-% preventing the blank-page gap caused by an inline full-height rule.
-\noindent%
-%
-% ── LEFT SIDEBAR (33%) ───────────────────────────────────────────────────────
-\begin{minipage}[t]{0.33\linewidth}
-\vspace{0pt}
+% Left column: empty — no content before first switch
+\switchcolumn*
 
-\cvsection{Skills}
-\skillset{Programming}{Python, JavaScript, Bash, SQL}
-% {{SKILL_PROGRAMMING}}
-\skillset{Machine Learning}{PyTorch, TensorFlow, scikit-learn, MLflow}
-% {{SKILL_ML}}
-\skillset{Infrastructure}{Docker, Kubernetes, AWS, PostgreSQL, Redis}
-% {{SKILL_INFRA}}
+% ── RIGHT: Full header (name · tagline · contact · rule) ──────────────────────
+\color{body}
+\begin{minipage}[b]{0.54\linewidth}
+  {\Large\bfseries\color{black}\MakeUppercase{Jane Smith}\par}       % {{CANDIDATE_NAME}}
+  \smallskip
+  {\small\bfseries\color{accent}ML Engineer · Python Developer\par}  % {{TAGLINE}}
+\end{minipage}\hfill%
+\begin{minipage}[b]{0.44\linewidth}
+  \raggedleft\scriptsize\color{LightGrey}
+  {\color{accent}\locationsymbol}\ San Francisco, CA\\               % {{LOCATION}}
+  {\color{accent}\phonesymbol}\ +1 (415) 555-0198\\                  % {{PHONE}}
+  {\color{accent}\mailsymbol}\ \href{mailto:jane.smith@email.com}{jane.smith@email.com}\\ % {{EMAIL_PERSONAL}}
+  {\color{accent}\mailsymbol}\ \href{mailto:jane@company.com}{jane@company.com}           % {{EMAIL_WORK}} optional
+\end{minipage}
+\par\medskip
+\textcolor{accent}{\rule{\linewidth}{1.2pt}}\smallskip
 
-\cvsection{Education}
-\education
-  {M.Sc. Computer Science}     % {{DEGREE}}
-  {Stanford University}        % {{UNIVERSITY}}
-  {Palo Alto, CA}              % {{UNI_LOCATION}}
-  {2017 – 2019}                % {{EDU_DATE_RANGE}}
+% Second synchronized switch: left column advances to match right header height.
+% About Me (left) and Work Experience (right) now start at exactly the same Y.
+\switchcolumn*
 
-\cvsection{Languages}
-\begin{itemize}
-  \item English – Native       % {{LANGUAGE_1}}
-  \item Spanish – B2           % {{LANGUAGE_2}}
-\end{itemize}
+% ═════════════════════════════════════════════════════════════════════════════
+% LEFT SIDEBAR (32 %)
+% 2 × \vfill distributes generous breathing room between sections.
+% ═════════════════════════════════════════════════════════════════════════════
+\color{body}
 
-\cvsection{Certifications}
-\begin{itemize}
-  \item \textbf{AWS ML Specialty}\\        % {{CERT_1_NAME}}
-        {\small\color{LightGrey}March 2024}\\  % {{CERT_1_DATE}}
-        {\small\href{https://example.com/cert}{Verify \faExternalLink}}  % {{CERT_1_URL}}
-\end{itemize}
+% ── About Me ──────────────────────────────────────────────────────────────────
+\sidesection{About Me}
+{\footnotesize\linespread{1.50}\selectfont
+Motivated ML engineer with 5+ years building production AI systems.
+Recognised for assessing operational needs and developing solutions
+to save costs, improve revenues, and drive customer satisfaction.
 
-\end{minipage}%
-%
-% ── VERTICAL SEPARATOR ───────────────────────────────────────────────────────
-% \smash + \raisebox[0pt][0pt] → draws a 0.88\textheight line starting at the
-% top of the content area, with zero contribution to layout (no blank gap).
-\hspace{0.01\linewidth}%
-\smash{%
-  \raisebox{-0.88\textheight}[0pt][0pt]{%
-    \textcolor{accent!30}{\rule{0.5pt}{0.88\textheight}}%
-  }%
-}%
-\hspace{0.01\linewidth}%
-%
-% ── RIGHT MAIN (65%) ─────────────────────────────────────────────────────────
-\begin{minipage}[t]{0.65\linewidth}
-\vspace{0pt}
-
-\cvsection{Summary}
-Software engineer with five years of experience building production ML systems
-in Python. Proven track record of delivering data-driven products that move
-business metrics. Passionate about clean architecture and team collaboration.
+Resourceful and well-organised with a strong leadership record.
+Customer-oriented professional with a proven track record of leading
+high-performance teams to meet or exceed objectives — dedicated and
+hardworking with an internal drive to deliver excellence.\par}
 % {{PROFESSIONAL_SUMMARY}}
 
-\cvsection{Professional Experience}
+% ── Website & Social Links ────────────────────────────────────────────────────
+\sidesection{Website \& Social Links}
+\iconitem{\linkedinsymbol}{\href{https://linkedin.com/in/janesmith}{linkedin.com/in/janesmith}}
+% {{LINKEDIN}}
+\iconitem{\githubsymbol}{\href{https://github.com/janesmith}{github.com/janesmith}}
+% {{GITHUB}}
+\iconitem{\homepagesymbol}{\href{https://janesmith.dev}{janesmith.dev}}
+% {{WEBSITE}}
 
-\company{TechStart Inc.}{ML Engineer}{San Francisco, CA}{Jan 2022 – Present}
-% {{COMPANY_1_*}}
-Brief company description — what the company does and your role within the team.
-% {{COMPANY_1_DESCRIPTION}}
-\begin{itemize}
-  \item Delivered real-time recommendation engine that increased CTR by 23\% within 3 months, processing 2M+ events/day via PyTorch and Redis.  % {{ACHIEVEMENT_1}}
-  \item Met <100ms p99 latency SLA; reduced incidents by 40\% through improved monitoring.  % {{ACHIEVEMENT_2}}
-\end{itemize}
+% ── References ────────────────────────────────────────────────────────────────
+\sidesection{References}
+{\footnotesize\bfseries\color{body}DR. JOHN DOE\par}                 % {{REF_1_NAME}}
+{\scriptsize\color{LightGrey}Head of Engineering, TechStart Inc.\par}% {{REF_1_TITLE}}
+\iconitem{\phonesymbol}{+1 (415) 555-0101}                           % {{REF_1_PHONE}}
+\iconitem{\mailsymbol}{john@techstart.io}                            % {{REF_1_EMAIL}}
+\vspace{0.14cm}
+{\footnotesize\bfseries\color{body}MS. SARA CHEN\par}                % {{REF_2_NAME}}
+{\scriptsize\color{LightGrey}Senior Data Scientist, PrevCorp\par}    % {{REF_2_TITLE}}
+\iconitem{\phonesymbol}{+1 (212) 555-0199}                           % {{REF_2_PHONE}}
+\iconitem{\mailsymbol}{sara@prevcorp.com}                            % {{REF_2_EMAIL}}
 
-\medskip
-\textcolor{accent}{\rule{\linewidth}{0.8pt}}
-\medskip
+% First flexible gap
+\vfill
 
-\company{PrevCorp}{Junior Software Developer}{New York, NY}{Jun 2019 – Dec 2021}
-% {{COMPANY_2_*}}
-Brief description of second role and the team context.
-% {{COMPANY_2_DESCRIPTION}}
-\begin{itemize}
-  \item Built analytics dashboard adopted across 3 business units, cutting report generation time by 60\%.  % {{ACHIEVEMENT_3}}
-  \item Maintained REST APIs serving 500K daily active users with 99.9\% uptime over 18 months.            % {{ACHIEVEMENT_4}}
-\end{itemize}
+% ── Languages ─────────────────────────────────────────────────────────────────
+\sidesection{Languages}
+{\footnotesize\linespread{1.5}\selectfont
+$\bullet$\ English – Native\\                                         % {{LANGUAGE_1}}
+$\bullet$\ Spanish – B2\\                                             % {{LANGUAGE_2}}
+$\bullet$\ French – A2\par}                                           % {{LANGUAGE_3}}
 
+% ── Certifications ────────────────────────────────────────────────────────────
+\sidesection{Certifications}
+{\footnotesize\linespread{1.45}\selectfont\color{body}
+\textbf{AWS ML Specialty}\\                                           % {{CERT_1_NAME}}
+{\color{accent}March 2024}\hspace{0.3em}%
+\href{https://example.com/cert}{\color{accent}\faExternalLink\ Verify}\\[0.10cm]
+\textbf{Google Professional ML Engineer}\\                            % {{CERT_2_NAME}}
+{\color{accent}January 2023}\hspace{0.3em}%
+\href{https://example.com/cert2}{\color{accent}\faExternalLink\ Verify}\par}
+% {{CERT_1}} {{CERT_2}}
+
+% Second flexible gap
+\vfill
+
+% ── Additional Details ────────────────────────────────────────────────────────
+\sidesection{Additional Details}
+{\footnotesize\linespread{1.45}\selectfont\color{body}
+\textbf{Driving License}\hspace{0.4em}{\color{LightGrey}Full (Class B)}\\[0.06cm]
+\textbf{Availability}\hspace{0.4em}{\color{LightGrey}2 weeks notice}\\[0.06cm]
+\textbf{Work authorisation}\hspace{0.4em}{\color{LightGrey}US Citizen}\par}
+% {{ADDITIONAL_DETAILS}}
+
+% ═════════════════════════════════════════════════════════════════════════════
+% RIGHT MAIN COLUMN (68 %)
+% Regular switch — right column continues from after the header.
+% \vfill before Publications pins it to the page bottom.
+% ═════════════════════════════════════════════════════════════════════════════
+\switchcolumn
+\color{body}
+
+% ── Work Experience ───────────────────────────────────────────────────────────
+\cvsection{Work Experience}
+
+\jobentry{TechStart Inc.}{San Francisco, CA}{Jan 2022 – Present}     % {{COMPANY_1_*}}
+  {ML Engineer}                                                       % {{ROLE_1}}
+  {Built real-time recommendation engine increasing CTR by 23\%,
+   processing 2M+ events/day via PyTorch and Redis. Met <100ms p99
+   latency SLA; reduced incident rate 40\% through improved monitoring.}% {{COMPANY_1_DESC}}
+
+\jobentry{PrevCorp}{New York, NY}{Jun 2019 – Dec 2021}               % {{COMPANY_2_*}}
+  {Junior Software Developer}                                         % {{ROLE_2}}
+  {Built analytics dashboard adopted across 3 business units, cutting
+   report time by 60\%. Maintained REST APIs serving 500K daily users
+   at 99.9\% uptime; mentored 2 junior interns through code review.}  % {{COMPANY_2_DESC}}
+
+\jobentry{Pixelate Agency}{New Jersey, NJ}{Jan 2018 – May 2019}      % {{COMPANY_3_*}}
+  {Software Engineering Intern}                                       % {{ROLE_3}}
+  {Prototyped ETL pipeline reducing processing time 45\%. Contributed
+   to open-source tooling adopted by 200+ developers. Automated
+   reporting saving the team 6 hours per sprint.}                     % {{COMPANY_3_DESC}}
+
+% ── Projects ──────────────────────────────────────────────────────────────────
+\cvsection{Projects}
+
+\jobentry{ML Pipeline Framework}{Python · Airflow · AWS}{2023}       % {{PROJECT_1_*}}
+  {Lead Developer — Open Source}                                      % {{PROJECT_1_ROLE}}
+  {Framework for end-to-end ML training pipelines with automated
+   versioning, monitoring, and rollback. Adopted by 500+ engineers;
+   reduces pipeline setup time 70\%.}                                 % {{PROJECT_1_DESC}}
+
+\jobentry{Real-Time Fraud Detector}{PyTorch · Kafka · Redis}{2022}   % {{PROJECT_2_*}}
+  {Solo Developer — FinTech Hack NYC 2022, 1st Place}                 % {{PROJECT_2_ROLE}}
+  {Streaming anomaly detection at 98.7\% precision, <20ms latency,
+   processing 50K transactions/sec via Redis Streams and a lightweight
+   LSTM model.}                                                       % {{PROJECT_2_DESC}}
+
+% ── Education ─────────────────────────────────────────────────────────────────
+\cvsection{Education}
+
+\jobentry{Stanford University}{Palo Alto, CA}{2017 – 2019}           % {{UNIVERSITY_1_*}}
+  {M.Sc. Computer Science — Machine Learning}                         % {{DEGREE_1}}
+  {Specialised in ML systems and distributed computing. Thesis on
+   federated gradient aggregation achieved 67\% communication reduction.
+   Teaching assistant for CS229 two consecutive quarters.}            % {{EDU_1_DESC}}
+
+\jobentry{UC Berkeley}{Berkeley, CA}{2013 – 2017}                    % {{UNIVERSITY_2_*}}
+  {B.Sc. Computer Science}                                            % {{DEGREE_2}}
+  {Dean's List all semesters. GPA 3.9/4.0. VP of ACM student chapter
+   — co-organised three annual hackathons.}                           % {{EDU_2_DESC}}
+
+% ── Skills ────────────────────────────────────────────────────────────────────
+\cvsection{Skills}
+
+\begin{minipage}[t]{0.48\linewidth}
+  \skillbar{Python}{0.93}                                             % {{SKILL_1}}
+  \skillbar{PyTorch / TensorFlow}{0.82}                              % {{SKILL_2}}
+  \skillbar{Docker / Kubernetes}{0.76}                               % {{SKILL_3}}
+  \skillbar{SQL / PostgreSQL}{0.82}                                  % {{SKILL_4}}
+\end{minipage}\hfill%
+\begin{minipage}[t]{0.48\linewidth}
+  \skillbar{AWS / GCP}{0.74}                                          % {{SKILL_5}}
+  \skillbar{JavaScript / TypeScript}{0.66}                           % {{SKILL_6}}
+  \skillbar{Bash / Linux}{0.80}                                      % {{SKILL_7}}
+  \skillbar{MLflow / W\&B}{0.72}                                     % {{SKILL_8}}
 \end{minipage}
 
+% ── Hobbies ───────────────────────────────────────────────────────────────────
+\cvsection{Hobbies}
+{\footnotesize\color{LightGrey}
+OPEN SOURCE\enspace$\bullet$\enspace HIKING\enspace$\bullet$\enspace
+PHOTOGRAPHY\enspace$\bullet$\enspace CHESS\enspace$\bullet$\enspace
+TRAVELING\enspace$\bullet$\enspace READING}
+% {{HOBBIES}}
+
+% Flexible gap — pins Publications to the page bottom
+\vfill
+
+% ── Publications ──────────────────────────────────────────────────────────────
+\cvsection{Publications}
+
+\jobentry{arXiv · NeurIPS 2023}{New York, NY \textbar\ 2023}{}       % {{PUB_1_*}}
+  {Efficient Federated Gradient Aggregation at Scale}                 % {{PUB_1_TITLE}}
+  {Co-authored study demonstrating 67\% reduction in distributed ML
+   communication overhead via adaptive sparsification and quantisation.
+   Cited 42 times within 12 months of publication.}                  % {{PUB_1_DESC}}
+
+\end{paracol}
 \end{document}
