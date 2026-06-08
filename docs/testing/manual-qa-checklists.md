@@ -24,18 +24,20 @@ Use this checklist after running `/apply` to inspect the generated PDF files:
 
 ---
 
-## 2. CLI Command UX Checklist
+## 2. Command UX Checklist
 
-Use this checklist during manual runs in the terminal:
+These commands are prompt-as-code (ARCH-0001) — the assistant drives the
+interaction inside Claude Code; there is no compiled TUI, colored console
+output, or temp-file state. Use this checklist during manual runs:
 
 - [ ] **Interactive Responsiveness**:
-  - The console interview options are readable and prompt navigation inputs cleanly.
-  - Pressing `Ctrl+C` prints a cleanup message, saves progress in the temp file, and exits without stack traces.
-- [ ] **Visual Logs & Console Indicators**:
-  - Executed steps (0 through 6) print progress indicators with completion statuses.
-  - Successful operations output green console strings; errors output red strings with next-step instructions.
+  - The interview questions are clear, conversational, and asked one topic at a time (REQ-0014), not dumped as a rigid form.
+  - If a run is abandoned mid-way, re-running the command reads existing profile files first and resumes cleanly without duplicating already-captured content (idempotency — REQ-0002, business-rules §7.3).
+- [ ] **Step Visibility**:
+  - The assistant names each phase it is in (path selection, extraction, cross-reference, merge, convergence, summary) so the user can follow progress.
+  - No file is written until the user confirms the proposed changes (REQ-0009).
 - [ ] **Parameter Validation**:
-  - Passing empty URLs, malformed paths, or invalid section arguments prints a help notice instead of crashing.
+  - Passing an empty URL, a malformed path, or an invalid `--section` value causes the assistant to explain the problem and list valid options, rather than guessing or fabricating (REQ-0001, ARCH-0007).
 
 ---
 
@@ -44,7 +46,7 @@ Use this checklist during manual runs in the terminal:
 This audit checklist must be run before submitting any generated application documents:
 
 - [ ] **Cross-Profile Alignment**:
-  - Compare generated bullets against the source data in `settings/profile.json`. Ensure dates, companies, and roles are 100% accurate.
+  - Compare generated bullets against the source data in the candidate profile files (`01-candidate-profile.md` and the user-fork `CLAUDE.md`). Ensure dates, companies, and roles are 100% accurate.
 - [ ] **Credential Integrity**:
   - Ensure the AI did not generate fake credentials (e.g. certifications, degrees) that are absent from the candidate's profile.
 - [ ] **Metric Backtracking**:

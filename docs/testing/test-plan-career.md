@@ -17,13 +17,13 @@ These commands read profile details, execute web resources lookups, identify car
 ## 2. Test Cases
 
 ### Competency Expansion (`/expand`)
-- **TC-CAR-001**: Verify that `/expand` with a GitHub username correctly extracts repo list technologies and appends new skills to `settings/profile.json`.
-- **TC-CAR-002**: Verify that all newly added skills contain a `source` tag referencing the URL or repository source.
+- **TC-CAR-001**: Verify that `/expand` with a GitHub username correctly extracts repo-list technologies and appends new skills to the candidate profile files (`01-candidate-profile.md`; file-as-DB per ARCH-0004) — never to a `settings/profile.json`.
+- **TC-CAR-002**: Verify that every newly added skill carries a Markdown source annotation referencing the URL or repository source, e.g. *(GitHub — user/repo)* (REQ-0054), making re-runs idempotent.
 - **TC-CAR-003**: Verify that existing manually-entered experiences are never deleted or modified during expansion.
 
 ### Skill Gap Analysis (`/upskill`)
-- **TC-CAR-004**: Verify that Targeted Mode (running `/upskill --url <URL>`) evaluates the candidate profile against that specific job, generating a target markdown report at `upskill/reports/gap_report.md`.
-- **TC-CAR-005**: Verify that Aggregate Mode (running `/upskill` with no URL) pulls all jobs listed in `tracker.csv` to calculate aggregate gaps.
+- **TC-CAR-004**: Verify that Targeted Mode (running `/upskill --url <URL>`) evaluates the candidate profile against that specific job, generating a Markdown report at `upskill/report-YYYY-MM-DD-<company-slug>-<role-slug>.md` (data-requirements §14).
+- **TC-CAR-005**: Verify that Aggregate Mode (running `/upskill` with no URL) pulls all jobs listed in `job_search_tracker.csv` to calculate aggregate gaps.
 - **TC-CAR-006**: Verify that the web search lookup for resources identifies valid tutorial URLs (e.g. docs.docker.com, learn.hashicorp.com) and excludes dead links.
 - **TC-CAR-007**: Verify that the generated gap report includes a visual markdown-rendered skill heatmap.
 
