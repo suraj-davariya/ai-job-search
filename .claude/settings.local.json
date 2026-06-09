@@ -14,7 +14,18 @@
       "Bash(git -C /Volumes/home/Code/Workspace/ai-job-search log --oneline --all)",
       "Bash(git -C /Volumes/home/Code/Workspace/ai-job-search log --oneline)",
       "Bash(git -C /Volumes/home/Code/Workspace/ai-job-search add README.md CONTRIBUTING.md)",
-      "Bash(git -C /Volumes/home/Code/Workspace/ai-job-search commit -m ' *)"
+      "Bash(git -C /Volumes/home/Code/Workspace/ai-job-search commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(ln -sf /tmp/salary_data_test.json /Volumes/home/Code/Workspace/ai-job-search/salary_data.json)",
+      "Bash(git -C /Volumes/home/Code/Workspace/ai-job-search add salary_lookup.py)",
+      "Bash(git -C /Volumes/home/Code/Workspace/ai-job-search add tools/convert_salary_excel.py)",
+      "Bash(echo \"exit:$?\")",
+      "Bash(git -C /Volumes/home/Code/Workspace/ai-job-search add tools/README_SALARY_TOOL.md)",
+      "Bash(git -C /Volumes/home/Code/Workspace/ai-job-search add .claude/commands/apply.md .claude/skills/job-application-assistant/04-job-evaluation.md)",
+      "Bash(git -C /Volumes/home/Code/Workspace/ai-job-search status)",
+      "Bash(git -C /Volumes/home/Code/Workspace/ai-job-search log --oneline origin/feature/init..HEAD)",
+      "Bash(git -C /Volumes/home/Code/Workspace/ai-job-search log --oneline -8)",
+      "Bash(git *)"
     ],
     "deny": []
   }
