@@ -88,7 +88,7 @@ Non-task factors to also evaluate: leadership style, department culture, company
 
 ## Salary Benchmark Integration
 
-> When evaluating a role, invoke `salary_lookup.py` to check the salary range against the candidate's expectations. Usage: `python3 salary_lookup.py "<Role Title>" "<Location>"`. This tool is wired in Epic 7; if salary data is unavailable, note "Salary data not available" in the evaluation and proceed.
+> When evaluating a role, invoke `salary_lookup.py` to benchmark the target company. Usage: `python3 salary_lookup.py "<company>" --city "<city>"` (omit `--city` if no city is known). If salary data is unavailable, note "Salary data not available" in the evaluation and proceed.
 
 ## Output Format
 
