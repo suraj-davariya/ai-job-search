@@ -92,9 +92,8 @@ re-reads later — REQ-2024). Score the role using the five-dimension framework 
 Apply the **Location override**: if Location = FAIL, the verdict is **Poor Fit**
 regardless of the weighted score.
 
-**Salary (REQ-2011, optional):** invoke `python3 salary_lookup.py "<role>" "<location>"`.
-If the tool or data is unavailable (Epic 7), note "Salary data not available" and
-proceed — never block on it.
+**Salary (REQ-2011, optional):** invoke `python3 salary_lookup.py "<company>" --city "<city>"` (omit `--city` if no city is known).
+If the tool or data is unavailable, note "Salary data not available" and proceed — never block on it.
 
 **Present the evaluation (REQ-2012)** using the output format in
 `04-job-evaluation.md`: the dimension table with notes, weighted total, verdict
