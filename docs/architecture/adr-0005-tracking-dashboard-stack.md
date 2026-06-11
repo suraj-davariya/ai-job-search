@@ -1,9 +1,10 @@
 # ADR-0005: Tracking Dashboard Stack
 
-> **Status:** Accepted
+> **Status:** Superseded (stack only) by [ADR-0006](adr-0006-dashboard-nextjs-file-as-db.md)
 > **Date:** 2026-06-05
 > **Decision makers:** Architecture team
 > **Supersedes:** N/A
+> **Superseded by:** ADR-0006 — stack changed to Next.js + React + shadcn + Tailwind + Nivo (file-as-DB). ADR-0005's loopback-only, zero-telemetry, atomic-write, state-machine, and graceful-degradation constraints **remain binding**; only the Bun/Hono/HTMX/Pico stack choice is replaced.
 > **Related:** REQ-5000–REQ-5008 (functional-requirements-tracking-dashboard.md), ADR-0001 (file-based data), ADR-0004 (pluggable adapters)
 
 ---

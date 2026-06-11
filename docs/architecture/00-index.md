@@ -27,8 +27,9 @@ Start with the overview for context, then the technology stack, then component d
 | 11 | [ADR-0002: Drafter-Reviewer Pipeline](adr-0002-drafter-reviewer.md) | Why two agents |
 | 12 | [ADR-0003: LaTeX for Document Generation](adr-0003-latex-generation.md) | Why LaTeX over alternatives |
 | 13 | [ADR-0004: Pluggable Job Portal Adapters](adr-0004-pluggable-portals.md) | Why a plugin architecture |
-| 14 | [ADR-0005: Tracking Dashboard Stack](adr-0005-tracking-dashboard-stack.md) | Why Bun + Hono + HTMX + Pico.css for the local tracking dashboard |
-| 15 | [Traceability Matrix](traceability-matrix.md) | Requirements → Architecture mapping |
+| 14 | [ADR-0005: Tracking Dashboard Stack](adr-0005-tracking-dashboard-stack.md) | Bun + Hono + HTMX + Pico.css for the local tracking dashboard — **stack superseded by ADR-0006** |
+| 15 | [ADR-0006: Dashboard Stack — Next.js over File-as-DB](adr-0006-dashboard-nextjs-file-as-db.md) | Why Next.js + React + shadcn + Tailwind + Nivo (file-as-DB, no Prisma/auth); supersedes ADR-0005's stack |
+| 16 | [Traceability Matrix](traceability-matrix.md) | Requirements → Architecture mapping |
 
 ## Cross-References
 
