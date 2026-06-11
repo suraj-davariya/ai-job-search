@@ -11,6 +11,7 @@ import {
 import type { TrackerRow } from "@/lib/domain/status";
 import { FilterBar } from "./FilterBar";
 import { DataTable } from "./DataTable";
+import { RowDrawer } from "./RowDrawer";
 
 /**
  * Client shell for the applications surface: owns filter state, keeps it in the
@@ -34,6 +35,7 @@ export function ApplicationsView({ rows }: { rows: TrackerRow[] }) {
   );
 
   const filtered = useMemo(() => applyFilter(rows, filter), [rows, filter]);
+  const [selected, setSelected] = useState<TrackerRow | null>(null);
 
   return (
     <div className="space-y-4">
@@ -43,7 +45,10 @@ export function ApplicationsView({ rows }: { rows: TrackerRow[] }) {
         rows={rows}
         resultCount={filtered.length}
       />
-      <DataTable rows={filtered} />
+      <DataTable rows={filtered} onRowSelect={setSelected} />
+      {selected ? (
+        <RowDrawer row={selected} onClose={() => setSelected(null)} />
+      ) : null}
     </div>
   );
 }
