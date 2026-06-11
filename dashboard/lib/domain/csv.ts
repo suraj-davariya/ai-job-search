@@ -90,5 +90,10 @@ export function serializeTrackerCsv(rows: TrackerRow[]): string {
       TRACKER_COLUMNS.map((c) => [c, c === "fit_rating" ? r[c] : r[c] ?? ""]),
     ),
   );
-  return Papa.unparse(records, { columns: TRACKER_COLUMNS as unknown as string[] });
+  // Force Unix newlines: the tracker is git-tracked and shared with the CLI,
+  // which writes `\n`. Papa defaults to `\r\n`, which would churn the diff.
+  return Papa.unparse(records, {
+    columns: TRACKER_COLUMNS as unknown as string[],
+    newline: "\n",
+  });
 }
