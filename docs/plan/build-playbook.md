@@ -25,12 +25,12 @@ When building CareerForge with an AI coding assistant (such as Claude Code or an
 ### Phase 1: MVP Scaffolding & Setup
 
 #### Prompt Template for T-001 (Structure & Init)
-> You are starting implementation on **CareerForge**, a CLI-based career materials generator. Initialize the folder structure described in [repository-setup.md](file:///Volumes/home/Code/Workspace/ai-job-search/docs/plan/repository-setup.md).
-> Create the empty folders, place a `.gitkeep` file in each, and generate the baseline `.gitignore` following the guidelines in [security-architecture.md](file:///Volumes/home/Code/Workspace/ai-job-search/docs/architecture/security-architecture.md) to ensure personal documents, profiles, and compiled PDFs are never committed.
+> You are starting implementation on **CareerForge**, a CLI-based career materials generator. Initialize the folder structure described in [repository-setup.md](file:///Users/suuraj/Workspace/ai-job-search/docs/plan/repository-setup.md).
+> Create the empty folders, place a `.gitkeep` file in each, and generate the baseline `.gitignore` following the guidelines in [security-architecture.md](file:///Users/suuraj/Workspace/ai-job-search/docs/architecture/security-architecture.md) to ensure personal documents, profiles, and compiled PDFs are never committed.
 > Output: Create directory structure, `.gitkeep` files, and `.gitignore`.
 
 #### Prompt Template for T-030 (Setup Command Structure)
-> Author the `/setup` command as a prompt-as-code Markdown document at `.claude/commands/setup.md` (ARCH-0001 — there is no compiled CLI and no `settings/profile.json`), following the requirements in [functional-requirements-onboarding.md](file:///Volumes/home/Code/Workspace/ai-job-search/docs/requirements/functional-requirements-onboarding.md).
+> Author the `/setup` command as a prompt-as-code Markdown document at `.claude/commands/setup.md` (ARCH-0001 — there is no compiled CLI and no `settings/profile.json`), following the requirements in [functional-requirements-onboarding.md](file:///Users/suuraj/Workspace/ai-job-search/docs/requirements/functional-requirements-onboarding.md).
 > The command must: detect `documents/` folder state and present the three paths (A: scanning, B: CV import, C: interview) with Path A recommended when documents exist; support the `--section <name>` argument for update-only flows; and converge all paths on token replacement across the profile files (REQ-0016). Spell out each step (path selection, extraction, cross-reference, additive/conflicting merge, convergence, summary) as explicit instructions to the assistant.
 
 ---
@@ -38,13 +38,13 @@ When building CareerForge with an AI coding assistant (such as Claude Code or an
 ### Phase 2: Resume & Letter Generation
 
 #### Prompt Template for T-042 & T-043 (LaTeX Draft Generation)
-> Implement the document drafting engine for `/apply` as specified in [component-design.md](file:///Volumes/home/Code/Workspace/ai-job-search/docs/architecture/component-design.md).
+> Implement the document drafting engine for `/apply` as specified in [component-design.md](file:///Users/suuraj/Workspace/ai-job-search/docs/architecture/component-design.md).
 > The system must read the candidate profile from the profile files (`.claude/skills/job-application-assistant/01-candidate-profile.md` and the user-fork `CLAUDE.md`; file-as-DB per ARCH-0004) and generate:
 > 1. A CV LaTeX source based on `cv/templates/main_example.tex`.
 > 2. A Cover Letter LaTeX source using the class `cover.cls`.
 >
 > **Constraints**:
-> - Enforce writing style rules from [business-rules-and-validation.md](file:///Volumes/home/Code/Workspace/ai-job-search/docs/requirements/business-rules-and-validation.md) (no clichés, no em-dashes, active verbs).
+> - Enforce writing style rules from [business-rules-and-validation.md](file:///Users/suuraj/Workspace/ai-job-search/docs/requirements/business-rules-and-validation.md) (no clichés, no em-dashes, active verbs).
 > - Apply the content-cutting algorithm if the estimated length exceeds the page budget (2 pages for CV, 1 page for Cover Letter).
 > Write the code, outputting files to the correct directories.
 
@@ -53,7 +53,7 @@ When building CareerForge with an AI coding assistant (such as Claude Code or an
 ### Phase 3: Reviewer Agent & Loop
 
 #### Prompt Template for T-050 & T-053 (Reviewer Loop)
-> Implement the Drafter-Reviewer iteration loop for `/apply` as described in [adr-0002-drafter-reviewer.md](file:///Volumes/home/Code/Workspace/ai-job-search/docs/architecture/adr-0002-drafter-reviewer.md).
+> Implement the Drafter-Reviewer iteration loop for `/apply` as described in [adr-0002-drafter-reviewer.md](file:///Users/suuraj/Workspace/ai-job-search/docs/architecture/adr-0002-drafter-reviewer.md).
 > Hook up the Reviewer Agent to:
 > 1. Research the company or parsed job details.
 > 2. Evaluate the generated CV & letter draft against the job requirements.
@@ -69,4 +69,4 @@ When building CareerForge with an AI coding assistant (such as Claude Code or an
 |---|---|
 | AI references or copies names from the reference codebase. | Add a system boundary note: *"Do not look at or reference any folder outside `docs/` and the target files you are editing. Do not reuse any branding, variable names, or scripts unless specifically instructed."* |
 | AI skips writing complex algorithms (e.g., content-cutting, merge conflict logic). | Require the assistant to think step-by-step: *"Explain the logic for length estimation and section priority scoring before writing the code. Do not use placeholders or generic TODOs; write full implementation details."* |
-| AI introduces random dependencies (npm/pip packages). | Restrict package additions: *"Only use standard library packages and packages defined in our tech stack in [technology-stack.md](file:///Volumes/home/Code/Workspace/ai-job-search/docs/architecture/technology-stack.md). If you must add a package, declare it and explain the trade-off first."* |
+| AI introduces random dependencies (npm/pip packages). | Restrict package additions: *"Only use standard library packages and packages defined in our tech stack in [technology-stack.md](file:///Users/suuraj/Workspace/ai-job-search/docs/architecture/technology-stack.md). If you must add a package, declare it and explain the trade-off first."* |

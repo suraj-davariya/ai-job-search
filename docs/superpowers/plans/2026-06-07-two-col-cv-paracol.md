@@ -236,7 +236,7 @@ Use `[xshift=0.346\paperwidth]` in the TikZ rectangle. Fine-tune empirically if 
 
   Run from the `cv/` directory:
   ```bash
-  cd /Volumes/home/Code/Workspace/ai-job-search/cv && lualatex main_example_two_col.tex 2>&1 | tail -20
+  cd /Users/suuraj/Workspace/ai-job-search/cv && lualatex main_example_two_col.tex 2>&1 | tail -20
   ```
   Expected output ends with: `Output written on main_example_two_col.pdf (1 page, ...)`
   
@@ -245,21 +245,21 @@ Use `[xshift=0.346\paperwidth]` in the TikZ rectangle. Fine-tune empirically if 
 - [ ] **Step 2: Check page count**
 
   ```bash
-  grep "^Output" /Volumes/home/Code/Workspace/ai-job-search/cv/main_example_two_col.log
+  grep "^Output" /Users/suuraj/Workspace/ai-job-search/cv/main_example_two_col.log
   ```
   Expected: `Output written on main_example_two_col.pdf (1 page, ...)`
 
 - [ ] **Step 3: Check for overfull/underfull boxes**
 
   ```bash
-  grep -c "Overfull" /Volumes/home/Code/Workspace/ai-job-search/cv/main_example_two_col.log
+  grep -c "Overfull" /Users/suuraj/Workspace/ai-job-search/cv/main_example_two_col.log
   ```
   Acceptable: ≤ 3 minor overfull warnings. If > 3, check which lines are overfull and shorten the offending bullet text.
 
 - [ ] **Step 4: Open PDF for visual inspection**
 
   ```bash
-  open /Volumes/home/Code/Workspace/ai-job-search/cv/main_example_two_col.pdf
+  open /Users/suuraj/Workspace/ai-job-search/cv/main_example_two_col.pdf
   ```
   
   Verify manually:
@@ -282,7 +282,7 @@ Use `[xshift=0.346\paperwidth]` in the TikZ rectangle. Fine-tune empirically if 
 - [ ] **Step 1: Stage and commit**
 
   ```bash
-  cd /Volumes/home/Code/Workspace/ai-job-search && \
+  cd /Users/suuraj/Workspace/ai-job-search && \
   git add cv/main_example_two_col.tex cv/main_example_two_col.pdf && \
   git commit -m "$(cat <<'EOF'
   feat(cv): rewrite two-column template using paracol + dark sidebar
