@@ -37,7 +37,13 @@ function SortHeader({
 
 const dash = <span className="text-muted-foreground">—</span>;
 
-export function DataTable({ rows }: { rows: TrackerRow[] }) {
+export function DataTable({
+  rows,
+  onRowSelect,
+}: {
+  rows: TrackerRow[];
+  onRowSelect?: (row: TrackerRow) => void;
+}) {
   const [sorting, setSorting] = useState<SortingState>([
     { id: "date", desc: true }, // default sort: most recent first
   ]);
@@ -202,8 +208,22 @@ export function DataTable({ rows }: { rows: TrackerRow[] }) {
               <tr
                 key={row.id}
                 data-muted={muted ? "true" : undefined}
+                role={onRowSelect ? "button" : undefined}
+                tabIndex={onRowSelect ? 0 : undefined}
+                onClick={onRowSelect ? () => onRowSelect(row.original) : undefined}
+                onKeyDown={
+                  onRowSelect
+                    ? (e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          onRowSelect(row.original);
+                        }
+                      }
+                    : undefined
+                }
                 className={cn(
                   "border-b border-border/60 last:border-0 hover:bg-muted/40",
+                  onRowSelect && "cursor-pointer focus:bg-muted/50 focus:outline-none",
                   muted && "opacity-60",
                 )}
               >
