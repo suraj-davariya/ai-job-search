@@ -1,8 +1,19 @@
-# Development — Implementation Guide: Tracking Dashboard
+# Development — Implementation Guide: Tracking Dashboard (HTMX — SUPERSEDED)
 
+> ⚠️ **SUPERSEDED (2026-06-10).** The dashboard stack moved to Next.js + file-as-DB
+> in **ADR-0006**. This HTMX/Hono/Pico guide is retained for history. The active
+> guide is
+> [`implementation-guide-tracking-dashboard-nextjs.md`](./implementation-guide-tracking-dashboard-nextjs.md).
+>
+> **Still authoritative below (stack-agnostic, carried into the Next.js guide):**
+> §3.2 atomic-write recipe, §5.1 status enum + transitions, §5.3 KPI computation,
+> §6 accessibility checklist, §7 performance budgets, §8 failure modes. The
+> §1 skill layout, §2 Bun/Hono server, and §4 HTMX routes are replaced by the
+> Next.js guide.
+>
 > **Purpose:** Detailed implementation guide for the local tracking dashboard — scaffold, server, CSV layer, HTMX routes, accessibility, and performance discipline.
 >
-> **Status:** Draft
+> **Status:** Superseded by ADR-0006 / the Next.js implementation guide
 > **Last updated:** 2026-06-05
 > **Owner persona:** Staff Engineer
 > **Implements:** REQ-5000–REQ-5008 · NFR-0014–NFR-0017 · ADR-0005
