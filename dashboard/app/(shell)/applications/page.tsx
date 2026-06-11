@@ -1,6 +1,6 @@
 import { readTracker } from "@/lib/data/tracker";
 import { PageSection } from "@/components/shell/page-shell";
-import { DataTable } from "@/components/applications/DataTable";
+import { ApplicationsView } from "@/components/applications/ApplicationsView";
 
 // Re-read from disk on every request (no long-lived cache in v1; CSV ≤ 1k rows).
 export const dynamic = "force-dynamic";
@@ -13,7 +13,7 @@ export default async function ApplicationsPage() {
       title="Applications"
       description={`${rows.length} application${rows.length === 1 ? "" : "s"} tracked.`}
     >
-      <DataTable rows={rows} />
+      <ApplicationsView rows={rows} />
     </PageSection>
   );
 }
