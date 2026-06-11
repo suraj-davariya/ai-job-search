@@ -12,7 +12,7 @@
 
 ## Pre-flight
 
-**Working directory:** `/Volumes/home/Code/Workspace/ai-job-search`
+**Working directory:** `/Users/suuraj/Workspace/ai-job-search`
 
 **Spec reference:** `docs/superpowers/specs/2026-06-06-careerforge-requirements-update-design.md` — the canonical content source for every task below. When a task says "apply the body from spec §X.Y", read the spec section and use its exact prose.
 
@@ -34,7 +34,7 @@ Expected: `fatal: not a git repository (or any of the parent directories): .git`
 - [ ] **Step 2: Initialize repository**
 
 Run: `git init && git branch -M main`
-Expected: `Initialized empty Git repository in /Volumes/home/Code/Workspace/ai-job-search/.git/`
+Expected: `Initialized empty Git repository in /Users/suuraj/Workspace/ai-job-search/.git/`
 
 - [ ] **Step 3: Stage and commit the existing state as a baseline**
 
