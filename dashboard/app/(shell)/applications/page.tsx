@@ -1,16 +1,19 @@
-import { PageSection, EmptyState } from "@/components/shell/page-shell";
+import { readTracker } from "@/lib/data/tracker";
+import { PageSection } from "@/components/shell/page-shell";
+import { DataTable } from "@/components/applications/DataTable";
 
-export default function ApplicationsPage() {
+// Re-read from disk on every request (no long-lived cache in v1; CSV ≤ 1k rows).
+export const dynamic = "force-dynamic";
+
+export default async function ApplicationsPage() {
+  const rows = await readTracker();
+
   return (
     <PageSection
       title="Applications"
-      description="The tracker table — sortable, filterable, inline-editable (REQ-5001–5007)."
+      description={`${rows.length} application${rows.length === 1 ? "" : "s"} tracked.`}
     >
-      <EmptyState
-        title="Table coming in M1"
-        hint="The read-only TanStack table over job_search_tracker.csv lands in M1; inline editing and + New arrive in M2."
-        milestone="M1 — Read layer + Applications table"
-      />
+      <DataTable rows={rows} />
     </PageSection>
   );
 }
