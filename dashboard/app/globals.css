@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+/* next-themes toggles `class="dark"` on <html>; default theme is dark. */
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Dark + orange-gold token system (build-prompt §7).
+ * Values are HSL channel triples consumed as `hsl(var(--token))`.
+ * Tune for WCAG AA contrast (NFR-0015).
+ */
+:root {
+  --radius: 0.75rem; /* rounded-xl cards */
+
+  /* Light theme (a bonus, not required) — neutral with the same warm accent. */
+  --background: 40 20% 98%;
+  --foreground: 24 20% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 24 20% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 24 20% 12%;
+  --muted: 40 12% 92%;
+  --muted-foreground: 30 8% 38%;
+  --border: 30 12% 86%;
+  --input: 30 12% 86%;
+  --primary: 33 96% 48%;
+  --primary-foreground: 24 30% 8%;
+  --accent: 43 96% 50%;
+  --accent-foreground: 24 30% 8%;
+  --ring: 33 96% 48%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 40 20% 98%;
+
+  --chart-1: 33 96% 48%;
+  --chart-2: 43 96% 50%;
+  --chart-3: 27 90% 44%;
+  --chart-4: 48 90% 52%;
+  --chart-5: 190 60% 42%;
+}
+
+.dark {
+  --background: 24 10% 6%; /* warm near-black */
+  --foreground: 40 20% 92%; /* warm off-white text */
+  --card: 24 9% 9%; /* slightly lifted surface */
+  --card-foreground: 40 20% 92%;
+  --popover: 24 9% 9%;
+  --popover-foreground: 40 20% 92%;
+  --muted: 24 8% 16%;
+  --muted-foreground: 36 10% 62%;
+  --border: 30 10% 18%;
+  --input: 30 10% 18%;
+  --primary: 33 96% 52%; /* ORANGE — primary action */
+  --primary-foreground: 24 30% 8%;
+  --accent: 43 96% 56%; /* GOLD — secondary highlight */
+  --accent-foreground: 24 30% 8%;
+  --ring: 33 96% 52%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 40 20% 92%;
+
+  /* chart ramp: orange → gold → amber → bronze, plus a cool contrast */
+  --chart-1: 33 96% 52%;
+  --chart-2: 43 96% 56%;
+  --chart-3: 27 90% 48%;
+  --chart-4: 48 90% 60%;
+  --chart-5: 190 60% 50%;
+}
+
+/* Map tokens to Tailwind v4 theme utilities (bg-background, text-primary, …). */
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-ring: hsl(var(--ring));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* Self-hosted system font stack — no Google Fonts network fetch (REQ-5008). */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
