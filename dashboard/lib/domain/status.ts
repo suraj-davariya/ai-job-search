@@ -71,4 +71,6 @@ export interface TrackerRow {
   cover_letter_file: string;
   source: string;
   last_updated: string; // ISO date
+  /** In-memory only: true when last_updated was blank and back-filled from date. */
+  _legacyLastUpdated?: boolean;
 }
