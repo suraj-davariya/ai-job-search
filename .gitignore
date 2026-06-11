@@ -16,6 +16,10 @@
 
 # ── Application state (personal — changes per user) ───────────────────────────
 job_search_tracker.csv
+# Atomic-writer siblings created at repo root by the dashboard write layer.
+# The .bak is a full copy of the personal tracker — never commit it.
+.job_search_tracker.csv.tmp.*
+.job_search_tracker.csv.bak
 job_scraper/seen_jobs.json
 
 # ── Salary data (user-provided, sensitive) ────────────────────────────────────
