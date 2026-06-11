@@ -44,7 +44,7 @@ export function isStatus(value: string): value is Status {
 export function assertTransition(from: Status, to: Status): void {
   if (to === from) return;
   if (ALLOWED_NEXT[from].includes(to)) return;
-  throw new Error(`Illegal status transition: ${from} → ${to}`);
+  throw new Error(`Transition ${from} → ${to} is not allowed`);
 }
 
 /** The choices a status dropdown should offer: current state + its allowed next. */
