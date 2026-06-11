@@ -1,0 +1,13 @@
+date,company,sector,role,role_type,channel,status,contact_person,fit_rating,notes,cv_file,cover_letter_file,source,last_updated
+2026-06-10,Helios Analytics,Data,ML Engineer,Full-time,Company site,Draft,,76,Need to tailor CV for MLOps,,,https://example.com/jobs/helios-ml,2026-06-10
+2026-06-09,Northwind Labs,Software,Senior Backend Engineer,Full-time,LinkedIn,Sent,Anna Petrova,82,Strong infrastructure match,cv/output/main_northwind.pdf,cover_letters/output/cover_northwind_backend.pdf,https://example.com/jobs/northwind-be,2026-06-09
+2026-05-28,Brightwave,Fintech,Platform Engineer,Full-time,Referral,Interview,Marco Reyes,88,Phone screen passed - onsite next week,cv/output/main_brightwave.pdf,cover_letters/output/cover_brightwave_platform.pdf,https://example.com/jobs/brightwave-platform,2026-06-07
+2026-04-15,Quantia,Software,Staff Engineer,Full-time,LinkedIn,Offer,Priya Nair,91,Offer received - negotiating comp,cv/output/main_quantia.pdf,cover_letters/output/cover_quantia_staff.pdf,https://example.com/jobs/quantia-staff,2026-06-05
+2026-05-02,Cobalt Systems,Hardware,Embedded Engineer,Full-time,Job board,Rejected,,64,Not enough low-level C experience,cv/output/main_cobalt.pdf,,https://example.com/jobs/cobalt-embedded,2026-05-20
+2026-03-30,Lumen Health,Healthcare,Full-stack Developer,Contract,Recruiter,Withdrawn,James Okoro,70,Withdrew due to relocation,,,https://example.com/jobs/lumen-fs,2026-04-10
+2026-02-18,Apex Retail,Retail,Frontend Engineer,Full-time,Company site,Closed,,58,Role closed by company,,,https://example.com/jobs/apex-fe,2026-03-01
+2026-06-08,Vertex Cloud,Cloud,DevOps Engineer,Full-time,LinkedIn,Sent,Lena Schmidt,79,Applied via LinkedIn,cv/output/main_vertex.pdf,cover_letters/output/cover_vertex_devops.pdf,https://example.com/jobs/vertex-devops,2026-06-08
+2026-06-01,Orbital Media,Media,Backend Engineer,Full-time,Referral,Interview,Tom Becker,84,Tech screen scheduled,cv/output/main_orbital.pdf,cover_letters/output/cover_orbital_be.pdf,https://example.com/jobs/orbital-be,2026-06-06
+2026-03-12,Sterling Finance,Banking,Quant Developer,Full-time,Recruiter,Draft,,73,Legacy row without last_updated,,,https://example.com/jobs/sterling-quant,
+2026-05-25,Greenfield AI,Software,AI Engineer,Full-time,Company site,Sent,,80,Submitted portfolio,cv/output/main_missing_greenfield.pdf,cover_letters/output/cover_missing_greenfield.pdf,https://example.com/jobs/greenfield-ai,2026-05-25
+2026-05-10,Meridian Bank,Banking,Site Reliability Engineer,Full-time,Recruiter,Sent,Sarah Lindqvist,67,See full posting at https://example.com/posting/meridian-sre for details,cv/output/main_meridian.pdf,,https://example.com/jobs/meridian-sre,2026-05-18
