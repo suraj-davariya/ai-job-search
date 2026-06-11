@@ -160,3 +160,45 @@ The `/dashboard` command starts a local web server over `job_search_tracker.csv`
 ## 5. Manual QA Checklists
 
 Add a "Tracking Dashboard" section to `manual-qa-checklists.md` covering: launch-and-look, sort/filter feel, inline-edit feel, drawer focus management, mobile sanity (Pico responsive defaults), and a five-minute exploratory dive on the 1k-row fixture.
+
+---
+
+## 6. Next.js / Operator-Surface Addendum (ADR-0006, REQ-5009–5016)
+
+> **Stack migration note (2026-06-10):** the dashboard moved to Next.js + file-as-DB
+> (ADR-0006). The §1–§5 cases above remain valid as behavior specs, but the
+> automation tier names ("Bun test", "HTMX routes") map to: **vitest** for `lib/`
+> units, **Server Action / Route Handler** integration tests, and **Playwright**
+> e2e. The cases below cover the scope ADR-0006 + REQ-5009–5016 added. See
+> [`../development/implementation-guide-tracking-dashboard-nextjs.md`](../development/implementation-guide-tracking-dashboard-nextjs.md).
+
+### Atomic write & state machine (REQ-5004, NFR-0016)
+- **TC-DBD-140** — `updateRow` changes only `status`/`notes`/`last_updated`; all other columns byte-identical after write.
+- **TC-DBD-141** — an illegal transition (e.g. `Draft→Offer`) is rejected and the file is left unchanged.
+- **TC-DBD-142** — a `.job_search_tracker.csv.bak` is written before the rename.
+- **TC-DBD-143** — 5 interleaved writes leave the header intact and the file parseable (no corruption).
+- **TC-DBD-144** — `+ New` append goes through the same writer with empty `cv_file`/`cover_letter_file`.
+
+### Loopback & no-network (REQ-5008, NFR-0017)
+- **TC-DBD-145** — the server binds `127.0.0.1` only; there is no flag to bind a LAN address.
+- **TC-DBD-146** — a full session shows zero requests to non-loopback origins (devtools/network capture).
+- **TC-DBD-147** — rendered HTML/CSS/JS reference no external (CDN/font/analytics) origins.
+
+### Analytics honesty (REQ-5009, ARCH-0007)
+- **TC-DBD-148** — KPI windows with <3 data points render `—`, never 0 or a guess.
+- **TC-DBD-149** — interview rate uses the §9.5 denominator (excludes `Draft`).
+- **TC-DBD-150** — empty CSV renders chart empty-states, not fabricated series.
+- **TC-DBD-151** — the activity calendar bins on `date`; the recent panel's "status changes" view orders by `last_updated`.
+
+### Action layer (REQ-5010, REQ-5011)
+- **TC-DBD-152** — only allowlisted commands run; an unknown command is rejected.
+- **TC-DBD-153** — subprocesses spawn with `shell:false` and an argv array; a company/URL containing shell metacharacters is passed as one opaque argument and never interpreted.
+- **TC-DBD-154** — a second concurrent run of the same command type is rejected; the global stop sends SIGTERM.
+- **TC-DBD-155** — real exit codes/stderr are surfaced; a missing `claude`/`python3` disables the action with a tooltip (no fake success).
+- **TC-DBD-156** — run history persists to `dashboard/.runs/*.json` and is never written into the tracker CSV.
+- **TC-DBD-157** — action endpoints refuse to spawn in read-only mode (REQ-5007).
+
+### Secondary views & degradation (REQ-5012–5016, ARCH-0005)
+- **TC-DBD-158** — Companies/Profile/Salary/Upskill render empty-states when their optional source files are absent (no crash).
+- **TC-DBD-159** — `/api/file` serves PDFs only from the allowlisted output dirs and rejects `..` traversal.
+- **TC-DBD-160** — deleting `dashboard/` leaves `job_search_tracker.csv` and the `/apply` pipeline intact.
