@@ -37,6 +37,10 @@ export const paths = {
   seenJobs: () => atRoot("job_scraper", "seen_jobs.json"),
   salaryData: () => atRoot("salary_data.json"),
 
+  // CLI scripts the action layer may spawn (allowlisted, never a shell string).
+  salaryScript: () => atRoot("salary_lookup.py"),
+  convertSalaryScript: () => atRoot("tools", "convert_salary_excel.py"),
+
   // Generated documents + reports.
   applicationsDir: () => atRoot("documents", "applications"),
   applicationDir: (slug: string) =>
