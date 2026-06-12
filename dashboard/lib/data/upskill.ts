@@ -35,3 +35,12 @@ export async function readUpskillReports(
 
   return reports.sort((a, b) => b.mtimeMs - a.mtimeMs);
 }
+
+/** Read a single report's markdown; missing/unreadable → null (ARCH-0005). */
+export async function readUpskillReport(file: string): Promise<string | null> {
+  try {
+    return await fs.readFile(file, "utf8");
+  } catch {
+    return null;
+  }
+}
