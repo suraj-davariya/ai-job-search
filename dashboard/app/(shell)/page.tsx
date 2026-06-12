@@ -1,16 +1,29 @@
+import { readTracker } from "@/lib/data/tracker";
+import { kpis } from "@/lib/domain/kpi";
 import { PageSection, EmptyState } from "@/components/shell/page-shell";
+import { KpiCards } from "@/components/dashboard/KpiCard";
 
-export default function DashboardPage() {
+// Re-read from disk on every request (file-as-DB; CSV ≤ 1k rows).
+export const dynamic = "force-dynamic";
+
+export default async function DashboardPage() {
+  const rows = await readTracker();
+  const k = kpis(rows);
+
   return (
     <PageSection
       title="Overview"
-      description="KPI cards, pipeline funnel, and activity charts land here in M3."
+      description="Pipeline health at a glance, computed live from your tracker."
     >
-      <EmptyState
-        title="Stats coming in M3"
-        hint="Once the read layer (M1) is wired, this page renders totals, average fit, interview rate, and the activity heatmap from job_search_tracker.csv."
-        milestone="M3 — Dashboard stats"
-      />
+      {rows.length === 0 ? (
+        <EmptyState
+          title="No applications yet"
+          hint="Run /apply <posting> or use + New application on the Applications page. Your KPIs and charts appear here once the tracker has rows."
+          milestone="Overview"
+        />
+      ) : (
+        <KpiCards k={k} />
+      )}
     </PageSection>
   );
 }
