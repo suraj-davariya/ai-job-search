@@ -73,9 +73,18 @@ export function DataTable({
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           />
         ),
-        cell: ({ getValue }) => (
-          <span className="font-medium">{getValue<string>()}</span>
-        ),
+        cell: ({ row }) =>
+          onRowSelect ? (
+            <button
+              type="button"
+              onClick={() => onRowSelect(row.original)}
+              className="text-left font-medium hover:text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              {row.original.company}
+            </button>
+          ) : (
+            <span className="font-medium">{row.original.company}</span>
+          ),
       },
       {
         accessorKey: "role",
@@ -216,25 +225,8 @@ export function DataTable({
               <tr
                 key={row.id}
                 data-muted={muted ? "true" : undefined}
-                role={onRowSelect ? "button" : undefined}
-                tabIndex={onRowSelect ? 0 : undefined}
-                onClick={onRowSelect ? () => onRowSelect(row.original) : undefined}
-                onKeyDown={
-                  onRowSelect
-                    ? (e) => {
-                        // Only the row itself activates; keys typed into inline
-                        // controls (status select, notes input) must pass through.
-                        if (e.target !== e.currentTarget) return;
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          onRowSelect(row.original);
-                        }
-                      }
-                    : undefined
-                }
                 className={cn(
                   "border-b border-border/60 last:border-0 hover:bg-muted/40",
-                  onRowSelect && "cursor-pointer focus:bg-muted/50 focus:outline-none",
                   muted && "opacity-60",
                 )}
               >

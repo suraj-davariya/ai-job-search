@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
+    "a11y": "vitest run test/a11y",
     "lint": "eslint"
   },
   "dependencies": {
