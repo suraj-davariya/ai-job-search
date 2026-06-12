@@ -12,6 +12,7 @@ import type { TrackerRow } from "@/lib/domain/status";
 import { FilterBar } from "./FilterBar";
 import { DataTable } from "./DataTable";
 import { RowDrawer } from "./RowDrawer";
+import { NewDialog } from "./NewDialog";
 
 /**
  * Client shell for the applications surface: owns filter state, keeps it in the
@@ -45,12 +46,17 @@ export function ApplicationsView({
 
   return (
     <div className="space-y-4">
-      <FilterBar
-        value={filter}
-        onChange={update}
-        rows={rows}
-        resultCount={filtered.length}
-      />
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0 flex-1">
+          <FilterBar
+            value={filter}
+            onChange={update}
+            rows={rows}
+            resultCount={filtered.length}
+          />
+        </div>
+        <NewDialog disabled={readOnly} />
+      </div>
       <DataTable rows={filtered} onRowSelect={setSelected} readOnly={readOnly} />
       {selected ? (
         <RowDrawer row={selected} onClose={() => setSelected(null)} />
