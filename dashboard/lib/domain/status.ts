@@ -73,4 +73,10 @@ export interface TrackerRow {
   last_updated: string; // ISO date
   /** In-memory only: true when last_updated was blank and back-filled from date. */
   _legacyLastUpdated?: boolean;
+  /**
+   * In-memory only: 0-based position of this row in the parsed tracker. This is
+   * the write key — `updateRow(file, _row, …)` addresses rows by file position,
+   * so it must survive client-side sorting and filtering. Never serialized.
+   */
+  _row?: number;
 }

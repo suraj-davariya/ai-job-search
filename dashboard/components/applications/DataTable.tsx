@@ -13,8 +13,9 @@ import { ArrowUpDown, ExternalLink, FileText } from "lucide-react";
 import type { TrackerRow } from "@/lib/domain/status";
 import { MUTED } from "@/lib/domain/status";
 import { cn } from "@/lib/utils";
-import { StatusPill } from "./StatusPill";
 import { FitBadge } from "./FitBadge";
+import { StatusSelect } from "./StatusSelect";
+import { NotesCell } from "./NotesCell";
 
 function SortHeader({
   label,
@@ -40,9 +41,11 @@ const dash = <span className="text-muted-foreground">—</span>;
 export function DataTable({
   rows,
   onRowSelect,
+  readOnly = false,
 }: {
   rows: TrackerRow[];
   onRowSelect?: (row: TrackerRow) => void;
+  readOnly?: boolean;
 }) {
   const [sorting, setSorting] = useState<SortingState>([
     { id: "date", desc: true }, // default sort: most recent first
@@ -88,7 +91,7 @@ export function DataTable({
       {
         accessorKey: "status",
         header: "Status",
-        cell: ({ getValue }) => <StatusPill status={getValue<TrackerRow["status"]>()} />,
+        cell: ({ row }) => <StatusSelect row={row.original} readOnly={readOnly} />,
       },
       {
         accessorKey: "fit_rating",
@@ -104,6 +107,11 @@ export function DataTable({
         accessorKey: "contact_person",
         header: "Contact",
         cell: ({ getValue }) => getValue<string>() || dash,
+      },
+      {
+        id: "notes",
+        header: "Notes",
+        cell: ({ row }) => <NotesCell row={row.original} readOnly={readOnly} />,
       },
       {
         accessorKey: "cv_file",
@@ -152,7 +160,7 @@ export function DataTable({
         },
       },
     ],
-    [],
+    [readOnly],
   );
 
   const table = useReactTable({
@@ -214,6 +222,9 @@ export function DataTable({
                 onKeyDown={
                   onRowSelect
                     ? (e) => {
+                        // Only the row itself activates; keys typed into inline
+                        // controls (status select, notes input) must pass through.
+                        if (e.target !== e.currentTarget) return;
                         if (e.key === "Enter" || e.key === " ") {
                           e.preventDefault();
                           onRowSelect(row.original);

@@ -80,7 +80,12 @@ export function parseTrackerCsv(text: string): TrackerRow[] {
     skipEmptyLines: "greedy",
   });
 
-  return (parsed.data ?? []).filter(hasValue).map(toRow);
+  // Index is assigned AFTER dropping blank lines so it matches the index the
+  // write layer sees (readCurrent uses this same parse), making `_row` a stable
+  // write key. Read and write must filter identically for this to hold.
+  return (parsed.data ?? [])
+    .filter(hasValue)
+    .map((raw, i) => ({ ...toRow(raw), _row: i }));
 }
 
 /** Serialize typed rows back to CSV text in the exact 14-column order. */
