@@ -1,7 +1,8 @@
 "use client";
 
 import { Fragment, useEffect, useRef, useState } from "react";
-import { ExternalLink, FileText, FileX, X } from "lucide-react";
+import Link from "next/link";
+import { ExternalLink, FileText, FileX, Play, X } from "lucide-react";
 import type { TrackerRow } from "@/lib/domain/status";
 import { StatusPill } from "./StatusPill";
 import { FitBadge } from "./FitBadge";
@@ -209,6 +210,15 @@ export function RowDrawer({
                 </a>
               ) : null}
             </div>
+            {row.source ? (
+              <Link
+                href={`/console?command=apply&url=${encodeURIComponent(row.source)}`}
+                className="inline-flex items-center gap-1.5 rounded-md border border-border bg-card px-2 py-1 text-xs hover:bg-muted/60"
+              >
+                <Play className="h-3.5 w-3.5 text-primary" aria-hidden />
+                Re-run /apply
+              </Link>
+            ) : null}
           </div>
         </div>
       </div>

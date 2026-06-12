@@ -1,16 +1,29 @@
-import { PageSection, EmptyState } from "@/components/shell/page-shell";
+import { Suspense } from "react";
+import { getConfig } from "@/lib/config";
+import { binAvailability } from "@/lib/run/bins";
+import { PageSection } from "@/components/shell/page-shell";
+import { RunLog } from "@/components/console/RunLog";
+import { RunList } from "@/components/console/RunList";
 
-export default function ConsolePage() {
+// Bins are probed per request; nothing is cached.
+export const dynamic = "force-dynamic";
+
+export default async function ConsolePage() {
+  const { readOnly } = getConfig();
+  const { claude, python3 } = await binAvailability();
+
   return (
     <PageSection
       title="Console"
-      description="Terminal-style live + past CLI runs (apply/search/upskill/salary)."
+      description="Run allowlisted CLI commands and watch their output live."
     >
-      <EmptyState
-        title="Run console coming in M4"
-        hint="The action layer spawns allowlisted commands and streams stdout here."
-        milestone="M4 — Action layer"
-      />
+      <div className="grid gap-4 lg:grid-cols-[2fr_1fr]">
+        {/* useSearchParams in RunLog requires a Suspense boundary. */}
+        <Suspense>
+          <RunLog claudeOk={claude} pythonOk={python3} readOnly={readOnly} />
+        </Suspense>
+        <RunList />
+      </div>
     </PageSection>
   );
 }
