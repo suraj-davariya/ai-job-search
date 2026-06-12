@@ -1,15 +1,27 @@
-import { PageSection, EmptyState } from "@/components/shell/page-shell";
+import { getConfig, DEFAULT_PORT } from "@/lib/config";
+import { readSettings } from "@/lib/settings";
+import { PageSection } from "@/components/shell/page-shell";
+import { SettingsForm } from "@/components/settings/SettingsForm";
 
-export default function SettingsPage() {
+export const dynamic = "force-dynamic";
+
+export default async function SettingsPage() {
+  const config = getConfig();
+  const saved = await readSettings();
+
+  // Persisted preference wins for display; otherwise the live runtime value.
+  const initial = {
+    repoRoot: saved.repoRoot ?? config.repoRoot,
+    port: saved.port ?? config.port ?? DEFAULT_PORT,
+    readOnly: saved.readOnly ?? config.readOnly,
+  };
+
   return (
     <PageSection
       title="Settings"
-      description="Theme, repo path, read-only mode, default port. No secrets, no accounts."
+      description="Local preferences only — no secrets, no accounts. Loopback, single-user."
     >
-      <EmptyState
-        title="Settings coming in M5"
-        milestone="M5 — Secondary views"
-      />
+      <SettingsForm initial={initial} />
     </PageSection>
   );
 }

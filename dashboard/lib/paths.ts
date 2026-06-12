@@ -56,4 +56,5 @@ export const paths = {
 
   // Dashboard-local state (NOT product data — gitignored).
   runsDir: () => path.join(process.cwd(), ".runs"),
+  settingsFile: () => path.join(process.cwd(), ".dashboard.local.json"),
 } as const;
