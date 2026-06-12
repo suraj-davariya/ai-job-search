@@ -8,11 +8,12 @@ import {
   applyFilter,
   type FilterState,
 } from "@/lib/domain/filter";
-import type { TrackerRow } from "@/lib/domain/status";
+import type { Status, TrackerRow } from "@/lib/domain/status";
 import { FilterBar } from "./FilterBar";
 import { DataTable } from "./DataTable";
 import { RowDrawer } from "./RowDrawer";
 import { NewDialog } from "./NewDialog";
+import { PipelineStrip } from "@/components/dashboard/PipelineStrip";
 
 /**
  * Client shell for the applications surface: owns filter state, keeps it in the
@@ -44,6 +45,19 @@ export function ApplicationsView({
   const filtered = useMemo(() => applyFilter(rows, filter), [rows, filter]);
   const [selected, setSelected] = useState<TrackerRow | null>(null);
 
+  const toggleStatus = useCallback(
+    (s: Status) => {
+      const has = filter.status.includes(s);
+      update({
+        ...filter,
+        status: has
+          ? filter.status.filter((x) => x !== s)
+          : [...filter.status, s],
+      });
+    },
+    [filter, update],
+  );
+
   return (
     <div className="space-y-4">
       <div className="flex items-start justify-between gap-4">
@@ -57,6 +71,11 @@ export function ApplicationsView({
         </div>
         <NewDialog disabled={readOnly} />
       </div>
+      <PipelineStrip
+        rows={filtered}
+        activeStatuses={filter.status}
+        onToggleStatus={toggleStatus}
+      />
       <DataTable rows={filtered} onRowSelect={setSelected} readOnly={readOnly} />
       {selected ? (
         <RowDrawer row={selected} onClose={() => setSelected(null)} />
