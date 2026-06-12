@@ -33,18 +33,17 @@ export interface RunHandle {
   stop: () => void;
 }
 
-/** Command types with a run in flight (the lock). */
-const running = new Set<string>();
+/** Active runs by command type — both the lock and the stop registry. */
+const active = new Map<string, RunHandle>();
 
 export function startRun(
   command: string,
   argv: Argv,
   opts?: { cwd?: string },
 ): RunHandle {
-  if (running.has(command)) {
+  if (active.has(command)) {
     throw new Error(`A ${command} run is already in progress`);
   }
-  running.add(command);
 
   const child = spawn(argv.bin, argv.args, {
     cwd: opts?.cwd ?? repoRoot(),
@@ -82,7 +81,7 @@ export function startRun(
   function settle(r: RunResult) {
     if (settled) return;
     settled = true;
-    running.delete(command);
+    active.delete(command);
     resolveResult(r);
     endStream();
   }
@@ -130,7 +129,7 @@ export function startRun(
     },
   };
 
-  return {
+  const handle: RunHandle = {
     command,
     get pid() {
       return child.pid;
@@ -145,4 +144,25 @@ export function startRun(
       }
     },
   };
+  active.set(command, handle);
+  return handle;
+}
+
+/** Command types with a run currently in flight. */
+export function activeCommands(): string[] {
+  return [...active.keys()];
+}
+
+/**
+ * Terminate running processes (SIGTERM). With a command, stop just that type;
+ * without, stop all. Returns the command types that were signalled.
+ */
+export function stopRun(command?: string): string[] {
+  const targets = command
+    ? active.has(command)
+      ? [command]
+      : []
+    : [...active.keys()];
+  for (const c of targets) active.get(c)?.stop();
+  return targets;
 }
