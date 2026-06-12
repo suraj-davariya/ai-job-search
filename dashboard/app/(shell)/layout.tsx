@@ -1,5 +1,6 @@
 import { Sidebar } from "@/components/shell/sidebar";
 import { Header } from "@/components/shell/header";
+import { Toaster } from "@/components/ui/Toaster";
 
 /** Persistent sidebar + header app shell wrapping every page (build-prompt §5). */
 export default function ShellLayout({
@@ -14,6 +15,7 @@ export default function ShellLayout({
         <Header />
         <main className="flex-1 overflow-y-auto p-6">{children}</main>
       </div>
+      <Toaster />
     </div>
   );
 }
