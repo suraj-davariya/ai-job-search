@@ -14,6 +14,7 @@ import { ActivityCalendar } from "@/components/dashboard/ActivityCalendar";
 import { StatusDonut } from "@/components/dashboard/StatusDonut";
 import { FitHistogram } from "@/components/dashboard/FitHistogram";
 import { TopCompanies } from "@/components/dashboard/TopCompanies";
+import { RecentPanel } from "@/components/dashboard/RecentPanel";
 
 // Re-read from disk on every request (file-as-DB; CSV ≤ 1k rows).
 export const dynamic = "force-dynamic";
@@ -45,6 +46,7 @@ export default async function DashboardPage() {
               <ActivityCalendar data={byDay(rows)} />
             </div>
           </div>
+          <RecentPanel rows={rows} />
         </div>
       )}
     </PageSection>
