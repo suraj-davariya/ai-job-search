@@ -175,18 +175,18 @@ export function RowDrawer({
           </dl>
 
           <div className="mt-4 space-y-1">
-            <dt className="text-xs uppercase tracking-wide text-muted-foreground">
+            <h3 className="text-xs uppercase tracking-wide text-muted-foreground">
               Notes
-            </dt>
-            <dd className="whitespace-pre-wrap break-words text-sm">
+            </h3>
+            <p className="whitespace-pre-wrap break-words text-sm">
               {row.notes ? linkify(row.notes) : <span className="text-muted-foreground">—</span>}
-            </dd>
+            </p>
           </div>
 
           <div className="mt-5 space-y-2">
-            <dt className="text-xs uppercase tracking-wide text-muted-foreground">
+            <h3 className="text-xs uppercase tracking-wide text-muted-foreground">
               Documents
-            </dt>
+            </h3>
             <div className="flex flex-wrap gap-2">
               {row.cv_file ? (
                 <FileLink label="CV" file={row.cv_file} />

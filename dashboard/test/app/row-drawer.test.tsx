@@ -27,8 +27,7 @@ afterEach(() => vi.unstubAllGlobals());
 async function openRow(name: string) {
   const rows = await readTracker(smallFixture);
   render(<ApplicationsView rows={rows} />);
-  const row = screen.getByText(name).closest("tr")!;
-  await userEvent.click(row);
+  await userEvent.click(screen.getByRole("button", { name }));
   return screen.getByRole("dialog");
 }
 
@@ -74,15 +73,14 @@ describe("RowDrawer", () => {
   it("closes on Escape and restores focus to the triggering row", async () => {
     const rows = await readTracker(smallFixture);
     render(<ApplicationsView rows={rows} />);
-    const row = screen.getByText("Brightwave").closest("tr")!;
-    row.focus();
-    await userEvent.click(row);
+    const trigger = screen.getByRole("button", { name: "Brightwave" });
+    await userEvent.click(trigger);
     expect(screen.getByRole("dialog")).toBeInTheDocument();
 
     await userEvent.keyboard("{Escape}");
     await waitFor(() =>
       expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
     );
-    expect(row).toHaveFocus();
+    expect(trigger).toHaveFocus(); // focus restored to the triggering control
   });
 });
