@@ -4,6 +4,10 @@
 
 **An AI job-search assistant that finds postings, writes tailored CVs and cover letters, and compiles them to print-ready PDFs — all on your own machine.**
 
+<!-- Try it live — hosted on GitHub Pages, no install needed -->
+[![Live Docs](https://img.shields.io/badge/Docs-Live%20site-D97757?logo=githubpages&logoColor=white)](https://suraj-davariya.github.io/ai-job-search/)
+[![Live Dashboard Demo](https://img.shields.io/badge/Dashboard-Live%20demo-D97757?logo=nextdotjs&logoColor=white)](https://suraj-davariya.github.io/ai-job-search/dashboard/)
+
 <!-- What it is — AI-native identity -->
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?logo=anthropic&logoColor=white)](https://claude.com/claude-code)
@@ -20,6 +24,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss&logoColor=white)](dashboard/)
 [![LaTeX](https://img.shields.io/badge/PDF-LaTeX-008080?logo=latex&logoColor=white)](cv/)
 [![docs-site CI](https://github.com/suraj-davariya/ai-job-search/actions/workflows/docs-site.yml/badge.svg)](https://github.com/suraj-davariya/ai-job-search/actions/workflows/docs-site.yml)
+[![Pages deploy](https://github.com/suraj-davariya/ai-job-search/actions/workflows/pages.yml/badge.svg)](https://github.com/suraj-davariya/ai-job-search/actions/workflows/pages.yml)
 [![Local-first](https://img.shields.io/badge/Privacy-Local--first-2E7D32)](docs/architecture/technology-stack.md)
 [![Country-agnostic](https://img.shields.io/badge/Reach-Country--agnostic-1565C0)](docs/requirements/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -28,7 +33,11 @@
 
 ---
 
-> **New here? Start with the guide.** The friendliest way to understand CareerForge — with a live, working preview of the dashboard — is the documentation site: run `npm run dev` inside [`docs-site/`](docs-site/) (or see [its README](docs-site/README.md) for the one-command static build). No programming needed to read it.
+> **New here? Start with the guide.** The friendliest way to understand CareerForge is the documentation site — Quick Start, all three commands, the dashboard with live demos, privacy, and FAQ. No programming needed to read it.
+>
+> - 🌐 **Read it now:** **[suraj-davariya.github.io/ai-job-search](https://suraj-davariya.github.io/ai-job-search/)** — hosted, nothing to install.
+> - 📊 **Click through the dashboard:** **[suraj-davariya.github.io/ai-job-search/dashboard](https://suraj-davariya.github.io/ai-job-search/dashboard/)** — the real UI on fictional sample data, read-only.
+> - 💻 **Prefer local?** Run `npm run dev` inside [`docs-site/`](docs-site/) (or see [its README](docs-site/README.md) for the one-command static build).
 
 ## What is this?
 
