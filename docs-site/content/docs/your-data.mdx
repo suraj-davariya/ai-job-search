@@ -1,0 +1,75 @@
+---
+title: Your Data
+description: One human-readable file holds your whole search — here is every column, and who writes what.
+---
+
+Most job-search tools keep your history in *their* database. CareerForge keeps
+it in **one file on your computer**: `job_search_tracker.csv`. CSV is the
+plainest data format there is — open it in Excel, Numbers, Google Sheets, or
+a text editor and you'll see exactly what every part of CareerForge sees.
+Nothing hides behind an export button, because there's nothing to export
+*from*.
+
+This is worth a moment's appreciation: if you stop using CareerForge tomorrow,
+you lose nothing. The file is yours, readable forever, by anything.
+
+## The 14 columns
+
+Every application is one row with these fields, in this order:
+
+| # | Column | What it holds | Who fills it in |
+|---|--------|---------------|-----------------|
+| 1 | `date` | The application date (`YYYY-MM-DD`) | `/apply` |
+| 2 | `company` | Company name | `/apply` |
+| 3 | `sector` | Industry, e.g. *Software*, *Fintech* | `/apply` |
+| 4 | `role` | The role title | `/apply` |
+| 5 | `role_type` | e.g. *Full-time*, *Contract* | `/apply` |
+| 6 | `channel` | How you applied — *LinkedIn*, *Referral*, *Company site*… | `/apply` |
+| 7 | `status` | One of the seven pipeline stages | **You**, via the dashboard |
+| 8 | `contact_person` | Your contact there, if any | `/apply`, or you in notes |
+| 9 | `fit_rating` | The 0–100 fit score from the evaluation | `/apply` |
+| 10 | `notes` | Anything you want to remember | **You**, via the dashboard |
+| 11 | `cv_file` | Path to the exact CV PDF sent | `/apply` |
+| 12 | `cover_letter_file` | Path to the exact cover letter PDF | `/apply` |
+| 13 | `source` | Link to the original posting | `/apply` |
+| 14 | `last_updated` | When the row last changed | Stamped automatically |
+
+## Who writes what — the contract
+
+Three actors touch this file, each with a strictly limited role:
+
+1. **`/apply` only appends.** A finished application becomes one *new* row at
+   the bottom (status **Draft**). It never modifies an existing row — your
+   history can't be rewritten by a later run.
+2. **The dashboard edits exactly three cells:** `status` (legal moves only),
+   `notes`, and the self-stamping `last_updated`. Every other column is
+   read-only in the UI.
+3. **You can edit anything,** any time, in any spreadsheet app. It's your
+   file. The dashboard simply re-reads it and the charts follow.
+
+That discipline is why the dashboard's numbers are trustworthy: the factual
+record is written once at application time, and only the things that genuinely
+change — where the application stands, what you've learned — ever change.
+
+## The status values
+
+The `status` column accepts exactly seven values — `Draft`, `Sent`,
+`Interview`, `Offer`, `Rejected`, `Withdrawn`, `Closed` — and the dashboard
+enforces [which moves between them are
+legal](/docs/dashboard/applications-table#the-status-state-machine). If
+you're editing the file by hand, keeping to those seven keeps the charts
+meaningful.
+
+## Friends of the tracker
+
+A few other files live alongside it, all local, all gitignored:
+
+- **Your profile** — the documents `/setup` built; the source of truth for
+  every CV.
+- **The seen-jobs registry** — every posting `/search` has shown you, so
+  duplicates never come back.
+- **Your generated PDFs** — each application's CV and cover letter, exactly as
+  produced, linked from columns 11 and 12.
+
+Where each one lives — and why none of them ever leaves your machine — is
+covered next, in [Privacy](/docs/privacy).

@@ -1,0 +1,80 @@
+---
+title: /apply
+description: From a job posting to a tailored CV and cover letter, as verified PDFs — with you approving every gate.
+---
+
+`/apply` is the heart of CareerForge. Give it a job posting — a link or pasted
+text, both work equally well — and it runs a seven-stage pipeline that ends
+with two print-ready PDFs and a new row in your application tracker.
+
+```text
+/apply https://careers.acme.com/jobs/senior-data-engineer-42
+```
+
+## First, it scores the fit — and asks
+
+Before writing a word, it evaluates the role against your profile across five
+dimensions:
+
+| Dimension | Weight |
+|-----------|--------|
+| Technical Skills Match | 30% |
+| Career Alignment | 30% |
+| Experience Match | 25% |
+| Behavioral / Culture Fit | 15% |
+| Location & Logistics | Pass / Fail |
+
+The weighted total maps to a verdict: **Strong** (75+), **Good** (60–74),
+**Moderate** (45–59), **Weak** (30–44), **Poor** (below 30). One override: if
+the location fails your constraints, the verdict is Poor no matter how good
+the skills match is — a job you can't take isn't a fit.
+
+Then it stops and asks: **proceed with drafting?** That gate is yours. Say no
+and nothing is written; the evaluation alone is often worth the run.
+
+## Then it writes — within strict rules
+
+- **The CV** is always in English, tailored to the posting, and exactly two
+  pages when compiled.
+- **The cover letter** is written in *the posting's language* — a Danish
+  posting gets a Danish letter — exactly one page, focused on the problems
+  you'd solve rather than re-listing your CV.
+- **Every claim must survive the interview test.** If you couldn't comfortably
+  back a sentence in an interview, it doesn't belong. Stretches are flagged to
+  you: *keep, soften, or drop?*
+
+## A second AI checks the first
+
+By default, a separate reviewer with a fresh perspective critiques both
+drafts — missed keywords, generic phrasing, angles about the company worth
+mentioning. The main agent then applies the good suggestions, and
+independently re-verifies any factual claim about the company before it's
+allowed into your letter.
+
+You control the depth (and the cost):
+
+| You type | What happens |
+|----------|--------------|
+| `/apply <posting>` | Full review, including company research (default) |
+| `/apply --review=quick <posting>` | Review without company research — faster |
+| `/apply --review=none <posting>` | Skip the reviewer — fastest |
+
+## Finally: compile, inspect, record
+
+The documents are compiled to PDF and *visually inspected* — page counts,
+orphaned headings, font mismatches — and re-fixed until clean. Then the
+application is recorded in [your tracker file](/docs/your-data) with status
+**Draft**, the fit score, and the paths to both PDFs. A final verification
+checklist (factual accuracy, targeting, consistency, layout) runs once, and
+you get a short summary of the tailoring decisions it made.
+
+## What it will not do
+
+- **Submit the application.** You review the PDFs and send them yourself.
+- **Invent experience.** Reordering and emphasis are allowed; claiming skills
+  you don't have is not.
+- **Touch your history.** `/apply` only ever *adds* a row to your tracker —
+  it never modifies existing ones.
+
+**What happens next:** your application appears in [the
+dashboard](/docs/dashboard), where you'll update its status as things develop.

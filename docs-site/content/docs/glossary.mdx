@@ -1,0 +1,187 @@
+---
+title: Glossary
+description: Every CareerForge term, in plain language — mirrored from the project's canonical glossary.
+---
+
+The same terms, in the same meanings, as the project's canonical
+[engineering glossary](https://github.com/suraj-davariya/ai-job-search/blob/main/docs/glossary.md)
+— phrased here for humans first. Where a term has its own guide page, it's
+linked.
+
+## A
+
+**Application Pipeline** — the end-to-end journey [`/apply`](/docs/commands/apply)
+runs: posting in → fit evaluation, tailored CV, cover letter, review,
+compiled PDFs out.
+
+**Application Tracker** — [the CSV file](/docs/your-data) recording every
+application: company, role, status, fit rating, and links to the exact
+documents sent. Feeds the dashboard and the deduplication in `/search`.
+
+**Application Status Enum** — the seven allowed values of the status column:
+`Draft, Sent, Interview, Offer, Rejected, Withdrawn, Closed`. The dashboard
+[enforces which moves between them are legal](/docs/dashboard/applications-table#the-status-state-machine).
+
+**Atomic CSV Write** — how the dashboard saves your tracker without ever
+leaving a half-written file, even if something interrupts it mid-save: write a
+temporary copy first, keep a backup, then swap it into place in one step.
+
+**Allowed-Tools** — an internal safety list declaring which tools each
+CareerForge skill may use; anything not listed is refused.
+
+## B
+
+**Behavioral Profile** — the part of your profile describing how you work:
+style, strengths, growth areas, preferred environment. Shapes the cover
+letter's voice and the culture-fit score.
+
+**Business Rules Engine** — the fixed scoring frameworks and validation rules
+behind fit evaluation, content cutting, and the final quality checks.
+
+## C
+
+**Candidate Profile** — the structured record of your identity, education,
+experience, and skills. [Built by `/setup`](/docs/commands/setup); the source
+of truth every CV claim must trace to.
+
+**Competency Expansion** — discovering skills your documents imply but your
+profile doesn't list yet (planned: the `/expand` command).
+
+**Compile-and-Inspect Loop** — after drafting, documents are compiled to PDF
+and visually checked — page counts, orphaned headings, font mismatches — and
+re-fixed until clean.
+
+**Content Cutting (Relevance-Weighted)** — when a CV runs over two pages, the
+lines least relevant to *this* posting are cut first, wherever they sit.
+
+**Cross-Reference Check** — during onboarding, your sources are compared
+against each other (CV vs LinkedIn vs diplomas); any disagreement is shown to
+you to resolve, never silently picked.
+
+## D
+
+**Deal-Breaker** — a hard constraint of yours (no relocation, minimum salary)
+that disqualifies a job regardless of every other score.
+
+**Drafter Agent** — the primary AI in the pipeline: evaluates fit, writes the
+documents, applies the reviewer's feedback.
+
+**Document Folder** — `documents/`, where you drop CVs, LinkedIn exports,
+diplomas, and reference letters for [`/setup`](/docs/commands/setup) to scan.
+
+## E
+
+**Evaluation Framework** — the five-dimension scoring system:
+Technical Skills 30%, Career Alignment 30%, Experience 25%, Behavioral Fit
+15%, Location pass/fail. See [`/apply`](/docs/commands/apply).
+
+## F
+
+**Fit Assessment (Quick)** — the fast High / Medium / Low ranking
+[`/search`](/docs/commands/search) gives each new posting. Triage, not the
+full evaluation.
+
+**Fit Rating** — the 0–100 weighted score from the full evaluation. Column 9
+of [your tracker](/docs/your-data); the fuel for the
+[fit charts](/docs/dashboard/charts#fit-distribution).
+
+**Forward-Looking Framing** — the cover-letter principle: write about the
+problems you'll solve for them, not a recap of your CV.
+
+## G
+
+**Gap Heatmap** — a prioritized table of skill gaps between your profile and
+target postings (planned: the `/upskill` command).
+
+## I
+
+**Idempotent Operation** — safe to run twice: re-running `/setup` with the
+same inputs duplicates nothing and overwrites nothing.
+
+**Interview Backtrack Test** — the quality bar for every claim: could you
+back this sentence in an interview without "well, what I actually meant
+was…"? If not, it gets softened or cut.
+
+## J
+
+**Job Portal Adapter** — a pluggable connector for one job board, so new
+boards can be added without touching the core (planned for a future
+milestone).
+
+## L
+
+**Learning Plan** — a structured study guide produced from skill-gap analysis
+(planned: `/upskill`).
+
+## N
+
+**Named Sub-Agent** — an internal mechanism for defining extra AI agents (the
+reviewer is one) with their own instructions and, optionally, their own model.
+
+## O
+
+**Onboarding** — [`/setup`](/docs/commands/setup)'s three convergent paths —
+scan documents, import a CV, or interview — all ending in the same profile.
+
+## P
+
+**Profile Files** — the seven documents defining your professional identity:
+candidate profile, behavioral profile, writing style, evaluation framework,
+CV templates, cover-letter templates, interview prep.
+
+**Pipeline KPI** — the dashboard's headline numbers: status counts, average
+fit (30 days), interview rate (90 days). See [the KPIs](/docs/dashboard/kpis).
+
+**Profile Statement** — the 3–5 line pitch at the top of your CV, kept in
+several variants and tailored per application.
+
+## R
+
+**Read-Only Mode** — a dashboard flag that disables all editing — handy for
+demos, screenshots, or guaranteeing an accident-free look around.
+
+**Reviewer Agent** — the second AI in [`/apply`](/docs/commands/apply):
+fresh perspective, researches the company, critiques both drafts. It
+suggests; the drafter (and you) decide.
+
+## S
+
+**Salary Benchmark** — optional salary comparison against data you supply —
+union statistics, surveys, your own research (the `salary_lookup` tool).
+
+**Search Queries** — your configured search phrases, organized by priority,
+that [`/search`](/docs/commands/search) runs across your chosen portals.
+
+**Seen Jobs Registry** — the local file remembering every posting you've ever
+been shown, so `/search` never repeats itself.
+
+**SKILL.md Orchestrator** — the internal anchor file each CareerForge skill
+ships with, declaring what it does and which tools it may use.
+
+**STAR Format** — Situation, Task, Action, Result: the interview-answer
+structure. `/setup` builds STAR stories from your real experience and leaves
+clearly marked stubs where only your memory can fill the details.
+
+## T
+
+**Tracking Dashboard** — [the local web UI](/docs/dashboard) over your
+tracker file. Runs only on your machine (`127.0.0.1`), edits only status and
+notes, and renders everything else read-only.
+
+**Two-Plane Skill Architecture** — the internal split between knowledge-style
+skills (instructions the AI reads) and tool-style skills (external programs
+it runs).
+
+**Traceability** — the project's practice of linking every requirement to the
+design, code, and tests that satisfy it, via IDs like `REQ-…` and `TC-…`.
+
+## V
+
+**Verification Checklist** — the final pass/fail list `/apply` runs once at
+the end: factual accuracy, targeting, consistency, LaTeX quality, and PDF
+layout.
+
+## W
+
+**Workspace Settings** — the local configuration file declaring which tools
+the AI may use in your copy of CareerForge. Personal, and never committed.
