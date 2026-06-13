@@ -304,6 +304,8 @@ Verdict: **Strong** (75+) · **Good** (60–74) · **Moderate** (45–59) · **W
 
 A local-only web UI that **reads and atomically writes your `job_search_tracker.csv` as the single source of truth**, visualises your pipeline, and can drive the CLI (`/apply`, `/upskill`, salary lookups) from the browser. It is an optional companion — deleting it leaves your data and the `/apply` pipeline untouched.
 
+> **Try it without installing →** [**Live demo**](https://suraj-davariya.github.io/ai-job-search/dashboard/) — a read-only walkthrough with fictional sample data. Editing, the Console, and PDF previews are disabled there (they need the app running locally); everything else is the real UI.
+
 ```bash
 cd dashboard
 npm install
