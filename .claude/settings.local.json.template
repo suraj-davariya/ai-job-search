@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "Bash(lualatex:*)",
+      "Bash(xelatex:*)",
+      "Bash(python3:*)",
+      "Bash(python:*)",
+      "Bash(bun:*)",
+      "Bash(git status)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "WebSearch",
+      "WebFetch",
+      "Skill(job-application-assistant)",
+      "Skill(job-scraper)"
+    ],
+    "deny": []
+  }
+}
