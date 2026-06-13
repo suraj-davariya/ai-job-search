@@ -4,14 +4,24 @@
 
 **An AI job-search assistant that finds postings, writes tailored CVs and cover letters, and compiles them to print-ready PDFs — all on your own machine.**
 
+<!-- What it is — AI-native identity -->
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/Platform-Claude%20Code-E26D2A?logo=anthropic&logoColor=white)](https://claude.ai/code)
-[![Milestone](https://img.shields.io/badge/Milestone-v1.0--beta-4C72B4)](docs/plan/delivery-strategy.md)
-[![Privacy](https://img.shields.io/badge/Privacy-Local--first-2E7D32)](docs/architecture/technology-stack.md)
+[![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?logo=anthropic&logoColor=white)](https://claude.com/claude-code)
+[![AI-Native](https://img.shields.io/badge/AI--Native-Agentic%20workflow-8A4FFF)](docs/architecture/architecture-overview.md)
+[![Agents](https://img.shields.io/badge/Agents-Drafter%20%2B%20Reviewer-8A4FFF)](.claude/agents/)
+[![Skills](https://img.shields.io/badge/Skills-2-8A4FFF)](.claude/skills/)
+[![Commands](https://img.shields.io/badge/Commands-%2Fsetup%20%2Fsearch%20%2Fapply-8A4FFF)](.claude/commands/)
+[![Prompt-as-code](https://img.shields.io/badge/Architecture-Prompt--as--code-6E56CF)](docs/architecture/)
+
+<!-- How it's built — modern stack, privacy, reach -->
+[![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white)](dashboard/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](dashboard/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](dashboard/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss&logoColor=white)](dashboard/)
+[![LaTeX](https://img.shields.io/badge/PDF-LaTeX-008080?logo=latex&logoColor=white)](cv/)
+[![docs-site CI](https://github.com/suraj-davariya/ai-job-search/actions/workflows/docs-site.yml/badge.svg)](https://github.com/suraj-davariya/ai-job-search/actions/workflows/docs-site.yml)
+[![Local-first](https://img.shields.io/badge/Privacy-Local--first-2E7D32)](docs/architecture/technology-stack.md)
 [![Country-agnostic](https://img.shields.io/badge/Reach-Country--agnostic-1565C0)](docs/requirements/)
-[![LaTeX CV](https://img.shields.io/badge/CV-lualatex-008080?logo=latex&logoColor=white)](cv/)
-[![LaTeX CL](https://img.shields.io/badge/Cover%20Letter-xelatex-008080?logo=latex&logoColor=white)](cover_letters/)
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](salary_lookup.py)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 </div>
