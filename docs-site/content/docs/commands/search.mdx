@@ -1,0 +1,55 @@
+---
+title: /search
+description: Sweep your chosen job boards, skip what you've seen, and get a ranked list of new matches.
+---
+
+`/search` is your scout. It runs the searches you'd otherwise do by hand
+across every job board you've configured, throws away duplicates and postings
+you've already seen, and ranks what's left by how well it fits *you*.
+
+## What a run looks like
+
+```text
+you:    /search
+claude: Searching your configured portals for the last 14 days…
+        Found 7 new positions (2 high, 3 medium, 2 low match)
+
+         #  Fit     Title                  Company     Location
+         1  High    Senior Data Engineer   Acme Corp   Amsterdam, NL
+         2  High    ML Platform Engineer   Beta Labs   Remote (EU)
+         3  Medium  Data Analyst           Gamma AG    Berlin, DE
+        …
+        Want me to evaluate any of these in detail? Just give me the number(s).
+```
+
+Reply with a number and that posting is handed straight to
+[`/apply`](/docs/commands/apply) for the full evaluation.
+
+## Focusing a search
+
+| You type | What it does |
+|----------|--------------|
+| `/search` | Runs your top three priority query categories |
+| `/search data science` | Prioritizes the categories matching "data science" |
+| `/search broad` | Runs *all* your configured query categories — the wide net |
+
+## How it decides what you see
+
+1. **Your config drives everything.** The job boards, search phrases,
+   locations, and distance tiers all come from the search configuration
+   `/setup` built with you. No site or country is hardcoded — LinkedIn,
+   Indeed, a national portal in your country, all equally welcome.
+2. **It remembers what you've seen.** Every posting it has ever shown you is
+   recorded, so the same role never wastes your attention twice — even across
+   different runs on different days.
+3. **It pre-ranks the fit.** Each new posting gets a quick High / Medium /
+   Low signal against your profile, and High matches come with two or three
+   bullets explaining *why*.
+4. **It respects your boundaries.** Postings outside your acceptable
+   locations or older than fourteen days are filtered out before you see them.
+
+The quick signal is deliberately rough — its job is triage. The full
+five-dimension scoring happens when you send a posting to `/apply`.
+
+**What happens next:** pick a number, and [/apply](/docs/commands/apply) takes
+over with a proper evaluation and, if you approve, the documents.

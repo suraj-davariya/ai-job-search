@@ -1,0 +1,65 @@
+---
+title: The Applications Table
+description: The working surface — sort, filter, update statuses, and keep notes, with guardrails.
+---
+
+The charts are for perspective; the table is where you actually work. Every
+application is a row, newest first, and the day-to-day of a job search — *"the
+recruiter called, move it to Interview"* — happens here.
+
+<ApplicationsTableDemo />
+
+## Finding things
+
+Every column sorts. Filters narrow the table by status, sector, role type, or
+channel, and they update live. The [pipeline
+strip](/docs/dashboard/charts#pipeline-strip) above the table doubles as a
+status filter — click a bucket, the table follows. Clicking a row opens a
+drawer with the full record: every field, your notes, and links to the exact
+CV and cover-letter PDFs that were sent.
+
+## Editing — exactly two things
+
+Only **status** and **notes** are editable (the *last updated* date stamps
+itself). Everything else — date, company, role, fit score, file paths — is the
+factual record `/apply` wrote, and the dashboard treats it as read-only.
+
+## The status state machine
+
+Statuses aren't free-form text; they're seven fixed stages, and the dashboard
+only offers moves that make sense. Try it — pick a status:
+
+<StatusFlowDemo />
+
+In full:
+
+| From | Can move to |
+|------|------------|
+| Draft | Sent, Withdrawn |
+| Sent | Interview, Rejected, Withdrawn, Closed |
+| Interview | Offer, Rejected, Withdrawn, Closed |
+| Offer / Rejected / Withdrawn / Closed | — final |
+
+Why so strict? Because the statuses feed the [interview-rate
+KPI](/docs/dashboard/kpis) and the [status charts](/docs/dashboard/charts) —
+and those numbers are only worth reading if a "Sent" always means the same
+thing. Illegal moves are rejected before they're written, so a misclick can't
+quietly corrupt your stats.
+
+Two details worth knowing:
+
+- **Final doesn't mean hidden.** Rejected, Withdrawn, and Closed rows stay in
+  the table, dimmed. Your history is part of the data — and watching the
+  Rejected pile slowly become an Interview pile is its own kind of progress.
+- **Wrong final status?** The dashboard won't move a row out of a final state.
+  Your tracker is [a plain file you own](/docs/your-data), so a genuine
+  mistake can always be fixed in any spreadsheet app.
+
+## Adding a row by hand
+
+Applied somewhere outside CareerForge — a referral, a walk-in, an email? The
+**+ New** button adds a row manually so your stats stay complete. Date,
+company, and role are required; the CV and cover-letter fields simply stay
+empty.
+
+**Next:** [Your data](/docs/your-data) — the one file behind all of this.

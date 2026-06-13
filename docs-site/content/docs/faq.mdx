@@ -1,0 +1,69 @@
+---
+title: FAQ
+description: The questions everyone asks in their first week, answered straight.
+---
+
+## Do I need to know how to code?
+
+No. You'll install two programs, type short commands like `/search`, and
+answer questions in plain language. The closest you'll come to "technical" is
+opening a terminal window, and the [Quick Start](/docs/quick-start) holds your
+hand through that.
+
+## Will it apply to jobs for me?
+
+No — deliberately. It prepares everything: the evaluation, the CV, the cover
+letter, the tracking. *You* read the PDFs and hit send. An application is a
+personal representation of you; CareerForge's job is to make yours excellent,
+not to fire them off unsupervised.
+
+## Does it work in my country and language?
+
+That's the design goal. No job board, country, or language is hardcoded — you
+tell `/setup` where you're looking and which sites matter in your market.
+Cover letters are written in the posting's language automatically. The CV is
+always in English; if your market needs CVs in another language, that's a
+current limitation worth knowing up front.
+
+## What does the fit score actually mean?
+
+A 0–100 score across [five weighted
+dimensions](/docs/commands/apply#first-it-scores-the-fit--and-asks): technical
+skills, career alignment, experience, behavioral fit, and a pass/fail on
+location. 75+ is a strong match. Treat it as a structured second opinion, not
+an oracle — its real value is *why*: the dimension table shows exactly where
+you're strong and where the gaps are.
+
+## Could the AI make something up about me?
+
+It's built not to: every CV and cover-letter claim must trace to your profile,
+stretches are flagged for your decision, and claims about the company are
+independently verified before they're used. And the final read-through is
+yours — which is the other reason nothing sends automatically.
+
+## Where does my data go?
+
+Nowhere. Profile, tracker, and PDFs all live in one folder on your machine —
+see [Privacy](/docs/privacy) for the full picture, including the one nuance
+(the AI conversation itself runs on Claude).
+
+## Do I have to use the dashboard?
+
+No. The tracker is [a plain CSV](/docs/your-data) you can open in any
+spreadsheet. The dashboard just makes it pleasant: charts, safe status
+editing, notes. Skip it entirely and nothing else breaks.
+
+## What does it cost?
+
+CareerForge itself is free and open source (MIT). You'll need a Claude
+account for Claude Code — the Free plan works; Pro is more comfortable for
+heavy use. There are no CareerForge fees on top.
+
+## Something's broken — where do I look?
+
+The two usual suspects on a first run are LaTeX (a missing package — rerun
+the install line from the [Quick Start](/docs/quick-start)) and being in the
+wrong folder (run `claude` from inside the CareerForge directory, or the
+commands won't exist). Beyond that, the [GitHub
+issues](https://github.com/suraj-davariya/ai-job-search/issues) are open, and
+bug reports are a genuinely useful contribution.
