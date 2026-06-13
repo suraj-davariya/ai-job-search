@@ -6,6 +6,9 @@
 # ── Private research (competitive analysis — never commit) ────────────────────
 .reference/
 
+# ── Internal build/authoring prompts (never commit) ───────────────────────────
+.prompts/
+
 # ── Candidate profile content (populated by /setup — personal data) ───────────
 # In the FRAMEWORK repo, these are [UPPER_SNAKE_CASE] templates — tracked here.
 # In a USER FORK, add these lines back to YOUR .gitignore to protect personal data:
