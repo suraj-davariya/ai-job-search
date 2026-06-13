@@ -552,4 +552,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide, branch naming, PR che
 
 ## Licence
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE). ![Repo views](https://komarev.com/ghpvc/?username=suraj-davariya-ai-job-search&label=Repo%20views&color=D97757)
