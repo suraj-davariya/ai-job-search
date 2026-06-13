@@ -158,3 +158,55 @@ Summary (keep this in sync if the canonical doc changes):
   If a feature is needed, update the requirements first.
 - Do not skip tests. Every `REQ-` should have a `TC-`.
 - Do not commit `.reference/`, `output/`, or personal config.
+
+## Keeping the Docs Site in Sync
+
+The `docs-site/` documentation website is part of the product's contract with
+its users, not an afterthought. **Any change that alters observable behavior
+must update `docs-site/` in the same change** — never as a "later" task.
+Specifically:
+
+- **New or changed command** (`/setup`, `/search`, `/apply`, or a new one) →
+  update the matching page under `docs-site/content/docs/commands/` and the
+  Quick Start.
+- **New or changed skill/agent** → update the relevant command/feature page
+  that describes what the user experiences.
+- **New or changed dashboard KPI or chart** → update
+  `docs-site/content/docs/dashboard/` **and** the copied demo logic in
+  `docs-site/components/demo/domain/*` and the `demo-data.ts` seed, so the
+  live demo still matches the real dashboard.
+- **Change to the `job_search_tracker.csv` schema** (any of the 14 columns,
+  the status enum, or the state machine) → update
+  `docs-site/content/docs/your-data.mdx`,
+  `docs-site/content/docs/dashboard/applications-table.mdx`, and the copied
+  `demo/domain/*`.
+- **New glossary term** → add it to both `docs/glossary.md` and
+  `docs-site/content/docs/glossary.mdx`.
+
+The flow is: change the behavior → update the docs page (and any copied demo
+logic) → run `vitest run` in `docs-site/` (the **parity test** fails if the
+copied `components/demo/domain/*` drifted from `dashboard/lib/domain/*`). A
+PR that changes behavior without updating `docs-site/` is incomplete and CI
+(`.github/workflows/docs-site.yml`) will block it. Keep the mentor voice;
+never add self-congratulatory copy.
+
+## Keeping READMEs Current
+
+The READMEs are the first thing a user reads — treat them as part of every
+change, not a "later" task. **Any change that alters what the project does or
+how it is run must update the relevant README in the same change.**
+
+- **Root [`README.md`](README.md)** — the product overview. Update it when a
+  command, the dashboard, the directory layout, prerequisites, the privacy
+  model, or the roadmap/status changes. Keep the "Roadmap" status column and the
+  "Directory structure" tree honest (don't list something as planned once it
+  ships, and don't omit a top-level folder that exists).
+- **[`dashboard/README.md`](dashboard/README.md)** — how to launch and the
+  security/privacy model. Update it when the start command/flags, ports,
+  prerequisites, or the loopback/no-network/no-secrets guarantees change.
+- **[`dashboard/ARCHITECTURE.md`](dashboard/ARCHITECTURE.md)** — update layers,
+  file contracts, the perf baseline, or the Deviations log when those change.
+
+Before finishing any task that changed observable behavior, re-read the affected
+README sections and reconcile them with reality. A change that leaves a README
+describing the old behavior is incomplete.

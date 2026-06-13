@@ -18,6 +18,8 @@
 
 ---
 
+> **New here? Start with the guide.** The friendliest way to understand CareerForge — with a live, working preview of the dashboard — is the documentation site: run `npm run dev` inside [`docs-site/`](docs-site/) (or see [its README](docs-site/README.md) for the one-command static build). No programming needed to read it.
+
 ## What is this?
 
 CareerForge is a job-search toolkit you run inside **Claude Code** — an AI assistant that lives in your terminal. You type commands and plain-English prompts; the AI does the work. No programming knowledge required.
@@ -288,11 +290,34 @@ Verdict: **Strong** (75+) · **Good** (60–74) · **Moderate** (45–59) · **W
 
 ---
 
+## The tracking dashboard
+
+A local-only web UI that **reads and atomically writes your `job_search_tracker.csv` as the single source of truth**, visualises your pipeline, and can drive the CLI (`/apply`, `/upskill`, salary lookups) from the browser. It is an optional companion — deleting it leaves your data and the `/apply` pipeline untouched.
+
+```bash
+cd dashboard
+npm install
+npm run build
+npm run serve          # prints  ▶  http://127.0.0.1:4480/
+```
+
+| Surface | What it does |
+|---------|--------------|
+| **Applications** | Sort/filter/search the tracker; inline status + notes edits (atomic, state-machine-guarded); `+ New`; detail drawer with guarded PDF preview |
+| **Overview** | KPI cards (total, applied 7d/30d, avg fit, interview rate) + weekly/status/fit/calendar charts — honest `—` when a sample floor isn't met |
+| **Console** | Run allowlisted commands and stream their output live; per-company re-run `/apply`, `/upskill`, and salary lookups |
+| **Companies · Salary · Upskill · Profile · Settings** | Grouped/benchmarked/report/profile views; theme + read-only preferences |
+
+**Local by design:** binds `127.0.0.1` only (no LAN, no auth, no accounts), makes no outbound network calls, runs commands via a fixed allowlist with no shell, and stores no secrets. A `--read-only` mode disables every edit and action. See [`dashboard/README.md`](dashboard/README.md) and [`dashboard/ARCHITECTURE.md`](dashboard/ARCHITECTURE.md).
+
+> Requires Node 18+. The action layer (running commands from the browser) needs the `claude` and/or `python3` binaries on `PATH`; when absent, those triggers are disabled and the rest keeps working.
+
+---
+
 ### Planned commands _(coming in future milestones)_
 
 | Command | Milestone | What it will do |
 |---------|-----------|----------------|
-| `/dashboard` | v1.0 | Local web UI at `localhost:4480` — review your application pipeline, update statuses, add notes |
 | `/expand` | v1.1 | Enrich your profile with new courses, certifications, or projects |
 | `/upskill` | v1.1 | Compare your profile against a job or market, produce a skill-gap report and learning plan |
 | `/reset` | v1.2 | Clear and re-run a specific profile section |
@@ -423,10 +448,20 @@ ai-job-search/
 │   ├── references/
 │   └── applications/
 │
+├── dashboard/                 # Local tracking dashboard (Next.js, loopback-only)
+│   ├── app/                   #   App Router pages + API routes
+│   ├── lib/                   #   pure core: parsers, atomic writer, allowlist…
+│   ├── components/            #   applications · dashboard · console · views
+│   ├── README.md              #   how to launch + security/privacy model
+│   └── ARCHITECTURE.md        #   layers, file contracts, perf baseline
+│
+├── docs-site/                 # Documentation website (newcomer-first guide)
+├── upskill/                   # Upskill reports (report-*.md)
+│
 ├── tools/
 │   └── convert_salary_excel.py   # Excel → salary_data.json (Epic 7, stub)
 │
-├── salary_lookup.py           # Salary benchmarking CLI (Epic 7, stub)
+├── salary_lookup.py           # Salary benchmarking CLI (used by the dashboard)
 ├── job_search_tracker.csv     # 14-column application log (gitignored)
 └── job_scraper/               # Deduplication state (gitignored)
 ```
@@ -459,7 +494,7 @@ xelatex main_example.tex
 |-----------|--------|-----------|
 | **MVP** (Epics 1–5) | ✅ Complete | `/setup`, `/apply` (no reviewer), PDF compilation |
 | **v1.0** (Epics 6–8) | ✅ Complete | Reviewer agent, `/search`, application tracker |
-| **v1.0 — Dashboard** (Epic 9) | 🔜 Next | Local tracking dashboard at `localhost:4480` |
+| **v1.0 — Dashboard** (Epic 9) | ✅ Complete | Local tracking dashboard at `127.0.0.1:4480` — view/edit tracker, analytics, run commands from the browser |
 | **v1.1** (Epics 10–11) | 🔜 Planned | `/expand` (profile enrichment), `/upskill` (skill-gap analysis) |
 | **v1.2** (Epic 12) | 🔜 Planned | `/reset`, interview prep, portal adapter pattern |
 | **v2.0** | 💡 Future | Template marketplace, community portal adapters, GUI |
@@ -469,6 +504,10 @@ See the full plan in [`docs/plan/delivery-strategy.md`](docs/plan/delivery-strat
 ---
 
 ## Documentation
+
+**Start here →** [`docs-site/`](docs-site/) — the documentation **website**: a newcomer-first guide to the whole product (Quick Start, all three commands, the dashboard with live demos, your data, privacy, FAQ, glossary). Run it locally with `npm run dev` inside `docs-site/`, or build it static with `npm run build`.
+
+Engineering documentation (specifications, architecture, plans):
 
 | Path | Contents |
 |------|----------|
