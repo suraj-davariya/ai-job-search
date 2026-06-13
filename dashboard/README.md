@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CareerForge Dashboard
 
-## Getting Started
+A local-only, dark/orange Next.js dashboard that **reads and atomically writes
+your CareerForge files as the single source of truth** — the job tracker CSV,
+salary/seen-jobs JSON, generated documents, and upskill reports — and can drive
+the framework's CLI commands (`/apply`, `/search`, `/upskill`, salary lookups)
+from the browser.
 
-First, run the development server:
+It is an optional companion to the CLI. The tracker CSV stays the source of
+truth; deleting this folder leaves your data and the `/apply` pipeline intact
+(see **Delete-to-remove** below).
+
+## Quick start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd dashboard
+npm install
+npm run build
+npm run serve            # loopback production server (recommended)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm run serve` wraps `scripts/start.mjs` and prints a copy-friendly URL:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+  CareerForge dashboard
+  ─────────────────────
+  Repo:      /path/to/ai-job-search
+  Mode:      read/write
+  Bound to:  127.0.0.1 (loopback only)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+  ▶  http://127.0.0.1:4480/
+```
 
-## Learn More
+Flags: `--port <n>` (default 4480) · `--read-only` · `--no-open` ·
+`--repo <path>` (point at a repo root other than the parent of `dashboard/`).
 
-To learn more about Next.js, take a look at the following resources:
+For development: `npm run dev` (Next dev server, also loopback).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Prerequisites
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Node.js 18+** and npm (the dashboard itself).
+- **Claude Code CLI**, authenticated — required only for the action layer
+  (`/apply`, `/search`, `/upskill`, …). If `claude` isn't on `PATH`, those
+  triggers are disabled with a tooltip; viewing/editing still works.
+- **Python 3.10+** — required only for salary lookups (`salary_lookup.py`).
+  Disabled with a tooltip when absent.
+- **LaTeX** (`lualatex`/`xelatex`) — only to *generate* CV/cover PDFs via
+  `/apply`; the dashboard previews already-generated PDFs without it.
 
-## Deploy on Vercel
+The view, filter, edit, and analytics features need **none** of the above.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Security & privacy model
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Loopback only.** The server binds `127.0.0.1` and asserts it at startup —
+  there is no LAN flag. Single-user, no accounts, no auth.
+- **No network surface.** No telemetry, no remote images (`remotePatterns: []`),
+  no analytics. The only outbound activity is a subprocess **you** explicitly
+  trigger. Every in-app `fetch` is same-origin `/api/*`.
+- **Allowlisted actions, no shell.** Commands come from a fixed table; arguments
+  are validated and passed as an argv **array** with `shell:false`, so user
+  input is never interpreted by a shell. PDFs are served only from
+  `cv/output/` and `cover_letters/output/`, path-guarded against traversal.
+- **Honest by construction.** Real exit codes and stderr are surfaced; KPIs
+  below their sample floor render `—`; empty data shows empty-states — never a
+  fabricated number or a fake success.
+- **No secrets stored.** Settings persist only theme, repo path, port, and the
+  read-only flag to a gitignored `.dashboard.local.json`; a stray key/token is
+  dropped by the whitelist.
+- **Read-only mode** (`--read-only`) disables all edits and actions with a
+  visible banner.
+
+## Delete-to-remove guarantee
+
+All product data lives at the **repo root** (`job_search_tracker.csv`,
+`salary_data.json`, `documents/`, `upskill/`, the profile skill files). Only
+`.runs/` and `.dashboard.local.json` are dashboard-local. **Deleting
+`dashboard/` removes the app and nothing else** — your tracker and the `/apply`
+pipeline are untouched (ARCH-0005 / NFR-0009).
+
+## Testing
+
+```bash
+npm run test        # full unit + integration + smoke suite (vitest)
+npm run a11y        # axe-core WCAG audit over the key surfaces
+npm run typecheck   # tsc --noEmit
+npm run lint        # eslint
+```
+
+Performance baseline (1k rows) is recorded in
+[`ARCHITECTURE.md`](./ARCHITECTURE.md).
+
+## How it's built
+
+See [`ARCHITECTURE.md`](./ARCHITECTURE.md) for the read/write/action layers,
+file contracts, and the rationale for file-as-DB and loopback-no-auth.
