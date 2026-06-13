@@ -1,0 +1,7 @@
+# dependencies & build output — never commit
+node_modules/
+.next/
+out/
+.source/
+*.tsbuildinfo
+next-env.d.ts

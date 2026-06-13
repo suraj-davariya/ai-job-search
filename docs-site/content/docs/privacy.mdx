@@ -1,0 +1,60 @@
+---
+title: Privacy
+description: Local by default — what stays on your machine (everything), and the habits that keep it that way.
+---
+
+A job search generates some of the most personal data you have: where you've
+worked, what you earn, where you're willing to move, which companies turned
+you down. CareerForge's position is simple — **that data is nobody's business
+but yours**, so it never leaves your computer.
+
+## Where your data lives
+
+All of it, locally:
+
+| Data | Lives in | Ever uploaded? |
+|------|----------|----------------|
+| Candidate profile | your CareerForge folder | No |
+| Generated CVs & cover letters | `cv/`, `cover_letters/` | No |
+| Application tracker | `job_search_tracker.csv` | No |
+| Seen-jobs registry | `job_scraper/` | No |
+| Source documents (CV, diplomas…) | `documents/` | No |
+| Salary data (optional) | `salary_data.json` | No |
+
+There are no accounts, no sign-ups, no telemetry, no analytics, and no
+"anonymous usage statistics." Even this documentation site is built to fetch
+nothing — fonts and assets are bundled, not loaded from third-party servers.
+
+## What does go over the network — and when
+
+Honesty requires the full picture. Two things touch the internet, both only
+when you ask:
+
+1. **The AI itself.** CareerForge runs on Claude Code, so the text of your
+   conversation — including profile content the AI is working with — is
+   processed by Anthropic's service under [their privacy
+   terms](https://www.anthropic.com/privacy). That's the same deal as using
+   Claude for anything else; if it's acceptable for your chats, it's the same
+   arrangement here.
+2. **Web searches you trigger.** `/search` queries public job boards, and
+   `/apply` fetches the posting and verifies claims about the company. These
+   look like ordinary web browsing.
+
+What never happens: background uploads, your files being sent anywhere as
+files, or any CareerForge server — there isn't one.
+
+## Git and the one habit that matters
+
+CareerForge ships with a `.gitignore` that excludes every personal artifact
+above, so the folder's history stays clean of your data by default.
+
+One habit to keep, in two words: **private fork.** If you push your copy of
+CareerForge to GitHub, make the repository private. Your profile lives in the
+same folder tree as the code, and while the ignore rules protect you, a
+private repo means even a mistake stays yours.
+
+## Deleting everything
+
+No account to close, no support ticket. Delete the folder, and CareerForge —
+along with every trace of your search — is gone. That's what local-first
+means.

@@ -1,0 +1,163 @@
+---
+title: Quick Start
+description: From nothing installed to your first tailored application, step by step.
+---
+
+This page takes you from a blank machine to your first tailored CV and cover
+letter. Plan for about thirty minutes the first time; most of it is the LaTeX
+install quietly doing its thing.
+
+## What you'll need first
+
+Be honest with yourself about these three prerequisites — each links to a
+proper install guide, and none of them requires programming:
+
+1. **Claude Code** — the AI assistant CareerForge runs inside. It's a program
+   you install once and open from a terminal window. Never used a terminal?
+   That's fine: you'll only type short commands shown on this page.
+2. **LaTeX** — the typesetting system that turns your CV into a polished PDF.
+   It's a big download, but it's install-and-forget.
+3. **Python 3.10+** *(optional)* — only needed later for salary benchmarking.
+   Skip it today.
+
+<Steps>
+
+<Step>
+
+### Install Claude Code
+
+```bash title="Terminal"
+npm install -g @anthropic-ai/claude-code
+```
+
+Then start it once to log in:
+
+```bash title="Terminal"
+claude
+```
+
+You'll need an [Anthropic account](https://claude.ai) — the Free and Pro plans
+both work.
+
+**What happens next:** a chat opens in your terminal. That chat window is
+where you'll run everything below.
+
+</Step>
+
+<Step>
+
+### Install LaTeX
+
+Two compilers are used — `lualatex` for the CV, `xelatex` for the cover
+letter. The installs below include both.
+
+<Tabs items={["macOS", "Linux", "Windows"]}>
+
+<Tab value="macOS">
+
+```bash title="Terminal"
+brew install --cask mactex
+sudo tlmgr install fontawesome lato tcolorbox dashrule enumitem multirow \
+                   ifmtarg fontaxes mweights pgfopts
+```
+
+</Tab>
+
+<Tab value="Linux">
+
+```bash title="Terminal"
+sudo apt-get install texlive-full
+```
+
+</Tab>
+
+<Tab value="Windows">
+
+Install [MiKTeX](https://miktex.org/download) — it fetches any missing
+packages automatically the first time you compile.
+
+</Tab>
+
+</Tabs>
+
+**What happens next:** nothing visible — LaTeX just sits ready until `/apply`
+needs to produce a PDF.
+
+</Step>
+
+<Step>
+
+### Get CareerForge and open it
+
+```bash title="Terminal"
+git clone https://github.com/suraj-davariya/ai-job-search.git
+cd ai-job-search
+claude
+```
+
+**What happens next:** Claude Code opens *inside* the CareerForge folder, which
+means the three commands below are now available in your chat.
+
+</Step>
+
+<Step>
+
+### Build your profile
+
+```text title="In the Claude Code chat"
+/setup
+```
+
+It offers three paths: scan a folder of your documents, import a single CV, or
+a friendly interview where it asks and you answer. Pick whichever fits what
+you have. Before anything is saved, it shows you the proposed content and asks
+for your approval.
+
+**What happens next:** your profile files exist — your experience, skills,
+goals, and search preferences, all on your machine. You only do this once.
+
+</Step>
+
+<Step>
+
+### Find jobs
+
+```text title="In the Claude Code chat"
+/search
+```
+
+**What happens next:** a ranked table of new postings from your configured job
+boards, each marked High, Medium, or Low fit — with postings you've already
+seen filtered out. Reply with a number to evaluate one in depth.
+
+</Step>
+
+<Step>
+
+### Apply to one
+
+```text title="In the Claude Code chat"
+/apply https://company.com/jobs/the-role-you-want
+```
+
+You can also paste the job description directly if there's no link. It scores
+the fit across five dimensions and asks whether to proceed — that's your
+checkpoint, not a formality.
+
+**What happens next:** a tailored two-page CV and a one-page cover letter,
+both as PDFs, reviewed by a second AI and checked against a verification
+list. The application is logged in your tracker with status **Draft**.
+You read both PDFs, then send them yourself — CareerForge never submits
+anything for you.
+
+</Step>
+
+</Steps>
+
+## After your first application
+
+- Open [the dashboard](/docs/dashboard) to watch your pipeline as it grows.
+- Read [Your data](/docs/your-data) to see exactly what got recorded — it's
+  one human-readable file.
+- Stuck on something? The [FAQ](/docs/faq) covers the common first-week
+  questions.

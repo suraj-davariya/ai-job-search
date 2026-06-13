@@ -1,0 +1,56 @@
+---
+title: The Dashboard
+description: Your whole job search on one screen — live, local, and honest about its numbers.
+---
+
+Applying to jobs produces a strange kind of amnesia. Was this month better
+than last? How many applications are actually still alive? Which company have
+you quietly applied to four times? The dashboard exists to answer those
+questions at a glance.
+
+It's a web page that runs **on your own machine** and reads [your tracker
+file](/docs/your-data) — the same file `/apply` writes to. Open it in a
+browser and your entire pipeline becomes numbers and pictures.
+
+## Try it right now
+
+Everything below is the real dashboard's widgets, running live in your
+browser on fictional data. Click the status buckets. Toggle the 7d/30d
+window. Yours will look like this, filled with your own search.
+
+<DashboardPreview />
+
+> **Want the whole app, not just these widgets?** Open the
+> [**live demo dashboard**](https://suraj-davariya.github.io/ai-job-search/dashboard/) —
+> the actual dashboard UI, every page and all, running statically on the same
+> sample data. It's read-only (editing, the Console, and PDF previews need the
+> app running locally), but the navigation, charts, and table are the real thing.
+
+## A mirror, not a control panel
+
+The dashboard deliberately edits almost nothing. The facts of an application —
+when, where, which role, the fit score, which files were generated — are
+written once by `/apply` and never change. What *does* change as your search
+unfolds is yours to update, directly in the table:
+
+- **Status** — Sent? Interview booked? Offer? One click, and only legal moves
+  are offered (see [the applications table](/docs/dashboard/applications-table)).
+- **Notes** — whatever you'd scribble in a margin: names, dates, gut feelings.
+
+That's the whole write surface. Everything else is read-only on purpose, so
+the dashboard can never corrupt your history — and if a data file is missing
+or damaged, pages show an honest "no data yet" instead of crashing.
+
+## Where the numbers come from
+
+Every chart and KPI is computed from your tracker file at view time — there is
+no second database that could drift out of sync. The arithmetic is the same
+small set of functions the project tests against the dashboard itself, and
+this guide documents them exactly:
+
+- [The KPIs](/docs/dashboard/kpis) — the four headline numbers and the honesty
+  rule behind the "—" you'll sometimes see.
+- [The charts](/docs/dashboard/charts) — what each of the six visuals tells
+  you, and how to read them.
+- [The applications table](/docs/dashboard/applications-table) — filtering,
+  editing, and the status state machine.

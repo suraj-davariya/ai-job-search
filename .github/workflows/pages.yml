@@ -1,0 +1,112 @@
+# Publish both the docs site and the dashboard demo to GitHub Pages.
+#
+# One Pages site, two apps served as subpaths of a single deployment artifact:
+#   https://suraj-davariya.github.io/ai-job-search/            → docs-site
+#   https://suraj-davariya.github.io/ai-job-search/dashboard/  → dashboard demo
+#
+# Why two builds:
+#   - docs-site is a Fumadocs static export (DOCS_BASE_PATH=/ai-job-search).
+#   - the dashboard is a Node server app; it can't run on a static host, so
+#     `npm run build:demo` exports a READ-ONLY, sample-data demo of it
+#     (base path /ai-job-search/dashboard; see dashboard/scripts/export-demo.mjs).
+# The dashboard export is copied into the docs `out/dashboard/`, then the whole
+# tree is uploaded as one artifact.
+#
+# Sibling to docs-site.yml, which is the PR build gate. This one publishes.
+name: pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs-site/**"
+      - "dashboard/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+# Least-privilege token: read the repo, write a Pages deployment, mint the
+# OIDC token deploy-pages needs.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One Pages deployment at a time; let an in-flight one finish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: |
+            docs-site/package-lock.json
+            dashboard/package-lock.json
+
+      # enablement: true turns Pages on via the API on first run, so no manual
+      # Settings → Pages toggle is needed (requires the pages: write scope above).
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      # ── docs-site (root of the Pages site) ──────────────────────────────
+      - name: Install docs-site deps
+        run: npm ci
+        working-directory: docs-site
+
+      - name: Build docs-site (static export)
+        run: npm run build
+        working-directory: docs-site
+        env:
+          DOCS_BASE_PATH: /ai-job-search
+
+      # ── dashboard demo (served under /dashboard) ────────────────────────
+      - name: Install dashboard deps
+        run: npm ci
+        working-directory: dashboard
+
+      - name: Build dashboard demo (static export)
+        run: npm run build:demo
+        working-directory: dashboard
+        # base path defaults to /ai-job-search/dashboard inside export-demo.mjs
+
+      # ── combine into one artifact ───────────────────────────────────────
+      - name: Merge dashboard demo into docs output
+        run: |
+          mkdir -p docs-site/out/dashboard
+          cp -r dashboard/out/. docs-site/out/dashboard/
+          # Jekyll would strip Next.js's _next/ folders (leading underscore).
+          touch docs-site/out/.nojekyll
+
+      - name: Assert export artifacts
+        run: |
+          test -f docs-site/out/index.html
+          test -f docs-site/out/docs/index.html
+          test -f docs-site/out/api/search
+          test -f docs-site/out/dashboard/index.html
+          test -f docs-site/out/dashboard/applications/index.html
+          echo "combined export OK"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs-site/out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

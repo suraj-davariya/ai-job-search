@@ -1,0 +1,64 @@
+---
+title: /setup
+description: Build your candidate profile once — from your documents, a CV, or a conversation.
+---
+
+Everything CareerForge writes about you comes from one place: your profile.
+`/setup` builds it. You run it once at the start, and again only when
+something about you changes — a new job, a new certification, a new city.
+
+## Three ways in, same result
+
+When you type `/setup`, it looks at what you have and offers three paths:
+
+| Path | Best when | What happens |
+|------|-----------|--------------|
+| **A — Scan my documents** | You've dropped CVs, a LinkedIn export, diplomas, or reference letters into the `documents/` folder | It reads everything, cross-checks the sources against each other, and proposes profile content |
+| **B — Import a single CV** | You have one good CV and want a fast start | It extracts what the CV contains, then asks targeted questions about what CVs usually leave out |
+| **C — Interview me** | You're starting fresh, no documents needed | A guided conversation through nine topics: identity, education, experience, skills, and so on |
+
+All three paths end in the same place: a set of profile files describing your
+experience, working style, evaluation preferences, and job-search targets.
+
+## The rules it follows
+
+These are worth knowing, because they're the reason you can trust the output:
+
+- **Nothing is written without your OK.** Every proposed change is shown
+  first. New content arrives as a checklist you approve; anything that
+  *conflicts* with what's already on file is presented one item at a time with
+  keep / replace / edit choices.
+- **It never fills gaps with guesses.** If it doesn't know your graduation
+  year, it asks — it does not invent one.
+- **Disagreeing sources get flagged.** If your CV says a job ended in 2021 and
+  LinkedIn says 2022, you'll see both and pick the right one.
+- **Running it twice is safe.** `/setup` is idempotent: re-running it with the
+  same inputs proposes nothing new and overwrites nothing.
+
+## Updating one section later
+
+You don't redo the whole interview to change one thing:
+
+```text
+/setup --section experience
+```
+
+Valid sections include `identity`, `education`, `experience`, `skills`,
+`behavioral`, `interview-prep`, and `search` — that last one regenerates your
+job-board queries and location preferences, which is handy when you move or
+change targets:
+
+```text
+/setup --section search
+```
+
+## What it builds
+
+Seven profile documents plus your search configuration — among them your
+candidate profile (experience, skills, education), a behavioral profile
+(working style and preferences), profile statements for different role types,
+and interview stories in the STAR format drawn from your real achievements.
+Where a story needs your first-person memory to complete, it leaves a clearly
+marked stub for you rather than inventing the details.
+
+**What happens next:** you're ready to [find jobs with /search](/docs/commands/search).

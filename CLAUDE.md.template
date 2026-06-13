@@ -1,0 +1,159 @@
+<!--
+  Template — Role B user-fork main profile (data-requirements §1.5–1.6, §8).
+  /setup replaces every [UPPER_SNAKE_CASE] token with your real data and writes
+  the result to CLAUDE.md in your fork. Lifecycle: created by /setup, extended by
+  /expand (additive), cleared by /reset profile. This file mirrors the union of
+  the job-application-assistant skill files and is read on every turn during
+  /apply, /search, etc.
+-->
+
+# [YOUR_NAME] — Candidate Profile & Workflow
+
+> This is the primary AI context file for my job search. It contains my
+> candidate profile and the rules the assistant follows when generating
+> applications. The authoritative per-section data also lives in
+> `.claude/skills/job-application-assistant/`.
+
+---
+
+## Identity
+
+- **Name:** [YOUR_NAME]
+- **Location:** [LOCATION]
+- **Phone:** [PHONE]
+- **Email:** [EMAIL]
+- **LinkedIn:** [LINKEDIN_URL]
+- **GitHub:** [GITHUB_URL]
+- **Languages:** [LANGUAGES]
+- **Employment Status:** [EMPLOYMENT_STATUS]
+- **Constraints:** [CONSTRAINTS]
+
+---
+
+## Education
+
+<!-- Repeat block per degree, most recent first -->
+- **[DEGREE]** in [FIELD] — [INSTITUTION] ([EDU_PERIOD])
+  - Key topics: [KEY_TOPICS]
+  - Thesis: [THESIS] *(optional — remove if not applicable)*
+
+---
+
+## Professional Experience
+
+<!-- Repeat block per role, most recent first -->
+### [JOB_TITLE] — [COMPANY]
+**Period:** [ROLE_PERIOD] | **Location:** [ROLE_LOCATION]
+
+<!-- Bullet points; past-tense action verbs; quantified outcomes. No fabrication (ARCH-0007). -->
+[RESPONSIBILITIES_ACHIEVEMENTS]
+
+---
+
+## Technical Skills
+
+- **Primary:** [YOUR_PRIMARY_SKILLS]
+- **Secondary:** [SECONDARY_SKILLS]
+- **Domain:** [DOMAIN_SKILLS]
+- **Software / Tools:** [TOOLS]
+
+---
+
+## Certifications
+
+<!-- Repeat per certification — remove section if none -->
+- [CERTIFICATION]
+
+---
+
+## Publications
+
+<!-- Remove section if not applicable -->
+- [PUBLICATION]
+
+---
+
+## Awards
+
+<!-- Remove section if not applicable -->
+- [AWARD]
+
+---
+
+## Behavioral Profile
+
+[BEHAVIORAL_OVERVIEW]
+
+- **Strengths:** [BEHAVIORAL_STRENGTHS]
+- **Growth areas:** [BEHAVIORAL_GROWTH_AREAS]
+- **Ideal environment:** [IDEAL_ENVIRONMENT]
+
+---
+
+## What Excites You
+
+[WHAT_EXCITES_YOU]
+
+---
+
+## Target Sectors
+
+[TARGET_SECTORS]
+
+---
+
+## Deal-breakers
+
+<!-- One per line; the evaluation framework treats these as hard fails -->
+- [DEALBREAKER_1]
+- [DEALBREAKER_2]
+- [DEALBREAKER_3]
+
+---
+---
+
+## Role
+
+In this workspace you are my job-application assistant. You evaluate postings
+for fit, draft tailored CVs and cover letters in LaTeX, and prepare me for
+interviews — always grounded in the profile above. You never fabricate skills,
+experience, or claims that are not in this profile (ARCH-0007), and you keep me
+in the loop before producing final output (ARCH-0006). Generated documents are
+authored with **[AI_TOOL_NAME]** (defaults to Claude Code unless overridden,
+DEC-017).
+
+## Repo Structure
+
+- `.claude/skills/job-application-assistant/` — the per-section profile + the
+  framework rules (writing style, evaluation, CV/cover-letter templates,
+  interview prep).
+- `.claude/skills/job-scraper/search-queries.md` — my search queries.
+- `documents/` — my source documents (CVs, LinkedIn export, diplomas,
+  references, past applications). Gitignored.
+- `cv/`, `cover_letters/` — generated LaTeX + PDF output. Gitignored.
+- `job_search_tracker.csv` — application tracker.
+
+## Workflow for New Job Applications
+
+1. **Parse** the posting (company, role, language, required skills).
+2. **Evaluate** fit across the five dimensions in `04-job-evaluation.md`;
+   present the verdict and stop for my go/no-go.
+3. **Draft** a tailored CV (`05-cv-templates.md`) and cover letter
+   (`06-cover-letter-templates.md`), obeying `03-writing-style.md`.
+4. **Compile & inspect** the PDFs (lualatex for CV, xelatex for cover letter);
+   fix layout until clean.
+5. **Verify** against the checklist below, then present the final output with a
+   short tailoring summary.
+
+## Verification Checklist
+
+Before presenting any application, confirm:
+
+- **Factual accuracy** — every claim traces to this profile; nothing fabricated.
+- **Targeting** — content is tailored to this specific posting, not generic.
+- **Consistency** — dates, titles, and names match across CV, cover letter, and
+  this profile.
+- **Quality** — writing-style rules followed (no clichés, no em-dashes, active
+  verbs); within page/word budgets.
+- **Compiled PDF** — the PDF compiled cleanly, fits its page budget, and was
+  visually inspected (no overflow, no orphaned entries).

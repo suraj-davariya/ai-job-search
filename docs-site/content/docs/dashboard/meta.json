@@ -1,0 +1,4 @@
+{
+  "title": "The Dashboard",
+  "pages": ["index", "kpis", "charts", "applications-table"]
+}

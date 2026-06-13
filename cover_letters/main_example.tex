@@ -1,0 +1,75 @@
+% =============================================================================
+% CareerForge Cover Letter Template
+% Class:   cfcl.cls  (CareerForge Cover Letter class)
+% Compile: xelatex main_example.tex    (run from cover_letters/ directory!)
+% Output:  main_example.pdf            (target: 1 page)
+%
+% Generated copies: cover_letters/main_<Company>_<Role>.tex  (gitignored)
+% Tokens:  Fields marked  % {{TOKEN_NAME}}  are replaced by the AI skill.
+%          See .claude/skills/job-application-assistant/06-cover-letter-templates.md
+%
+% IMPORTANT: Always compile from cover_letters/ so font paths resolve correctly.
+%   cd cover_letters && xelatex main_example.tex
+% =============================================================================
+
+\documentclass{cfcl}
+
+\begin{document}
+
+% ── Header ────────────────────────────────────────────────────────────────────
+\clname{Jane Smith}                                           % {{CANDIDATE_NAME}}
+\smallskip
+\cltagline{Machine Learning Engineer · Python Developer}      % {{TAGLINE}}
+\smallskip
+\primarycontact{%
+  \citem{\faEnvelope}{\href{mailto:jane.smith@email.com}{jane.smith@email.com}}\quad  % {{EMAIL}}
+  \citem{\faPhone}{+1 (415) 555-0198}\quad                                             % {{PHONE}}
+  \citem{\faLinkedinIn}{\href{https://linkedin.com/in/janesmith}{linkedin.com/in/janesmith}}% {{LINKEDIN}}
+}
+\smallskip
+\secondarycontact{%
+  \citem{\faLocationDot}{San Francisco, CA}\quad                                        % {{LOCATION}}
+  \citem{\faGithub}{\href{https://github.com/janesmith}{github.com/janesmith}}\quad    % {{GITHUB}}
+  \citem{\faGlobe}{\href{https://janesmith.dev}{janesmith.dev}}                         % {{PORTFOLIO}}
+}
+\clheadrule
+
+% ── Recipient + Date ──────────────────────────────────────────────────────────
+\recipient{Anthropic, Inc.}{548 Market St, Suite 28220}{San Francisco, CA 94104, USA}  % {{RECIPIENT_*}}
+\letterdate{June 7, 2026}                                                               % {{DATE}}
+
+% ── Subject ───────────────────────────────────────────────────────────────────
+\clsection{Re: Senior Machine Learning Engineer}              % {{ROLE_TITLE}}
+
+% ── Opening ───────────────────────────────────────────────────────────────────
+\opening{Dear Hiring Manager,}                                % {{SALUTATION}}
+
+% Paragraph 1: Who you are + why you are applying.            % {{INTRO_PARA}}
+I am writing to express my interest in the Senior Machine Learning Engineer
+position at Anthropic. With five years of hands-on experience building
+production ML systems in Python and a track record of shipping models that
+directly improve user outcomes, I am confident I can contribute meaningfully
+from day one.
+
+% Paragraph 2: Concrete evidence of skills matching the job.  % {{BODY_PARA_1}}
+At TechStart Inc., I led the end-to-end delivery of a real-time recommendation
+engine that increased click-through rates by 23\% within three months of
+deployment. The system processes over two million events per day using PyTorch,
+with a custom feature store backed by Redis and PostgreSQL.
+
+% Paragraph 3: Company-specific hook showing genuine research. % {{BODY_PARA_2}}
+What draws me to Anthropic is your commitment to safety-first AI development.
+Your recent work on constitutional AI aligns directly with research I have
+been pursuing independently, and I would welcome the chance to bring that
+perspective to a team that treats rigour as a first-class concern.
+
+% ── Closing ───────────────────────────────────────────────────────────────────
+\closing{%
+  I look forward to discussing how my experience can support Anthropic's mission.
+  Thank you for your time and consideration.%      % {{CLOSING}}
+}{Jane Smith}                                      % {{CANDIDATE_NAME}}
+
+\vfill
+\noindent\textcolor{accent}{\rule{\linewidth}{1.2pt}}
+
+\end{document}
