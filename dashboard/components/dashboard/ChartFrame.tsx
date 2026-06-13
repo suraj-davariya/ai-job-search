@@ -36,7 +36,15 @@ export function ChartFrame({
   children: ReactNode;
 }) {
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  // Defer the flag into a microtask so the setState isn't synchronous in the
+  // effect body (post-hydration gate; keeps Nivo off the server).
+  useEffect(() => {
+    let active = true;
+    Promise.resolve().then(() => active && setMounted(true));
+    return () => {
+      active = false;
+    };
+  }, []);
 
   return (
     <section className="rounded-xl border border-border bg-card/50 p-4">
