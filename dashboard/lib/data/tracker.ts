@@ -7,8 +7,13 @@ import { promises as fs } from "node:fs";
 import { parseTrackerCsv } from "@/lib/domain/csv";
 import { paths } from "@/lib/paths";
 import type { TrackerRow } from "@/lib/domain/status";
+import { IS_DEMO } from "@/lib/demo/flags";
+import { DEMO_ROWS } from "@/lib/demo/seed";
 
 export async function readTracker(filePath?: string): Promise<TrackerRow[]> {
+  // Static demo build: serve bundled sample rows, never touch the filesystem.
+  if (IS_DEMO) return DEMO_ROWS.map((r, i) => ({ ...r, _row: i }));
+
   const file = filePath ?? paths.tracker();
 
   let text: string;

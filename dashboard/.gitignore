@@ -44,3 +44,6 @@ next-env.d.ts
 /.runs
 *.local
 /.dashboard.local.json
+
+# transient backup written by scripts/export-demo.mjs (always restored)
+/.demo-build-backup/
