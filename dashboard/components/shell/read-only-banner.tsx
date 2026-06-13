@@ -1,5 +1,6 @@
 import { Lock } from "lucide-react";
 import { getConfig } from "@/lib/config";
+import { IS_DEMO } from "@/lib/demo/flags";
 
 /**
  * App-wide read-only notice (REQ-5007). Renders only when the dashboard was
@@ -7,6 +8,8 @@ import { getConfig } from "@/lib/config";
  * component. All mutators (status/notes edit, + New) are independently disabled.
  */
 export function ReadOnlyBanner() {
+  // The demo build shows its own richer banner; avoid stacking two.
+  if (IS_DEMO) return null;
   if (!getConfig().readOnly) return null;
   return (
     <div

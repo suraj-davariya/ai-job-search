@@ -6,6 +6,8 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { paths } from "@/lib/paths";
+import { IS_DEMO } from "@/lib/demo/flags";
+import { DEMO_PROFILE } from "@/lib/demo/seed";
 
 export interface ProfileSection {
   name: string; // file name
@@ -28,6 +30,9 @@ export async function readProfile(opts?: {
   skillDir?: string;
   memoryPath?: string;
 }): Promise<ProfileSection[]> {
+  // Static demo build: serve a bundled sample profile.
+  if (IS_DEMO) return DEMO_PROFILE;
+
   const skillDir = opts?.skillDir ?? paths.profileSkillDir();
   const memoryPath = opts?.memoryPath ?? paths.projectMemory();
 

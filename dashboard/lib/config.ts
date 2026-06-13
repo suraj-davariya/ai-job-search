@@ -4,6 +4,7 @@
  * Kept server-only — never import into client components.
  */
 import { repoRoot } from "./paths";
+import { IS_DEMO } from "./demo/flags";
 
 export const DEFAULT_PORT = 4480;
 
@@ -25,11 +26,12 @@ export function getConfig(): DashboardConfig {
   return {
     repoRoot: repoRoot(),
     port: Number(process.env.PORT) || DEFAULT_PORT,
-    readOnly: envFlag("CAREERFORGE_READ_ONLY"),
+    // The static demo is always read-only: there is no server to write to.
+    readOnly: IS_DEMO || envFlag("CAREERFORGE_READ_ONLY"),
   };
 }
 
 /** Convenience for guarding writes/actions. */
 export function isReadOnly(): boolean {
-  return envFlag("CAREERFORGE_READ_ONLY");
+  return IS_DEMO || envFlag("CAREERFORGE_READ_ONLY");
 }

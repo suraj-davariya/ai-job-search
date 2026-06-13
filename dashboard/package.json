@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:demo": "node scripts/export-demo.mjs",
     "start": "next start",
     "serve": "node scripts/start.mjs",
     "typecheck": "tsc --noEmit",

@@ -36,6 +36,24 @@ Flags: `--port <n>` (default 4480) · `--read-only` · `--no-open` ·
 
 For development: `npm run dev` (Next dev server, also loopback).
 
+## Published demo (static, read-only)
+
+A read-only walkthrough of the dashboard is published to GitHub Pages with
+**fictional sample data**, so anyone can click through it without installing
+anything:
+
+**→ https://suraj-davariya.github.io/ai-job-search/dashboard/**
+
+It is built with `npm run build:demo`, which produces a static export
+(`out/`) via `scripts/export-demo.mjs`. Because GitHub Pages serves static
+files only — no Node server, no filesystem, no subprocesses — the demo sets
+`DASHBOARD_DEMO=1`, which makes the data layer serve the bundled seed
+(`lib/demo/seed.ts`) and forces read-only: **editing, the Console, salary
+lookups, and PDF previews are disabled** (they need the real local app). The
+build wrapper transiently removes the API routes and Server Actions for the
+export and restores them afterwards, so the source on disk is unchanged. The
+deploy itself runs in `.github/workflows/pages.yml`.
+
 ## Prerequisites
 
 - **Node.js 18+** and npm (the dashboard itself).

@@ -6,6 +6,7 @@
 import { promises as fs } from "node:fs";
 import { constants } from "node:fs";
 import path from "node:path";
+import { IS_DEMO } from "@/lib/demo/flags";
 
 /** True when `bin` is an executable file on PATH. */
 export async function hasBin(bin: string): Promise<boolean> {
@@ -26,6 +27,9 @@ export async function binAvailability(): Promise<{
   claude: boolean;
   python3: boolean;
 }> {
+  // Static demo build: there is no host shell, so no binaries are available.
+  if (IS_DEMO) return { claude: false, python3: false };
+
   const [claude, python3] = await Promise.all([
     hasBin("claude"),
     hasBin("python3"),
