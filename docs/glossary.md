@@ -159,7 +159,7 @@ A structured answer framework for behavioral interview questions: **S**ituation 
 ## T
 
 **Tracking Dashboard**
-Local web UI (Bun + Hono + HTMX + Pico.css per ADR-0005) over the application tracker CSV. Runs on `127.0.0.1` only. Allows status/notes edits and manual row append. See REQ-5xxx and ADR-0005.
+Local web UI (Next.js + React + shadcn/ui + Tailwind, file-as-DB per ADR-0006, which supersedes ADR-0005's stack) over the application tracker CSV. Runs on `127.0.0.1` only. Allows status/notes edits and manual row append. See REQ-5xxx and ADR-0006.
 
 **Two-Plane Skill Architecture**
 Skills are split into two filesystem trees with different roles: Plane 1 (Claude Code skills at `.claude/skills/<name>/`, knowledge-only) and Plane 2 (sub-agent CLI skills at `.agents/skills/<name>/cli/`, external binaries). A skill is either Plane 1 or Plane 2, never both. See ARCH-0008 and DEC-013.
