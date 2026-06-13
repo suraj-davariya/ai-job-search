@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "fumadocs-mdx",
     "dev": "next dev --port 4481",
     "build": "next build",
     "typecheck": "tsc --noEmit",
