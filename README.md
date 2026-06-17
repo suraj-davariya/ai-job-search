@@ -13,8 +13,8 @@
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?logo=anthropic&logoColor=white)](https://claude.com/claude-code)
 [![AI-Native](https://img.shields.io/badge/AI--Native-Agentic%20workflow-8A4FFF)](docs/architecture/architecture-overview.md)
 [![Agents](https://img.shields.io/badge/Agents-Drafter%20%2B%20Reviewer-8A4FFF)](.claude/agents/)
-[![Skills](https://img.shields.io/badge/Skills-2-8A4FFF)](.claude/skills/)
-[![Commands](https://img.shields.io/badge/Commands-%2Fsetup%20%2Fsearch%20%2Fapply-8A4FFF)](.claude/commands/)
+[![Skills](https://img.shields.io/badge/Skills-3-8A4FFF)](.claude/skills/)
+[![Commands](https://img.shields.io/badge/Commands-%2Fsetup%20%2Fsearch%20%2Fapply%20%2Fupskill-8A4FFF)](.claude/commands/)
 [![Prompt-as-code](https://img.shields.io/badge/Architecture-Prompt--as--code-6E56CF)](docs/architecture/)
 
 <!-- How it's built — modern stack, privacy, reach -->
@@ -308,6 +308,34 @@ Verdict: **Strong** (75+) · **Good** (60–74) · **Moderate** (45–59) · **W
 
 ---
 
+### `/upskill` — Find your skill gaps and a plan to close them
+
+Compares your profile against demand and produces a prioritised gap heatmap, a
+learning plan built from **real, web-searched** resources, and a dependency-aware study
+order — then saves it all as a report the dashboard can show you.
+
+**Two modes:**
+
+| Syntax | Mode | What it analyses |
+|--------|------|------------------|
+| `/upskill` | Aggregate | Every job in your tracker, weighted so the roles you fit *least* count most |
+| `/upskill <url>` | Targeted | One posting (paste the text if the URL won't fetch) |
+
+**What you get:**
+
+| Output | Location |
+|--------|---------|
+| Gap heatmap (Critical / High / Medium / Low) | In conversation |
+| Learning plan — 2–3 resources per gap, with study direction + time estimate | In the report |
+| Study order with total time | In the report |
+| Saved report (with since-last-run delta in aggregate mode) | `upskill/report-*.md` |
+
+Reports appear in the dashboard's **Upskill** tab. Nothing is fabricated — every
+resource comes from a live web search, and an empty tracker gets an honest nudge toward
+targeted mode rather than an empty report.
+
+---
+
 ## The tracking dashboard
 
 A local-only web UI that **reads and atomically writes your `job_search_tracker.csv` as the single source of truth**, visualises your pipeline, and can drive the CLI (`/apply`, `/upskill`, salary lookups) from the browser. It is an optional companion — deleting it leaves your data and the `/apply` pipeline untouched.
@@ -339,7 +367,6 @@ npm run serve          # prints  ▶  http://127.0.0.1:4480/
 | Command | Milestone | What it will do |
 |---------|-----------|----------------|
 | `/expand` | v1.1 | Enrich your profile with new courses, certifications, or projects |
-| `/upskill` | v1.1 | Compare your profile against a job or market, produce a skill-gap report and learning plan |
 | `/reset` | v1.2 | Clear and re-run a specific profile section |
 
 ---
@@ -435,6 +462,7 @@ ai-job-search/
 │   │   ├── setup.md           # /setup  — build your profile
 │   │   ├── apply.md           # /apply  — full application pipeline
 │   │   ├── search.md          # /search — discover new job postings
+│   │   ├── upskill.md         # /upskill — skill-gap analysis + learning plan
 │   │   ├── expand.md          # /expand — (stub, v1.1)
 │   │   └── reset.md           # /reset  — (stub, v1.2)
 │   │
@@ -448,9 +476,12 @@ ai-job-search/
 │       │   ├── 06-cover-letter-templates.md
 │       │   └── 07-interview-prep.md     # STAR stories + practice questions
 │       │
-│       └── job-scraper/
-│           ├── SKILL.md                 # Job-search workflow (REQ-1001–1012)
-│           └── search-queries.md        # Your portals, queries, location tiers
+│       ├── job-scraper/
+│       │   ├── SKILL.md                 # Job-search workflow (REQ-1001–1012)
+│       │   └── search-queries.md        # Your portals, queries, location tiers
+│       │
+│       └── career-development/
+│           └── SKILL.md                 # Skill-gap analysis (REQ-3001–3011)
 │
 ├── cv/
 │   ├── cfcv.cls               # Custom LaTeX CV class (compile with lualatex)
@@ -515,7 +546,8 @@ xelatex main_example.tex
 | **MVP** (Epics 1–5) | ✅ Complete | `/setup`, `/apply` (no reviewer), PDF compilation |
 | **v1.0** (Epics 6–8) | ✅ Complete | Reviewer agent, `/search`, application tracker |
 | **v1.0 — Dashboard** (Epic 9) | ✅ Complete | Local tracking dashboard at `127.0.0.1:4480` — view/edit tracker, analytics, run commands from the browser |
-| **v1.1** (Epics 10–11) | 🔜 Planned | `/expand` (profile enrichment), `/upskill` (skill-gap analysis) |
+| **v1.1 — Upskill** (Epic 11) | ✅ Complete | `/upskill` skill-gap analysis + web-sourced learning plan; reports surface in the dashboard |
+| **v1.1 — Expand** (Epic 10) | 🔜 Planned | `/expand` (profile enrichment from new courses, certs, projects) |
 | **v1.2** (Epic 12) | 🔜 Planned | `/reset`, interview prep, portal adapter pattern |
 | **v2.0** | 💡 Future | Template marketplace, community portal adapters, GUI |
 
