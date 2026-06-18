@@ -127,6 +127,26 @@ Available in the class but intentionally omitted from the default templates (con
 
 ---
 
+## ATS-Safe Exports (TXT + DOCX)
+
+The compiled LaTeX **PDF is the primary, human-facing CV** and is never replaced. Because
+some applicant-tracking systems parse typeset PDFs poorly (and many prefer Word or plain
+text), every CV is **also** exported as `.txt` and `.docx` (REQ-2063), generated from one
+ATS-safe Markdown source so all three stay content-equivalent.
+
+- **Source:** write `cv/main_<company>.ats.md` with the same tailored content as the
+  `.tex`, in a flat parseable structure — standard headings (`Summary`, `Experience`,
+  `Education`, `Skills`), name + contact at the top, plain text, **no tables, columns, or
+  graphics**, no letter-spacing tricks.
+- **Generate + verify:** `node scripts/ats-export.mjs --md cv/main_<company>.ats.md --out cv/output --pdf <pdf> --name "<name>" --keywords "<kw>"`
+  produces the `.txt`/`.docx` and runs an **ATS parse self-check** (REQ-2064) confirming
+  name, section headers, and top keywords are recoverable from the PDF.
+- **Optional tools (graceful, ARCH-0005):** `.txt` always works; `.docx` needs `pandoc`;
+  the parse check needs `pdftotext` (poppler). Missing tools are noted, never fatal.
+- **No fabrication (ARCH-0007):** the exports contain exactly the claims in the PDF.
+
+---
+
 ## Locale Adaptation (Locale Packs)
 
 CV conventions differ by **target market**, not by language (REQ-7009, REQ-7010,

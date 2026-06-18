@@ -302,8 +302,35 @@ both `.tex` files once to confirm their on-disk state. Report each item pass/fai
 Then:
 - **Tailoring summary (REQ-2061):** 3–5 key decisions — what was emphasized and
   why, company-specific angles, gaps acknowledged or reframed.
-- **File listing (REQ-2062):** the CV and cover letter paths, then:
-  *"Both files are ready for your review."*
+- **File listing (REQ-2062):** the CV (PDF) and cover letter paths, plus the ATS exports
+  produced in Step 7 (`.txt`, `.docx`), then:
+  *"Your documents are ready for your review."*
+
+---
+
+## Step 7 — ATS Exports & Parse Check (REQ-2063, REQ-2064)
+
+The polished LaTeX **PDF stays the primary, human-facing output**. In addition, produce
+the machine-parseable companions ATS systems prefer — from **one** source so all three
+artifacts stay content-equivalent:
+
+1. **ATS-safe Markdown** (write it from the same tailored content): `cv/main_<company>.ats.md`
+   — a flat, parseable structure: standard headings (Summary, Experience, Education,
+   Skills), plain text, no tables/columns/graphics, name + contact at the top. **Identical
+   claims to the PDF — no fabrication** (ARCH-0007).
+2. **Generate exports + verify the PDF:**
+   ```bash
+   node scripts/ats-export.mjs --md cv/main_<company>.ats.md --out cv/output \
+     --pdf cv/output/main_<company>.pdf \
+     --name "<Full Name>" --keywords "<top role keywords>"
+   ```
+   Produces `cv/output/main_<company>.txt` and `.docx`, and runs the ATS parse self-check
+   on the PDF (name + section headers + keywords recoverable).
+3. **Graceful degradation (ARCH-0005, REQ-2064):** the `.txt` always works; `.docx` needs
+   `pandoc` and the parse check needs `pdftotext` (poppler). If a tool is absent the script
+   notes it and continues — **never block delivery** on these.
+4. Report the parse-check result; if a field isn't recoverable from the PDF, point the
+   user to the `.txt`/`.docx` as the ATS-safe fallback.
 
 ---
 
@@ -319,3 +346,4 @@ Then:
 | REQ-2050–2055 compile + fix loop | Step 5 |
 | data-req §11 tracker row | Step 6 |
 | REQ-2060–2062 verify + summary | Step 6 |
+| REQ-2063/2064 ATS exports + parse check | Step 7 |
