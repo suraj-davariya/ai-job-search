@@ -1,0 +1,64 @@
+---
+title: /reset
+description: Wipe your personal data and start fresh — with an inventory first, a hard confirmation, and the framework left untouched.
+---
+
+`/reset` is the clean-slate button. Sometimes you want to start over — a new career
+direction, a fresh profile, or you're handing the repo to someone else. `/reset` removes
+**your data** while carefully preserving the **framework** that makes CareerForge work, so
+the tool still runs perfectly afterwards.
+
+## Pick what to clear
+
+| You type | Clears |
+|----------|--------|
+| `/reset profile` | Your profile skill files — back to blank templates |
+| `/reset documents` | Your files in `documents/` (the folders and README stay) |
+| `/reset all` | Both |
+
+If you don't pass a scope, it asks you to choose and explains what each one affects.
+
+## It shows you everything first
+
+Before deleting anything, `/reset` prints an **inventory**:
+
+```text
+you:    /reset profile
+claude: Profile reset — here's what I'll clear vs. keep:
+
+        Will clear:
+          01-candidate-profile.md     (has your data)
+          02-behavioral-profile.md    (has your data)
+          07 STAR examples            (3 examples)
+        Already empty:
+          05 profile statements       (template)
+        NEVER touched (framework):
+          03-writing-style.md, 04 scoring framework,
+          06 cover-letter templates, 07 framework + roleplay
+
+        This cannot be undone — your git history is the only recovery.
+        Type RESET to proceed.
+you:    RESET
+claude: Cleared 3 files. Run /setup to rebuild your profile.
+```
+
+## The safety rails
+
+- **Inventory before deletion** — you always see exactly what goes and what stays.
+- **You must type `RESET`** in capitals. Any other reply cancels with "nothing was
+  changed".
+- **The framework is never touched** — the writing-style guide, the scoring framework, the
+  cover-letter templates, and the interview-prep framework (including your roleplay
+  guidelines) all survive. Only your *data* is cleared.
+- **Honest reporting** — it lists what was actually cleared versus what was already empty,
+  and never claims to have wiped something that wasn't there.
+- **No undo.** It says so up front and points you at your git history.
+
+## After a reset
+
+`/reset` tells you the natural next step for what you cleared — almost always
+[`/setup`](/docs/commands/setup) to rebuild your profile (add documents first if you
+cleared those).
+
+> Because it's destructive, `/reset` is intentionally **not** available from the dashboard
+> Console — it only runs here, where the typed `RESET` confirmation protects you.

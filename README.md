@@ -12,9 +12,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?logo=anthropic&logoColor=white)](https://claude.com/claude-code)
 [![AI-Native](https://img.shields.io/badge/AI--Native-Agentic%20workflow-8A4FFF)](docs/architecture/architecture-overview.md)
-[![Agents](https://img.shields.io/badge/Agents-Drafter%20%2B%20Reviewer-8A4FFF)](.claude/agents/)
+[![Agents](https://img.shields.io/badge/Agents-Reviewer%20%2B%20Research-8A4FFF)](.claude/agents/)
 [![Skills](https://img.shields.io/badge/Skills-3-8A4FFF)](.claude/skills/)
-[![Commands](https://img.shields.io/badge/Commands-setup%20%C2%B7%20search%20%C2%B7%20apply%20%C2%B7%20upskill%20%C2%B7%20expand-8A4FFF)](.claude/commands/)
+[![Commands](https://img.shields.io/badge/Commands-setup%20%C2%B7%20search%20%C2%B7%20apply%20%C2%B7%20upskill%20%C2%B7%20expand%20%C2%B7%20reset-8A4FFF)](.claude/commands/)
 [![Prompt-as-code](https://img.shields.io/badge/Architecture-Prompt--as--code-6E56CF)](docs/architecture/)
 
 <!-- How it's built — modern stack, privacy, reach -->
@@ -370,6 +370,28 @@ after a new course or project and it only brings in what's genuinely new.
 
 ---
 
+### `/reset` — Start over, safely
+
+Clears your personal data so you can begin again — a new career direction, a fresh
+profile, or handing the repo to someone else — **without** touching the framework that
+makes CareerForge work.
+
+**Scopes:**
+
+| Syntax | Clears |
+|--------|--------|
+| `/reset profile` | Your profile skill files (back to blank templates) |
+| `/reset documents` | Your files in `documents/` (folder structure + README kept) |
+| `/reset all` | Both |
+
+It always **shows you an inventory first** (what will be cleared vs. what's preserved),
+and **nothing happens until you type `RESET`** in capitals — any other reply cancels. The
+writing-style guide, scoring framework, cover-letter templates, and the interview-prep
+framework are never touched; only your data is. There's no undo, so it points you at your
+git history as the only recovery, then suggests running `/setup` to rebuild.
+
+---
+
 ## The tracking dashboard
 
 A local-only web UI that **reads and atomically writes your `job_search_tracker.csv` as the single source of truth**, visualises your pipeline, and can drive the CLI (`/apply`, `/upskill`, salary lookups) from the browser. It is an optional companion — deleting it leaves your data and the `/apply` pipeline untouched.
@@ -396,11 +418,9 @@ npm run serve          # prints  ▶  http://127.0.0.1:4480/
 
 ---
 
-### Planned commands _(coming in future milestones)_
-
-| Command | Milestone | What it will do |
-|---------|-----------|----------------|
-| `/reset` | v1.2 | Clear and re-run a specific profile section |
+> **All planned commands have shipped.** `/setup`, `/search`, `/apply`, `/upskill`,
+> `/expand`, and `/reset` are all live (v1.0–v1.2). See the [Roadmap](#roadmap) for what's
+> next.
 
 ---
 
@@ -497,7 +517,7 @@ ai-job-search/
 │   │   ├── search.md          # /search — discover new job postings
 │   │   ├── upskill.md         # /upskill — skill-gap analysis + learning plan
 │   │   ├── expand.md          # /expand — competency expansion (additive)
-│   │   └── reset.md           # /reset  — (stub, v1.2)
+│   │   └── reset.md           # /reset  — clear data, preserve framework
 │   │
 │   └── skills/
 │       ├── job-application-assistant/   # AI knowledge for CV/CL/interview work
@@ -580,7 +600,7 @@ xelatex main_example.tex
 | **v1.0** (Epics 6–8) | ✅ Complete | Reviewer agent, `/search`, application tracker |
 | **v1.0 — Dashboard** (Epic 9) | ✅ Complete | Local tracking dashboard at `127.0.0.1:4480` — view/edit tracker, analytics, run commands from the browser |
 | **v1.1** (Epics 10–11) | ✅ Complete | `/upskill` skill-gap analysis + learning plan, and `/expand` competency expansion from your docs, GitHub, and the web |
-| **v1.2** (Epic 12) | 🔜 Planned | `/reset`, interview prep, portal adapter pattern |
+| **v1.2** (Epic 12) | ✅ Complete | `/reset`, interview-prep framework, ADR-0004 portal-adapter pattern + example, research agent |
 | **v2.0** | 💡 Future | Template marketplace, community portal adapters, GUI |
 
 See the full plan in [`docs/plan/delivery-strategy.md`](docs/plan/delivery-strategy.md).
