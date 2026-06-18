@@ -215,19 +215,23 @@ A locale pack adapts CareerForge to a specific country or region:
 
 Portal adapters are optional TypeScript CLI scrapers for specific job boards. They do not change the Plane-1 web-search skill.
 
-Structure:
+**Start from the runnable template:** [`.agents/skills/example-portal/`](.agents/skills/example-portal/) is a complete, copy-me example that already implements the ADR-0004 contract (try it: `bun run .agents/skills/example-portal/cli/index.ts --keywords "data engineer" --location "Remote"`).
+
+Structure (ADR-0004):
 ```
-.agents/skills/<portal-name>/cli/
-  package.json
-  src/index.ts      # implements the provider interface (ADR-0004)
-  README.md         # portal-specific notes, rate limits, auth
+.agents/skills/<portal-name>/
+  SKILL.md            # trigger keywords + the input/output/exit-code contract
+  cli/
+    package.json      # deps + start script (Bun/TypeScript)
+    index.ts          # CLI: --keywords/--location/--date-range → JSON array, exit 0/1
+  url-reference.md    # optional: the portal's search-URL patterns
 ```
 
 1. Read [`docs/architecture/`](docs/architecture/) for ADR-0004 (pluggable adapter pattern).
-2. Scaffold the directory above.
-3. Implement the provider interface methods (`search_jobs`, `fetch_job_details`).
+2. **Copy `.agents/skills/example-portal/`** to `.agents/skills/<portal-name>/`.
+3. Replace `fetchPostings()` in `cli/index.ts` with a real fetch that honours the contract (`{ title, company, location, url, date, snippet }[]`, exit 0/1). Return only postings you actually found — no fabrication (ARCH-0007).
 4. Write a `TC-SEA-###` test case that verifies the adapter returns the expected schema.
-5. Document authentication requirements and rate limits in the adapter's `README.md`.
+5. Document the portal's URL patterns, rate limits, and any auth in `url-reference.md`, and add the portal to your `search-queries.md`.
 
 ### Adding a CV or cover-letter template
 
