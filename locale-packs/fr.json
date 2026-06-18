@@ -1,0 +1,14 @@
+{
+  "code": "FR",
+  "name": "France",
+  "documentTerm": "CV",
+  "pageSize": "A4",
+  "pageCountExpectation": "1-2",
+  "photo": "optional",
+  "includedPersonalFields": [],
+  "nameOrder": "given-family",
+  "dateFormat": "MM/yyyy",
+  "currency": "EUR",
+  "legalClauses": ["gdpr-consent"],
+  "notes": "A photo is optional and commonly included by personal choice, but not required. Keep to 1-2 A4 pages. Personal data is covered by GDPR (and France's CNIL), so include a data-processing consent line where appropriate."
+}

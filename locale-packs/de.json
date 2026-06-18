@@ -1,0 +1,15 @@
+{
+  "code": "DE",
+  "name": "Germany",
+  "documentTerm": "Lebenslauf",
+  "pageSize": "A4",
+  "pageCountExpectation": "2-3",
+  "photo": "expected",
+  "photoSpec": "passport-style, top-right, ~4.5x6cm",
+  "includedPersonalFields": ["dateOfBirth", "nationality", "photo"],
+  "nameOrder": "given-family",
+  "dateFormat": "MM.yyyy",
+  "currency": "EUR",
+  "legalClauses": ["gdpr-consent"],
+  "notes": "Tension: EU anti-discrimination law (AGG) discourages photos and personal data such as date of birth and nationality, yet established German hiring practice still expects a professional passport-style photo (top-right) and these fields on the Lebenslauf. Many candidates still include them to meet recruiter expectations; including them is optional and at the candidate's discretion. Personal data falls under GDPR."
+}

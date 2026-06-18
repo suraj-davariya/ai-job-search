@@ -1,0 +1,15 @@
+{
+  "code": "JP",
+  "name": "Japan",
+  "documentTerm": "Rirekisho",
+  "pageSize": "A4",
+  "pageCountExpectation": "2",
+  "photo": "required",
+  "photoSpec": "passport-style affixed, per JIS form",
+  "includedPersonalFields": ["dateOfBirth", "gender", "photo", "address"],
+  "nameOrder": "family-given",
+  "dateFormat": "yyyy/MM",
+  "currency": "JPY",
+  "documentSystem": "Two documents: Rirekisho (standardized JIS personal-history form) + Shokumukeirekisho (detailed work history)",
+  "notes": "The Rirekisho follows a fixed, standardized JIS template with predetermined fields (date of birth, gender, address, affixed photo); it is not a free-form layout. It is normally paired with the Shokumukeirekisho, a separate detailed work-history document. Family name precedes given name."
+}

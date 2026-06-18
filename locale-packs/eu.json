@@ -1,0 +1,14 @@
+{
+  "code": "EU",
+  "name": "European Union",
+  "documentTerm": "CV",
+  "pageSize": "A4",
+  "pageCountExpectation": "2",
+  "photo": "optional",
+  "includedPersonalFields": [],
+  "nameOrder": "given-family",
+  "dateFormat": "MM/yyyy",
+  "currency": "EUR",
+  "legalClauses": ["gdpr-consent"],
+  "notes": "Generic EU pack for when no country-specific pack applies; prefer a country-specific pack (e.g. de, fr) when available, as national practice varies widely (notably on photos). Under GDPR a CV is personal data, so apply data minimization and include a processing-consent line where appropriate."
+}

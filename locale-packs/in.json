@@ -1,0 +1,13 @@
+{
+  "code": "IN",
+  "name": "India",
+  "documentTerm": "CV",
+  "pageSize": "A4",
+  "pageCountExpectation": "2-3",
+  "photo": "optional",
+  "includedPersonalFields": ["dateOfBirth", "maritalStatus", "nationality"],
+  "nameOrder": "given-family",
+  "dateFormat": "MMM yyyy",
+  "currency": "INR",
+  "notes": "A 'Personal Details' section listing date of birth, marital status, nationality, and languages known is customary at the end of the CV. A photo is optional. Length is typically 2-3 A4 pages."
+}
