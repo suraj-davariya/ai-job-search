@@ -54,6 +54,9 @@ skipped when `--review=none`.
 | `.claude/skills/job-application-assistant/04-job-evaluation.md` | Step 1 (scoring framework) |
 | `.claude/skills/job-application-assistant/05-cv-templates.md` | Step 2/5 (CV LaTeX guide + cutting) |
 | `.claude/skills/job-application-assistant/06-cover-letter-templates.md` | Step 2/5 (cover-letter LaTeX guide) |
+| `.claude/skills/job-application-assistant/08-legitimacy.md` | Step 1 (posting legitimacy gate) |
+| `locale-packs/<code>.json` | Steps 0–2 (target-market conventions; default `locale-packs/default.json`) |
+| `trust-safety/scam-patterns.json` | Step 1 (red-flag catalog) |
 
 ---
 
@@ -69,9 +72,15 @@ Extract metadata: **company name, role title, department** (if mentioned),
 **location**, and **language of the posting**. Both input modes produce identical
 downstream behavior.
 
-**Language rule (REQ-2002):** the cover letter is written in the **posting's
-language** (e.g. a Danish posting → Danish cover letter). The **CV is always in
-English** regardless of posting language.
+**Language rule (REQ-2002, REQ-7001):** the cover letter is written in the **posting's
+language** (e.g. a Danish posting → Danish cover letter). The **CV language follows the
+active locale pack / user preference** (default: the posting language, falling back to
+English) — it is no longer hardcoded to English.
+
+**Resolve the locale pack (REQ-7009):** from the employer country / job location (or a
+user preference), load `locale-packs/<code>.json` for the target market; fall back to
+`locale-packs/default.json` if none matches (ARCH-0005). It drives CV page size, page
+count, photo norm, personal fields, date format, and legal clauses in Steps 1–2.
 
 ---
 
@@ -95,6 +104,15 @@ regardless of the weighted score.
 **Salary (REQ-2011, optional):** invoke `python3 salary_lookup.py "<company>" --city "<city>"` (omit `--city` if no city is known).
 If the tool or data is unavailable, note "Salary data not available" and proceed — never block on it.
 
+**Posting legitimacy — separate gate (REQ-8001–8005, read `08-legitimacy.md`):** assess
+whether the posting is genuine and safe to engage with, **independently** of the fit
+score. Check it against `trust-safety/scam-patterns.json` (global signals + any `byRegion`
+entries for the active locale pack), corroborate the employer/domain via web search, and
+produce a standalone verdict — **Verified / Caution / Suspicious** — with cited evidence.
+This is **not** folded into the 0–100 fit score (business-rules §10). Never auto-block
+(ARCH-0006); never accuse without cited evidence, use Caution when unsure (ARCH-0007);
+fail open with a neutral note if signals can't be gathered (ARCH-0005).
+
 **Present the evaluation (REQ-2012)** using the output format in
 `04-job-evaluation.md`: the dimension table with notes, weighted total, verdict
 (Strong 75+ / Good 60–74 / Moderate 45–59 / Weak 30–44 / Poor <30), key
@@ -106,6 +124,8 @@ pre-application call guidance only when substantive questions exist.
 - If **yes** → continue.
 - If **Experience Match < 50**, warn that extensive reframing would be needed
   before the user decides.
+- If the **legitimacy verdict is Suspicious**, surface it prominently, recommend against
+  proceeding, and require explicit user confirmation to continue (ARCH-0006).
 
 ---
 
@@ -123,7 +143,7 @@ tooling, name the specific tool. Default **Claude Code**; use the
 `[AI_TOOL_NAME]` override from `01-candidate-profile.md` if set. Never "an AI
 assistant".
 
-### CV (REQ-2020) — always English
+### CV (REQ-2020) — language + conventions per the active locale pack
 
 1. Copy the base template: `cp cv/main_example.tex cv/main_<company>.tex`.
 2. Tailor per `05-cv-templates.md`:
@@ -133,9 +153,13 @@ assistant".
      posting-relevant items; lead each role with its most relevant bullet.
    - Apply the section-order variant for the role type (Technical / Domain /
      Consulting / Leadership).
+   - Apply the **locale pack** (`05` Locale Adaptation): page size (A4/Letter),
+     photo norm, included/discouraged personal fields, date format. Never fabricate a
+     locale-required field — prompt the user if it's missing (ARCH-0007).
    - Use class macros (`\company`, `\education`, `\skillset`, `\divider`); **no
      `\vspace` inside `itemize`**.
-3. Target: exactly **2 pages** when compiled (enforced in Step 5).
+3. Target the locale pack's `pageCountExpectation` (default **2 pages**) when compiled
+   (enforced in Step 5).
 
 ### Cover letter (REQ-2021) — posting language
 

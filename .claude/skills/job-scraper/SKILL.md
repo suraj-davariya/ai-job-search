@@ -82,6 +82,16 @@ Assign each new job a lightweight **three-level** signal used only for sorting:
 
 This is explicitly **NOT** the full 5-dimension evaluation and **NOT** a numeric score — it is a sorting signal only. The full evaluation happens later in `/apply`.
 
+### Quick Legitimacy Flag (REQ-8003)
+
+Alongside the fit signal, run a **cheap** legitimacy scan of each posting's title and
+snippet against the high-severity signals in `trust-safety/scam-patterns.json` (upfront
+fees, personal-data/ID/banking harvesting, off-platform redirects, money-movement, offer
+without process). If a strong signal appears, mark the job **⚠ Suspicious** in the
+results so the user sees it **before** investing in `/apply`. This is a heuristic flag
+only — the full legitimacy gate runs in `/apply` (REQ-8001). Never auto-skip a flagged
+job (ARCH-0006); never invent a flag without the matching text (ARCH-0007).
+
 ### Deduplication & State Update (REQ-1006, data-req §10, business-rules §6)
 
 - **Skip** a job if its URL is already a key in `seen_jobs.json`, **or** if its company+role pair already appears in `job_search_tracker.csv`.

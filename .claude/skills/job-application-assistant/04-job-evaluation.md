@@ -33,6 +33,15 @@ Weight total: 100% (Location is Pass/Fail, not weighted).
 | 30–44 | Weak Fit | Probably skip unless strategic reasons |
 | <30 | Poor Fit | Skip |
 
+## Posting Legitimacy (Separate Gate)
+
+Legitimacy is assessed **separately** from the fit score above (business-rules §10,
+REQ-8001). A high fit score never overrides a scam signal — a posting can be a perfect
+skills match and still be fraudulent. See `08-legitimacy.md` for the verdict model
+(**Verified / Caution / Suspicious**), the red-flag catalog
+(`trust-safety/scam-patterns.json`), and the rules. Present the legitimacy verdict
+**alongside — not inside** — the weighted fit verdict.
+
 ## Motivation Evaluation
 
 <!-- Populated by /setup, cleared by /reset -->

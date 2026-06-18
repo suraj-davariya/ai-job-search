@@ -36,12 +36,13 @@ This file is the Plane 1 knowledge anchor for the job application workflow (ARCH
 | `05-cv-templates.md` | When generating or tailoring a CV (Step 2 of pipeline) |
 | `06-cover-letter-templates.md` | When generating a cover letter (Step 3 of pipeline) |
 | `07-interview-prep.md` | When preparing for an interview or running practice sessions |
+| `08-legitimacy.md` | Before drafting (Step 1) — assess posting legitimacy as a separate gate (REQ-8001) |
 
 ## Sub-Commands (REQ-6003)
 
 | Entry Phrase | Pipeline Step | Files to Read |
 |--------------|---------------|---------------|
-| "Evaluate this job posting" | Step 1 — Fit Evaluation | `04-job-evaluation.md`, `01-candidate-profile.md`, `02-behavioral-profile.md` |
+| "Evaluate this job posting" | Step 1 — Fit Evaluation | `04-job-evaluation.md`, `08-legitimacy.md`, `01-candidate-profile.md`, `02-behavioral-profile.md` |
 | "Write a CV for <company>" | Step 2 — CV Generation | `05-cv-templates.md`, `01-candidate-profile.md`, `03-writing-style.md` |
 | "Write a cover letter for <company>" | Step 3 — Cover Letter | `06-cover-letter-templates.md`, `01-candidate-profile.md`, `02-behavioral-profile.md`, `03-writing-style.md` |
 | "Prepare for interview with <company>" | Step 4 — Interview Prep | `07-interview-prep.md`, `01-candidate-profile.md` |
