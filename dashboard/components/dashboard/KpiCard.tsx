@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import type { Kpis } from "@/lib/domain/kpi";
 
 /** Single KPI tile. `value` is pre-formatted; "—" signals an unmet sample floor. */
@@ -42,15 +43,20 @@ const rate = (v: number | null) =>
  */
 export function KpiCards({ k }: { k: Kpis }) {
   const [window, setWindow] = useState<7 | 30>(30);
+  const t = useTranslations("dashboard");
 
   return (
     <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-      <KpiCard label="Total applications" value={String(k.total)} />
+      <KpiCard label={t("kpi.total")} value={String(k.total)} />
       <KpiCard
-        label={`Applied · ${window}d`}
+        label={t("kpi.applied", { window })}
         value={String(window === 7 ? k.applied7 : k.applied30)}
         action={
-          <div className="flex gap-1" role="group" aria-label="Applied window">
+          <div
+            className="flex gap-1"
+            role="group"
+            aria-label={t("kpi.appliedWindow")}
+          >
             {([7, 30] as const).map((w) => (
               <button
                 key={w}
@@ -64,21 +70,21 @@ export function KpiCards({ k }: { k: Kpis }) {
                     : "text-muted-foreground hover:text-foreground")
                 }
               >
-                {w}d
+                {t("kpi.windowDays", { days: w })}
               </button>
             ))}
           </div>
         }
       />
       <KpiCard
-        label="Avg fit · 30d"
+        label={t("kpi.avgFit30")}
         value={fit(k.avgFit30)}
-        hint={k.avgFit30 == null ? "Needs ≥3 in window" : undefined}
+        hint={k.avgFit30 == null ? t("kpi.floorHint") : undefined}
       />
       <KpiCard
-        label="Interview rate · 90d"
+        label={t("kpi.interviewRate90")}
         value={rate(k.interviewRate90)}
-        hint={k.interviewRate90 == null ? "Needs ≥3 in window" : undefined}
+        hint={k.interviewRate90 == null ? t("kpi.floorHint") : undefined}
       />
     </div>
   );

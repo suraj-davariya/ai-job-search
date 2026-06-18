@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import type { TrackerRow } from "@/lib/domain/status";
 import { StatusPill } from "@/components/applications/StatusPill";
 import { cn } from "@/lib/utils";
@@ -17,6 +18,7 @@ const LIMIT = 8;
  */
 export function RecentPanel({ rows }: { rows: TrackerRow[] }) {
   const [mode, setMode] = useState<Mode>("applications");
+  const t = useTranslations("dashboard");
   const key: keyof TrackerRow = mode === "applications" ? "date" : "last_updated";
 
   const recent = rows
@@ -28,12 +30,12 @@ export function RecentPanel({ rows }: { rows: TrackerRow[] }) {
   return (
     <section className="rounded-xl border border-border bg-card/50 p-4">
       <div className="mb-3 flex items-center justify-between">
-        <h3 className="text-sm font-medium">Recent activity</h3>
-        <div className="flex gap-1" role="group" aria-label="Recent activity mode">
+        <h3 className="text-sm font-medium">{t("recent.title")}</h3>
+        <div className="flex gap-1" role="group" aria-label={t("recent.mode")}>
           {(
             [
-              ["applications", "New"],
-              ["changes", "Updated"],
+              ["applications", t("recent.new")],
+              ["changes", t("recent.updated")],
             ] as const
           ).map(([m, label]) => (
             <button

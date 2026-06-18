@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { readTracker } from "@/lib/data/tracker";
 import { getConfig } from "@/lib/config";
 import { PageSection } from "@/components/shell/page-shell";
@@ -9,11 +10,12 @@ export const dynamic = "force-dynamic";
 export default async function ApplicationsPage() {
   const rows = await readTracker();
   const { readOnly } = getConfig();
+  const t = await getTranslations("applications");
 
   return (
     <PageSection
-      title="Applications"
-      description={`${rows.length} application${rows.length === 1 ? "" : "s"} tracked.`}
+      title={t("page.title")}
+      description={t("page.description", { count: rows.length })}
     >
       <ApplicationsView rows={rows} readOnly={readOnly} />
     </PageSection>

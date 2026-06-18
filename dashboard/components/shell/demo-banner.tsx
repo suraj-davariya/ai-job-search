@@ -1,4 +1,5 @@
 import { Info } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { IS_DEMO } from "@/lib/demo/flags";
 
 /**
@@ -7,8 +8,9 @@ import { IS_DEMO } from "@/lib/demo/flags";
  * previews need the real local dashboard — honesty over polish (ARCH-0007).
  * Renders nothing in normal server mode.
  */
-export function DemoBanner() {
+export async function DemoBanner() {
   if (!IS_DEMO) return null;
+  const t = await getTranslations("common");
   return (
     <div
       role="status"
@@ -16,13 +18,12 @@ export function DemoBanner() {
     >
       <Info className="h-3.5 w-3.5 shrink-0 text-primary" aria-hidden />
       <span>
-        <strong className="font-medium">Demo with sample data.</strong> Editing,
-        the Console, and PDF previews are disabled — they need the real dashboard
-        running locally.
+        <strong className="font-medium">{t("banner.demoTitle")}</strong>{" "}
+        {t("banner.demoBody")}
       </span>
       {/* Absolute path bypasses the dashboard basePath to reach the docs site root. */}
       <a href="/ai-job-search/" className="font-medium text-primary hover:underline">
-        Back to the guide →
+        {t("banner.demoBack")}
       </a>
     </div>
   );

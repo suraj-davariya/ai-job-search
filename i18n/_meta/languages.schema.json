@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CareerForge Language Registry",
+  "description": "Canonical list of languages CareerForge can be localized into (REQ-7004, ADR-0007).",
+  "type": "object",
+  "required": ["languages"],
+  "properties": {
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "name", "endonym", "dir", "script", "tier", "status"],
+        "properties": {
+          "code": { "type": "string", "description": "BCP-47 language tag (e.g. en, pt-BR, zh-Hans)" },
+          "name": { "type": "string", "description": "English name of the language" },
+          "endonym": { "type": "string", "description": "The language's name in its own script" },
+          "dir": { "type": "string", "enum": ["ltr", "rtl"], "description": "Text direction" },
+          "script": { "type": "string", "description": "ISO 15924 script code (Latn, Arab, Hans, Deva, ...)" },
+          "tier": { "type": "integer", "enum": [1, 2], "description": "Rollout tier" },
+          "status": { "type": "string", "enum": ["released", "beta"], "description": "released = meets NFR-0020 completeness after human review; beta = machine-seeded or incomplete" },
+          "quality": { "type": "string", "enum": ["high", "low-resource"], "description": "REQ-7011: low-resource flags languages where LLM generation needs extra human review" }
+        }
+      }
+    }
+  }
+}

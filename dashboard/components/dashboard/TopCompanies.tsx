@@ -1,28 +1,34 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import type { Bin } from "@/lib/domain/aggregate";
 import { ChartFrame, chartColor } from "./ChartFrame";
 
 /**
  * Top companies (or sectors) by application count (REQ-5009). Hand-rolled
- * horizontal bars — no chart lib needed for a simple ranked list.
+ * horizontal bars — no chart lib needed for a simple ranked list. `title` and
+ * `label` default to the translated "Top companies"/"Company" strings; pass
+ * overrides to reuse the chart for another dimension (e.g. sectors).
  */
 export function TopCompanies({
   data,
-  title = "Top companies",
-  label = "Company",
+  title,
+  label,
 }: {
   data: Bin[];
   title?: string;
   label?: string;
 }) {
+  const t = useTranslations("dashboard");
+  const resolvedTitle = title ?? t("charts.top.title");
+  const resolvedLabel = label ?? t("charts.top.label");
   const max = data[0]?.count ?? 1;
   return (
     <ChartFrame
-      title={title}
+      title={resolvedTitle}
       empty={data.length === 0}
-      caption={`${label} by application count`}
-      head={[label, "Applications"]}
+      caption={t("charts.top.caption", { label: resolvedLabel })}
+      head={[resolvedLabel, t("charts.top.colApplications")]}
       body={data.map((d) => [d.key, d.count])}
     >
       <ul className="flex h-full flex-col justify-center gap-2">

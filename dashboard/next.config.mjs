@@ -10,6 +10,14 @@
  * DASHBOARD_DEMO_BASE_PATH lets the same demo deploy at the repo-name subpath
  * (GitHub Pages) or at root (e.g. `npx serve out`).
  */
+import createNextIntlPlugin from "next-intl/plugin";
+
+// next-intl WITHOUT i18n routing (ADR-0007): the request config resolves the
+// active locale from the dashboard-local setting and loads the repo-root
+// catalogs with English fallback. No middleware, no locale-prefixed routes —
+// so this stays compatible with the static demo export.
+const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
+
 const isDemo = process.env.DASHBOARD_DEMO === "1";
 const demoBasePath =
   process.env.DASHBOARD_DEMO_BASE_PATH ?? (isDemo ? "/ai-job-search/dashboard" : "");
@@ -36,4 +44,4 @@ const demoConfig = {
   },
 };
 
-export default isDemo ? demoConfig : baseConfig;
+export default withNextIntl(isDemo ? demoConfig : baseConfig);

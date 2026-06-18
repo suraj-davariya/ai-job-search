@@ -1,0 +1,10 @@
+[weblate]
+# Point this at your Weblate instance, then authenticate with `wlc` to sync.
+# Standing up the instance is a maintainer/infra step — see i18n/_meta/weblate.md.
+url = https://hosted.weblate.org/api/
+
+[component "careerforge/ui"]
+# Translatable UI/CLI strings (ICU JSON). Source language: en.
+
+[component "careerforge/readme"]
+# Localized READMEs (Markdown). Source: root README.md.

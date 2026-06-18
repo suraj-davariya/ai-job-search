@@ -1,26 +1,43 @@
 import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { getLanguageDir } from "@/lib/languages";
 
-export const metadata: Metadata = {
-  title: "CareerForge",
-  description: "Local, private job-application tracking dashboard.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("common");
+  return {
+    title: t("app.name"),
+    description: t("app.description"),
+  };
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+  const dir = await getLanguageDir(locale);
+
   return (
-    <html lang="en" className="h-full dark" suppressHydrationWarning>
+    <html
+      lang={locale}
+      dir={dir}
+      className="h-full dark"
+      suppressHydrationWarning
+    >
       <body className="min-h-full bg-background text-foreground antialiased">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem={false}
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Play } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { readUpskillReports, readUpskillReport } from "@/lib/data/upskill";
 import { PageSection, EmptyState } from "@/components/shell/page-shell";
 
@@ -10,11 +11,12 @@ export default async function UpskillPage() {
   const withContent = await Promise.all(
     reports.map(async (r) => ({ ...r, content: await readUpskillReport(r.path) })),
   );
+  const t = await getTranslations("dashboard");
 
   return (
     <PageSection
-      title="Upskill"
-      description="Your upskill reports, plus a trigger to generate a new one."
+      title={t("upskill.title")}
+      description={t("upskill.description")}
     >
       <div className="mb-4">
         <Link
@@ -22,15 +24,15 @@ export default async function UpskillPage() {
           className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90"
         >
           <Play className="h-4 w-4" aria-hidden />
-          Run /upskill in console
+          {t("upskill.run")}
         </Link>
       </div>
 
       {withContent.length === 0 ? (
         <EmptyState
-          title="No upskill reports yet"
-          hint="Run /upskill (above) to generate a skills-gap report. New reports appear here once written to upskill/report-*.md."
-          milestone="Upskill"
+          title={t("upskill.empty.title")}
+          hint={t("upskill.empty.hint")}
+          milestone={t("upskill.empty.milestone")}
         />
       ) : (
         <div className="space-y-3">
@@ -44,7 +46,7 @@ export default async function UpskillPage() {
                 {r.name}
               </summary>
               <pre className="mt-3 whitespace-pre-wrap break-words font-sans text-sm text-muted-foreground">
-                {r.content ?? "(could not read this report)"}
+                {r.content ?? t("upskill.unreadable")}
               </pre>
             </details>
           ))}

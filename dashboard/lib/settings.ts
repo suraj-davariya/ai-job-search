@@ -1,8 +1,9 @@
 /**
  * Local, non-secret dashboard preferences (REQ-5016), persisted to a gitignored
  * `.dashboard.local.json`. The schema is a strict whitelist — only repoRoot,
- * port, and readOnly are ever stored, so a stray API key or token can't leak
- * into the file. Read tolerates a missing/corrupt file with `{}` (ARCH-0005).
+ * port, readOnly, and locale are ever stored, so a stray API key or token can't
+ * leak into the file. Read tolerates a missing/corrupt file with `{}`
+ * (ARCH-0005).
  */
 import { promises as fs } from "node:fs";
 import { paths } from "@/lib/paths";
@@ -11,6 +12,8 @@ export interface DashboardSettings {
   repoRoot?: string;
   port?: number;
   readOnly?: boolean;
+  /** Active UI locale code (REQ-7002). Defaults to English when unset. */
+  locale?: string;
 }
 
 /** Keep only the allowed, well-typed fields — drops everything else. */
@@ -20,6 +23,7 @@ function sanitize(raw: unknown): DashboardSettings {
   if (typeof r.repoRoot === "string") out.repoRoot = r.repoRoot;
   if (typeof r.port === "number" && Number.isFinite(r.port)) out.port = r.port;
   if (typeof r.readOnly === "boolean") out.readOnly = r.readOnly;
+  if (typeof r.locale === "string" && r.locale.trim()) out.locale = r.locale;
   return out;
 }
 

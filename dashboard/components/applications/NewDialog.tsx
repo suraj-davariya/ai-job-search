@@ -1,17 +1,19 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useForm, type Resolver } from "react-hook-form";
 import { z } from "zod";
+import { useTranslations } from "next-intl";
 import { Plus, X } from "lucide-react";
 import { appendRowAction } from "@/app/actions/tracker";
 import { STATUSES } from "@/lib/domain/status";
 import { toast } from "@/lib/toast";
 
-const schema = z.object({
-  date: z.string().min(1, "Date is required"),
-  company: z.string().min(1, "Company is required"),
-  role: z.string().min(1, "Role is required"),
+/** Schema shape (no messages) — the single source of truth for `FormValues`. */
+const schemaShape = z.object({
+  date: z.string().min(1),
+  company: z.string().min(1),
+  role: z.string().min(1),
   status: z.enum(STATUSES),
   sector: z.string().optional(),
   role_type: z.string().optional(),
@@ -24,13 +26,13 @@ const schema = z.object({
   source: z.string().optional(),
 });
 
-type FormValues = z.input<typeof schema>;
+type FormValues = z.input<typeof schemaShape>;
 
 /**
  * Minimal react-hook-form resolver backed by zod. `@hookform/resolvers` isn't
  * available offline, so we adapt the schema by hand — same contract RHF expects.
  */
-function zodResolver(s: typeof schema): Resolver<FormValues> {
+function zodResolver(s: typeof schemaShape): Resolver<FormValues> {
   return async (values) => {
     const parsed = s.safeParse(values);
     if (parsed.success) return { values: parsed.data as FormValues, errors: {} };
@@ -56,18 +58,19 @@ function today(): string {
  */
 export function NewDialog({ disabled = false }: { disabled?: boolean }) {
   const [open, setOpen] = useState(false);
+  const t = useTranslations("applications");
 
   return (
     <>
       <button
         type="button"
         disabled={disabled}
-        title={disabled ? "Read-only mode — editing is disabled" : undefined}
+        title={disabled ? t("new.readOnlyTip") : undefined}
         onClick={() => setOpen(true)}
         className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground opacity-90 hover:opacity-100 disabled:cursor-not-allowed disabled:opacity-50"
       >
         <Plus className="h-4 w-4" aria-hidden />
-        New application
+        {t("new.button")}
       </button>
       {open ? <Dialog onClose={() => setOpen(false)} /> : null}
     </>
@@ -77,6 +80,27 @@ export function NewDialog({ disabled = false }: { disabled?: boolean }) {
 function Dialog({ onClose }: { onClose: () => void }) {
   const firstFieldRef = useRef<HTMLInputElement>(null);
   const titleId = "new-app-title";
+  const t = useTranslations("applications");
+  const ts = useTranslations("common");
+  const schema = useMemo(
+    () =>
+      z.object({
+        date: z.string().min(1, t("validation.dateRequired")),
+        company: z.string().min(1, t("validation.companyRequired")),
+        role: z.string().min(1, t("validation.roleRequired")),
+        status: z.enum(STATUSES),
+        sector: z.string().optional(),
+        role_type: z.string().optional(),
+        channel: z.string().optional(),
+        contact_person: z.string().optional(),
+        fit_rating: z.preprocess(
+          (v) => (v === "" || v == null ? undefined : Number(v)),
+          z.number().min(0).max(100).optional(),
+        ),
+        source: z.string().optional(),
+      }),
+    [t],
+  );
 
   const {
     register,
@@ -115,10 +139,10 @@ function Dialog({ onClose }: { onClose: () => void }) {
 
     const res = await appendRowAction(payload as never);
     if ("error" in res) {
-      toast(`Couldn't add application: ${res.error}`, "error");
+      toast(t("toast.addError", { error: res.error }), "error");
       return;
     }
-    toast("Application added");
+    toast(t("toast.added"));
     onClose();
   }
 
@@ -139,12 +163,12 @@ function Dialog({ onClose }: { onClose: () => void }) {
       >
         <header className="flex items-center justify-between border-b border-border px-5 py-4">
           <h2 id={titleId} className="text-base font-semibold">
-            New application
+            {t("new.title")}
           </h2>
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close"
+            aria-label={t("new.close")}
             className="rounded-md p-1 text-muted-foreground hover:bg-muted/60 hover:text-foreground"
           >
             <X className="h-4 w-4" aria-hidden />
@@ -156,7 +180,7 @@ function Dialog({ onClose }: { onClose: () => void }) {
           className="grid grid-cols-2 gap-4 px-5 py-4"
           noValidate
         >
-          <Field label="Date" error={errors.date?.message}>
+          <Field label={t("fields.date")} error={errors.date?.message}>
             <input
               type="date"
               ref={(el) => {
@@ -167,34 +191,34 @@ function Dialog({ onClose }: { onClose: () => void }) {
               className={input}
             />
           </Field>
-          <Field label="Status" error={errors.status?.message}>
+          <Field label={t("fields.status")} error={errors.status?.message}>
             <select {...register("status")} className={input}>
               {STATUSES.map((s) => (
                 <option key={s} value={s}>
-                  {s}
+                  {ts(`status.${s}`)}
                 </option>
               ))}
             </select>
           </Field>
-          <Field label="Company" error={errors.company?.message}>
+          <Field label={t("fields.company")} error={errors.company?.message}>
             <input {...register("company")} className={input} />
           </Field>
-          <Field label="Role" error={errors.role?.message}>
+          <Field label={t("fields.role")} error={errors.role?.message}>
             <input {...register("role")} className={input} />
           </Field>
-          <Field label="Sector">
+          <Field label={t("fields.sector")}>
             <input {...register("sector")} className={input} />
           </Field>
-          <Field label="Role type">
+          <Field label={t("fields.roleType")}>
             <input {...register("role_type")} className={input} />
           </Field>
-          <Field label="Channel">
+          <Field label={t("fields.channel")}>
             <input {...register("channel")} className={input} />
           </Field>
-          <Field label="Contact">
+          <Field label={t("fields.contact")}>
             <input {...register("contact_person")} className={input} />
           </Field>
-          <Field label="Fit (0–100)" error={errors.fit_rating?.message}>
+          <Field label={t("fields.fit")} error={errors.fit_rating?.message}>
             <input
               type="number"
               min={0}
@@ -203,7 +227,7 @@ function Dialog({ onClose }: { onClose: () => void }) {
               className={input}
             />
           </Field>
-          <Field label="Source URL">
+          <Field label={t("fields.source")}>
             <input {...register("source")} className={input} />
           </Field>
 
@@ -213,14 +237,14 @@ function Dialog({ onClose }: { onClose: () => void }) {
               onClick={onClose}
               className="rounded-lg border border-border px-3 py-1.5 text-sm hover:bg-muted/60"
             >
-              Cancel
+              {t("new.cancel")}
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
               className="rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground opacity-90 hover:opacity-100 disabled:opacity-50"
             >
-              Add application
+              {t("new.add")}
             </button>
           </div>
         </form>

@@ -1,0 +1,37 @@
+{
+  "app": {
+    "name": "CareerForge",
+    "description": "Local, private job-application tracking dashboard."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "applications": "Applications",
+    "companies": "Companies",
+    "profile": "Profile",
+    "salary": "Salary",
+    "upskill": "Upskill",
+    "console": "Console",
+    "settings": "Settings"
+  },
+  "shell": {
+    "local": "Local · 127.0.0.1"
+  },
+  "theme": {
+    "toggle": "Toggle theme"
+  },
+  "status": {
+    "Draft": "Draft",
+    "Sent": "Sent",
+    "Interview": "Interview",
+    "Offer": "Offer",
+    "Rejected": "Rejected",
+    "Withdrawn": "Withdrawn",
+    "Closed": "Closed"
+  },
+  "banner": {
+    "readOnly": "Read-only mode — editing is disabled.",
+    "demoTitle": "Demo with sample data.",
+    "demoBody": "Editing, the Console, and PDF previews are disabled — they need the real dashboard running locally.",
+    "demoBack": "Back to the guide →"
+  }
+}

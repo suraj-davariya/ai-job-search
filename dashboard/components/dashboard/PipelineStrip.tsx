@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { kpis } from "@/lib/domain/kpi";
 import {
   STATUSES,
@@ -23,23 +24,26 @@ export function PipelineStrip({
   activeStatuses: Status[];
   onToggleStatus: (s: Status) => void;
 }) {
+  const t = useTranslations("applications");
+  const ts = useTranslations("common");
   const { byStatus, total } = kpis(rows);
 
   return (
     <div
       role="group"
-      aria-label="Pipeline counts"
+      aria-label={t("pipeline.group")}
       className="sticky top-0 z-10 flex flex-wrap items-center gap-2 rounded-xl border border-border bg-card/80 p-2 backdrop-blur"
     >
       {STATUSES.map((s) => {
         const on = activeStatuses.includes(s);
         const muted = MUTED.has(s);
+        const label = ts(`status.${s}`);
         return (
           <button
             key={s}
             type="button"
             aria-pressed={on}
-            aria-label={`${s}: ${byStatus[s]}`}
+            aria-label={t("pipeline.statusCount", { status: label, count: byStatus[s] })}
             onClick={() => onToggleStatus(s)}
             className={cn(
               "inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-xs transition-colors",
@@ -49,7 +53,7 @@ export function PipelineStrip({
               muted && !on && "opacity-60",
             )}
           >
-            <span>{s}</span>
+            <span>{label}</span>
             <span className="rounded bg-muted px-1 font-semibold tabular-nums">
               {byStatus[s]}
             </span>
@@ -57,7 +61,7 @@ export function PipelineStrip({
         );
       })}
       <span className="ml-auto text-xs text-muted-foreground">
-        {total} total
+        {t("pipeline.total", { count: total })}
       </span>
     </div>
   );

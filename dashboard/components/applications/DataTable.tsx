@@ -10,6 +10,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { ArrowUpDown, ExternalLink, FileText } from "lucide-react";
+import { useTranslations } from "next-intl";
 import type { TrackerRow } from "@/lib/domain/status";
 import { MUTED } from "@/lib/domain/status";
 import { cn } from "@/lib/utils";
@@ -47,6 +48,7 @@ export function DataTable({
   onRowSelect?: (row: TrackerRow) => void;
   readOnly?: boolean;
 }) {
+  const t = useTranslations("applications");
   const [sorting, setSorting] = useState<SortingState>([
     { id: "date", desc: true }, // default sort: most recent first
   ]);
@@ -57,7 +59,7 @@ export function DataTable({
         accessorKey: "date",
         header: ({ column }) => (
           <SortHeader
-            label="Date"
+            label={t("table.date")}
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           />
         ),
@@ -69,7 +71,7 @@ export function DataTable({
         accessorKey: "company",
         header: ({ column }) => (
           <SortHeader
-            label="Company"
+            label={t("table.company")}
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           />
         ),
@@ -90,23 +92,23 @@ export function DataTable({
         accessorKey: "role",
         header: ({ column }) => (
           <SortHeader
-            label="Role"
+            label={t("table.role")}
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           />
         ),
       },
-      { accessorKey: "role_type", header: "Type" },
-      { accessorKey: "channel", header: "Channel" },
+      { accessorKey: "role_type", header: t("table.type") },
+      { accessorKey: "channel", header: t("table.channel") },
       {
         accessorKey: "status",
-        header: "Status",
+        header: t("table.status"),
         cell: ({ row }) => <StatusSelect row={row.original} readOnly={readOnly} />,
       },
       {
         accessorKey: "fit_rating",
         header: ({ column }) => (
           <SortHeader
-            label="Fit"
+            label={t("table.fit")}
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           />
         ),
@@ -114,22 +116,22 @@ export function DataTable({
       },
       {
         accessorKey: "contact_person",
-        header: "Contact",
+        header: t("table.contact"),
         cell: ({ getValue }) => getValue<string>() || dash,
       },
       {
         id: "notes",
-        header: "Notes",
+        header: t("table.notes"),
         cell: ({ row }) => <NotesCell row={row.original} readOnly={readOnly} />,
       },
       {
         accessorKey: "cv_file",
-        header: "CV",
+        header: t("table.cv"),
         cell: ({ getValue }) =>
           getValue<string>() ? (
             <span className="inline-flex items-center gap-1 text-primary">
               <FileText className="h-3.5 w-3.5" aria-hidden />
-              PDF
+              {t("table.pdf")}
             </span>
           ) : (
             dash
@@ -137,12 +139,12 @@ export function DataTable({
       },
       {
         accessorKey: "cover_letter_file",
-        header: "Cover",
+        header: t("table.cover"),
         cell: ({ getValue }) =>
           getValue<string>() ? (
             <span className="inline-flex items-center gap-1 text-primary">
               <FileText className="h-3.5 w-3.5" aria-hidden />
-              PDF
+              {t("table.pdf")}
             </span>
           ) : (
             dash
@@ -150,7 +152,7 @@ export function DataTable({
       },
       {
         accessorKey: "source",
-        header: "Source",
+        header: t("table.source"),
         cell: ({ getValue }) => {
           const url = getValue<string>();
           return url ? (
@@ -161,7 +163,7 @@ export function DataTable({
               className="inline-flex items-center gap-1 text-primary hover:underline"
               onClick={(e) => e.stopPropagation()}
             >
-              Open <ExternalLink className="h-3 w-3" aria-hidden />
+              {t("table.open")} <ExternalLink className="h-3 w-3" aria-hidden />
             </a>
           ) : (
             dash
@@ -169,6 +171,12 @@ export function DataTable({
         },
       },
     ],
+    // `t` is intentionally omitted: next-intl returns a fresh `t` each render, so
+    // including it would rebuild the columns (and remount react-table rows) on every
+    // render — which breaks row-drawer focus restoration. The active locale is fixed
+    // for the lifetime of the page (switching locale triggers a full reload), so the
+    // labels captured on mount stay correct.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [readOnly],
   );
 
@@ -187,16 +195,17 @@ export function DataTable({
         data-testid="applications-empty"
         className="flex min-h-[40vh] flex-col items-center justify-center rounded-xl border border-dashed border-border bg-card/40 p-10 text-center"
       >
-        <p className="text-sm font-medium">No applications yet</p>
+        <p className="text-sm font-medium">{t("empty.title")}</p>
         <p className="mt-1 text-sm text-muted-foreground">
-          Run <code className="rounded bg-muted px-1 py-0.5">/apply &lt;posting&gt;</code>{" "}
-          to add one.
+          {t("empty.hintBefore")}{" "}
+          <code className="rounded bg-muted px-1 py-0.5">/apply &lt;posting&gt;</code>{" "}
+          {t("empty.hintAfter")}
         </p>
         <button
           type="button"
           className="mt-4 rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground opacity-90 hover:opacity-100"
         >
-          New application
+          {t("empty.newApplication")}
         </button>
       </div>
     );

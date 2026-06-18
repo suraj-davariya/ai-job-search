@@ -1,3 +1,5 @@
+"use client";
+
 import {
   PencilLine,
   Send,
@@ -8,6 +10,7 @@ import {
   Archive,
   type LucideIcon,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import type { Status } from "@/lib/domain/status";
 import { cn } from "@/lib/utils";
 
@@ -27,6 +30,7 @@ const STYLES: Record<Status, { icon: LucideIcon; className: string }> = {
 };
 
 export function StatusPill({ status }: { status: Status }) {
+  const t = useTranslations("common");
   const style = STYLES[status] ?? STYLES.Draft;
   const Icon = style.icon;
   return (
@@ -37,7 +41,7 @@ export function StatusPill({ status }: { status: Status }) {
       )}
     >
       <Icon className="h-3 w-3" aria-hidden />
-      {status}
+      {t(`status.${status}`)}
     </span>
   );
 }

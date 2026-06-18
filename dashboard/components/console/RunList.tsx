@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { RefreshCw, CheckCircle2, XCircle } from "lucide-react";
 
 interface RunRecord {
@@ -15,6 +16,7 @@ interface RunRecord {
 export function RunList() {
   const [runs, setRuns] = useState<RunRecord[]>([]);
   const [loading, setLoading] = useState(false);
+  const t = useTranslations("console");
 
   const refresh = useCallback(async () => {
     setLoading(true);
@@ -45,11 +47,11 @@ export function RunList() {
   return (
     <section className="rounded-xl border border-border bg-card/50 p-3">
       <div className="mb-2 flex items-center justify-between">
-        <h3 className="text-sm font-medium">Recent runs</h3>
+        <h3 className="text-sm font-medium">{t("recentRuns")}</h3>
         <button
           type="button"
           onClick={refresh}
-          aria-label="Refresh runs"
+          aria-label={t("refreshRuns")}
           className="rounded p-1 text-muted-foreground hover:text-foreground"
         >
           <RefreshCw className={loading ? "h-3.5 w-3.5 animate-spin" : "h-3.5 w-3.5"} aria-hidden />
@@ -57,7 +59,7 @@ export function RunList() {
       </div>
       {runs.length === 0 ? (
         <p className="py-4 text-center text-xs text-muted-foreground">
-          No runs yet.
+          {t("noRuns")}
         </p>
       ) : (
         <ul className="divide-y divide-border/60 text-sm">
@@ -70,7 +72,7 @@ export function RunList() {
               )}
               <span className="font-medium">/{r.command}</span>
               <span className="text-xs text-muted-foreground">
-                exit {r.code ?? "—"}
+                {t("exitCode", { code: r.code ?? "—" })}
               </span>
               {r.startedAt ? (
                 <span className="ml-auto text-xs tabular-nums text-muted-foreground">

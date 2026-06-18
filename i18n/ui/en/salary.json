@@ -1,0 +1,22 @@
+{
+  "title": "Salary",
+  "description": "Browse your salary benchmarks and run a company lookup.",
+  "empty": {
+    "title": "No salary data",
+    "hint": "Add salary_data.json to the repo root (or import an Excel sheet with tools/convert_salary_excel.py). Until then, the lookup below still works.",
+    "milestone": "REQ-5014"
+  },
+  "tableCaption": "{key} ({count})",
+  "lookupHeading": "Look up a company",
+  "company": "Company",
+  "companyPlaceholder": "Company name",
+  "lookUp": "Look up",
+  "looking": "Looking…",
+  "noMatch": "No match found for “{query}”.",
+  "unnamed": "(unnamed)",
+  "noOutput": "No output.",
+  "tip": {
+    "readOnly": "Read-only mode — actions are disabled",
+    "pythonMissing": "python3 not found on PATH"
+  }
+}

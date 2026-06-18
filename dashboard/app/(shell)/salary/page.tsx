@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { readSalary, type SalaryData } from "@/lib/data/salary";
 import { getConfig } from "@/lib/config";
 import { binAvailability } from "@/lib/run/bins";
@@ -24,24 +25,22 @@ export default async function SalaryPage() {
   const { readOnly } = getConfig();
   const table = salary ? firstTable(salary) : null;
   const columns = table ? Object.keys(table.rows[0]) : [];
+  const t = await getTranslations("salary");
 
   return (
-    <PageSection
-      title="Salary"
-      description="Browse your salary benchmarks and run a company lookup."
-    >
+    <PageSection title={t("title")} description={t("description")}>
       <div className="space-y-4">
         {salary === null ? (
           <EmptyState
-            title="No salary data"
-            hint="Add salary_data.json to the repo root (or import an Excel sheet with tools/convert_salary_excel.py). Until then, the lookup below still works."
-            milestone="REQ-5014"
+            title={t("empty.title")}
+            hint={t("empty.hint")}
+            milestone={t("empty.milestone")}
           />
         ) : table ? (
           <div className="overflow-x-auto rounded-xl border border-border">
             <table className="w-full text-sm">
               <caption className="px-3 py-2 text-left text-xs text-muted-foreground">
-                {table.key} ({table.rows.length})
+                {t("tableCaption", { key: table.key, count: table.rows.length })}
               </caption>
               <thead className="border-b border-border bg-card text-left text-muted-foreground">
                 <tr>

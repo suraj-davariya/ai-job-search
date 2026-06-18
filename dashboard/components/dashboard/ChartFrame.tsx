@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
+import { useTranslations } from "next-intl";
 
 /** Orange→gold chart ramp, sourced from the CSS tokens in globals.css. */
 export const CHART_TOKENS = [
@@ -35,6 +36,7 @@ export function ChartFrame({
   body: (string | number)[][];
   children: ReactNode;
 }) {
+  const t = useTranslations("dashboard");
   const [mounted, setMounted] = useState(false);
   // Defer the flag into a microtask so the setState isn't synchronous in the
   // effect body (post-hydration gate; keeps Nivo off the server).
@@ -51,7 +53,7 @@ export function ChartFrame({
       <h3 className="mb-3 text-sm font-medium">{title}</h3>
       {empty ? (
         <p className="flex h-48 items-center justify-center text-sm text-muted-foreground">
-          No data yet
+          {t("charts.noData")}
         </p>
       ) : (
         <>

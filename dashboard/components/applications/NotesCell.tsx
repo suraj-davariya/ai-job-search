@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { format } from "date-fns";
+import { useTranslations } from "next-intl";
 import { updateRowAction } from "@/app/actions/tracker";
 import type { TrackerRow } from "@/lib/domain/status";
 import { toast } from "@/lib/toast";
@@ -21,11 +22,12 @@ export function NotesCell({
   const [value, setValue] = useState(row.notes);
   const [draft, setDraft] = useState(row.notes);
   const [pending, startTransition] = useTransition();
+  const t = useTranslations("applications");
 
   if (readOnly) {
     return (
       <span className="block max-w-[16rem] truncate text-muted-foreground">
-        {value || "—"}
+        {value || t("notes.placeholder")}
       </span>
     );
   }
@@ -40,16 +42,16 @@ export function NotesCell({
       if ("error" in res) {
         setValue(prev);
         setDraft(prev); // revert the field too
-        toast(`Couldn't save notes: ${res.error}`, "error");
+        toast(t("toast.notesError", { error: res.error }), "error");
       } else {
-        toast(`Updated · ${format(new Date(), "h:mm")}`);
+        toast(t("toast.updated", { time: format(new Date(), "h:mm") }));
       }
     });
   }
 
   return (
     <input
-      aria-label={`Notes for ${row.company}`}
+      aria-label={t("aria.notesFor", { company: row.company })}
       value={draft}
       disabled={pending}
       onChange={(e) => setDraft(e.target.value)}
@@ -65,7 +67,7 @@ export function NotesCell({
         }
       }}
       className="w-40 truncate rounded-md border border-transparent bg-transparent px-2 py-1 text-xs focus:w-64 focus:border-border focus:bg-card disabled:opacity-60"
-      placeholder="—"
+      placeholder={t("notes.placeholder")}
     />
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import type { StatusBin } from "@/lib/domain/aggregate";
 import { ChartFrame, chartColor } from "./ChartFrame";
 
@@ -11,6 +12,8 @@ const CIRC = 2 * Math.PI * R;
  * installed (offline). Segments are arcs on a single ring, sized by share.
  */
 export function StatusDonut({ data }: { data: StatusBin[] }) {
+  const t = useTranslations("dashboard");
+  const ts = useTranslations("common");
   const total = data.reduce((a, b) => a + b.count, 0);
   // Cumulative share before index `i`, computed without render-time mutation.
   const startFrac = (i: number) =>
@@ -18,14 +21,14 @@ export function StatusDonut({ data }: { data: StatusBin[] }) {
 
   return (
     <ChartFrame
-      title="Status mix"
+      title={t("charts.status.title")}
       empty={total === 0}
-      caption="Applications by status"
-      head={["Status", "Count"]}
-      body={data.map((d) => [d.status, d.count])}
+      caption={t("charts.status.caption")}
+      head={[t("charts.status.colStatus"), t("charts.status.colCount")]}
+      body={data.map((d) => [ts(`status.${d.status}`), d.count])}
     >
       <div className="flex h-full items-center justify-center gap-6">
-        <svg viewBox="0 0 180 180" className="h-44 w-44" role="img" aria-label="Status mix">
+        <svg viewBox="0 0 180 180" className="h-44 w-44" role="img" aria-label={t("charts.status.title")}>
           <g transform="rotate(-90 90 90)">
             {data.map((d, i) => {
               if (d.count === 0) return null;
@@ -69,7 +72,7 @@ export function StatusDonut({ data }: { data: StatusBin[] }) {
                     style={{ backgroundColor: chartColor(i) }}
                     aria-hidden
                   />
-                  <span className="text-muted-foreground">{d.status}</span>
+                  <span className="text-muted-foreground">{ts(`status.${d.status}`)}</span>
                   <span className="tabular-nums">{d.count}</span>
                 </li>
               );

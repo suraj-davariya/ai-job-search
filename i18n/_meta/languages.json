@@ -1,0 +1,42 @@
+{
+  "$schema": "./languages.schema.json",
+  "comment": "Canonical language registry for CareerForge (REQ-7004, ADR-0007). Adding a language = a new entry here + files under i18n/. 'released' requires meeting the NFR-0020 completeness threshold after human review; machine-seeded languages start as 'beta'. 'quality: low-resource' flags languages where LLM generation needs extra human review (REQ-7011).",
+  "tiers": {
+    "1": "Launch — fully localized first, by internet reach × labor-market size × mobility × growth",
+    "2": "Expansion — community-driven rollout"
+  },
+  "languages": [
+    { "code": "en",      "name": "English",                "endonym": "English",              "dir": "ltr", "script": "Latn", "tier": 1, "status": "released", "quality": "high" },
+    { "code": "es",      "name": "Spanish",                "endonym": "Español",              "dir": "ltr", "script": "Latn", "tier": 1, "status": "beta",     "quality": "high" },
+    { "code": "zh-Hans", "name": "Chinese (Simplified)",   "endonym": "简体中文",              "dir": "ltr", "script": "Hans", "tier": 1, "status": "beta",     "quality": "high" },
+    { "code": "hi",      "name": "Hindi",                  "endonym": "हिन्दी",                "dir": "ltr", "script": "Deva", "tier": 1, "status": "beta",     "quality": "high" },
+    { "code": "ar",      "name": "Arabic",                 "endonym": "العربية",              "dir": "rtl", "script": "Arab", "tier": 1, "status": "beta",     "quality": "high" },
+    { "code": "pt-BR",   "name": "Portuguese (Brazil)",    "endonym": "Português (Brasil)",   "dir": "ltr", "script": "Latn", "tier": 1, "status": "beta",     "quality": "high" },
+    { "code": "fr",      "name": "French",                 "endonym": "Français",             "dir": "ltr", "script": "Latn", "tier": 1, "status": "beta",     "quality": "high" },
+    { "code": "de",      "name": "German",                 "endonym": "Deutsch",              "dir": "ltr", "script": "Latn", "tier": 1, "status": "beta",     "quality": "high" },
+    { "code": "ja",      "name": "Japanese",               "endonym": "日本語",                "dir": "ltr", "script": "Jpan", "tier": 1, "status": "beta",     "quality": "high" },
+    { "code": "ru",      "name": "Russian",                "endonym": "Русский",              "dir": "ltr", "script": "Cyrl", "tier": 1, "status": "beta",     "quality": "high" },
+    { "code": "id",      "name": "Indonesian",             "endonym": "Bahasa Indonesia",     "dir": "ltr", "script": "Latn", "tier": 1, "status": "beta",     "quality": "high" },
+    { "code": "bn",      "name": "Bengali",                "endonym": "বাংলা",                 "dir": "ltr", "script": "Beng", "tier": 1, "status": "beta",     "quality": "low-resource" },
+    { "code": "ur",      "name": "Urdu",                   "endonym": "اردو",                 "dir": "rtl", "script": "Arab", "tier": 2, "status": "beta",     "quality": "low-resource" },
+    { "code": "fa",      "name": "Persian",                "endonym": "فارسی",                "dir": "rtl", "script": "Arab", "tier": 2, "status": "beta",     "quality": "high" },
+    { "code": "he",      "name": "Hebrew",                 "endonym": "עברית",                "dir": "rtl", "script": "Hebr", "tier": 2, "status": "beta",     "quality": "high" },
+    { "code": "tr",      "name": "Turkish",                "endonym": "Türkçe",               "dir": "ltr", "script": "Latn", "tier": 2, "status": "beta",     "quality": "high" },
+    { "code": "vi",      "name": "Vietnamese",             "endonym": "Tiếng Việt",           "dir": "ltr", "script": "Latn", "tier": 2, "status": "beta",     "quality": "high" },
+    { "code": "ko",      "name": "Korean",                 "endonym": "한국어",                "dir": "ltr", "script": "Kore", "tier": 2, "status": "beta",     "quality": "high" },
+    { "code": "it",      "name": "Italian",                "endonym": "Italiano",             "dir": "ltr", "script": "Latn", "tier": 2, "status": "beta",     "quality": "high" },
+    { "code": "pl",      "name": "Polish",                 "endonym": "Polski",               "dir": "ltr", "script": "Latn", "tier": 2, "status": "beta",     "quality": "high" },
+    { "code": "nl",      "name": "Dutch",                  "endonym": "Nederlands",           "dir": "ltr", "script": "Latn", "tier": 2, "status": "beta",     "quality": "high" },
+    { "code": "uk",      "name": "Ukrainian",              "endonym": "Українська",           "dir": "ltr", "script": "Cyrl", "tier": 2, "status": "beta",     "quality": "high" },
+    { "code": "th",      "name": "Thai",                   "endonym": "ไทย",                  "dir": "ltr", "script": "Thai", "tier": 2, "status": "beta",     "quality": "high" },
+    { "code": "ms",      "name": "Malay",                  "endonym": "Bahasa Melayu",        "dir": "ltr", "script": "Latn", "tier": 2, "status": "beta",     "quality": "high" },
+    { "code": "ta",      "name": "Tamil",                  "endonym": "தமிழ்",                 "dir": "ltr", "script": "Taml", "tier": 2, "status": "beta",     "quality": "low-resource" },
+    { "code": "te",      "name": "Telugu",                 "endonym": "తెలుగు",                "dir": "ltr", "script": "Telu", "tier": 2, "status": "beta",     "quality": "low-resource" },
+    { "code": "mr",      "name": "Marathi",                "endonym": "मराठी",                 "dir": "ltr", "script": "Deva", "tier": 2, "status": "beta",     "quality": "low-resource" },
+    { "code": "fil",     "name": "Filipino",               "endonym": "Filipino",             "dir": "ltr", "script": "Latn", "tier": 2, "status": "beta",     "quality": "high" },
+    { "code": "sw",      "name": "Swahili",                "endonym": "Kiswahili",            "dir": "ltr", "script": "Latn", "tier": 2, "status": "beta",     "quality": "low-resource" },
+    { "code": "ro",      "name": "Romanian",               "endonym": "Română",               "dir": "ltr", "script": "Latn", "tier": 2, "status": "beta",     "quality": "high" },
+    { "code": "pt-PT",   "name": "Portuguese (Portugal)",  "endonym": "Português (Portugal)", "dir": "ltr", "script": "Latn", "tier": 2, "status": "beta",     "quality": "high" },
+    { "code": "zh-Hant", "name": "Chinese (Traditional)",  "endonym": "繁體中文",              "dir": "ltr", "script": "Hant", "tier": 2, "status": "beta",     "quality": "high" }
+  ]
+}

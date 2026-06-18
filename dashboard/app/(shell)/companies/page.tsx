@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { readTracker } from "@/lib/data/tracker";
 import { readSalary } from "@/lib/data/salary";
 import { summarizeCompanies } from "@/lib/domain/companies";
@@ -11,28 +12,29 @@ export const dynamic = "force-dynamic";
 export default async function CompaniesPage() {
   const [rows, salary] = await Promise.all([readTracker(), readSalary()]);
   const companies = summarizeCompanies(rows);
+  const t = await getTranslations("dashboard");
 
   return (
     <PageSection
-      title="Companies"
-      description={`${companies.length} compan${companies.length === 1 ? "y" : "ies"} across your tracker.`}
+      title={t("companies.title")}
+      description={t("companies.description", { count: companies.length })}
     >
       {companies.length === 0 ? (
         <EmptyState
-          title="No companies yet"
-          hint="Companies are derived from the tracker. Add an application to populate this view."
-          milestone="Companies"
+          title={t("companies.empty.title")}
+          hint={t("companies.empty.hint")}
+          milestone={t("companies.empty.milestone")}
         />
       ) : (
         <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-sm">
             <thead className="border-b border-border bg-card text-left text-muted-foreground">
               <tr>
-                <th className="px-3 py-2.5">Company</th>
-                <th className="px-3 py-2.5">Sector</th>
-                <th className="px-3 py-2.5">Apps</th>
-                <th className="px-3 py-2.5">Best fit</th>
-                <th className="px-3 py-2.5">Status mix</th>
+                <th className="px-3 py-2.5">{t("companies.col.company")}</th>
+                <th className="px-3 py-2.5">{t("companies.col.sector")}</th>
+                <th className="px-3 py-2.5">{t("companies.col.apps")}</th>
+                <th className="px-3 py-2.5">{t("companies.col.bestFit")}</th>
+                <th className="px-3 py-2.5">{t("companies.col.statusMix")}</th>
               </tr>
             </thead>
             <tbody>
@@ -66,20 +68,20 @@ export default async function CompaniesPage() {
       )}
 
       <div className="mt-4">
-        <h3 className="mb-2 text-sm font-medium">Salary benchmarks</h3>
+        <h3 className="mb-2 text-sm font-medium">{t("companies.salaryHeading")}</h3>
         {salary ? (
           <p className="text-sm text-muted-foreground">
-            Benchmark data is available —{" "}
+            {t("companies.salaryAvailable")}
             <Link href="/salary" className="text-primary hover:underline">
-              browse it on the Salary page
+              {t("companies.salaryLink")}
             </Link>
             .
           </p>
         ) : (
           <EmptyState
-            title="No salary data"
-            hint="Add salary_data.json (or run a lookup on the Salary page) to enrich companies with benchmarks."
-            milestone="REQ-5012"
+            title={t("companies.noSalary.title")}
+            hint={t("companies.noSalary.hint")}
+            milestone={t("companies.noSalary.milestone")}
           />
         )}
       </div>
