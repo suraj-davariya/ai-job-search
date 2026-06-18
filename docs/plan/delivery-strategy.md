@@ -44,6 +44,15 @@ gantt
     Interview preparation        :v12a, after v11a, 3d
     Portal adapters (pattern)    :v12b, after v1d, 3d
     Reset command                :v12c, after v11a, 1d
+    
+    section v1.3
+    i18n infrastructure          :v13a, after v12a, 4d
+    Locale packs + docgen        :v13b, after v13a, 3d
+    Tier-1 language rollout       :v13c, after v13b, 3d
+    Posting-legitimacy gate      :v13d, after v12b, 3d
+    ATS exports + parse check    :v13e, after v12a, 3d
+    Fabrication-audit artifact   :v13f, after v13e, 2d
+    Deterministic scan tier      :v13g, after v12b, 3d
 ```
 
 ---
@@ -100,6 +109,26 @@ gantt
 | Research agent | — | Agent Layer |
 
 **Exit criteria:** All commands functional; adapter pattern documented; ready for community contribution.
+
+### v1.3 — Global Reach & Trust
+**Goal:** Make CareerForge usable beyond English-speaking markets, harden it against fraudulent postings, and make generated documents ATS-safe and provably non-fabricated.
+
+| Feature | Requirements | Architecture |
+|---------|-------------|-------------|
+| Internationalization & localization | REQ-7001–7011, NFR-0019–0020 | ADR-0007 |
+| Posting-legitimacy gate (red-flags, ghost-job, scam catalog) | REQ-8001–8005 | ARCH-0020 |
+| ATS-safe exports (TXT + DOCX) + parse self-check | REQ-2063–2065 | ARCH-0030 |
+| Fabrication-audit / provenance artifact | REQ-2066 | ARCH-0030, Data Architecture |
+| Deterministic scan tier + posting liveness | REQ-1013, REQ-1015, NFR-0021–0022 | ARCH-0020 |
+
+**Scope:**
+- Externalize every user-facing string into a single pluggable `i18n/` tree, rendered through ICU message formatting and translated via Weblate, with parity/staleness CI guarding a translation-completeness threshold (REQ-7001–7011, NFR-0020).
+- Ship the Tier-1 set of 12 languages with RTL, CJK, and Indic script rendering, plus localized READMEs and docs-site (NFR-0019); leave the Tier-2 set of 20 as locale packs the community can complete.
+- Add a posting-legitimacy gate that returns a verdict, surfaces red flags, detects ghost jobs, and matches against a locale-aware scam catalog (REQ-8001–8005).
+- Emit ATS-safe plain-text and `.docx` exports alongside the existing polished LaTeX PDF, with an ATS parse self-check (REQ-2063–2065), and surface a fabrication-audit/provenance artifact to the user and the dashboard (REQ-2066).
+- Add a deterministic, token-free scan tier and a posting-liveness re-check, with cost-aware search and provider-limit resilience (REQ-1013, REQ-1015, NFR-0021–0022).
+
+**Exit criteria:** A non-English user can run the full workflow in a Tier-1 language; postings are screened for legitimacy with a surfaced verdict; every application ships ATS-safe TXT/DOCX exports plus a provenance artifact; search degrades gracefully under provider limits with a token-free tier.
 
 ### v2.0 — Community & Extensions (Future)
 - Template marketplace

@@ -122,3 +122,23 @@ Related documents:
 **Acceptance Criteria:**
 - Every presented job links to a real URL
 - If search returns no results, system reports this honestly
+
+### REQ-1013: Deterministic Portal Listing (token-free scan tier)
+**Priority:** Could
+**Description:** A job portal adapter (per ADR-0004) MAY expose a deterministic "list" pass that returns structured postings (title, company, location, URL, posting date) WITHOUT spending LLM tokens, used to pre-filter candidates BEFORE any LLM-based fit assessment. This lowers per-search cost and lets coverage scale across more portals and queries. The capability is optional: web search (REQ-1003) remains the universal fallback whenever no adapter is present (DEC-012, NFR-0007).
+**Acceptance Criteria:**
+- The list pass is an optional adapter capability — if an adapter does not implement it, the system degrades gracefully to web search with no error (ARCH-0005)
+- The list pass returns structured postings (title, company, location, URL, posting date) that feed directly into the existing deduplication (REQ-1006) and quick fit assessment (REQ-1005) steps
+- No LLM call is required to produce the listing itself; tokens are spent only on the subsequent fit assessment of surviving candidates
+- The list output composes with REQ-1004 pre-fetch filtering — titles and listing metadata are used to skip already-seen and already-applied postings before any fetch or LLM call
+- Cross-references: ADR-0004 (pluggable portal adapters), NFR-0021 (cost-aware search)
+
+### REQ-1015: Posting Liveness Verification
+**Priority:** Should
+**Description:** Before `/apply` drafts for a STORED posting (one surfaced in an earlier search rather than supplied fresh), the system shall re-verify that the posting still appears open (re-fetch or HEAD the URL) and WARN the user if it appears closed or expired — it shall never auto-skip silently. This extends REQ-1011 date filtering from "posted recently" to "still open now," addressing stale postings that leak into the application pipeline between search and apply.
+**Acceptance Criteria:**
+- Liveness is re-checked at apply-time for any posting that was stored from a prior search, immediately before drafting begins
+- If the posting appears closed or expired, the system shows a clear, non-blocking warning to the user and lets them decide whether to proceed — it does not silently skip or abort
+- If liveness cannot be determined (fetch fails, ambiguous response), the system fails open: it proceeds with a note that liveness was unverifiable rather than blocking (ARCH-0005)
+- The liveness result feeds the trust-and-safety ghost-job signal (REQ-8004)
+- Cross-references: REQ-1011 (date filtering), REQ-8004 (ghost-job signal)

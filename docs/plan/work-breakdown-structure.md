@@ -177,6 +177,86 @@ Implements REQ-5000–REQ-5008. Per ADR-0005: Bun + Hono + server-rendered HTML 
 
 ---
 
+## v1.3 — Global Reach & Trust
+
+### Epic 13: i18n Infrastructure (E-i18n-1)
+
+Implements REQ-7001–7006, NFR-0020. Per ADR-0007: single pluggable `i18n/` tree, ICU message formatting, Weblate translation, parity/staleness CI.
+
+| ID | Task | Size | Dependencies |
+|----|------|------|-------------|
+| T-120 | Externalize user-facing strings from commands/skills into a single `i18n/` tree (REQ-7001, REQ-7002) | XL | T-104 |
+| T-121 | Define ICU message-format catalog schema + key namespacing (REQ-7003) | M | T-120 |
+| T-122 | Implement message lookup/render helper with English fallback (REQ-7004, REQ-7005) | M | T-121 |
+| T-123 | Wire Weblate config + round-trip (export/import) workflow (REQ-7006) | M | T-121 |
+| T-124 | Add parity/staleness CI: completeness threshold + missing/orphan-key gate (NFR-0020) | M | T-122, T-123 |
+
+### Epic 14: Locale Packs + Document Generation (E-i18n-2)
+
+Implements REQ-7007–7009, NFR-0019. Pluggable locale packs; locale-aware CV/cover-letter generation.
+
+| ID | Task | Size | Dependencies |
+|----|------|------|-------------|
+| T-125 | Define locale-pack interface (currency, date, salary, CV-vs-résumé conventions) (REQ-7007) | L | T-121 |
+| T-126 | Implement locale-pack loader + per-region config resolution (REQ-7008) | M | T-125 |
+| T-127 | Make LaTeX CV/cover-letter generation locale-aware (fontspec script selection, direction) (REQ-7009) | L | T-125, T-042, T-043 |
+| T-128 | Add RTL / CJK / Indic script rendering support + compile verification (NFR-0019) | L | T-127 |
+
+### Epic 15: Tier-1 Language Rollout (E-i18n-3)
+
+Implements REQ-7010–7011, NFR-0019. Tier-1 of 12 languages; localized READMEs and docs-site; Tier-2 of 20 left as community packs.
+
+| ID | Task | Size | Dependencies |
+|----|------|------|-------------|
+| T-129 | Seed Tier-1 (12 languages) catalogs to threshold via Weblate (REQ-7010) | XL | T-124, T-126 |
+| T-130 | Scaffold Tier-2 (20 languages) locale packs as community stubs (REQ-7011) | M | T-126 |
+| T-131 | Localize root + dashboard READMEs and docs-site language switcher (REQ-7010) | L | T-129 |
+| T-132 | End-to-end Tier-1 workflow verification (RTL + CJK + Indic sample run) | M | T-128, T-129 |
+
+### Epic 16: Posting-Legitimacy Gate (E-trust-1)
+
+Implements REQ-8001–8005. Legitimacy gate + verdict, red-flags, ghost-job detection, locale-aware scam catalog.
+
+| ID | Task | Size | Dependencies |
+|----|------|------|-------------|
+| T-133 | Implement posting-legitimacy gate + verdict surfaced in /search and /apply (REQ-8001) | L | T-072, T-040 |
+| T-134 | Implement red-flag heuristics (REQ-8002) | M | T-133 |
+| T-135 | Implement ghost-job detection signals (REQ-8003) | M | T-133 |
+| T-136 | Build locale-aware scam catalog + matcher (REQ-8004) | L | T-133, T-126 |
+| T-137 | Surface verdict + flags in tracker/dashboard (REQ-8005) | M | T-134, T-135, T-136 |
+
+### Epic 17: ATS-Safe Exports (E-app-1)
+
+Implements REQ-2063–2065. Plain-text and `.docx` exports alongside the LaTeX PDF; ATS parse self-check.
+
+| ID | Task | Size | Dependencies |
+|----|------|------|-------------|
+| T-138 | Implement plain-text CV/cover-letter export (REQ-2063) | M | T-042, T-043 |
+| T-139 | Implement `.docx` export alongside LaTeX PDF (REQ-2064) | L | T-138 |
+| T-140 | Implement ATS parse self-check + report (REQ-2065) | M | T-139 |
+
+### Epic 18: Fabrication-Audit / Provenance (E-app-2)
+
+Implements REQ-2066. Provenance artifact surfaced to user and dashboard.
+
+| ID | Task | Size | Dependencies |
+|----|------|------|-------------|
+| T-141 | Emit fabrication-audit/provenance artifact during /apply (claim → source mapping) (REQ-2066) | L | T-046, T-054 |
+| T-142 | Surface provenance artifact to the user at end of /apply (REQ-2066) | S | T-141 |
+| T-143 | Add provenance panel to the dashboard (REQ-2066) | M | T-141, T-118 |
+
+### Epic 19: Deterministic Scan Tier + Resilience (E-search-1)
+
+Implements REQ-1013, REQ-1015, NFR-0021–0022. Token-free scan tier, posting liveness, provider-limit resilience.
+
+| ID | Task | Size | Dependencies |
+|----|------|------|-------------|
+| T-144 | Implement deterministic, token-free scan tier (REQ-1013, NFR-0021) | L | T-072 |
+| T-145 | Implement posting-liveness re-check (REQ-1015) | M | T-073 |
+| T-146 | Implement provider-limit resilience + graceful degradation (NFR-0022) | M | T-144 |
+
+---
+
 ## Summary
 
 | Milestone | Epics | Tasks | Estimated Total |
@@ -185,6 +265,9 @@ Implements REQ-5000–REQ-5008. Per ADR-0005: Bun + Hono + server-rendered HTML 
 | v1.0 | 4 | 23 | ~13–16 days |
 | v1.1 | 2 | 9 | ~5–7 days |
 | v1.2 | 1 | 5 | ~3–4 days |
-| **Total** | **12** | **64** | **~33–42 days** |
+| v1.3 | 7 | 27 | ~16–20 days |
+| **Total** | **19** | **91** | **~49–62 days** |
 
 **Note:** v1.0 grew by Epic 9 (Tracking Dashboard, 9 tasks, ~5–6 days) to incorporate REQ-5000–REQ-5008. See ADR-0005 for the stack decision.
+
+**Note:** v1.3 (Epics 13–19, 27 tasks) incorporates internationalization (REQ-7001–7011), trust & safety (REQ-8001–8005), ATS-safe exports + provenance (REQ-2063–2066), and the deterministic scan tier + resilience (REQ-1013, REQ-1015, NFR-0019–0022). See ADR-0007 for the i18n decision.

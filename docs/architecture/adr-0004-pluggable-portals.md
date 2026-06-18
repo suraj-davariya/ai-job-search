@@ -53,3 +53,7 @@ Directory: .agents/skills/<portal-name>/
 - **Positive:** Infinite market flexibility; community can contribute; core framework stays clean
 - **Negative:** Each adapter requires separate installation (`bun install`); different adapters may have different result quality
 - **Fallback:** Web search (`site:<portal>`) always works without adapters, just with less structured results
+
+## Revisited 2026-06-18 — optional deterministic listing (REQ-1013)
+
+An adapter MAY expose a deterministic **`list()`** pass that returns structured postings (title, company, location, URL, date) **without spending LLM tokens** — a token-free "scan" tier that pre-filters candidates before any LLM-based fit assessment (cost-aware search, NFR-0021). This is an *optional* capability: adapters without it still work, and web search remains the universal fallback (ARCH-0005). The listing feeds the existing dedup + quick-fit steps (REQ-1013).

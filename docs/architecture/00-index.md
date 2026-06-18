@@ -29,7 +29,8 @@ Start with the overview for context, then the technology stack, then component d
 | 13 | [ADR-0004: Pluggable Job Portal Adapters](adr-0004-pluggable-portals.md) | Why a plugin architecture |
 | 14 | [ADR-0005: Tracking Dashboard Stack](adr-0005-tracking-dashboard-stack.md) | Bun + Hono + HTMX + Pico.css for the local tracking dashboard — **stack superseded by ADR-0006** |
 | 15 | [ADR-0006: Dashboard Stack — Next.js over File-as-DB](adr-0006-dashboard-nextjs-file-as-db.md) | Why Next.js + React + shadcn + Tailwind + Nivo (file-as-DB, no Prisma/auth); supersedes ADR-0005's stack |
-| 16 | [Traceability Matrix](traceability-matrix.md) | Requirements → Architecture mapping |
+| 16 | [ADR-0007: Internationalization & Localization](adr-0007-internationalization-localization.md) | Canonical-English internals + translated user surfaces; single `i18n/` tree; pluggable locale packs; Weblate + ICU; subsumes NFR-0006 |
+| 17 | [Traceability Matrix](traceability-matrix.md) | Requirements → Architecture mapping |
 
 ## Cross-References
 

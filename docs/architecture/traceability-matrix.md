@@ -38,6 +38,8 @@
 | REQ-1006 Deduplication | ARCH-0020 Search Engine | Deduplication Engine | URL/title key matching |
 | REQ-1007 Presentation | ARCH-0020 Search Engine | Results Presenter | Sorted table with details |
 | REQ-1010 Geographic Filter | ARCH-0020 Search Engine | Query Executor | Location tier matching |
+| REQ-1013 Deterministic Listing | ARCH-0020 Search Engine | Portal Adapter `list()` | Token-free pre-filter; ADR-0004, NFR-0021 |
+| REQ-1015 Liveness Verification | ARCH-0020 Search Engine | Liveness Checker | Re-verify stored postings; ARCH-0005, REQ-8004 |
 
 ### Application Pipeline (REQ-2xxx)
 
@@ -55,6 +57,10 @@
 | REQ-2040–2042 Revision | ARCH-0030 Application Pipeline | Revision Engine | Part A + Part B |
 | REQ-2050–2054 Compilation | ARCH-0030 Application Pipeline | Compilation Verifier | ADR-0003 |
 | REQ-2060–2062 Presentation | ARCH-0030 Application Pipeline | Final Verifier | Checklist + summary |
+| REQ-2063 ATS Exports | ARCH-0030 Application Pipeline | Export Generator (TXT/DOCX) | Alongside the PDF; ADR-0003 |
+| REQ-2064 ATS Parse Self-Check | ARCH-0030 Application Pipeline | Parse Verifier | PDF text-recovery assertion |
+| REQ-2065 Fabrication Audit | ARCH-0007 (principle) | Final Verifier | Claim→source ledger |
+| REQ-2066 Provenance Surfacing | ARCH-0030 + ARCH-0060 Dashboard | Provenance Panel | File-as-DB, read-only |
 
 ### Career Development (REQ-3xxx)
 
@@ -101,6 +107,32 @@
 | REQ-6002 Workspace Permission Configuration | ARCH-0010 SKILL.md Frontmatter | `.claude/settings.local.json.template` | NFR-0018, DEC-014 |
 | REQ-6003 Quick Sub-Commands | ARCH-0010 SKILL.md Frontmatter | `job-application-assistant` SKILL.md trigger routing | DEC-014 |
 
+### Internationalization & Localization (REQ-7xxx)
+
+| Requirement | Architecture Element | Component | Notes |
+|-------------|---------------------|-----------|-------|
+| REQ-7001 Language-Agnostic Output | ADR-0007 i18n/l10n | Locale Resolver | Removes hardcoded "CV always English" |
+| REQ-7002 Externalized Strings | ADR-0007 i18n/l10n | `i18n/ui/` resources | English = source of truth |
+| REQ-7003 Resource Format (ICU/JSON) | ADR-0007 i18n/l10n | ICU MessageFormat | CLDR plurals |
+| REQ-7004 Language Roadmap & Tiers | ADR-0007 i18n/l10n | `i18n/_meta/languages.json` | Tier-1 (12) + Tier-2 (20) |
+| REQ-7005 Contribution Workflow | ADR-0007 i18n/l10n | Weblate + MTPE | Community-owned |
+| REQ-7006 Parity / Staleness Gate | ADR-0007 i18n/l10n | Source-hash CI check | Custom (no off-the-shelf) |
+| REQ-7007 README & Docs-Site Translation | ADR-0007 i18n/l10n | `i18n/readme/`, docs-site i18n | No root clutter |
+| REQ-7008 Dashboard UI + RTL | ADR-0007 i18n/l10n + ARCH-0060 Dashboard | `next-intl` | NFR-0019 |
+| REQ-7009 Locale Packs | ADR-0007 i18n/l10n | `locale-packs/` | Decoupled from language; ADR-0004 philosophy |
+| REQ-7010 Locale-Aware Generation | ADR-0007 + ARCH-0030 Application Pipeline | CV/CL Generators | Consumes locale pack |
+| REQ-7011 Generation-Quality Signal | ADR-0007 i18n/l10n | Language Registry flag | ARCH-0006 backstop |
+
+### Trust & Safety (REQ-8xxx)
+
+| Requirement | Architecture Element | Component | Notes |
+|-------------|---------------------|-----------|-------|
+| REQ-8001 Legitimacy Assessment | ARCH-0030 Application Pipeline | Legitimacy Gate | Separate verdict; business-rules §10 |
+| REQ-8002 Red-Flags Signals | ARCH-0030 Application Pipeline | Red-Flag Evaluator | Externalized, country-agnostic |
+| REQ-8003 Quick Legitimacy Flag | ARCH-0020 Search Engine | Quick Fit Assessor | Beside High/Med/Low |
+| REQ-8004 Ghost-Job Detection | ARCH-0020 Search Engine | Liveness Checker | Ties REQ-1011, REQ-1015 |
+| REQ-8005 Scam-Pattern Catalog | ADR-0007 Locale Packs | `locale-packs/` scam data | Locale-aware; community-extensible |
+
 ---
 
 ## Non-Functional Requirements Traceability
@@ -121,6 +153,10 @@
 | NFR-0016 Concurrent CSV Writes | ARCH-0060 Tracking Dashboard (Atomic Writer), Data Architecture §Consistency Rules | ADR-0001, ADR-0005 |
 | NFR-0017 Local-Only Network Surface | ARCH-0060 Tracking Dashboard (Loopback Bind, Bundled Assets), Security Architecture | ADR-0005 |
 | NFR-0018 Skill-Scoped Tool Permissions | Cross-Cutting (Permission Layers), Security Architecture | DEC-014; `.claude/settings.local.json` + SKILL.md `allowed-tools:` |
+| NFR-0019 Bidi & Non-Latin Rendering | Cross-Cutting (i18n), Component (Compilation Verifier) | ADR-0007, ADR-0003 |
+| NFR-0020 Translation Completeness | Cross-Cutting (i18n) | ADR-0007 |
+| NFR-0021 Cost-Aware Search | ARCH-0020 Search Engine | ADR-0004 |
+| NFR-0022 Provider-Limit Resilience | Cross-Cutting (Error Handling) | — |
 
 ---
 
@@ -150,6 +186,8 @@
 | ADR-0003 LaTeX Generation | REQ-2020–2021, REQ-2050–2054, NFR-0008 |
 | ADR-0004 Pluggable Portals | REQ-1003, NFR-0007 |
 | ADR-0005 Tracking Dashboard Stack | REQ-5000–5008, NFR-0014, NFR-0015, NFR-0016, NFR-0017 |
+| ADR-0006 Dashboard Next.js (file-as-DB) | REQ-5000–5016, NFR-0014–0017 |
+| ADR-0007 Internationalization & Localization | REQ-7001–7011, REQ-8005, NFR-0019, NFR-0020 |
 
 ---
 
