@@ -94,6 +94,14 @@
     "rerunApply": "Re-run /apply",
     "fileNotFound": "{label}: file not found"
   },
+  "provenance": {
+    "title": "Provenance",
+    "none": "No provenance recorded",
+    "summary": "{total, plural, one {# claim} other {# claims}} · {flagged, plural, =0 {none flagged} one {# flagged} other {# flagged}}",
+    "backedBy": "{source} › {location}",
+    "backedBySource": "{source}",
+    "flagged": "Flagged — no profile backing"
+  },
   "toast": {
     "updated": "Updated · {time}",
     "statusError": "Couldn't update status: {error}",

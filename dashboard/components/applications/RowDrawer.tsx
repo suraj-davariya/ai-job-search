@@ -7,6 +7,7 @@ import { ExternalLink, FileText, FileX, Play, X } from "lucide-react";
 import type { TrackerRow } from "@/lib/domain/status";
 import { StatusPill } from "./StatusPill";
 import { FitBadge } from "./FitBadge";
+import { ProvenancePanel } from "./ProvenancePanel";
 
 /** Split text into plain spans and clickable links for any http(s) URLs. */
 function linkify(text: string) {
@@ -223,6 +224,8 @@ export function RowDrawer({
               </Link>
             ) : null}
           </div>
+
+          <ProvenancePanel company={row.company} role={row.role} />
         </div>
       </div>
     </div>

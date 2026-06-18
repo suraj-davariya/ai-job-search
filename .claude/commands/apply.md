@@ -43,6 +43,9 @@ skipped when `--review=none`.
    drafting. Flag stretch claims for the user (REQ-2023).
 5. **Token efficiency (REQ-2024).** Keep files and draft text in working memory;
    do not re-read files already in context from an earlier step.
+6. **Provider resilience (NFR-0022, ARCH-0005).** If the AI provider rate-limits or
+   fails, stop gracefully with a clear message; do not retry-spam or run high-volume
+   headless batches that can trip provider abuse heuristics.
 
 **Profile + template files this command consumes:**
 
@@ -67,6 +70,13 @@ equal-priority inputs; paste is a first-class choice, never a fallback.
 
 - **URL:** fetch with WebFetch and parse the content.
 - **Text:** use directly.
+
+**Liveness re-check (REQ-1015):** if the posting comes from an earlier search (a known
+URL stored in `seen_jobs.json` or the tracker), re-fetch/HEAD it to confirm it still
+appears **open** before investing in drafting. If it looks closed/expired, warn the user
+and ask whether to proceed — never auto-skip (ARCH-0006). If liveness can't be determined,
+proceed with a neutral note (ARCH-0005). This extends the search-time date filter
+(REQ-1011) from "posted recently" to "still open now."
 
 Extract metadata: **company name, role title, department** (if mentioned),
 **location**, and **language of the posting**. Both input modes produce identical
@@ -299,9 +309,34 @@ both `.tex` files once to confirm their on-disk state. Report each item pass/fai
 - **Compiled PDF (§5.5):** CV lualatex/2 pages/no orphans; cover letter
   xelatex/1 page/signature visible/bullet font matches.
 
+**Fabrication audit — emit a provenance ledger (REQ-2065).** As part of verification,
+build a **claim → backing-source** ledger: for every substantive claim in the CV (and
+cover letter), record the profile file and section that backs it. Any claim not traceable
+to the profile is **flagged**, never shipped silently — this is the interview-backtrack
+test (REQ-2023) made explicit and auditable. Write it to
+`documents/applications/<company>_<role>/provenance.json`:
+
+```json
+{
+  "generated": "YYYY-MM-DD",
+  "company": "<company>", "role": "<role>",
+  "claims": [
+    { "claim": "<verbatim claim>", "source": "01-candidate-profile.md", "location": "<section>", "backed": true },
+    { "claim": "<verbatim claim>", "source": null, "location": null, "backed": false, "note": "flagged — no profile backing" }
+  ],
+  "summary": { "total": 0, "backed": 0, "flagged": 0 }
+}
+```
+
+Never invent a source (ARCH-0007). The dashboard renders this as a per-application
+**Provenance** panel (REQ-2066).
+
 Then:
 - **Tailoring summary (REQ-2061):** 3–5 key decisions — what was emphasized and
   why, company-specific angles, gaps acknowledged or reframed.
+- **Provenance (REQ-2066):** report the fabrication-audit summary — e.g. "12 claims, all
+  profile-backed" or "12 claims, 1 flagged for your review" — and list any flagged claims
+  for the user to confirm or drop before submitting.
 - **File listing (REQ-2062):** the CV (PDF) and cover letter paths, plus the ATS exports
   produced in Step 7 (`.txt`, `.docx`), then:
   *"Your documents are ready for your review."*
