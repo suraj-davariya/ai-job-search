@@ -14,7 +14,7 @@
 [![AI-Native](https://img.shields.io/badge/AI--Native-Agentic%20workflow-8A4FFF)](docs/architecture/architecture-overview.md)
 [![Agents](https://img.shields.io/badge/Agents-Drafter%20%2B%20Reviewer-8A4FFF)](.claude/agents/)
 [![Skills](https://img.shields.io/badge/Skills-3-8A4FFF)](.claude/skills/)
-[![Commands](https://img.shields.io/badge/Commands-%2Fsetup%20%2Fsearch%20%2Fapply%20%2Fupskill-8A4FFF)](.claude/commands/)
+[![Commands](https://img.shields.io/badge/Commands-setup%20%C2%B7%20search%20%C2%B7%20apply%20%C2%B7%20upskill%20%C2%B7%20expand-8A4FFF)](.claude/commands/)
 [![Prompt-as-code](https://img.shields.io/badge/Architecture-Prompt--as--code-6E56CF)](docs/architecture/)
 
 <!-- How it's built — modern stack, privacy, reach -->
@@ -336,6 +336,40 @@ targeted mode rather than an empty report.
 
 ---
 
+### `/expand` — Grow your profile from everything you've already done
+
+Finds competencies you have but haven't written down — from your documents, your public
+**GitHub** repos, and the web — and **adds** them to your profile. It never edits or
+removes what's already there.
+
+**How it works:**
+
+1. **Scans** `documents/`, your GitHub repositories (READMEs, languages, topics), and
+   other profile links (portfolio, Kaggle, Scholar).
+2. **Enriches** each find via web search — both a direct lookup (course syllabi,
+   certification skill lists, tool docs) and inference about the methods and toolchains
+   the work implies.
+3. **Shows you a competency map** grouped by category, each item traced to its source and
+   marked direct / inferred — for your review *before* anything is written.
+4. **Adds only what you approve**, each with a source note like *(Coursera — Deep
+   Learning Specialisation)*. Those notes make re-runs idempotent, and inferred
+   behavioural traits are clearly labelled.
+
+**Example prompts:**
+
+```
+/expand
+```
+```
+/expand github
+```
+> _(Prioritises your GitHub repositories as the source to mine.)_
+
+Because every addition is additive and source-annotated, you can run `/expand` again
+after a new course or project and it only brings in what's genuinely new.
+
+---
+
 ## The tracking dashboard
 
 A local-only web UI that **reads and atomically writes your `job_search_tracker.csv` as the single source of truth**, visualises your pipeline, and can drive the CLI (`/apply`, `/upskill`, salary lookups) from the browser. It is an optional companion — deleting it leaves your data and the `/apply` pipeline untouched.
@@ -366,7 +400,6 @@ npm run serve          # prints  ▶  http://127.0.0.1:4480/
 
 | Command | Milestone | What it will do |
 |---------|-----------|----------------|
-| `/expand` | v1.1 | Enrich your profile with new courses, certifications, or projects |
 | `/reset` | v1.2 | Clear and re-run a specific profile section |
 
 ---
@@ -463,7 +496,7 @@ ai-job-search/
 │   │   ├── apply.md           # /apply  — full application pipeline
 │   │   ├── search.md          # /search — discover new job postings
 │   │   ├── upskill.md         # /upskill — skill-gap analysis + learning plan
-│   │   ├── expand.md          # /expand — (stub, v1.1)
+│   │   ├── expand.md          # /expand — competency expansion (additive)
 │   │   └── reset.md           # /reset  — (stub, v1.2)
 │   │
 │   └── skills/
@@ -546,8 +579,7 @@ xelatex main_example.tex
 | **MVP** (Epics 1–5) | ✅ Complete | `/setup`, `/apply` (no reviewer), PDF compilation |
 | **v1.0** (Epics 6–8) | ✅ Complete | Reviewer agent, `/search`, application tracker |
 | **v1.0 — Dashboard** (Epic 9) | ✅ Complete | Local tracking dashboard at `127.0.0.1:4480` — view/edit tracker, analytics, run commands from the browser |
-| **v1.1 — Upskill** (Epic 11) | ✅ Complete | `/upskill` skill-gap analysis + web-sourced learning plan; reports surface in the dashboard |
-| **v1.1 — Expand** (Epic 10) | 🔜 Planned | `/expand` (profile enrichment from new courses, certs, projects) |
+| **v1.1** (Epics 10–11) | ✅ Complete | `/upskill` skill-gap analysis + learning plan, and `/expand` competency expansion from your docs, GitHub, and the web |
 | **v1.2** (Epic 12) | 🔜 Planned | `/reset`, interview prep, portal adapter pattern |
 | **v2.0** | 💡 Future | Template marketplace, community portal adapters, GUI |
 
