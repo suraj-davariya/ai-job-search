@@ -1,0 +1,32 @@
+{
+  "title": "Console",
+  "description": "Exécutez les commandes CLI autorisées et suivez leur sortie en direct.",
+  "demo": {
+    "title": "Disponible dans le tableau de bord local",
+    "hint": "La Console exécute /apply, /upskill et les recherches de salaire sur votre machine et diffuse leur sortie. Cela nécessite le tableau de bord en local — impossible dans cette démo statique. Installez CareerForge et lancez le tableau de bord pour l'utiliser.",
+    "milestone": "Console",
+    "note": "Build de démo — l'exécution de commandes est désactivée."
+  },
+  "rerunApply": "Relancer /apply",
+  "runUpskill": "Lancer /upskill",
+  "salaryLookup": "Recherche de salaire",
+  "company": "Entreprise",
+  "companyPlaceholder": "Entreprise",
+  "lookUp": "Rechercher",
+  "stop": "Arrêter",
+  "running": "En cours…",
+  "idle": "Inactif",
+  "status": "Code de sortie {code} · {result}",
+  "elapsed": " · {seconds} s",
+  "ok": "ok",
+  "failed": "échec",
+  "noOutput": "Pas encore de sortie. Déclenchez une commande ci-dessus.",
+  "recentRuns": "Exécutions récentes",
+  "refreshRuns": "Actualiser les exécutions",
+  "noRuns": "Aucune exécution pour le moment.",
+  "exitCode": "code de sortie {code}",
+  "tip": {
+    "readOnly": "Mode lecture seule — les actions sont désactivées",
+    "binMissing": "{bin} introuvable dans le PATH"
+  }
+}

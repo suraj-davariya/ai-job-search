@@ -1,0 +1,20 @@
+{
+  "title": "Pengaturan",
+  "description": "Hanya preferensi lokal — tanpa rahasia, tanpa akun. Loopback, pengguna tunggal.",
+  "theme": "Tema",
+  "themeHint": "Default ke gelap.",
+  "repoPath": "Jalur repo",
+  "repoPathHint": "Folder yang dibaca/ditulis dasbor (berlaku pada peluncuran berikutnya).",
+  "port": "Port default",
+  "portHint": "Port loopback (berlaku pada peluncuran berikutnya).",
+  "readOnly": "Mode hanya-baca",
+  "readOnlyHint": "Menonaktifkan semua pengeditan dan tindakan.",
+  "on": "Aktif",
+  "off": "Nonaktif",
+  "language": "Bahasa",
+  "languageHint": "Pilih bahasa tampilan dasbor. Teks yang belum diterjemahkan akan kembali ke bahasa Inggris.",
+  "save": "Simpan pengaturan",
+  "saving": "Menyimpan…",
+  "saved": "Pengaturan disimpan",
+  "saveError": "Tidak dapat menyimpan pengaturan: {error}"
+}

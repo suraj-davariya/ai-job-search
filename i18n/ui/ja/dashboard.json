@@ -1,0 +1,104 @@
+{
+  "overview": {
+    "title": "概要",
+    "description": "トラッカーからリアルタイムに算出された、パイプラインの健全性を一目で把握できます。",
+    "empty": {
+      "title": "応募はまだありません",
+      "hint": "/apply <posting> を実行するか、応募ページの「+ 新規応募」を使用してください。トラッカーに行が追加されると、KPIとチャートがここに表示されます。",
+      "milestone": "概要"
+    }
+  },
+  "kpi": {
+    "total": "応募総数",
+    "applied": "応募 · {window}日",
+    "appliedWindow": "応募期間",
+    "windowDays": "{days}日",
+    "avgFit30": "平均適合度 · 30日",
+    "interviewRate90": "面接率 · 90日",
+    "floorHint": "期間内に3件以上が必要"
+  },
+  "charts": {
+    "noData": "データはまだありません",
+    "weekly": {
+      "title": "週ごとの応募数",
+      "caption": "ISO週ごとの応募数",
+      "colWeek": "週",
+      "colApplications": "応募数"
+    },
+    "activity": {
+      "title": "アクティビティ",
+      "caption": "暦日ごとの応募数",
+      "colDay": "日",
+      "colApplications": "応募数"
+    },
+    "status": {
+      "title": "ステータス構成",
+      "caption": "ステータス別の応募数",
+      "colStatus": "ステータス",
+      "colCount": "件数"
+    },
+    "fit": {
+      "title": "適合度の分布",
+      "caption": "適合度評価帯ごとの応募数",
+      "colRange": "適合度の範囲",
+      "colCount": "件数"
+    },
+    "top": {
+      "title": "応募上位の企業",
+      "label": "企業",
+      "caption": "応募数による{label}",
+      "colApplications": "応募数"
+    }
+  },
+  "recent": {
+    "title": "最近のアクティビティ",
+    "mode": "最近のアクティビティモード",
+    "new": "新規",
+    "updated": "更新"
+  },
+  "companies": {
+    "title": "企業",
+    "description": "トラッカー全体で{count, plural, other {#社}}。",
+    "empty": {
+      "title": "企業はまだありません",
+      "hint": "企業はトラッカーから導出されます。応募を追加するとこのビューに表示されます。",
+      "milestone": "企業"
+    },
+    "col": {
+      "company": "企業",
+      "sector": "業種",
+      "apps": "応募",
+      "bestFit": "最高適合度",
+      "statusMix": "ステータス構成"
+    },
+    "salaryHeading": "給与ベンチマーク",
+    "salaryAvailable": "ベンチマークデータが利用可能です — ",
+    "salaryLink": "給与ページで閲覧する",
+    "noSalary": {
+      "title": "給与データがありません",
+      "hint": "salary_data.json を追加する（または給与ページでルックアップを実行する）と、ベンチマークで企業情報を補完できます。",
+      "milestone": "REQ-5012"
+    }
+  },
+  "profile": {
+    "title": "プロフィール",
+    "description": "スキルファイルから構成された、読み取り専用の候補者プロフィール。",
+    "projectMemory": "プロジェクトメモリ",
+    "empty": {
+      "title": "プロフィールが見つかりません",
+      "hint": "/setup を実行して候補者プロフィール（01〜07のスキルファイル）を作成してください。作成されると、各セクションがここに読み取り専用で表示されます。",
+      "milestone": "プロフィール"
+    }
+  },
+  "upskill": {
+    "title": "スキルアップ",
+    "description": "スキルアップレポートと、新しいレポートを生成するトリガー。",
+    "run": "コンソールで /upskill を実行",
+    "unreadable": "（このレポートを読み込めませんでした）",
+    "empty": {
+      "title": "スキルアップレポートはまだありません",
+      "hint": "上の /upskill を実行してスキルギャップレポートを生成してください。新しいレポートは upskill/report-*.md に書き込まれるとここに表示されます。",
+      "milestone": "スキルアップ"
+    }
+  }
+}

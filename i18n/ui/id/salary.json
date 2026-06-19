@@ -1,0 +1,22 @@
+{
+  "title": "Gaji",
+  "description": "Telusuri tolok ukur gaji Anda dan jalankan pencarian perusahaan.",
+  "empty": {
+    "title": "Tidak ada data gaji",
+    "hint": "Tambahkan salary_data.json ke root repo (atau impor lembar Excel dengan tools/convert_salary_excel.py). Hingga saat itu, pencarian di bawah tetap berfungsi.",
+    "milestone": "REQ-5014"
+  },
+  "tableCaption": "{key} ({count})",
+  "lookupHeading": "Cari perusahaan",
+  "company": "Perusahaan",
+  "companyPlaceholder": "Nama perusahaan",
+  "lookUp": "Cari",
+  "looking": "Mencari…",
+  "noMatch": "Tidak ada hasil untuk “{query}”.",
+  "unnamed": "(tanpa nama)",
+  "noOutput": "Tidak ada keluaran.",
+  "tip": {
+    "readOnly": "Mode hanya-baca — tindakan dinonaktifkan",
+    "pythonMissing": "python3 tidak ditemukan di PATH"
+  }
+}

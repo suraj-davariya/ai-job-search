@@ -1,0 +1,22 @@
+{
+  "title": "Salário",
+  "description": "Consulte suas referências salariais e faça uma busca por empresa.",
+  "empty": {
+    "title": "Nenhum dado salarial",
+    "hint": "Adicione salary_data.json à raiz do repositório (ou importe uma planilha Excel com tools/convert_salary_excel.py). Até lá, a consulta abaixo continua funcionando.",
+    "milestone": "REQ-5014"
+  },
+  "tableCaption": "{key} ({count})",
+  "lookupHeading": "Consultar uma empresa",
+  "company": "Empresa",
+  "companyPlaceholder": "Nome da empresa",
+  "lookUp": "Consultar",
+  "looking": "Consultando…",
+  "noMatch": "Nenhum resultado encontrado para “{query}”.",
+  "unnamed": "(sem nome)",
+  "noOutput": "Sem saída.",
+  "tip": {
+    "readOnly": "Modo somente leitura — as ações estão desativadas",
+    "pythonMissing": "python3 não encontrado no PATH"
+  }
+}

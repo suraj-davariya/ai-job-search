@@ -1,0 +1,112 @@
+{
+  "page": {
+    "title": "Candidatures",
+    "description": "{count, plural, one {# candidature suivie} other {# candidatures suivies}}."
+  },
+  "table": {
+    "date": "Date",
+    "company": "Entreprise",
+    "role": "Poste",
+    "type": "Type",
+    "channel": "Canal",
+    "status": "Statut",
+    "fit": "Adéquation",
+    "contact": "Contact",
+    "notes": "Notes",
+    "cv": "CV",
+    "cover": "Lettre",
+    "source": "Source",
+    "pdf": "PDF",
+    "open": "Ouvrir"
+  },
+  "empty": {
+    "title": "Aucune candidature pour le moment",
+    "hintBefore": "Lancez",
+    "hintAfter": "pour en ajouter une.",
+    "newApplication": "Nouvelle candidature"
+  },
+  "filter": {
+    "search": "Rechercher des candidatures",
+    "searchPlaceholder": "Rechercher une entreprise, un poste ou des notes…",
+    "roleType": "Type de poste",
+    "allTypes": "Tous les types",
+    "channel": "Canal",
+    "allChannels": "Tous les canaux",
+    "minFit": "Adéquation minimale",
+    "fitPlaceholder": "Adéquation ≥",
+    "fromDate": "Du",
+    "toDate": "Au",
+    "clear": "Effacer",
+    "resultCount": "{count} sur {total}"
+  },
+  "pipeline": {
+    "group": "Décompte du pipeline",
+    "statusCount": "{status} : {count}",
+    "total": "{count} au total"
+  },
+  "new": {
+    "button": "Nouvelle candidature",
+    "title": "Nouvelle candidature",
+    "add": "Ajouter la candidature",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "readOnlyTip": "Mode lecture seule — l'édition est désactivée"
+  },
+  "fields": {
+    "date": "Date",
+    "status": "Statut",
+    "company": "Entreprise",
+    "role": "Poste",
+    "sector": "Secteur",
+    "roleType": "Type de poste",
+    "channel": "Canal",
+    "contact": "Contact",
+    "fit": "Adéquation (0–100)",
+    "source": "URL de la source"
+  },
+  "validation": {
+    "dateRequired": "La date est obligatoire",
+    "companyRequired": "L'entreprise est obligatoire",
+    "roleRequired": "Le poste est obligatoire"
+  },
+  "aria": {
+    "statusFor": "Statut pour {company}",
+    "notesFor": "Notes pour {company}"
+  },
+  "notes": {
+    "placeholder": "—"
+  },
+  "drawer": {
+    "closeDetails": "Fermer les détails",
+    "date": "Date",
+    "lastUpdated": "Dernière mise à jour",
+    "sector": "Secteur",
+    "roleType": "Type de poste",
+    "channel": "Canal",
+    "contact": "Contact",
+    "notes": "Notes",
+    "documents": "Documents",
+    "cv": "CV",
+    "coverLetter": "Lettre de motivation",
+    "noCv": "Aucun CV",
+    "noCover": "Aucune lettre de motivation",
+    "sourcePosting": "Offre source",
+    "rerunApply": "Relancer /apply",
+    "fileNotFound": "{label} : fichier introuvable"
+  },
+  "provenance": {
+    "title": "Provenance",
+    "none": "Aucune provenance enregistrée",
+    "summary": "{total, plural, one {# affirmation} other {# affirmations}} · {flagged, plural, =0 {aucune signalée} one {# signalée} other {# signalées}}",
+    "backedBy": "{source} › {location}",
+    "backedBySource": "{source}",
+    "flagged": "Signalée — aucun élément du profil ne l'appuie"
+  },
+  "toast": {
+    "updated": "Mise à jour · {time}",
+    "statusError": "Impossible de mettre à jour le statut : {error}",
+    "notesError": "Impossible d'enregistrer les notes : {error}",
+    "added": "Candidature ajoutée",
+    "addError": "Impossible d'ajouter la candidature : {error}"
+  }
+}

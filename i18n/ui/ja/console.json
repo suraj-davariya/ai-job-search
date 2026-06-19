@@ -1,0 +1,32 @@
+{
+  "title": "コンソール",
+  "description": "許可リストに登録されたCLIコマンドを実行し、その出力をライブで確認できます。",
+  "demo": {
+    "title": "ローカルダッシュボードで利用可能",
+    "hint": "コンソールは /apply、/upskill、給与ルックアップをお使いのマシン上で実行し、その出力をストリーミングします。これにはローカルでダッシュボードを実行する必要があり、この静的デモでは動作しません。CareerForge をインストールしてダッシュボードを起動するとご利用いただけます。",
+    "milestone": "コンソール",
+    "note": "デモビルド — コマンドの実行は無効です。"
+  },
+  "rerunApply": "/apply を再実行",
+  "runUpskill": "/upskill を実行",
+  "salaryLookup": "給与ルックアップ",
+  "company": "企業",
+  "companyPlaceholder": "企業",
+  "lookUp": "検索",
+  "stop": "停止",
+  "running": "実行中…",
+  "idle": "待機中",
+  "status": "終了コード {code} · {result}",
+  "elapsed": " · {seconds}秒",
+  "ok": "成功",
+  "failed": "失敗",
+  "noOutput": "まだ出力はありません。上のコマンドを実行してください。",
+  "recentRuns": "最近の実行",
+  "refreshRuns": "実行履歴を更新",
+  "noRuns": "実行履歴はまだありません。",
+  "exitCode": "終了コード {code}",
+  "tip": {
+    "readOnly": "読み取り専用モード — 操作は無効になっています",
+    "binMissing": "{bin} が PATH に見つかりません"
+  }
+}

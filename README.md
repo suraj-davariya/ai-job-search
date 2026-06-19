@@ -4,6 +4,11 @@
 
 **An AI job-search assistant that finds postings, writes tailored CVs and cover letters, and compiles them to print-ready PDFs — all on your own machine.**
 
+**🌍 Read this in your language:**
+[English](README.md) · [Español](i18n/readme/README.es.md) · [简体中文](i18n/readme/README.zh-Hans.md) · [हिन्दी](i18n/readme/README.hi.md) · [العربية](i18n/readme/README.ar.md) · [Português (BR)](i18n/readme/README.pt-BR.md) · [Français](i18n/readme/README.fr.md) · [Deutsch](i18n/readme/README.de.md) · [日本語](i18n/readme/README.ja.md) · [Русский](i18n/readme/README.ru.md) · [Bahasa Indonesia](i18n/readme/README.id.md) · [বাংলা](i18n/readme/README.bn.md)
+
+<sub>Translations are community / machine-assisted (beta); the English README is canonical. Add yours — see [`i18n/CONTRIBUTING.md`](i18n/CONTRIBUTING.md).</sub>
+
 <!-- Try it live — hosted on GitHub Pages, no install needed -->
 [![Live Docs](https://img.shields.io/badge/Docs-Live%20site-D97757?logo=githubpages&logoColor=white)](https://suraj-davariya.github.io/ai-job-search/)
 [![Live Dashboard Demo](https://img.shields.io/badge/Dashboard-Live%20demo-D97757?logo=nextdotjs&logoColor=white)](https://suraj-davariya.github.io/ai-job-search/dashboard/)

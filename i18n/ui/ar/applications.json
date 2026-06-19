@@ -1,0 +1,112 @@
+{
+  "page": {
+    "title": "الطلبات",
+    "description": "{count, plural, zero {لا توجد طلبات} one {طلب واحد} two {طلبان} few {# طلبات} many {# طلبًا} other {# طلب}} قيد التتبّع."
+  },
+  "table": {
+    "date": "التاريخ",
+    "company": "الشركة",
+    "role": "الوظيفة",
+    "type": "النوع",
+    "channel": "القناة",
+    "status": "الحالة",
+    "fit": "الملاءمة",
+    "contact": "جهة الاتصال",
+    "notes": "ملاحظات",
+    "cv": "السيرة الذاتية",
+    "cover": "خطاب التغطية",
+    "source": "المصدر",
+    "pdf": "PDF",
+    "open": "فتح"
+  },
+  "empty": {
+    "title": "لا توجد طلبات بعد",
+    "hintBefore": "شغّل",
+    "hintAfter": "لإضافة واحد.",
+    "newApplication": "طلب جديد"
+  },
+  "filter": {
+    "search": "البحث في الطلبات",
+    "searchPlaceholder": "ابحث عن شركة أو وظيفة أو ملاحظات…",
+    "roleType": "نوع الوظيفة",
+    "allTypes": "كل الأنواع",
+    "channel": "القناة",
+    "allChannels": "كل القنوات",
+    "minFit": "الحدّ الأدنى للملاءمة",
+    "fitPlaceholder": "الملاءمة ≥",
+    "fromDate": "من تاريخ",
+    "toDate": "إلى تاريخ",
+    "clear": "مسح",
+    "resultCount": "{count} من {total}"
+  },
+  "pipeline": {
+    "group": "أعداد مسار الطلبات",
+    "statusCount": "{status}: {count}",
+    "total": "{count} الإجمالي"
+  },
+  "new": {
+    "button": "طلب جديد",
+    "title": "طلب جديد",
+    "add": "إضافة طلب",
+    "cancel": "إلغاء",
+    "close": "إغلاق",
+    "readOnlyTip": "وضع القراءة فقط — التحرير معطّل"
+  },
+  "fields": {
+    "date": "التاريخ",
+    "status": "الحالة",
+    "company": "الشركة",
+    "role": "الوظيفة",
+    "sector": "القطاع",
+    "roleType": "نوع الوظيفة",
+    "channel": "القناة",
+    "contact": "جهة الاتصال",
+    "fit": "الملاءمة (0–100)",
+    "source": "رابط المصدر"
+  },
+  "validation": {
+    "dateRequired": "التاريخ مطلوب",
+    "companyRequired": "الشركة مطلوبة",
+    "roleRequired": "الوظيفة مطلوبة"
+  },
+  "aria": {
+    "statusFor": "حالة {company}",
+    "notesFor": "ملاحظات {company}"
+  },
+  "notes": {
+    "placeholder": "—"
+  },
+  "drawer": {
+    "closeDetails": "إغلاق التفاصيل",
+    "date": "التاريخ",
+    "lastUpdated": "آخر تحديث",
+    "sector": "القطاع",
+    "roleType": "نوع الوظيفة",
+    "channel": "القناة",
+    "contact": "جهة الاتصال",
+    "notes": "ملاحظات",
+    "documents": "المستندات",
+    "cv": "السيرة الذاتية",
+    "coverLetter": "خطاب التغطية",
+    "noCv": "لا توجد سيرة ذاتية",
+    "noCover": "لا يوجد خطاب تغطية",
+    "sourcePosting": "إعلان الوظيفة المصدر",
+    "rerunApply": "إعادة تشغيل /apply",
+    "fileNotFound": "{label}: لم يُعثر على الملف"
+  },
+  "provenance": {
+    "title": "المصدر",
+    "none": "لم يُسجَّل أي مصدر",
+    "summary": "{total, plural, zero {لا ادعاءات} one {ادعاء واحد} two {ادعاءان} few {# ادعاءات} many {# ادعاءً} other {# ادعاء}} · {flagged, plural, =0 {لا شيء معلَّم} zero {# معلَّم} one {# معلَّم} two {معلَّمان} few {# معلَّمة} many {# معلَّمًا} other {# معلَّم}}",
+    "backedBy": "{source} › {location}",
+    "backedBySource": "{source}",
+    "flagged": "معلَّم — لا سند في الملف الشخصي"
+  },
+  "toast": {
+    "updated": "محدَّث · {time}",
+    "statusError": "تعذّر تحديث الحالة: {error}",
+    "notesError": "تعذّر حفظ الملاحظات: {error}",
+    "added": "تمت إضافة الطلب",
+    "addError": "تعذّرت إضافة الطلب: {error}"
+  }
+}

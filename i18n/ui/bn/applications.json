@@ -1,0 +1,112 @@
+{
+  "page": {
+    "title": "আবেদনসমূহ",
+    "description": "{count, plural, one {# আবেদন} other {# আবেদন}} ট্র্যাক করা হয়েছে।"
+  },
+  "table": {
+    "date": "তারিখ",
+    "company": "কোম্পানি",
+    "role": "পদ",
+    "type": "ধরন",
+    "channel": "চ্যানেল",
+    "status": "স্ট্যাটাস",
+    "fit": "উপযুক্ততা",
+    "contact": "যোগাযোগ",
+    "notes": "নোট",
+    "cv": "CV",
+    "cover": "কভার",
+    "source": "উৎস",
+    "pdf": "PDF",
+    "open": "খুলুন"
+  },
+  "empty": {
+    "title": "এখনো কোনো আবেদন নেই",
+    "hintBefore": "চালান",
+    "hintAfter": "একটি যোগ করতে।",
+    "newApplication": "নতুন আবেদন"
+  },
+  "filter": {
+    "search": "আবেদন খুঁজুন",
+    "searchPlaceholder": "কোম্পানি, পদ, বা নোট খুঁজুন…",
+    "roleType": "পদের ধরন",
+    "allTypes": "সব ধরন",
+    "channel": "চ্যানেল",
+    "allChannels": "সব চ্যানেল",
+    "minFit": "ন্যূনতম উপযুক্ততা",
+    "fitPlaceholder": "উপযুক্ততা ≥",
+    "fromDate": "শুরুর তারিখ",
+    "toDate": "শেষের তারিখ",
+    "clear": "মুছুন",
+    "resultCount": "{total}-এর মধ্যে {count}"
+  },
+  "pipeline": {
+    "group": "পাইপলাইন সংখ্যা",
+    "statusCount": "{status}: {count}",
+    "total": "মোট {count}"
+  },
+  "new": {
+    "button": "নতুন আবেদন",
+    "title": "নতুন আবেদন",
+    "add": "আবেদন যোগ করুন",
+    "cancel": "বাতিল",
+    "close": "বন্ধ করুন",
+    "readOnlyTip": "শুধু-পঠন মোড — সম্পাদনা নিষ্ক্রিয়"
+  },
+  "fields": {
+    "date": "তারিখ",
+    "status": "স্ট্যাটাস",
+    "company": "কোম্পানি",
+    "role": "পদ",
+    "sector": "খাত",
+    "roleType": "পদের ধরন",
+    "channel": "চ্যানেল",
+    "contact": "যোগাযোগ",
+    "fit": "উপযুক্ততা (০–১০০)",
+    "source": "উৎস URL"
+  },
+  "validation": {
+    "dateRequired": "তারিখ আবশ্যক",
+    "companyRequired": "কোম্পানি আবশ্যক",
+    "roleRequired": "পদ আবশ্যক"
+  },
+  "aria": {
+    "statusFor": "{company}-এর স্ট্যাটাস",
+    "notesFor": "{company}-এর নোট"
+  },
+  "notes": {
+    "placeholder": "—"
+  },
+  "drawer": {
+    "closeDetails": "বিস্তারিত বন্ধ করুন",
+    "date": "তারিখ",
+    "lastUpdated": "সর্বশেষ হালনাগাদ",
+    "sector": "খাত",
+    "roleType": "পদের ধরন",
+    "channel": "চ্যানেল",
+    "contact": "যোগাযোগ",
+    "notes": "নোট",
+    "documents": "নথিপত্র",
+    "cv": "CV",
+    "coverLetter": "কভার লেটার",
+    "noCv": "কোনো CV নেই",
+    "noCover": "কোনো কভার লেটার নেই",
+    "sourcePosting": "উৎস পোস্টিং",
+    "rerunApply": "/apply পুনরায় চালান",
+    "fileNotFound": "{label}: ফাইল পাওয়া যায়নি"
+  },
+  "provenance": {
+    "title": "উৎস-সূত্র",
+    "none": "কোনো উৎস-সূত্র নথিভুক্ত নেই",
+    "summary": "{total, plural, one {# দাবি} other {# দাবি}} · {flagged, plural, =0 {কিছুই চিহ্নিত নয়} one {# চিহ্নিত} other {# চিহ্নিত}}",
+    "backedBy": "{source} › {location}",
+    "backedBySource": "{source}",
+    "flagged": "চিহ্নিত — প্রোফাইলে কোনো সমর্থন নেই"
+  },
+  "toast": {
+    "updated": "হালনাগাদকৃত · {time}",
+    "statusError": "স্ট্যাটাস হালনাগাদ করা যায়নি: {error}",
+    "notesError": "নোট সংরক্ষণ করা যায়নি: {error}",
+    "added": "আবেদন যোগ করা হয়েছে",
+    "addError": "আবেদন যোগ করা যায়নি: {error}"
+  }
+}

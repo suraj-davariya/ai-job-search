@@ -1,0 +1,22 @@
+{
+  "title": "বেতন",
+  "description": "আপনার বেতন বেঞ্চমার্ক দেখুন এবং একটি কোম্পানি লুকআপ চালান।",
+  "empty": {
+    "title": "কোনো বেতন ডেটা নেই",
+    "hint": "রিপো রুটে salary_data.json যোগ করুন (অথবা tools/convert_salary_excel.py দিয়ে একটি Excel শিট আমদানি করুন)। ততক্ষণ পর্যন্ত নিচের লুকআপটি কাজ করবে।",
+    "milestone": "REQ-5014"
+  },
+  "tableCaption": "{key} ({count})",
+  "lookupHeading": "একটি কোম্পানি খুঁজুন",
+  "company": "কোম্পানি",
+  "companyPlaceholder": "কোম্পানির নাম",
+  "lookUp": "খুঁজুন",
+  "looking": "খোঁজা হচ্ছে…",
+  "noMatch": "“{query}”-এর জন্য কোনো মিল পাওয়া যায়নি।",
+  "unnamed": "(নামহীন)",
+  "noOutput": "কোনো আউটপুট নেই।",
+  "tip": {
+    "readOnly": "শুধু-পঠন মোড — ক্রিয়াসমূহ নিষ্ক্রিয়",
+    "pythonMissing": "PATH-এ python3 পাওয়া যায়নি"
+  }
+}

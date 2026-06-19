@@ -1,0 +1,37 @@
+{
+  "app": {
+    "name": "CareerForge",
+    "description": "Tableau de bord local et privé de suivi des candidatures."
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "applications": "Candidatures",
+    "companies": "Entreprises",
+    "profile": "Profil",
+    "salary": "Salaire",
+    "upskill": "Montée en compétences",
+    "console": "Console",
+    "settings": "Paramètres"
+  },
+  "shell": {
+    "local": "Local · 127.0.0.1"
+  },
+  "theme": {
+    "toggle": "Changer de thème"
+  },
+  "status": {
+    "Draft": "Brouillon",
+    "Sent": "Envoyée",
+    "Interview": "Entretien",
+    "Offer": "Offre",
+    "Rejected": "Refusée",
+    "Withdrawn": "Retirée",
+    "Closed": "Clôturée"
+  },
+  "banner": {
+    "readOnly": "Mode lecture seule — l'édition est désactivée.",
+    "demoTitle": "Démo avec des données d'exemple.",
+    "demoBody": "L'édition, la Console et les aperçus PDF sont désactivés — ils nécessitent le tableau de bord réel exécuté en local.",
+    "demoBack": "Retour au guide →"
+  }
+}

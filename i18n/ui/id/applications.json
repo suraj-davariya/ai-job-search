@@ -1,0 +1,112 @@
+{
+  "page": {
+    "title": "Lamaran",
+    "description": "{count, plural, other {# lamaran}} terlacak."
+  },
+  "table": {
+    "date": "Tanggal",
+    "company": "Perusahaan",
+    "role": "Posisi",
+    "type": "Tipe",
+    "channel": "Kanal",
+    "status": "Status",
+    "fit": "Kecocokan",
+    "contact": "Kontak",
+    "notes": "Catatan",
+    "cv": "CV",
+    "cover": "Surat",
+    "source": "Sumber",
+    "pdf": "PDF",
+    "open": "Buka"
+  },
+  "empty": {
+    "title": "Belum ada lamaran",
+    "hintBefore": "Jalankan",
+    "hintAfter": "untuk menambahkan.",
+    "newApplication": "Lamaran baru"
+  },
+  "filter": {
+    "search": "Cari lamaran",
+    "searchPlaceholder": "Cari perusahaan, posisi, atau catatan…",
+    "roleType": "Tipe posisi",
+    "allTypes": "Semua tipe",
+    "channel": "Kanal",
+    "allChannels": "Semua kanal",
+    "minFit": "Kecocokan minimum",
+    "fitPlaceholder": "Kecocokan ≥",
+    "fromDate": "Dari tanggal",
+    "toDate": "Sampai tanggal",
+    "clear": "Bersihkan",
+    "resultCount": "{count} dari {total}"
+  },
+  "pipeline": {
+    "group": "Jumlah alur",
+    "statusCount": "{status}: {count}",
+    "total": "{count} total"
+  },
+  "new": {
+    "button": "Lamaran baru",
+    "title": "Lamaran baru",
+    "add": "Tambah lamaran",
+    "cancel": "Batal",
+    "close": "Tutup",
+    "readOnlyTip": "Mode hanya-baca — pengeditan dinonaktifkan"
+  },
+  "fields": {
+    "date": "Tanggal",
+    "status": "Status",
+    "company": "Perusahaan",
+    "role": "Posisi",
+    "sector": "Sektor",
+    "roleType": "Tipe posisi",
+    "channel": "Kanal",
+    "contact": "Kontak",
+    "fit": "Kecocokan (0–100)",
+    "source": "URL sumber"
+  },
+  "validation": {
+    "dateRequired": "Tanggal wajib diisi",
+    "companyRequired": "Perusahaan wajib diisi",
+    "roleRequired": "Posisi wajib diisi"
+  },
+  "aria": {
+    "statusFor": "Status untuk {company}",
+    "notesFor": "Catatan untuk {company}"
+  },
+  "notes": {
+    "placeholder": "—"
+  },
+  "drawer": {
+    "closeDetails": "Tutup detail",
+    "date": "Tanggal",
+    "lastUpdated": "Terakhir diperbarui",
+    "sector": "Sektor",
+    "roleType": "Tipe posisi",
+    "channel": "Kanal",
+    "contact": "Kontak",
+    "notes": "Catatan",
+    "documents": "Dokumen",
+    "cv": "CV",
+    "coverLetter": "Surat lamaran",
+    "noCv": "Tidak ada CV",
+    "noCover": "Tidak ada surat lamaran",
+    "sourcePosting": "Posting sumber",
+    "rerunApply": "Jalankan ulang /apply",
+    "fileNotFound": "{label}: berkas tidak ditemukan"
+  },
+  "provenance": {
+    "title": "Asal-usul",
+    "none": "Tidak ada asal-usul yang tercatat",
+    "summary": "{total, plural, other {# klaim}} · {flagged, plural, =0 {tidak ada yang ditandai} other {# ditandai}}",
+    "backedBy": "{source} › {location}",
+    "backedBySource": "{source}",
+    "flagged": "Ditandai — tidak ada dukungan profil"
+  },
+  "toast": {
+    "updated": "Diperbarui · {time}",
+    "statusError": "Tidak dapat memperbarui status: {error}",
+    "notesError": "Tidak dapat menyimpan catatan: {error}",
+    "added": "Lamaran ditambahkan",
+    "addError": "Tidak dapat menambahkan lamaran: {error}"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "requestFailed": "فشل الطلب",
+  "lookupFailed": "فشل البحث",
+  "csvParse": "تعذّرت قراءة ملف أداة التتبّع. تأكّد من أن job_search_tracker.csv ملف CSV صالح.",
+  "generic": "حدث خطأ ما."
+}

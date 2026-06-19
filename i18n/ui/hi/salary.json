@@ -1,0 +1,22 @@
+{
+  "title": "वेतन",
+  "description": "अपने वेतन बेंचमार्क देखें और किसी कंपनी की खोज चलाएँ।",
+  "empty": {
+    "title": "कोई वेतन डेटा नहीं",
+    "hint": "रिपॉज़िटरी रूट में salary_data.json जोड़ें (या tools/convert_salary_excel.py से कोई Excel शीट आयात करें)। तब तक, नीचे की खोज फिर भी काम करती है।",
+    "milestone": "REQ-5014"
+  },
+  "tableCaption": "{key} ({count})",
+  "lookupHeading": "कोई कंपनी खोजें",
+  "company": "कंपनी",
+  "companyPlaceholder": "कंपनी का नाम",
+  "lookUp": "खोजें",
+  "looking": "खोजा जा रहा है…",
+  "noMatch": "“{query}” के लिए कोई मेल नहीं मिला।",
+  "unnamed": "(अनामित)",
+  "noOutput": "कोई आउटपुट नहीं।",
+  "tip": {
+    "readOnly": "केवल-पढ़ने का मोड — क्रियाएँ अक्षम हैं",
+    "pythonMissing": "python3 PATH पर नहीं मिला"
+  }
+}

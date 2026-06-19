@@ -1,0 +1,6 @@
+{
+  "requestFailed": "permintaan gagal",
+  "lookupFailed": "pencarian gagal",
+  "csvParse": "Tidak dapat membaca berkas pelacak. Pastikan job_search_tracker.csv adalah CSV yang valid.",
+  "generic": "Terjadi kesalahan."
+}

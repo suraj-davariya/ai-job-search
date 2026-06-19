@@ -1,0 +1,37 @@
+{
+  "app": {
+    "name": "CareerForge",
+    "description": "本地、私密的求职申请追踪面板。"
+  },
+  "nav": {
+    "dashboard": "概览面板",
+    "applications": "申请",
+    "companies": "公司",
+    "profile": "个人档案",
+    "salary": "薪资",
+    "upskill": "技能提升",
+    "console": "控制台",
+    "settings": "设置"
+  },
+  "shell": {
+    "local": "本地 · 127.0.0.1"
+  },
+  "theme": {
+    "toggle": "切换主题"
+  },
+  "status": {
+    "Draft": "草稿",
+    "Sent": "已投递",
+    "Interview": "面试",
+    "Offer": "录用",
+    "Rejected": "已拒绝",
+    "Withdrawn": "已撤回",
+    "Closed": "已关闭"
+  },
+  "banner": {
+    "readOnly": "只读模式 — 编辑功能已禁用。",
+    "demoTitle": "使用示例数据的演示。",
+    "demoBody": "编辑、控制台和 PDF 预览均已禁用 — 这些功能需要在本地运行真实的面板。",
+    "demoBack": "返回指南 →"
+  }
+}

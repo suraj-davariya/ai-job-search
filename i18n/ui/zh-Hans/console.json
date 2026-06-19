@@ -1,0 +1,32 @@
+{
+  "title": "控制台",
+  "description": "运行允许列表中的 CLI 命令，并实时查看其输出。",
+  "demo": {
+    "title": "在本地面板中可用",
+    "hint": "控制台会在您的机器上运行 /apply、/upskill 和薪资查询，并实时流式输出结果。这需要在本地运行面板 — 在此静态演示中无法工作。请安装 CareerForge 并启动面板以使用该功能。",
+    "milestone": "控制台",
+    "note": "演示版本 — 命令执行已禁用。"
+  },
+  "rerunApply": "重新运行 /apply",
+  "runUpskill": "运行 /upskill",
+  "salaryLookup": "薪资查询",
+  "company": "公司",
+  "companyPlaceholder": "公司",
+  "lookUp": "查询",
+  "stop": "停止",
+  "running": "运行中…",
+  "idle": "空闲",
+  "status": "退出码 {code} · {result}",
+  "elapsed": " · {seconds}秒",
+  "ok": "成功",
+  "failed": "失败",
+  "noOutput": "暂无输出。请在上方触发一个命令。",
+  "recentRuns": "最近运行",
+  "refreshRuns": "刷新运行记录",
+  "noRuns": "暂无运行记录。",
+  "exitCode": "退出码 {code}",
+  "tip": {
+    "readOnly": "只读模式 — 操作已禁用",
+    "binMissing": "在 PATH 中未找到 {bin}"
+  }
+}
