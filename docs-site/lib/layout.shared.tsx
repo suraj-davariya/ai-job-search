@@ -1,11 +1,19 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
+import { i18n } from "@/lib/i18n";
+import { localizedDocsUrl } from "@/lib/i18n";
 
 /**
  * Shared chrome for the home and docs layouts: the wordmark and the
  * top-level nav links. The flame glyph is plain SVG — no external assets.
+ *
+ * `baseOptions(locale)` keeps the nav links inside the active language so a
+ * reader browsing `/es/docs` stays in Spanish. The default locale resolves to
+ * the unprefixed URLs (`/docs`), exactly as before. Passing `i18n` here is what
+ * makes Fumadocs render the language switcher in the layout.
  */
-export function baseOptions(): BaseLayoutProps {
+export function baseOptions(locale: string = i18n.defaultLanguage): BaseLayoutProps {
   return {
+    i18n,
     nav: {
       title: (
         <span className="flex items-center gap-2 font-semibold">
@@ -24,7 +32,7 @@ export function baseOptions(): BaseLayoutProps {
     links: [
       {
         text: "Guide",
-        url: "/docs",
+        url: localizedDocsUrl(locale),
         active: "nested-url",
       },
       {

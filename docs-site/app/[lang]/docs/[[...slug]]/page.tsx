@@ -9,12 +9,13 @@ import {
 import { notFound } from "next/navigation";
 import { getMDXComponents } from "@/mdx-components";
 
-// English (default locale) pages at the unprefixed `/docs/...` routes.
+// Localized pages for every non-default language. Untranslated pages fall back
+// to English content automatically (the locale storage inherits English files).
 export default async function Page(props: {
-  params: Promise<{ slug?: string[] }>;
+  params: Promise<{ lang: string; slug?: string[] }>;
 }) {
-  const params = await props.params;
-  const page = source.getPage(params.slug, i18n.defaultLanguage);
+  const { lang, slug } = await props.params;
+  const page = source.getPage(slug, lang);
   if (!page) notFound();
 
   const MDX = page.data.body;
@@ -31,17 +32,18 @@ export default async function Page(props: {
 }
 
 export function generateStaticParams() {
-  // Only the default-language pages live here; the `[lang]` route emits the rest.
+  // Every non-default language × every page (translated or English fallback).
+  // The default language is excluded here — it lives at the unprefixed `/docs`.
   return source
-    .getPages(i18n.defaultLanguage)
-    .map((page) => ({ slug: page.slugs }));
+    .generateParams()
+    .filter((params) => params.lang !== i18n.defaultLanguage);
 }
 
 export async function generateMetadata(props: {
-  params: Promise<{ slug?: string[] }>;
+  params: Promise<{ lang: string; slug?: string[] }>;
 }) {
-  const params = await props.params;
-  const page = source.getPage(params.slug, i18n.defaultLanguage);
+  const { lang, slug } = await props.params;
+  const page = source.getPage(slug, lang);
   if (!page) notFound();
 
   return {
