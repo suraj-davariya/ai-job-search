@@ -4,10 +4,11 @@
 
 **An AI job-search assistant that finds postings, writes tailored CVs and cover letters, and compiles them to print-ready PDFs — all on your own machine.**
 
-**🌍 Read this in your language:**
-[English](README.md) · [Español](i18n/readme/README.es.md) · [简体中文](i18n/readme/README.zh-Hans.md) · [हिन्दी](i18n/readme/README.hi.md) · [العربية](i18n/readme/README.ar.md) · [Português (BR)](i18n/readme/README.pt-BR.md) · [Français](i18n/readme/README.fr.md) · [Deutsch](i18n/readme/README.de.md) · [日本語](i18n/readme/README.ja.md) · [Русский](i18n/readme/README.ru.md) · [Bahasa Indonesia](i18n/readme/README.id.md) · [বাংলা](i18n/readme/README.bn.md)
+**🌍 Read this in your language** _(alphabetical · 12 available · all beta, English is canonical):_
 
-<sub>Translations are community / machine-assisted (beta); the English README is canonical. Add yours — see [`i18n/CONTRIBUTING.md`](i18n/CONTRIBUTING.md).</sub>
+[العربية (Arabic)](i18n/readme/README.ar.md) · [বাংলা (Bengali)](i18n/readme/README.bn.md) · [简体中文 (Chinese, Simplified)](i18n/readme/README.zh-Hans.md) · [Deutsch (German)](i18n/readme/README.de.md) · [English](README.md) · [Español (Spanish)](i18n/readme/README.es.md) · [Français (French)](i18n/readme/README.fr.md) · [हिन्दी (Hindi)](i18n/readme/README.hi.md) · [Bahasa Indonesia (Indonesian)](i18n/readme/README.id.md) · [日本語 (Japanese)](i18n/readme/README.ja.md) · [Português BR (Portuguese)](i18n/readme/README.pt-BR.md) · [Русский (Russian)](i18n/readme/README.ru.md)
+
+<sub>**Planned** (help translate — [`i18n/CONTRIBUTING.md`](i18n/CONTRIBUTING.md)): Chinese (Traditional), Dutch, Filipino, Hebrew, Italian, Korean, Malay, Marathi, Persian, Polish, Portuguese (Portugal), Romanian, Swahili, Tamil, Telugu, Thai, Turkish, Ukrainian, Urdu, Vietnamese.</sub>
 
 <!-- Try it live — hosted on GitHub Pages, no install needed -->
 [![Live Docs](https://img.shields.io/badge/Docs-Live%20site-D97757?logo=githubpages&logoColor=white)](https://suraj-davariya.github.io/ai-job-search/)
