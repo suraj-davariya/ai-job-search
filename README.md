@@ -140,6 +140,16 @@ python3 --version    # must be 3.10+
 pip install openpyxl # only needed if importing salary data from Excel
 ```
 
+### 4. pandoc & poppler _(optional — for ATS-safe CV exports)_
+
+```bash
+pandoc --version     # generates the .docx export (and higher-fidelity .txt)
+pdftotext -v         # poppler — runs the ATS parse self-check
+```
+
+Without these, `/apply` still produces the polished PDF **and** a plain-text `.txt`; only
+the `.docx` export and the PDF parse-check are skipped (graceful degradation).
+
 ---
 
 ## Quick Start
@@ -550,6 +560,15 @@ ai-job-search/
 │   ├── main_example.tex       # Cover letter template
 │   └── OpenFonts/fonts/       # Bundled Lato, Raleway, FontAwesome 6 Free TTFs
 │
+├── i18n/                      # Localization tree — UI/README in 12 languages
+│   ├── _meta/languages.json   # Language registry (12 Tier-1 + 20 Tier-2)
+│   ├── ui/<lang>/             # ICU UI strings (en = source of truth)
+│   └── readme/                # Localized READMEs (English is canonical)
+│
+├── locale-packs/              # Per-market CV conventions (us, de, jp, br, in, eu…)
+│
+├── trust-safety/              # Scam-pattern catalog for the legitimacy gate
+│
 ├── documents/                 # Drop your source docs here (gitignored)
 │   ├── cv/                    # Existing CVs (PDF or DOCX)
 │   ├── linkedin/              # LinkedIn data export
@@ -606,6 +625,7 @@ xelatex main_example.tex
 | **v1.0 — Dashboard** (Epic 9) | ✅ Complete | Local tracking dashboard at `127.0.0.1:4480` — view/edit tracker, analytics, run commands from the browser |
 | **v1.1** (Epics 10–11) | ✅ Complete | `/upskill` skill-gap analysis + learning plan, and `/expand` competency expansion from your docs, GitHub, and the web |
 | **v1.2** (Epic 12) | ✅ Complete | `/reset`, interview-prep framework, ADR-0004 portal-adapter pattern + example, research agent |
+| **v1.3 — Global Reach & Trust** (Epics 13–19) | ✅ Complete | UI + README in 12 languages (beta) + pluggable locale packs (CV conventions per market); posting-legitimacy gate (scam/ghost-job shield); ATS-safe CV exports (`.txt`/`.docx`) + parse self-check; fabrication-audit **Provenance** panel; token-free scan tier |
 | **v2.0** | 💡 Future | Template marketplace, community portal adapters, GUI |
 
 See the full plan in [`docs/plan/delivery-strategy.md`](docs/plan/delivery-strategy.md).
