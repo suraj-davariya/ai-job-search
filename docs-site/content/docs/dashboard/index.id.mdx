@@ -1,0 +1,57 @@
+---
+title: Dashboard
+description: Seluruh pencarian kerja Anda dalam satu layar — langsung, lokal, dan jujur tentang angka-angkanya.
+---
+
+Melamar pekerjaan menghasilkan semacam amnesia yang aneh. Apakah bulan ini lebih baik
+daripada bulan lalu? Berapa banyak lamaran yang sebenarnya masih hidup? Ke perusahaan mana
+Anda diam-diam sudah melamar empat kali? Dashboard hadir untuk menjawab pertanyaan-pertanyaan
+itu dalam sekejap.
+
+Ini adalah sebuah halaman web yang berjalan **di mesin Anda sendiri** dan membaca [berkas
+pelacak Anda](/id/docs/your-data) — berkas yang sama yang ditulis oleh `/apply`. Buka di
+peramban dan seluruh alur Anda berubah menjadi angka dan gambar.
+
+## Coba sekarang juga
+
+Semua yang ada di bawah ini adalah widget dashboard yang sebenarnya, berjalan langsung di
+peramban Anda dengan data fiktif. Klik keranjang status. Alihkan jendela 7d/30d. Milik Anda
+akan terlihat seperti ini, terisi dengan pencarian Anda sendiri.
+
+<DashboardPreview />
+
+> **Ingin seluruh aplikasi, bukan hanya widget ini?** Buka
+> [**dashboard demo langsung**](https://suraj-davariya.github.io/ai-job-search/dashboard/) —
+> antarmuka dashboard yang sebenarnya, setiap halaman dan seluruhnya, berjalan secara statis
+> dengan data sampel yang sama. Ini bersifat hanya-baca (pengeditan, Console, dan pratinjau
+> PDF memerlukan aplikasi yang berjalan secara lokal), tetapi navigasi, grafik, dan tabelnya
+> adalah hal yang sebenarnya.
+
+## Cermin, bukan panel kendali
+
+Dashboard sengaja hampir tidak mengubah apa pun. Fakta-fakta sebuah lamaran — kapan, di mana,
+peran apa, skor kecocokan, berkas mana yang dihasilkan — ditulis sekali oleh `/apply` dan
+tidak pernah berubah. Yang *memang* berubah seiring berjalannya pencarian Anda adalah hak Anda
+untuk memperbaruinya, langsung di tabel:
+
+- **Status** — Sent? Wawancara terjadwal? Offer? Satu klik, dan hanya langkah yang sah
+  ditawarkan (lihat [tabel lamaran](/id/docs/dashboard/applications-table)).
+- **Catatan** — apa pun yang akan Anda coret di tepi halaman: nama, tanggal, firasat.
+
+Itulah seluruh permukaan tulis. Segala hal lain bersifat hanya-baca dengan sengaja, sehingga
+dashboard tidak akan pernah dapat merusak riwayat Anda — dan jika sebuah berkas data hilang
+atau rusak, halaman menampilkan "no data yet" yang jujur alih-alih mogok.
+
+## Dari mana angka-angka berasal
+
+Setiap grafik dan KPI dihitung dari berkas pelacak Anda saat ditampilkan — tidak ada basis
+data kedua yang bisa menyimpang dari sinkronisasi. Aritmetikanya adalah kumpulan kecil fungsi
+yang sama yang diuji proyek ini terhadap dashboard itu sendiri, dan panduan ini
+mendokumentasikannya dengan tepat:
+
+- [KPI](/id/docs/dashboard/kpis) — empat angka utama dan aturan kejujuran di balik "—" yang
+  terkadang akan Anda lihat.
+- [Grafik](/id/docs/dashboard/charts) — apa yang diberitahukan masing-masing dari enam
+  visual ini, dan cara membacanya.
+- [Tabel lamaran](/id/docs/dashboard/applications-table) — pemfilteran, pengeditan, dan mesin
+  status.

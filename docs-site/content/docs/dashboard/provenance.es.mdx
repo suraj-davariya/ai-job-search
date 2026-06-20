@@ -1,0 +1,55 @@
+---
+title: El Panel de Procedencia
+description: Cada afirmación del CV, rastreada de vuelta al archivo de perfil que la respalda — la auditoría de fabricación, hecha visible.
+---
+
+La promesa más antigua de CareerForge es que nunca inventa experiencia. El
+**panel de Procedencia** es donde puedes *comprobar* esa promesa, postulación
+por postulación, en lugar de tomarla por fe.
+
+Vive dentro del cajón de detalle de una postulación: abre una fila en [la tabla
+de postulaciones](/es/docs/dashboard/applications-table) y el panel de
+Procedencia se ubica junto al registro. Despliega cada afirmación que hace el
+CV adaptado y, junto a cada una, la **fuente del perfil** que la respalda.
+
+## Qué muestra
+
+Cada línea empareja una afirmación con su origen:
+
+- **La afirmación** — una habilidad, un resultado, una responsabilidad,
+  exactamente como aparece en el CV generado.
+- **Su fuente** — el archivo de perfil del que se extrajo esa afirmación, para
+  que puedas ver *por qué* el documento tiene permitido decirlo.
+- **Una marca, cuando no la hay.** Cualquier afirmación que `/apply` no pudo
+  rastrear de vuelta a tu perfil real se **resalta para revisión** en lugar de
+  ocultarse. Ese es todo el punto: una afirmación sin respaldo es algo para
+  mirar, no algo para enviar en silencio.
+
+## Un espejo, como el resto del panel
+
+El panel es de **solo lectura**. No edita tu CV, tu perfil ni tu tracker — solo
+refleja la auditoría que `/apply` ya produjo. Lee de un archivo plano escrito
+junto a los documentos de la postulación:
+
+```text
+documents/applications/<company>_<role>/provenance.json
+```
+
+Eso es [file-as-DB](/es/docs/your-data) otra vez: el libro mayor es un archivo
+legible por humanos en tu máquina, generado una vez cuando se generaron los
+documentos, y nunca llamado a casa. Si el archivo falta — digamos para una
+postulación agregada a mano — el panel simplemente muestra nada que auditar en
+lugar de fallar.
+
+## Por qué vale la pena mirarlo
+
+Una afirmación marcada no es una acusación; es una invitación. Tal vez al
+perfil solo le falta algo que genuinamente hiciste — corrige el perfil y vuelve
+a ejecutar. Tal vez una formulación se desvió más allá de lo que puedes
+defender cómodamente — suavízala o córtala antes de enviar. De cualquier forma,
+el panel de Procedencia convierte el *"confía en mí, nada está inventado"* en
+algo que puedes verificar línea por línea.
+
+**Relacionado:**
+[`/apply`](/es/docs/commands/apply#every-claim-traced-to-its-source) es donde
+se produce el libro mayor; este panel es donde lo lees de vuelta.

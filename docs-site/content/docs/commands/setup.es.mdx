@@ -1,0 +1,70 @@
+---
+title: /setup
+description: Construye tu perfil de candidato una vez — desde tus documentos, un CV o una conversación.
+---
+
+Todo lo que CareerForge escribe sobre ti viene de un solo lugar: tu perfil.
+`/setup` lo construye. Lo ejecutas una vez al inicio, y de nuevo solo cuando
+algo sobre ti cambia — un nuevo empleo, una nueva certificación, una nueva
+ciudad.
+
+## Tres formas de entrar, el mismo resultado
+
+Cuando escribes `/setup`, observa lo que tienes y ofrece tres caminos:
+
+| Camino | Mejor cuando | Qué pasa |
+|------|-----------|--------------|
+| **A — Escanear mis documentos** | Has colocado CVs, una exportación de LinkedIn, diplomas o cartas de referencia en la carpeta `documents/` | Lee todo, cruza las fuentes entre sí y propone contenido de perfil |
+| **B — Importar un único CV** | Tienes un buen CV y quieres un inicio rápido | Extrae lo que contiene el CV, luego hace preguntas específicas sobre lo que los CVs suelen omitir |
+| **C — Entrevístame** | Empiezas de cero, sin documentos necesarios | Una conversación guiada por nueve temas: identidad, educación, experiencia, habilidades, etc. |
+
+Los tres caminos terminan en el mismo lugar: un conjunto de archivos de perfil
+que describen tu experiencia, estilo de trabajo, preferencias de evaluación y
+objetivos de búsqueda de empleo.
+
+## Las reglas que sigue
+
+Vale la pena conocerlas, porque son la razón por la que puedes confiar en el
+resultado:
+
+- **Nada se escribe sin tu OK.** Cada cambio propuesto se muestra primero. El
+  contenido nuevo llega como una lista de verificación que apruebas; cualquier
+  cosa que *entre en conflicto* con lo que ya está en el archivo se presenta de
+  uno en uno con opciones de mantener / reemplazar / editar.
+- **Nunca llena vacíos con suposiciones.** Si no conoce tu año de graduación,
+  pregunta — no inventa uno.
+- **Las fuentes en desacuerdo se marcan.** Si tu CV dice que un empleo terminó
+  en 2021 y LinkedIn dice 2022, verás ambos y elegirás el correcto.
+- **Ejecutarlo dos veces es seguro.** `/setup` es idempotente: volver a
+  ejecutarlo con las mismas entradas no propone nada nuevo y no sobrescribe
+  nada.
+
+## Actualizar una sección más tarde
+
+No rehaces toda la entrevista para cambiar una cosa:
+
+```text
+/setup --section experience
+```
+
+Las secciones válidas incluyen `identity`, `education`, `experience`,
+`skills`, `behavioral`, `interview-prep` y `search` — esta última regenera tus
+consultas de bolsas de empleo y preferencias de ubicación, lo cual es útil
+cuando te mudas o cambias de objetivos:
+
+```text
+/setup --section search
+```
+
+## Qué construye
+
+Siete documentos de perfil más tu configuración de búsqueda — entre ellos tu
+perfil de candidato (experiencia, habilidades, educación), un perfil conductual
+(estilo de trabajo y preferencias), declaraciones de perfil para diferentes
+tipos de puesto, e historias de entrevista en el formato STAR extraídas de tus
+logros reales. Donde una historia necesita tu memoria en primera persona para
+completarse, deja un stub claramente marcado para ti en lugar de inventar los
+detalles.
+
+**Qué pasa después:** estás listo para [encontrar empleos con
+/search](/es/docs/commands/search).

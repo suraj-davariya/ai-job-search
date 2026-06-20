@@ -1,0 +1,64 @@
+---
+title: /search
+description: Recorre las bolsas de empleo que elegiste, omite lo que ya has visto y obtén una lista clasificada de nuevas coincidencias.
+---
+
+`/search` es tu explorador. Ejecuta las búsquedas que de otro modo harías a
+mano a través de cada bolsa de empleo que has configurado, descarta los
+duplicados y las publicaciones que ya has visto, y clasifica lo que queda por
+qué tan bien te ajusta *a ti*.
+
+## Cómo se ve una ejecución
+
+```text
+you:    /search
+claude: Searching your configured portals for the last 14 days…
+        Found 7 new positions (2 high, 3 medium, 2 low match)
+
+         #  Fit     Title                  Company     Location
+         1  High    Senior Data Engineer   Acme Corp   Amsterdam, NL
+         2  High    ML Platform Engineer   Beta Labs   Remote (EU)
+         3  Medium  Data Analyst           Gamma AG    Berlin, DE
+        …
+        Want me to evaluate any of these in detail? Just give me the number(s).
+```
+
+Responde con un número y esa publicación se pasa directamente a
+[`/apply`](/es/docs/commands/apply) para la evaluación completa.
+
+## Enfocar una búsqueda
+
+| Lo que escribes | Qué hace |
+|----------|--------------|
+| `/search` | Ejecuta tus tres categorías de consulta de mayor prioridad |
+| `/search data science` | Prioriza las categorías que coinciden con "data science" |
+| `/search broad` | Ejecuta *todas* tus categorías de consulta configuradas — la red amplia |
+
+## Cómo decide qué ves
+
+1. **Tu configuración lo impulsa todo.** Las bolsas de empleo, frases de
+   búsqueda, ubicaciones y niveles de distancia vienen todos de la
+   configuración de búsqueda que `/setup` construyó contigo. Ningún sitio o
+   país está fijado en el código — LinkedIn, Indeed, un portal nacional en tu
+   país, todos igualmente bienvenidos.
+2. **Recuerda lo que has visto.** Cada publicación que alguna vez te ha
+   mostrado queda registrada, así que el mismo puesto nunca desperdicia tu
+   atención dos veces — incluso entre distintas ejecuciones en distintos días.
+3. **Pre-clasifica el ajuste.** Cada nueva publicación recibe una señal rápida
+   Alto / Medio / Bajo contra tu perfil, y las coincidencias Altas vienen con
+   dos o tres viñetas que explican el *por qué*.
+   Junto a esa señal también verás una rápida marca de legitimidad — un
+   marcador **⚠ Suspicious** en publicaciones que parecen estafas o empleos
+   fantasma — para que puedas detectar un anuncio riesgoso antes de invertir un
+   [`/apply`](/es/docs/commands/apply) completo en él. (La comprobación
+   exhaustiva de legitimidad aún ocurre dentro de `/apply`; esto es solo el
+   aviso temprano.)
+4. **Respeta tus límites.** Las publicaciones fuera de tus ubicaciones
+   aceptables o más antiguas de catorce días se filtran antes de que las veas.
+
+La señal rápida es deliberadamente tosca — su trabajo es el triaje. La
+puntuación completa de cinco dimensiones ocurre cuando envías una publicación a
+`/apply`.
+
+**Qué pasa después:** elige un número, y [/apply](/es/docs/commands/apply)
+toma el control con una evaluación adecuada y, si lo apruebas, los documentos.

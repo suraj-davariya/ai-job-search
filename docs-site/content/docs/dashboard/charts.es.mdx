@@ -1,0 +1,87 @@
+---
+title: Los Gráficos
+description: Seis imágenes de tu búsqueda — qué te dice cada una y cómo leerla.
+---
+
+Seis gráficos, cada uno respondiendo una pregunta sobre tu búsqueda. Todos
+están en vivo abajo, dibujados desde el mismo tracker ficticio que el resto de
+esta guía — desliza, pasa el cursor y haz clic.
+
+## Postulaciones por semana
+
+*¿Estoy manteniendo un ritmo?*
+
+<WeeklyBarDemo />
+
+Cada barra es una semana (las semanas empiezan el lunes), y su altura es
+cuántas postulaciones fechaste en ella. Las búsquedas de empleo viven y mueren
+según el ritmo, y este es el gráfico que muestra el tuyo — incluyendo los
+vacíos. Una barra faltante no es vergüenza, es información.
+
+## Calendario de actividad
+
+*¿Cómo se ve realmente mi consistencia?*
+
+<ActivityCalendarDemo />
+
+Los mismos datos que las barras semanales, pero día a día, como un diario de
+un año de un vistazo. Los cuadros más cálidos significan más postulaciones ese
+día. Aquí saltan a la vista patrones que el gráfico de barras suaviza: la pausa
+de dos semanas en abril, el hábito de solo los domingos, los sprints de fin de
+mes.
+
+## Mezcla de estados
+
+*¿Dónde está todo justo ahora?*
+
+<StatusDonutDemo />
+
+Cada postulación en tu tracker, agrupada por su estado actual. El número en el
+medio es tu total de todos los tiempos. Un anillo saludable cambia de forma con
+el tiempo: al principio es mayormente Sent; más tarde, Interview y los estados
+cerrados crecen. Un anillo que es todo Draft es una pila de cartas sin enviar —
+útil de notar.
+
+## Distribución de ajuste
+
+*¿Estoy apuntando a los empleos correctos?*
+
+<FitHistogramDemo />
+
+La puntuación de ajuste de cada postulación (0–100), agrupada en cinco bandas.
+Masa en las bandas 60–100 significa que estás postulando donde genuinamente
+compites. Una cola alta en 0–39 normalmente significa que la búsqueda necesita
+estrecharse — o que estás forzando postulaciones que ya sospechas que son tiros
+lejanos.
+
+## Empresas principales
+
+*¿A dónde va mi atención?*
+
+<TopCompaniesDemo />
+
+Las cinco empresas a las que más te has postulado. Las postulaciones repetidas
+a una empresa pueden ser persistencia o una señal para variar el enfoque — de
+cualquier forma, es mejor saberlo que ser sorprendido.
+
+## Tira del proceso
+
+*El resumen de una línea.*
+
+<PipelineStripDemo />
+
+Los mismos conteos de estado que el dónut, como una tira compacta que se ubica
+sobre la tabla de postulaciones. En el panel real los dos se mantienen
+sincronizados: haz clic en un estado aquí y la tabla se filtra para coincidir.
+Los estados terminales (Rejected, Withdrawn, Closed) se renderizan atenuados —
+fuera del camino, nunca eliminados.
+
+---
+
+Una nota sobre la confianza: cada gráfico de arriba se calcula con la misma
+aritmética que el panel real, se prueba automáticamente contra él, y cada
+gráfico lleva una tabla de datos oculta para lectores de pantalla — así que lo
+que *ves* siempre está respaldado por números que podrías leer de otra manera.
+
+**Siguiente:** [la tabla de postulaciones](/es/docs/dashboard/applications-table),
+donde ocurre el trabajo del día a día.

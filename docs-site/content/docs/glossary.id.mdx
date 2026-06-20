@@ -1,0 +1,241 @@
+---
+title: Glosarium
+description: Setiap istilah CareerForge, dalam bahasa sederhana — disalin dari glosarium kanonis proyek.
+---
+
+Istilah yang sama, dalam makna yang sama, seperti
+[glosarium teknik](https://github.com/suraj-davariya/ai-job-search/blob/main/docs/glossary.md)
+kanonis proyek — diutarakan di sini dengan mengutamakan manusia. Ketika sebuah
+istilah memiliki halaman panduannya sendiri, ia ditautkan.
+
+## A
+
+**Application Pipeline** — perjalanan menyeluruh yang dijalankan
+[`/apply`](/id/docs/commands/apply): lowongan masuk → evaluasi kecocokan, CV yang
+disesuaikan, surat lamaran, peninjauan, PDF terkompilasi keluar.
+
+**Application Tracker** — [berkas CSV](/id/docs/your-data) yang mencatat setiap
+lamaran: perusahaan, posisi, status, peringkat kecocokan, dan tautan ke dokumen
+persis yang dikirim. Menjadi sumber bagi dasbor dan deduplikasi di `/search`.
+
+**Application Status Enum** — tujuh nilai yang diizinkan untuk kolom status:
+`Draft, Sent, Interview, Offer, Rejected, Withdrawn, Closed`. Dasbor
+[menegakkan perpindahan mana di antara mereka yang
+sah](/id/docs/dashboard/applications-table#the-status-state-machine).
+
+**Atomic CSV Write** — cara dasbor menyimpan pelacak Anda tanpa pernah
+meninggalkan berkas yang setengah tertulis, bahkan jika ada yang menginterupsi di
+tengah penyimpanan: tulis salinan sementara dulu, simpan cadangan, lalu tukar ke
+tempatnya dalam satu langkah.
+
+**ATS-Safe Export** — pendamping yang dapat dibaca mesin yang dihasilkan
+[`/apply`](/id/docs/commands/apply#exports-a-robot-can-read-too) di samping PDF yang
+rapi — sebuah `.txt` teks polos dan `.docx` Word dari konten yang sama — sehingga
+sistem pelacak pelamar dapat mengurai CV Anda dengan andal. Pemeriksaan mandiri
+memastikan teksnya dapat dipulihkan dari PDF.
+
+**Allowed-Tools** — daftar keamanan internal yang menyatakan alat mana yang boleh
+digunakan setiap keterampilan CareerForge; apa pun yang tidak terdaftar ditolak.
+
+## B
+
+**Behavioral Profile** — bagian dari profil Anda yang menjelaskan cara Anda
+bekerja: gaya, kekuatan, area pertumbuhan, lingkungan yang disukai. Membentuk suara
+surat lamaran dan skor kecocokan budaya.
+
+**Business Rules Engine** — kerangka penilaian tetap dan aturan validasi di balik
+evaluasi kecocokan, pemotongan konten, dan pemeriksaan kualitas akhir.
+
+## C
+
+**Candidate Profile** — catatan terstruktur tentang identitas, pendidikan,
+pengalaman, dan keterampilan Anda. [Dibangun oleh `/setup`](/id/docs/commands/setup);
+sumber kebenaran yang harus dilacak oleh setiap klaim CV.
+
+**Competency Expansion** — menemukan keterampilan yang tersirat dalam dokumen Anda
+tetapi belum tercantum di profil Anda (direncanakan: perintah `/expand`).
+
+**Compile-and-Inspect Loop** — setelah membuat draf, dokumen dikompilasi ke PDF dan
+diperiksa secara visual — jumlah halaman, judul yang terpisah, ketidakcocokan font —
+dan diperbaiki ulang hingga bersih.
+
+**Content Cutting (Relevance-Weighted)** — ketika CV melampaui dua halaman, baris
+yang paling tidak relevan dengan lowongan *ini* dipotong lebih dulu, di mana pun
+mereka berada.
+
+**Cross-Reference Check** — selama onboarding, sumber-sumber Anda dibandingkan satu
+sama lain (CV vs LinkedIn vs ijazah); setiap ketidaksesuaian ditampilkan kepada Anda
+untuk diselesaikan, tidak pernah dipilih diam-diam.
+
+## D
+
+**Deal-Breaker** — batasan keras milik Anda (tidak mau relokasi, gaji minimum) yang
+mendiskualifikasi sebuah pekerjaan terlepas dari setiap skor lainnya.
+
+**Drafter Agent** — AI utama dalam alur: mengevaluasi kecocokan, menulis dokumen,
+menerapkan umpan balik dari peninjau.
+
+**Document Folder** — `documents/`, tempat Anda menaruh CV, ekspor LinkedIn, ijazah,
+dan surat referensi untuk dipindai [`/setup`](/id/docs/commands/setup).
+
+## E
+
+**Evaluation Framework** — sistem penilaian lima dimensi:
+Technical Skills 30%, Career Alignment 30%, Experience 25%, Behavioral Fit
+15%, Location lulus/gagal. Lihat [`/apply`](/id/docs/commands/apply).
+
+## F
+
+**Fabrication Audit** — pemeriksaan, dijalankan oleh
+[`/apply`](/id/docs/commands/apply#every-claim-traced-to-its-source), yang melacak
+setiap klaim CV kembali ke berkas profil yang mendukungnya dan menandai apa pun yang
+tidak bisa dilacak. Anda membaca hasilnya di [panel
+Provenance](/id/docs/dashboard/provenance).
+
+**Fit Assessment (Quick)** — pemeringkatan cepat Tinggi / Sedang / Rendah yang
+diberikan [`/search`](/id/docs/commands/search) kepada setiap lowongan baru. Triase,
+bukan evaluasi penuh.
+
+**Fit Rating** — skor berbobot 0–100 dari evaluasi penuh. Kolom 9
+[pelacak Anda](/id/docs/your-data); bahan bakar untuk
+[grafik kecocokan](/id/docs/dashboard/charts#fit-distribution).
+
+**Forward-Looking Framing** — prinsip surat lamaran: tulis tentang masalah yang akan
+Anda selesaikan untuk mereka, bukan ringkasan CV Anda.
+
+## G
+
+**Gap Heatmap** — tabel terprioritisasi berisi kesenjangan keterampilan antara
+profil Anda dan lowongan target (direncanakan: perintah `/upskill`).
+
+**Ghost Job** — lowongan yang diiklankan tetapi sebenarnya tidak benar-benar diisi —
+dibiarkan terbuka untuk mengumpulkan resume, mengukur pasar, atau tampak seperti
+pertumbuhan. Salah satu tanda bahaya yang diawasi pemeriksaan [keabsahan
+lowongan](#p).
+
+## I
+
+**Idempotent Operation** — aman dijalankan dua kali: menjalankan ulang `/setup`
+dengan masukan yang sama tidak menduplikasi apa pun dan tidak menimpa apa pun.
+
+**Interview Backtrack Test** — tolok ukur kualitas untuk setiap klaim: bisakah Anda
+mendukung kalimat ini dalam wawancara tanpa "yah, maksud saya sebenarnya…"? Jika
+tidak, ia dilunakkan atau dipotong.
+
+## J
+
+**Job Portal Adapter** — konektor yang dapat dipasang untuk satu papan lowongan,
+sehingga papan baru dapat ditambahkan tanpa menyentuh inti (direncanakan untuk
+tonggak masa depan).
+
+## L
+
+**Language Registry** — kumpulan bahasa antarmuka yang dihadirkan CareerForge, saat
+ini 12 (terjemahan mesin, dalam beta), dengan bahasa Inggris sebagai kanonis. Lihat
+[Bahasa & Lokal](/id/docs/languages).
+
+**Learning Plan** — panduan belajar terstruktur yang dihasilkan dari analisis
+kesenjangan keterampilan (direncanakan: `/upskill`).
+
+**Legitimacy Verdict** — penilaian mandiri yang diberikan
+[`/apply`](/id/docs/commands/apply#first-it-checks-the-posting-is-real) kepada sebuah
+lowongan — **Verified**, **Caution**, atau **Suspicious** — dengan alasan terkutip,
+dijaga terpisah dari skor kecocokan agar peringatan tidak bisa dirata-ratakan hingga
+hilang.
+
+**Locale Pack** — paket per-pasar berisi konvensi CV (istilah dokumen, ukuran dan
+jumlah halaman, norma foto, kolom pribadi, format tanggal, klausa GDPR) yang
+diterapkan [`/apply`](/id/docs/commands/apply) untuk pasar yang Anda incar. Terpisah
+dari bahasa antarmuka. Lihat [Bahasa & Lokal](/id/docs/languages).
+
+## N
+
+**Named Sub-Agent** — mekanisme internal untuk mendefinisikan agen AI tambahan
+(peninjau adalah salah satunya) dengan instruksi sendiri dan, secara opsional, model
+sendiri.
+
+## O
+
+**Onboarding** — tiga jalur konvergen [`/setup`](/id/docs/commands/setup) — memindai
+dokumen, mengimpor CV, atau wawancara — yang semuanya berakhir pada profil yang sama.
+
+## P
+
+**Profile Files** — tujuh dokumen yang mendefinisikan identitas profesional Anda:
+profil kandidat, profil perilaku, gaya menulis, kerangka evaluasi, templat CV,
+templat surat lamaran, persiapan wawancara.
+
+**Pipeline KPI** — angka utama dasbor: jumlah status, rata-rata kecocokan (30 hari),
+tingkat wawancara (90 hari). Lihat [KPI](/id/docs/dashboard/kpis).
+
+**Posting Legitimacy** — pertanyaan apakah sebuah lowongan asli dan aman untuk
+ditindaklanjuti, dinilai oleh
+[`/apply`](/id/docs/commands/apply#first-it-checks-the-posting-is-real) sebelum
+membuat draf dan dimunculkan sebagai [Legitimacy Verdict](#l). Sistem memperingatkan;
+Anda yang memutuskan.
+
+**Profile Statement** — pengantar 3–5 baris di bagian atas CV Anda, disimpan dalam
+beberapa varian dan disesuaikan per lamaran.
+
+**Provenance Panel** — tampilan dasbor, di laci detail sebuah lamaran, yang
+menunjukkan setiap klaim CV di samping sumber profil yang mendukungnya, dengan klaim
+tanpa dukungan ditandai. Hanya-baca. Lihat [panel
+Provenance](/id/docs/dashboard/provenance).
+
+## R
+
+**Read-Only Mode** — bendera dasbor yang menonaktifkan semua penyuntingan — berguna
+untuk demo, tangkapan layar, atau menjamin penjelajahan tanpa kecelakaan.
+
+**Red Flag** — tanda peringatan dalam sebuah lowongan — biaya di muka, pengumpulan
+data pribadi, domain yang tidak cocok, gaji yang terlalu bagus — yang memberi masukan
+ke [Legitimacy Verdict](#l).
+
+**Reviewer Agent** — AI kedua dalam [`/apply`](/id/docs/commands/apply):
+perspektif segar, meneliti perusahaan, mengkritik kedua draf. Ia menyarankan; si
+pembuat draf (dan Anda) yang memutuskan.
+
+## S
+
+**Salary Benchmark** — perbandingan gaji opsional terhadap data yang Anda sediakan —
+statistik serikat, survei, riset Anda sendiri (alat `salary_lookup`).
+
+**Search Queries** — frasa pencarian yang Anda konfigurasikan, diatur berdasarkan
+prioritas, yang dijalankan [`/search`](/id/docs/commands/search) di portal yang Anda
+pilih.
+
+**Seen Jobs Registry** — berkas lokal yang mengingat setiap lowongan yang pernah
+ditunjukkan kepada Anda, sehingga `/search` tidak pernah mengulang dirinya.
+
+**SKILL.md Orchestrator** — berkas penanda internal yang dihadirkan setiap
+keterampilan CareerForge, menyatakan apa yang ia lakukan dan alat mana yang boleh
+digunakannya.
+
+**STAR Format** — Situation, Task, Action, Result: struktur jawaban wawancara.
+`/setup` membangun cerita STAR dari pengalaman nyata Anda dan meninggalkan rangka
+yang ditandai jelas di mana hanya ingatan Anda yang dapat mengisi detailnya.
+
+## T
+
+**Tracking Dashboard** — [antarmuka web lokal](/id/docs/dashboard) atas berkas
+pelacak Anda. Berjalan hanya di mesin Anda (`127.0.0.1`), mengedit hanya status dan
+catatan, serta menampilkan semua hal lain sebagai hanya-baca.
+
+**Two-Plane Skill Architecture** — pembagian internal antara keterampilan gaya
+pengetahuan (instruksi yang dibaca AI) dan keterampilan gaya alat (program eksternal
+yang ia jalankan).
+
+**Traceability** — praktik proyek menautkan setiap kebutuhan ke desain, kode, dan tes
+yang memenuhinya, melalui ID seperti `REQ-…` dan `TC-…`.
+
+## V
+
+**Verification Checklist** — daftar lulus/gagal terakhir yang dijalankan `/apply`
+sekali di akhir: akurasi faktual, penargetan, konsistensi, kualitas LaTeX, dan tata
+letak PDF.
+
+## W
+
+**Workspace Settings** — berkas konfigurasi lokal yang menyatakan alat mana yang
+boleh digunakan AI dalam salinan CareerForge Anda. Pribadi, dan tidak pernah
+dikomit.

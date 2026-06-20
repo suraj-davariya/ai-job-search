@@ -1,0 +1,74 @@
+---
+title: /upskill
+description: Lihat persis di mana Anda kurang dari pekerjaan yang Anda inginkan — dan dapatkan rencana nyata bersumber-web untuk menutup kesenjangannya.
+---
+
+`/upskill` adalah pelatih karier Anda. Ia melihat jarak antara posisi Anda saat ini dan
+posisi yang dibutuhkan oleh pekerjaan yang Anda inginkan, lalu menyerahkan daftar
+terprioritisasi tentang apa yang harus dipelajari dan di mana mempelajarinya — setiap
+sumber ditarik dari pencarian web langsung, tidak pernah dikarang.
+
+## Dua cara menjalankannya
+
+| Yang Anda ketik | Mode | Apa yang ia lihat |
+|----------|------|------------------|
+| `/upskill` | **Aggregate** | Setiap pekerjaan di pelacak Anda. Posisi yang *paling tidak* cocok dengan Anda dihitung paling besar, sehingga rencana menunjuk pada apa yang sebenarnya menahan Anda. |
+| `/upskill <job url>` | **Targeted** | Satu lowongan spesifik. (Tempel teksnya jika tautan tidak mau dimuat.) |
+
+## Seperti apa satu kali jalan
+
+```text
+you:    /upskill
+claude: Reading your tracker (12 applications) and your profile…
+
+        Skill Gap Heatmap
+        ──────────────────────────────────────────────────────────
+        Priority  Skill / Area          Type        Seen in
+        Critical  Kubernetes            tooling     7 of 12 roles
+        High      Terraform / IaC       tooling     5 of 12 roles
+        High      MLOps pipelines       domain      4 of 12 roles
+        Medium    Stakeholder comms     soft        3 of 12 roles
+        Low       Go                    —           1 of 12 roles
+        ──────────────────────────────────────────────────────────
+
+        Building your learning plan (searching for current resources)…
+        Saved → upskill/report-2026-06-17.md
+```
+
+Heatmap tercetak pertama sehingga Anda dapat melihat bentuk kesenjangan sebelum
+detailnya.
+
+## Apa yang Anda bawa pulang
+
+1. **Sebuah gap heatmap** — setiap kesenjangan dinilai Critical / High / Medium / Low,
+   ditandai berdasarkan jenis (alat yang hilang, domain yang belum pernah Anda geluti,
+   keterampilan lunak, atau kredensial).
+2. **Sebuah rencana belajar** — untuk setiap kesenjangan yang penting, dua atau tiga
+   sumber nyata (dengan tautan dan satu baris alasan), arah belajar yang disesuaikan
+   dengan apa yang *sudah* Anda ketahui sehingga Anda tidak mempelajari ulang dasarnya,
+   dan perkiraan waktu.
+3. **Sebuah urutan belajar** — sekuens bernomor yang menghormati ketergantungan,
+   mendahulukan kemenangan cepat, dan menyimpan pengetahuan domain yang luas untuk
+   terakhir, dengan total waktu di bagian bawah.
+4. **Sebuah laporan tersimpan** di `upskill/report-*.md`. Jalankan lagi bulan depan
+   dan laporan agregat terbuka dengan sebuah *delta*: kesenjangan mana yang telah Anda
+   tutup, dan mana yang baru.
+
+## Bagaimana ia tetap jujur
+
+- **Tidak ada sumber yang dikarang.** Setiap kursus, dokumen, dan buku berasal dari
+  pencarian web aktual dengan tahun berjalan dalam kuerinya. Jika tidak ada yang bagus
+  untuk sebuah kesenjangan, ia mengatakannya.
+- **Ia tidak akan mengisi pelacak yang kosong.** Belum ada lamaran yang dicatat?
+  Alih-alih laporan kosong, ia mendorong Anda untuk menjalankan
+  [`/search`](/id/docs/commands/search) dan [`/apply`](/id/docs/commands/apply) dulu,
+  atau mengarahkannya ke satu pekerjaan dengan `/upskill <url>`.
+- **Kesenjangan prioritas rendah** muncul di heatmap demi kelengkapan tetapi tidak
+  mendapat entri rencana kecuali Anda meminta — rencana tetap berfokus pada apa yang
+  menggerakkan jarum.
+
+## Melihatnya di dasbor
+
+Setiap laporan mendarat di `upskill/report-*.md`, dan tab **Upskill** dasbor
+mendaftarkannya untuk Anda baca ulang kapan saja. Anda juga dapat memulai proses baru
+langsung dari Console dasbor — ia menjalankan perintah `/upskill` yang sama ini.

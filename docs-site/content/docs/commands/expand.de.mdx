@@ -1,0 +1,68 @@
+---
+title: /expand
+description: Durchforste deine Dokumente, dein GitHub und das Web nach Fähigkeiten, die du längst hast, aber nie aufgeschrieben hast — und füge sie sicher deinem Profil hinzu.
+---
+
+`/expand` ist der Archäologe deines Profils. Du hast mehr geleistet, als dein Profil verrät — ein
+Kurs hier, ein Nebenprojekt dort, ein Werkzeug, das du im Job aufgeschnappt hast. `/expand` sucht
+nach diesen Kompetenzen in allem, was es erreichen kann, und **fügt** sie deinem
+Profil hinzu. Es ändert oder löscht niemals, was bereits vorhanden ist, sodass die Ausführung immer sicher ist.
+
+## Wo es sucht
+
+1. **Deine Dokumente** — `documents/cv`, `linkedin`, `diplomas`, `references`.
+2. **Dein GitHub** — jedes öffentliche Repository, ob angepinnt oder nicht: es liest die READMEs und
+   notiert die Sprachen und Themen.
+3. **Deine sonstigen Links** — Portfolio, Kaggle, Google Scholar, eine persönliche Website.
+
+## Wie aus einem Fund eine Fähigkeit wird
+
+Für jede Sache, die es entdeckt, sucht es im Web auf zwei Arten zugleich:
+
+- **Direkte Recherche** — der tatsächliche Lehrplan eines benannten Kurses, die Fähigkeiten hinter einer
+  Zertifizierung, die Dokumentation eines Werkzeugs.
+- **Schlussfolgerung** — welche Methoden und Toolchains diese Art von Arbeit normalerweise erfordert.
+
+Abgeleitete Einträge werden immer als abgeleitet gekennzeichnet, sodass du eine dokumentierte Fähigkeit von einer
+erschlossenen unterscheiden kannst.
+
+## Du siehst alles, bevor etwas geschrieben wird
+
+```text
+you:    /expand
+claude: Read your profile. Scanning documents/, GitHub (14 repos), and your Kaggle…
+
+        Competency Map (new items only)
+        ── Technical — Primary ────────────────────────────────────
+        PyTorch          GitHub: vision-experiments        direct
+        ── Methods & Practices ────────────────────────────────────
+        MLflow tracking  Coursera: MLOps Specialisation    both
+        ── Domain Knowledge ───────────────────────────────────────
+        Time-series forecasting   GitHub: demand-forecaster inference
+
+        Add these? (all / review each / skip / skip a group)
+you:    all
+claude: Added 7 competencies across 2 files. Report below.
+```
+
+Deine Optionen sind **all**, **review** (Gruppe für Gruppe durchgehen), **skip** oder nur eine
+Kategorie überspringen. Nichts wird geschrieben, bis du es bestätigst.
+
+## Additiv und idempotent — von Grund auf
+
+- **Es fügt nur hinzu.** Bestehende Zeilen werden niemals geändert oder entfernt.
+- **Jede Ergänzung trägt einen Quellenhinweis**, etwa *(Coursera — Deep Learning
+  Specialisation)* oder *(GitHub — repo: demand-forecaster)*. Dieser Hinweis sorgt auch dafür, dass
+  `/expand` idempotent bleibt: Führe es nächsten Monat erneut aus, und es bringt nur das Neue mit.
+- **Nichts wird erfunden.** Jede Kompetenz lässt sich auf eine echte Quelle zurückführen oder wird als
+  Schlussfolgerung gekennzeichnet, und jedes Dokument, das es nicht lesen kann, wird gemeldet, statt erraten zu werden.
+
+## Was du am Ende erhältst
+
+Einen **Erweiterungsbericht**: was zu jeder Datei hinzugefügt wurde (mit Quellen), jede gescannte Quelle
+und wie viele Kompetenzen jede davon ergab, alles, was übersprungen wurde, und warum, sowie alle
+Einträge, die einen manuellen Blick wert sind. Ein guter nächster Schritt danach ist
+[`/upskill`](/de/docs/commands/upskill) — prüfe deine Lücken erneut, jetzt da dein Fähigkeitsprofil
+reicher ist.
+
+`/expand` kann auch aus der Dashboard-Konsole gestartet werden; es führt denselben Befehl aus.

@@ -1,0 +1,64 @@
+---
+title: Confidentialité
+description: Local par défaut — ce qui reste sur votre machine (tout), et les habitudes qui le maintiennent ainsi.
+---
+
+Une recherche d'emploi génère certaines des données les plus personnelles que
+vous possédez : où vous avez travaillé, ce que vous gagnez, où vous êtes prêt à
+déménager, quelles entreprises vous ont éconduit. La position de CareerForge
+est simple — **ces données ne regardent que vous**, alors elles ne quittent
+jamais votre ordinateur.
+
+## Où vivent vos données
+
+Tout, localement :
+
+| Données | Vivent dans | Jamais téléversées ? |
+|------|----------|----------------|
+| Profil du candidat | votre dossier CareerForge | Non |
+| CV et lettres de motivation générés | `cv/`, `cover_letters/` | Non |
+| Outil de suivi des candidatures | `job_search_tracker.csv` | Non |
+| Registre des emplois vus | `job_scraper/` | Non |
+| Documents sources (CV, diplômes…) | `documents/` | Non |
+| Données salariales (optionnel) | `salary_data.json` | Non |
+
+Il n'y a aucun compte, aucune inscription, aucune télémétrie, aucune analytique
+et aucune « statistique d'utilisation anonyme ». Même ce site de documentation
+est conçu pour ne rien récupérer — les polices et ressources sont incluses, pas
+chargées depuis des serveurs tiers.
+
+## Ce qui passe bel et bien par le réseau — et quand
+
+L'honnêteté exige le tableau complet. Deux choses touchent à Internet, toutes
+deux uniquement lorsque vous le demandez :
+
+1. **L'IA elle-même.** CareerForge fonctionne sur Claude Code, donc le texte de
+   votre conversation — y compris le contenu de profil avec lequel l'IA
+   travaille — est traité par le service d'Anthropic selon [leurs conditions de
+   confidentialité](https://www.anthropic.com/privacy). C'est le même accord
+   que pour toute autre utilisation de Claude ; si c'est acceptable pour vos
+   conversations, c'est le même arrangement ici.
+2. **Les recherches web que vous déclenchez.** `/search` interroge des sites
+   d'emploi publics, et `/apply` récupère l'offre et vérifie les affirmations
+   au sujet de l'entreprise. Cela ressemble à une navigation web ordinaire.
+
+Ce qui n'arrive jamais : des téléversements en arrière-plan, vos fichiers
+envoyés où que ce soit en tant que fichiers, ou un quelconque serveur
+CareerForge — il n'y en a pas.
+
+## Git et la seule habitude qui compte
+
+CareerForge est livré avec un `.gitignore` qui exclut chaque artefact personnel
+ci-dessus, de sorte que l'historique du dossier reste propre de vos données par
+défaut.
+
+Une habitude à conserver, en deux mots : **fork privé.** Si vous poussez votre
+copie de CareerForge sur GitHub, rendez le dépôt privé. Votre profil vit dans
+la même arborescence que le code, et bien que les règles d'exclusion vous
+protègent, un dépôt privé signifie que même une erreur reste la vôtre.
+
+## Tout supprimer
+
+Aucun compte à fermer, aucun ticket de support. Supprimez le dossier, et
+CareerForge — ainsi que chaque trace de votre recherche — disparaît. C'est ce
+que signifie « local d'abord ».

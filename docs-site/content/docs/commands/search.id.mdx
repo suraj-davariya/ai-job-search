@@ -1,0 +1,63 @@
+---
+title: /search
+description: Sapu papan lowongan pilihan Anda, lewati yang sudah Anda lihat, dan dapatkan daftar peringkat kecocokan baru.
+---
+
+`/search` adalah pengintai Anda. Ia menjalankan pencarian yang biasanya akan Anda
+lakukan secara manual di setiap papan lowongan yang telah Anda konfigurasikan,
+membuang duplikat dan lowongan yang sudah Anda lihat, dan memeringkat sisanya
+berdasarkan seberapa cocok dengan *Anda*.
+
+## Seperti apa satu kali jalan
+
+```text
+you:    /search
+claude: Searching your configured portals for the last 14 days…
+        Found 7 new positions (2 high, 3 medium, 2 low match)
+
+         #  Fit     Title                  Company     Location
+         1  High    Senior Data Engineer   Acme Corp   Amsterdam, NL
+         2  High    ML Platform Engineer   Beta Labs   Remote (EU)
+         3  Medium  Data Analyst           Gamma AG    Berlin, DE
+        …
+        Want me to evaluate any of these in detail? Just give me the number(s).
+```
+
+Balas dengan sebuah angka dan lowongan itu diserahkan langsung ke
+[`/apply`](/id/docs/commands/apply) untuk evaluasi penuh.
+
+## Memfokuskan pencarian
+
+| Yang Anda ketik | Apa yang ia lakukan |
+|----------|--------------|
+| `/search` | Menjalankan tiga kategori kueri prioritas teratas Anda |
+| `/search data science` | Memprioritaskan kategori yang cocok dengan "data science" |
+| `/search broad` | Menjalankan *semua* kategori kueri yang Anda konfigurasikan — jaring lebar |
+
+## Bagaimana ia memutuskan apa yang Anda lihat
+
+1. **Konfigurasi Anda menggerakkan segalanya.** Papan lowongan, frasa pencarian,
+   lokasi, dan tingkat jarak semuanya berasal dari konfigurasi pencarian yang
+   dibangun `/setup` bersama Anda. Tidak ada situs atau negara yang ditanamkan
+   permanen — LinkedIn, Indeed, portal nasional di negara Anda, semua sama-sama
+   diterima.
+2. **Ia mengingat apa yang sudah Anda lihat.** Setiap lowongan yang pernah ia
+   tunjukkan kepada Anda dicatat, sehingga posisi yang sama tidak pernah membuang
+   perhatian Anda dua kali — bahkan lintas proses pada hari yang berbeda.
+3. **Ia meranking-awal kecocokannya.** Setiap lowongan baru mendapat sinyal cepat
+   Tinggi / Sedang / Rendah terhadap profil Anda, dan kecocokan Tinggi disertai dua
+   atau tiga poin yang menjelaskan *mengapa*.
+   Di samping sinyal itu Anda juga akan melihat penanda keabsahan cepat — penanda
+   **⚠ Suspicious** pada lowongan yang tampak seperti penipuan atau ghost job —
+   sehingga Anda dapat mengenali lowongan berisiko sebelum menanamkan sebuah
+   [`/apply`](/id/docs/commands/apply) penuh padanya. (Pemeriksaan keabsahan yang
+   menyeluruh tetap terjadi di dalam `/apply`; ini hanya peringatan dini.)
+4. **Ia menghormati batasan Anda.** Lowongan di luar lokasi yang dapat Anda terima
+   atau yang lebih tua dari empat belas hari disaring keluar sebelum Anda melihatnya.
+
+Sinyal cepat itu sengaja dibuat kasar — tugasnya adalah triase. Penilaian lima
+dimensi penuh terjadi saat Anda mengirim sebuah lowongan ke `/apply`.
+
+**Apa yang terjadi berikutnya:** pilih sebuah angka, dan
+[/apply](/id/docs/commands/apply) mengambil alih dengan evaluasi yang layak dan, jika
+Anda menyetujui, dokumennya.

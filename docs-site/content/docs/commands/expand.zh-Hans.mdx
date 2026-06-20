@@ -1,0 +1,54 @@
+---
+title: /expand
+description: 从你的文档、GitHub 和网络中挖掘你早已具备却从未写下的技能，并安全地添加到你的档案中。
+---
+
+`/expand` 是你档案的考古学家。你做过的事远比档案上写的要多——这里上过一门课，那里做过一个副业项目，工作中顺手学会了一个工具。`/expand` 会在它能触及的一切来源中寻找这些能力，并将它们**添加**到你的档案中。它从不编辑或删除已有内容，所以运行它始终是安全的。
+
+## 它会在哪里寻找
+
+1. **你的文档** —— `documents/cv`、`linkedin`、`diplomas`、`references`。
+2. **你的 GitHub** —— 每一个公开仓库，无论是否置顶：它会读取 README，并记录其中的语言和主题。
+3. **你的其他链接** —— 作品集、Kaggle、Google Scholar、个人网站。
+
+## 它如何把一个发现变成一项技能
+
+对于发现的每一项内容，它会同时以两种方式进行网络搜索：
+
+- **直接查找** —— 某门具名课程的实际大纲、某项认证背后的技能、某个工具的文档。
+- **推断** —— 这类工作通常需要哪些方法和工具链。
+
+推断得出的条目始终会被标注为“推断”，这样你就能区分有据可查的技能和经过推理得出的技能。
+
+## 在任何内容写入之前，你都能看到全部
+
+```text
+you:    /expand
+claude: Read your profile. Scanning documents/, GitHub (14 repos), and your Kaggle…
+
+        Competency Map (new items only)
+        ── Technical — Primary ────────────────────────────────────
+        PyTorch          GitHub: vision-experiments        direct
+        ── Methods & Practices ────────────────────────────────────
+        MLflow tracking  Coursera: MLOps Specialisation    both
+        ── Domain Knowledge ───────────────────────────────────────
+        Time-series forecasting   GitHub: demand-forecaster inference
+
+        Add these? (all / review each / skip / skip a group)
+you:    all
+claude: Added 7 competencies across 2 files. Report below.
+```
+
+你的选项是 **all**、**review**（逐组浏览）、**skip**，或仅跳过某一类别。在你确认之前，不会写入任何内容。
+
+## 设计上即“追加且幂等”
+
+- **它只做添加。** 现有的行永远不会被更改或删除。
+- **每一条新增都带有来源说明**，例如 *(Coursera — Deep Learning Specialisation)* 或 *(GitHub — repo: demand-forecaster)*。这条说明也是 `/expand` 保持幂等的方式：下个月再运行一次，它只会带入新增的内容。
+- **不会凭空捏造。** 每一项能力都可追溯到真实来源，或被标记为推断；任何无法读取的文档都会被报告，而不是靠猜测。
+
+## 最终你会得到什么
+
+一份**扩展报告**：每个文件新增了哪些内容（含来源）、它扫描过的每个来源以及各自产出了多少项能力、跳过了什么以及原因，还有任何值得手动查看的条目。之后一个不错的下一步是 [`/upskill`](/zh-Hans/docs/commands/upskill) —— 在你的技能组合更加丰富之后，重新检查你的差距。
+
+`/expand` 也可以从仪表盘的控制台启动；它运行的是同一条命令。

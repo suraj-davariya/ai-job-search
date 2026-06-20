@@ -1,0 +1,65 @@
+---
+title: Tabel Lamaran
+description: Permukaan kerja — urutkan, filter, perbarui status, dan simpan catatan, dengan pengaman.
+---
+
+Grafik untuk perspektif; tabel adalah tempat Anda benar-benar bekerja. Setiap lamaran adalah
+satu baris, yang terbaru di atas, dan keseharian sebuah pencarian kerja — *"perekrut menelepon,
+pindahkan ke Interview"* — terjadi di sini.
+
+<ApplicationsTableDemo />
+
+## Menemukan sesuatu
+
+Setiap kolom bisa diurutkan. Filter mempersempit tabel berdasarkan status, sektor, jenis
+peran, atau saluran, dan semuanya diperbarui secara langsung. [Strip
+alur](/id/docs/dashboard/charts#pipeline-strip) di atas tabel juga berfungsi sebagai filter
+status — klik sebuah keranjang, tabel mengikuti. Mengeklik sebuah baris membuka laci dengan
+catatan lengkap: setiap bidang, catatan Anda, dan tautan ke PDF CV dan surat lamaran persis
+yang dikirim.
+
+## Mengedit — persis dua hal
+
+Hanya **status** dan **catatan** yang dapat diedit (tanggal *terakhir diperbarui* menandai
+dirinya sendiri). Segala hal lain — tanggal, perusahaan, peran, skor kecocokan, jalur berkas —
+adalah catatan faktual yang ditulis `/apply`, dan dashboard memperlakukannya sebagai
+hanya-baca.
+
+## Mesin status
+
+Status bukanlah teks bebas; mereka adalah tujuh tahap tetap, dan dashboard hanya menawarkan
+langkah yang masuk akal. Coba — pilih sebuah status:
+
+<StatusFlowDemo />
+
+Secara lengkap:
+
+| Dari | Bisa berpindah ke |
+|------|------------|
+| Draft | Sent, Withdrawn |
+| Sent | Interview, Rejected, Withdrawn, Closed |
+| Interview | Offer, Rejected, Withdrawn, Closed |
+| Offer / Rejected / Withdrawn / Closed | — final |
+
+Mengapa begitu ketat? Karena status mengisi [KPI interview-rate](/id/docs/dashboard/kpis) dan
+[grafik status](/id/docs/dashboard/charts) — dan angka-angka itu hanya layak dibaca jika
+"Sent" selalu berarti hal yang sama. Langkah ilegal ditolak sebelum ditulis, sehingga
+salah-klik tidak dapat diam-diam merusak statistik Anda.
+
+Dua detail yang perlu diketahui:
+
+- **Final tidak berarti tersembunyi.** Baris Rejected, Withdrawn, dan Closed tetap berada di
+  tabel, diredupkan. Riwayat Anda adalah bagian dari data — dan menyaksikan tumpukan Rejected
+  perlahan menjadi tumpukan Interview adalah jenis kemajuannya sendiri.
+- **Status final salah?** Dashboard tidak akan memindahkan baris keluar dari keadaan final.
+  Pelacak Anda adalah [berkas biasa yang Anda miliki](/id/docs/your-data), sehingga kesalahan
+  yang sebenarnya selalu dapat diperbaiki di aplikasi spreadsheet apa pun.
+
+## Menambahkan baris secara manual
+
+Melamar di suatu tempat di luar CareerForge — sebuah referensi, kedatangan langsung, sebuah
+email? Tombol **+ New** menambahkan baris secara manual sehingga statistik Anda tetap lengkap.
+Tanggal, perusahaan, dan peran wajib diisi; bidang CV dan surat lamaran cukup dibiarkan
+kosong.
+
+**Berikutnya:** [Data Anda](/id/docs/your-data) — satu berkas di balik semua ini.

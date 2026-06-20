@@ -1,0 +1,77 @@
+---
+title: Seus Dados
+description: Um único arquivo legível por humanos guarda toda a sua busca — aqui está cada coluna, e quem escreve o quê.
+---
+
+A maioria das ferramentas de busca de emprego guarda seu histórico no banco de
+dados *delas*. O CareerForge guarda em **um único arquivo no seu computador**:
+`job_search_tracker.csv`. CSV é o formato de dados mais simples que existe —
+abra-o no Excel, Numbers, Google Sheets ou em um editor de texto e você verá
+exatamente o que cada parte do CareerForge vê. Nada se esconde atrás de um botão
+de exportar, porque não há *de onde* exportar.
+
+Vale um momento de apreço: se você parar de usar o CareerForge amanhã, não perde
+nada. O arquivo é seu, legível para sempre, por qualquer coisa.
+
+## As 14 colunas
+
+Cada candidatura é uma linha com estes campos, nesta ordem:
+
+| # | Coluna | O que contém | Quem preenche |
+|---|--------|---------------|-----------------|
+| 1 | `date` | A data da candidatura (`YYYY-MM-DD`) | `/apply` |
+| 2 | `company` | Nome da empresa | `/apply` |
+| 3 | `sector` | Setor, ex.: *Software*, *Fintech* | `/apply` |
+| 4 | `role` | O título do cargo | `/apply` |
+| 5 | `role_type` | ex.: *Full-time*, *Contract* | `/apply` |
+| 6 | `channel` | Como você se candidatou — *LinkedIn*, *Referral*, *Company site*… | `/apply` |
+| 7 | `status` | Um dos sete estágios do funil | **Você**, pelo painel |
+| 8 | `contact_person` | Seu contato lá, se houver | `/apply`, ou você nas notas |
+| 9 | `fit_rating` | A pontuação de aderência de 0–100 da avaliação | `/apply` |
+| 10 | `notes` | Qualquer coisa que você queira lembrar | **Você**, pelo painel |
+| 11 | `cv_file` | Caminho do PDF exato do currículo enviado | `/apply` |
+| 12 | `cover_letter_file` | Caminho do PDF exato da carta de apresentação | `/apply` |
+| 13 | `source` | Link para o anúncio original | `/apply` |
+| 14 | `last_updated` | Quando a linha mudou pela última vez | Carimbado automaticamente |
+
+## Quem escreve o quê — o contrato
+
+Três agentes tocam neste arquivo, cada um com um papel estritamente limitado:
+
+1. **`/apply` apenas acrescenta.** Uma candidatura finalizada vira uma *nova*
+   linha no fim (status **Draft**). Ele nunca modifica uma linha existente —
+   seu histórico não pode ser reescrito por uma execução posterior.
+2. **O painel edita exatamente três células:** `status` (apenas movimentos
+   legais), `notes`, e o autocarimbado `last_updated`. Toda outra coluna é
+   somente leitura na interface.
+3. **Você pode editar qualquer coisa,** a qualquer momento, em qualquer
+   aplicativo de planilha. É o seu arquivo. O painel simplesmente o relê e os
+   gráficos acompanham.
+
+Essa disciplina é o motivo de os números do painel serem confiáveis: o registro
+factual é escrito uma vez no momento da candidatura, e apenas as coisas que
+genuinamente mudam — em que pé está a candidatura, o que você aprendeu — chegam a
+mudar.
+
+## Os valores de status
+
+A coluna `status` aceita exatamente sete valores — `Draft`, `Sent`,
+`Interview`, `Offer`, `Rejected`, `Withdrawn`, `Closed` — e o painel impõe
+[quais movimentos entre eles são
+legais](/pt-BR/docs/dashboard/applications-table#the-status-state-machine). Se
+você estiver editando o arquivo à mão, manter-se nesses sete mantém os gráficos
+significativos.
+
+## Companheiros do rastreador
+
+Alguns outros arquivos vivem ao lado dele, todos locais, todos no gitignore:
+
+- **Seu perfil** — os documentos que o `/setup` construiu; a fonte da verdade
+  para todo currículo.
+- **O registro de vagas já vistas** — todo anúncio que o `/search` já te
+  mostrou, para que duplicatas nunca voltem.
+- **Seus PDFs gerados** — o currículo e a carta de apresentação de cada
+  candidatura, exatamente como produzidos, ligados às colunas 11 e 12.
+
+Onde cada um deles vive — e por que nenhum jamais sai da sua máquina — é o tema
+seguinte, em [Privacidade](/pt-BR/docs/privacy).

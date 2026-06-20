@@ -1,0 +1,77 @@
+---
+title: Data Anda
+description: Satu berkas yang dapat dibaca manusia menyimpan seluruh pencarian Anda — inilah setiap kolom, dan siapa menulis apa.
+---
+
+Sebagian besar alat pencari kerja menyimpan riwayat Anda di basis data *mereka*.
+CareerForge menyimpannya dalam **satu berkas di komputer Anda**:
+`job_search_tracker.csv`. CSV adalah format data paling sederhana yang ada — buka di
+Excel, Numbers, Google Sheets, atau editor teks dan Anda akan melihat persis apa
+yang dilihat setiap bagian CareerForge. Tidak ada yang tersembunyi di balik tombol
+ekspor, karena tidak ada apa pun untuk diekspor *darinya*.
+
+Ini layak diapresiasi sejenak: jika Anda berhenti menggunakan CareerForge besok,
+Anda tidak kehilangan apa pun. Berkasnya milik Anda, dapat dibaca selamanya, oleh
+apa pun.
+
+## 14 kolom
+
+Setiap lamaran adalah satu baris dengan kolom-kolom ini, dalam urutan ini:
+
+| # | Kolom | Apa isinya | Siapa yang mengisinya |
+|---|--------|---------------|-----------------|
+| 1 | `date` | Tanggal lamaran (`YYYY-MM-DD`) | `/apply` |
+| 2 | `company` | Nama perusahaan | `/apply` |
+| 3 | `sector` | Industri, mis. *Software*, *Fintech* | `/apply` |
+| 4 | `role` | Judul posisi | `/apply` |
+| 5 | `role_type` | mis. *Full-time*, *Contract* | `/apply` |
+| 6 | `channel` | Cara Anda melamar — *LinkedIn*, *Referral*, *Company site*… | `/apply` |
+| 7 | `status` | Salah satu dari tujuh tahap alur | **Anda**, melalui dasbor |
+| 8 | `contact_person` | Kontak Anda di sana, jika ada | `/apply`, atau Anda di catatan |
+| 9 | `fit_rating` | Skor kecocokan 0–100 dari evaluasi | `/apply` |
+| 10 | `notes` | Apa pun yang ingin Anda ingat | **Anda**, melalui dasbor |
+| 11 | `cv_file` | Jalur ke PDF CV persis yang dikirim | `/apply` |
+| 12 | `cover_letter_file` | Jalur ke PDF surat lamaran persis | `/apply` |
+| 13 | `source` | Tautan ke lowongan asli | `/apply` |
+| 14 | `last_updated` | Kapan baris terakhir berubah | Dicap otomatis |
+
+## Siapa menulis apa — kontraknya
+
+Tiga pelaku menyentuh berkas ini, masing-masing dengan peran yang dibatasi secara
+ketat:
+
+1. **`/apply` hanya menambahkan.** Lamaran yang selesai menjadi satu baris *baru* di
+   bagian bawah (status **Draft**). Ia tidak pernah mengubah baris yang sudah ada —
+   riwayat Anda tidak bisa ditulis ulang oleh proses berikutnya.
+2. **Dasbor mengedit persis tiga sel:** `status` (hanya perpindahan yang sah),
+   `notes`, dan `last_updated` yang mencap dirinya sendiri. Setiap kolom lain bersifat
+   hanya-baca di antarmuka.
+3. **Anda dapat mengedit apa pun,** kapan pun, di aplikasi spreadsheet mana pun. Ini
+   berkas Anda. Dasbor cukup membacanya ulang dan grafik mengikuti.
+
+Kedisiplinan itulah yang membuat angka-angka dasbor dapat dipercaya: catatan
+faktual ditulis sekali pada saat melamar, dan hanya hal-hal yang benar-benar
+berubah — di mana posisi lamaran, apa yang Anda pelajari — yang pernah berubah.
+
+## Nilai-nilai status
+
+Kolom `status` menerima persis tujuh nilai — `Draft`, `Sent`,
+`Interview`, `Offer`, `Rejected`, `Withdrawn`, `Closed` — dan dasbor menegakkan
+[perpindahan mana di antara mereka yang
+sah](/id/docs/dashboard/applications-table#the-status-state-machine). Jika Anda
+mengedit berkas secara manual, mematuhi ketujuh nilai itu membuat grafik tetap
+bermakna.
+
+## Pendamping si pelacak
+
+Beberapa berkas lain hidup berdampingan dengannya, semuanya lokal, semuanya diabaikan
+git:
+
+- **Profil Anda** — dokumen yang dibangun `/setup`; sumber kebenaran untuk setiap CV.
+- **Registri pekerjaan-terlihat** — setiap lowongan yang sudah ditunjukkan `/search`
+  kepada Anda, sehingga duplikat tidak pernah kembali.
+- **PDF yang Anda hasilkan** — CV dan surat lamaran setiap lamaran, persis seperti
+  yang dihasilkan, tertaut dari kolom 11 dan 12.
+
+Di mana masing-masing berada — dan mengapa tidak satu pun pernah meninggalkan mesin
+Anda — dibahas berikutnya, di [Privasi](/id/docs/privacy).

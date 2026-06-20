@@ -1,0 +1,152 @@
+---
+title: /apply
+description: Von einer Stellenanzeige zu einem maßgeschneiderten Lebenslauf und Anschreiben als verifizierte PDFs — wobei du jeden Schritt genehmigst.
+---
+
+`/apply` ist das Herz von CareerForge. Gib ihm eine Stellenanzeige — einen Link
+oder eingefügten Text, beides funktioniert gleich gut — und es durchläuft eine
+siebenstufige Pipeline, die mit zwei druckfertigen PDFs und einer neuen Zeile in
+deinem Bewerbungs-Tracker endet.
+
+```text
+/apply https://careers.acme.com/jobs/senior-data-engineer-42
+```
+
+## Zuerst prüft es, ob die Anzeige echt ist
+
+Betrug, Ghost Jobs und Datensammel-Fassaden sind überall, und eine
+ausgefeilte Anzeige sagt für sich allein nichts aus. Bevor es also etwas
+entwirft, bewertet `/apply`, ob die Anzeige echt und sicher genug ist, sich
+darauf einzulassen, und gibt dir ein klares Urteil:
+
+| Urteil | Was es bedeutet |
+|---------|---------------|
+| **Verified** | Die Signale passen — echtes Unternehmen, echt wirkende Stelle, keine Warnsignale, die ein Innehalten wert wären. |
+| **Caution** | Etwas ist ein wenig schief — ein vager Arbeitgeber, ein ungewöhnlicher Kanal, ein zu gutes Gehalt. Einen zweiten Blick wert. |
+| **Suspicious** | Mehrere Warnsignale — Vorabgebühren, Sammeln persönlicher Daten, eine Domain, die nicht zum Unternehmen passt. |
+
+Jedes Urteil kommt mit den **Gründen dahinter**, zitiert aus dem, was es
+tatsächlich gefunden hat, sodass du selbst urteilen kannst, statt einem Etikett
+zu vertrauen.
+
+Dies wird absichtlich **getrennt vom Passungswert** gehalten. Ein Betrug kann
+ein perfekter Skill-Treffer sein, und wäre die Legitimität in die Zahl von
+0–100 eingerechnet, könnte ein großartiger Treffer eine Warnung in die
+Unsichtbarkeit mitteln. Zwei Fragen — *ist das eine gute Passung?* und *ist
+diese Anzeige echt?* — verdienen zwei Antworten.
+
+Das System warnt; **du entscheidest**. Es blockiert eine Anzeige niemals
+automatisch. Ein **Suspicious**-Urteil verlangt allerdings deine ausdrückliche
+Bestätigung, bevor es Mühe in das Entwerfen steckt — eine Bremsschwelle, keine
+Mauer.
+
+## Dann bewertet es die Passung — und fragt
+
+Bevor es ein Wort schreibt, bewertet es die Stelle gegen dein Profil über fünf
+Dimensionen:
+
+| Dimension | Gewichtung |
+|-----------|--------|
+| Übereinstimmung technischer Fähigkeiten | 30 % |
+| Karriere-Ausrichtung | 30 % |
+| Erfahrungs-Übereinstimmung | 25 % |
+| Verhaltens- / Kultur-Passung | 15 % |
+| Standort & Logistik | Bestanden / Nicht bestanden |
+
+Die gewichtete Summe wird auf ein Urteil abgebildet: **Strong** (75+), **Good**
+(60–74), **Moderate** (45–59), **Weak** (30–44), **Poor** (unter 30). Eine
+Ausnahme: Wenn der Standort deine Einschränkungen nicht erfüllt, ist das Urteil
+Poor, egal wie gut die Skill-Übereinstimmung ist — ein Job, den du nicht
+annehmen kannst, ist keine Passung.
+
+Dann hält es an und fragt: **mit dem Entwerfen fortfahren?** Dieser Schritt
+gehört dir. Sag nein, und nichts wird geschrieben; die Bewertung allein ist oft
+den Lauf wert.
+
+## Dann schreibt es — innerhalb strenger Regeln
+
+- **Der Lebenslauf** ist auf die Anzeige zugeschnitten, und seine Sprache und
+  Seitenzahl folgen dem aktiven [Locale Pack](/de/docs/languages) — ein
+  einseitiges Dokument im Letter-Format, wo das die Norm ist, ein zweiseitiges
+  A4-Dokument, wo nicht.
+- **Das Anschreiben** wird in *der Sprache der Anzeige* geschrieben — eine
+  dänische Anzeige bekommt einen dänischen Brief — genau eine Seite, fokussiert
+  auf die Probleme, die du lösen würdest, statt deinen Lebenslauf erneut
+  aufzulisten.
+- **Jede Behauptung muss den Interview-Test überstehen.** Wenn du einen Satz in
+  einem Interview nicht bequem vertreten könntest, gehört er nicht dazu.
+  Übertreibungen werden dir markiert: *behalten, abschwächen oder streichen?*
+
+## Eine zweite KI prüft die erste
+
+Standardmäßig kritisiert ein separater Reviewer mit frischer Perspektive beide
+Entwürfe — übersehene Schlüsselwörter, generische Formulierungen,
+erwähnenswerte Blickwinkel über das Unternehmen. Der Hauptagent wendet dann die
+guten Vorschläge an und verifiziert jede faktische Behauptung über das
+Unternehmen unabhängig erneut, bevor sie in deinen Brief gelangen darf.
+
+Du steuerst die Tiefe (und die Kosten):
+
+| Du tippst | Was passiert |
+|----------|--------------|
+| `/apply <posting>` | Vollständige Review, einschließlich Unternehmensrecherche (Standard) |
+| `/apply --review=quick <posting>` | Review ohne Unternehmensrecherche — schneller |
+| `/apply --review=none <posting>` | Den Reviewer überspringen — am schnellsten |
+
+## Schließlich: kompilieren, prüfen, festhalten
+
+Die Dokumente werden zu PDF kompiliert und *visuell geprüft* — Seitenzahlen,
+verwaiste Überschriften, Schriftarten-Unstimmigkeiten — und neu korrigiert, bis
+sie sauber sind. Dann wird die Bewerbung in [deiner
+Tracker-Datei](/de/docs/your-data) mit dem Status **Draft**, dem Passungswert
+und den Pfaden zu beiden PDFs festgehalten. Eine finale
+Verifizierungs-Checkliste (faktische Genauigkeit, Ausrichtung, Konsistenz,
+Layout) läuft einmal, und du erhältst eine kurze Zusammenfassung der
+Anpassungsentscheidungen, die es getroffen hat.
+
+## Exporte, die auch ein Roboter lesen kann
+
+Ein schönes LaTeX-PDF ist für den Menschen am anderen Ende — aber der erste
+Leser ist oft ein **Bewerbermanagementsystem (ATS)**, das Text parst, nicht
+Layout. Deshalb erzeugt `/apply` neben dem PDF (immer noch das primäre,
+ausgefeilte Ergebnis) zwei maschinenfreundliche Versionen aus dem *gleichen*
+Inhalt:
+
+- Eine Klartext-**`.txt`** — das Zuverlässigste, was ein ATS aufnehmen kann.
+- Ein Word-**`.docx`** — für Portale, die nach einem bearbeitbaren Dokument
+  fragen.
+
+Es führt dann eine **Parse-Selbstprüfung** durch: Es zieht den Text wieder aus
+dem PDF heraus und bestätigt, dass dein Name, die Abschnittsüberschriften und
+die wichtigsten Fähigkeiten alle wiederherstellbar sind. Wenn der Parser sich
+verschlucken würde, weißt du es, bevor die Software eines Recruiters es tut.
+
+Diese Extras degradieren elegant, wenn ihre Werkzeuge nicht installiert sind.
+Die `.txt` funktioniert immer. Die `.docx` braucht
+[`pandoc`](https://pandoc.org/); die Parse-Prüfung braucht `poppler`
+(`pdftotext`). Fehlt eines davon, wird dieser Schritt einfach mit einer Notiz
+übersprungen — dein PDF wird dadurch nie blockiert.
+
+## Jede Behauptung, auf ihre Quelle zurückverfolgt
+
+CareerForges festestes Versprechen ist, dass es niemals Erfahrung erfindet.
+`/apply` macht das *überprüfbar*: Es gibt ein **Provenance-Ledger** aus — jede
+Behauptung in deinem Lebenslauf zurück auf die Profildatei abgebildet, die sie
+belegt. Alles, was es nicht auf dein echtes Profil zurückverfolgen konnte, wird
+**zu deiner Prüfung markiert**, niemals still ausgeliefert.
+
+Dasselbe Ledger liest du später im [Provenance-Panel des
+Dashboards](/de/docs/dashboard/provenance), Behauptung für Behauptung, mit den
+nicht belegten hervorgehoben.
+
+## Was es nicht tun wird
+
+- **Die Bewerbung einreichen.** Du prüfst die PDFs und versendest sie selbst.
+- **Erfahrung erfinden.** Umsortieren und Betonung sind erlaubt; Fähigkeiten zu
+  behaupten, die du nicht hast, nicht.
+- **Deine Historie anfassen.** `/apply` *fügt* deinem Tracker nur jemals eine
+  Zeile *hinzu* — es ändert niemals bestehende.
+
+**Was als Nächstes passiert:** Deine Bewerbung erscheint im
+[Dashboard](/de/docs/dashboard), wo du ihren Status aktualisierst, während sich
+die Dinge entwickeln.

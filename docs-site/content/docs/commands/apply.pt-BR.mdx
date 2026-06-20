@@ -1,0 +1,148 @@
+---
+title: /apply
+description: De um anúncio de vaga a um currículo e carta de apresentação sob medida, como PDFs verificados — com você aprovando cada etapa.
+---
+
+O `/apply` é o coração do CareerForge. Dê a ele um anúncio de vaga — um link ou
+texto colado, ambos funcionam igualmente bem — e ele executa um pipeline de sete
+estágios que termina com dois PDFs prontos para impressão e uma nova linha no seu
+rastreador de candidaturas.
+
+```text
+/apply https://careers.acme.com/jobs/senior-data-engineer-42
+```
+
+## Primeiro, ele verifica se o anúncio é real
+
+Golpes, vagas-fantasma e fachadas de coleta de dados estão por toda parte, e uma
+listagem caprichada não te diz nada por si só. Então, antes de redigir qualquer
+coisa, o `/apply` avalia se o anúncio é genuíno e seguro para engajar, e te dá um
+veredito claro:
+
+| Veredito | O que significa |
+|---------|---------------|
+| **Verified** | Os sinais batem — empresa real, cargo de aparência real, sem sinais de alerta que valham uma pausa. |
+| **Caution** | Algo está um pouco estranho — um empregador vago, um canal incomum, um salário bom demais. Vale uma segunda olhada. |
+| **Suspicious** | Vários sinais de alerta — taxas antecipadas, coleta de dados pessoais, um domínio que não corresponde à empresa. |
+
+Cada veredito vem com os **motivos por trás dele**, citados a partir do que ele
+de fato encontrou, para que você possa julgar por si mesmo em vez de confiar num
+rótulo.
+
+Isto é mantido deliberadamente **separado da nota de aderência**. Um golpe pode
+ser uma correspondência perfeita de habilidades, e se a legitimidade fosse
+incorporada ao número de 0–100, uma ótima correspondência poderia diluir um
+alerta até a invisibilidade. Duas perguntas — *isto é um bom encaixe?* e *este
+anúncio é real?* — merecem duas respostas.
+
+O sistema avisa; **você decide**. Ele nunca bloqueia um anúncio
+automaticamente. Um veredito **Suspicious** pede a sua confirmação explícita
+antes de gastar esforço com a redação — um quebra-molas, não um muro.
+
+## Depois ele avalia a aderência — e pergunta
+
+Antes de escrever uma palavra, ele avalia o cargo contra o seu perfil em cinco
+dimensões:
+
+| Dimensão | Peso |
+|-----------|--------|
+| Correspondência de Habilidades Técnicas | 30% |
+| Alinhamento de Carreira | 30% |
+| Correspondência de Experiência | 25% |
+| Aderência Comportamental / Cultural | 15% |
+| Localização e Logística | Passa / Não passa |
+
+O total ponderado mapeia para um veredito: **Strong** (75+), **Good** (60–74),
+**Moderate** (45–59), **Weak** (30–44), **Poor** (abaixo de 30). Uma exceção: se
+a localização reprova nas suas restrições, o veredito é Poor por melhor que seja
+a correspondência de habilidades — uma vaga que você não pode aceitar não é um
+encaixe.
+
+Então ele para e pergunta: **prosseguir com a redação?** Essa etapa é sua. Diga
+não e nada é escrito; a avaliação sozinha já costuma valer a execução.
+
+## Depois ele escreve — dentro de regras estritas
+
+- **O currículo** é feito sob medida para o anúncio, e seu idioma e número de
+  páginas seguem o [locale pack](/pt-BR/docs/languages) ativo — uma página em
+  tamanho Letter onde essa é a norma, duas páginas A4 onde não é.
+- **A carta de apresentação** é escrita *no idioma do anúncio* — um anúncio em
+  dinamarquês recebe uma carta em dinamarquês — exatamente uma página, focada
+  nos problemas que você resolveria em vez de relistar o seu currículo.
+- **Cada afirmação precisa sobreviver ao teste da entrevista.** Se você não
+  conseguiria sustentar uma frase confortavelmente em uma entrevista, ela não
+  pertence ali. Exageros são sinalizados para você: *manter, suavizar ou
+  remover?*
+
+## Uma segunda IA confere a primeira
+
+Por padrão, um revisor separado com uma perspectiva fresca critica os dois
+rascunhos — palavras-chave perdidas, frases genéricas, ângulos sobre a empresa
+que valem ser mencionados. O agente principal então aplica as boas sugestões, e
+reverifica de forma independente qualquer afirmação factual sobre a empresa
+antes de ela ser admitida na sua carta.
+
+Você controla a profundidade (e o custo):
+
+| Você digita | O que acontece |
+|----------|--------------|
+| `/apply <posting>` | Revisão completa, incluindo pesquisa da empresa (padrão) |
+| `/apply --review=quick <posting>` | Revisão sem pesquisa da empresa — mais rápida |
+| `/apply --review=none <posting>` | Pula o revisor — a mais rápida |
+
+## Por fim: compilar, inspecionar, registrar
+
+Os documentos são compilados em PDF e *inspecionados visualmente* — contagem de
+páginas, títulos órfãos, inconsistências de fonte — e reparados até ficarem
+limpos. Então a candidatura é registrada [no seu arquivo de
+rastreador](/pt-BR/docs/your-data) com status **Draft**, a nota de aderência e os
+caminhos para os dois PDFs. Uma lista de verificação final (precisão factual,
+direcionamento, consistência, layout) é executada uma vez, e você recebe um breve
+resumo das decisões de personalização que ele tomou.
+
+## Exportações que um robô também consegue ler
+
+Um belo PDF em LaTeX é para o humano do outro lado — mas o primeiro leitor
+costuma ser um **sistema de rastreamento de candidatos (ATS)** que interpreta
+texto, não layout. Então, ao lado do PDF (ainda a saída principal e caprichada),
+o `/apply` produz duas versões amigáveis para máquina a partir do *mesmo*
+conteúdo:
+
+- Um **`.txt`** em texto puro — a coisa mais confiável que um ATS consegue
+  ingerir.
+- Um **`.docx`** do Word — para portais que pedem um documento editável.
+
+Ele então executa uma **autoverificação de interpretação**: extrai o texto de
+volta do PDF e confirma que seu nome, os títulos de seção e as habilidades-chave
+são todos recuperáveis. Se o interpretador fosse engasgar, você saberá antes do
+software de um recrutador.
+
+Esses extras degradam graciosamente quando suas ferramentas não estão
+instaladas. O `.txt` sempre funciona. O `.docx` precisa do
+[`pandoc`](https://pandoc.org/); a verificação de interpretação precisa do
+`poppler` (`pdftotext`). Faltar qualquer um apenas pula esse passo com uma nota —
+seu PDF nunca fica travado por causa deles.
+
+## Cada afirmação, rastreada até sua fonte
+
+A promessa mais firme do CareerForge é que ele nunca inventa experiência. O
+`/apply` torna isso *auditável*: ele emite um **registro de procedência** — cada
+afirmação do seu currículo mapeada de volta ao arquivo de perfil que a sustenta.
+Qualquer coisa que ele não conseguiu rastrear até o seu perfil real é
+**sinalizada para a sua revisão**, nunca enviada silenciosamente.
+
+Você lê esse mesmo registro depois no [painel de Procedência do
+painel](/pt-BR/docs/dashboard/provenance), afirmação por afirmação, com as sem
+respaldo destacadas.
+
+## O que ele não vai fazer
+
+- **Enviar a candidatura.** Você revisa os PDFs e os envia você mesmo.
+- **Inventar experiência.** Reordenar e enfatizar são permitidos; alegar
+  habilidades que você não tem, não.
+- **Mexer no seu histórico.** O `/apply` apenas *acrescenta* uma linha ao seu
+  rastreador — ele nunca modifica as existentes.
+
+**O que acontece em seguida:** sua candidatura aparece no
+[painel](/pt-BR/docs/dashboard), onde você vai atualizar o status dela conforme
+as coisas evoluem.

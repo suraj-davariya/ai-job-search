@@ -1,0 +1,75 @@
+---
+title: /upskill
+description: Ve exactamente dónde te quedas corto para los empleos que quieres — y obtén un plan real, sacado de la web, para cerrar la brecha.
+---
+
+`/upskill` es tu coach de carrera. Observa la distancia entre dónde estás y
+dónde los empleos que quieres necesitan que estés, luego te entrega una lista
+priorizada de qué aprender y dónde aprenderlo — cada recurso sacado de una
+búsqueda web en vivo, nunca inventado.
+
+## Dos formas de ejecutarlo
+
+| Lo que escribes | Modo | Qué observa |
+|----------|------|------------------|
+| `/upskill` | **Agregado** | Cada empleo en tu tracker. Los puestos para los que *menos* encajas cuentan más, así que el plan apunta a lo que realmente te está frenando. |
+| `/upskill <job url>` | **Dirigido** | Una publicación específica. (Pega el texto en su lugar si el enlace no carga.) |
+
+## Cómo se ve una ejecución
+
+```text
+you:    /upskill
+claude: Reading your tracker (12 applications) and your profile…
+
+        Skill Gap Heatmap
+        ──────────────────────────────────────────────────────────
+        Priority  Skill / Area          Type        Seen in
+        Critical  Kubernetes            tooling     7 of 12 roles
+        High      Terraform / IaC       tooling     5 of 12 roles
+        High      MLOps pipelines       domain      4 of 12 roles
+        Medium    Stakeholder comms     soft        3 of 12 roles
+        Low       Go                    —           1 of 12 roles
+        ──────────────────────────────────────────────────────────
+
+        Building your learning plan (searching for current resources)…
+        Saved → upskill/report-2026-06-17.md
+```
+
+El mapa de calor se imprime primero para que puedas ver la forma de la brecha
+antes del detalle.
+
+## Con qué te quedas
+
+1. **Un mapa de calor de brechas** — cada brecha calificada como Crítica /
+   Alta / Media / Baja, etiquetada por tipo (una herramienta faltante, un
+   dominio en el que no has trabajado, una habilidad blanda o una credencial).
+2. **Un plan de aprendizaje** — para cada brecha que importa, dos o tres
+   recursos reales (con enlaces y una razón de una línea), una dirección de
+   estudio ajustada a lo que *ya* sabes para que no vuelvas a aprender lo
+   básico, y una estimación de tiempo.
+3. **Un orden de estudio** — una secuencia numerada que respeta las
+   dependencias, prioriza las victorias rápidas y deja el conocimiento amplio
+   de dominio para el final, con un tiempo total al fondo.
+4. **Un informe guardado** en `upskill/report-*.md`. Vuelve a ejecutarlo el
+   mes que viene y el informe agregado se abre con un *delta*: qué brechas has
+   cerrado, y cuáles son nuevas.
+
+## Cómo se mantiene honesto
+
+- **Sin recursos inventados.** Cada curso, documento y libro viene de una
+  búsqueda web real con el año actual en la consulta. Si no existe nada bueno
+  para una brecha, lo dice.
+- **No rellenará un tracker vacío.** ¿Aún no hay postulaciones registradas? En
+  lugar de un informe vacío, te empuja a ejecutar
+  [`/search`](/es/docs/commands/search) y [`/apply`](/es/docs/commands/apply)
+  primero, o a apuntarlo a un solo empleo con `/upskill <url>`.
+- **Las brechas de baja prioridad** aparecen en el mapa de calor por
+  completitud pero no obtienen una entrada en el plan a menos que lo pidas — el
+  plan se mantiene enfocado en lo que mueve la aguja.
+
+## Verlo en el panel
+
+Cada informe aterriza en `upskill/report-*.md`, y la pestaña **Upskill** del
+panel los lista para que los releas en cualquier momento. También puedes lanzar
+una nueva ejecución directamente desde la Consola del panel — ejecuta este
+mismo comando `/upskill`.

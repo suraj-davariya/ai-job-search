@@ -1,0 +1,56 @@
+---
+title: Das Dashboard
+description: Deine gesamte Jobsuche auf einem Bildschirm — live, lokal und ehrlich bei seinen Zahlen.
+---
+
+Sich auf Jobs zu bewerben erzeugt eine seltsame Art von Amnesie. War dieser Monat besser
+als der letzte? Wie viele Bewerbungen sind eigentlich noch am Leben? Bei welchem Unternehmen
+hast du dich klammheimlich viermal beworben? Das Dashboard existiert, um diese Fragen
+auf einen Blick zu beantworten.
+
+Es ist eine Webseite, die **auf deinem eigenen Rechner** läuft und [deine Tracker-Datei](/de/docs/your-data)
+liest — dieselbe Datei, in die `/apply` schreibt. Öffne sie in einem
+Browser, und deine gesamte Pipeline wird zu Zahlen und Bildern.
+
+## Probier es gleich aus
+
+Alles unten sind die Widgets des echten Dashboards, die live in deinem
+Browser auf fiktiven Daten laufen. Klicke auf die Status-Buckets. Schalte das 7d/30d-Fenster
+um. Deines wird so aussehen, gefüllt mit deiner eigenen Suche.
+
+<DashboardPreview />
+
+> **Willst du die ganze App, nicht nur diese Widgets?** Öffne das
+> [**Live-Demo-Dashboard**](https://suraj-davariya.github.io/ai-job-search/dashboard/) —
+> die tatsächliche Dashboard-Oberfläche, jede Seite und alles, statisch auf denselben
+> Beispieldaten laufend. Es ist schreibgeschützt (Bearbeiten, die Konsole und PDF-Vorschauen
+> brauchen die lokal laufende App), aber die Navigation, die Diagramme und die Tabelle sind echt.
+
+## Ein Spiegel, kein Bedienpult
+
+Das Dashboard bearbeitet bewusst fast nichts. Die Fakten einer Bewerbung —
+wann, wo, welche Rolle, der Eignungs-Score, welche Dateien erzeugt wurden — werden
+einmal von `/apply` geschrieben und ändern sich nie. Was sich *ändert*, während deine Suche
+sich entfaltet, liegt bei dir zu aktualisieren, direkt in der Tabelle:
+
+- **Status** — Gesendet? Interview vereinbart? Angebot? Ein Klick, und nur erlaubte Züge
+  werden angeboten (siehe [die Bewerbungstabelle](/de/docs/dashboard/applications-table)).
+- **Notizen** — was auch immer du an den Rand kritzeln würdest: Namen, Daten, Bauchgefühle.
+
+Das ist die ganze Schreibfläche. Alles andere ist absichtlich schreibgeschützt, sodass
+das Dashboard deinen Verlauf niemals beschädigen kann — und falls eine Datendatei fehlt
+oder beschädigt ist, zeigen Seiten ein ehrliches „noch keine Daten" statt abzustürzen.
+
+## Woher die Zahlen kommen
+
+Jedes Diagramm und jeder KPI wird zum Anzeigezeitpunkt aus deiner Tracker-Datei berechnet — es gibt
+keine zweite Datenbank, die aus dem Takt geraten könnte. Die Arithmetik ist derselbe
+kleine Satz von Funktionen, gegen die das Projekt das Dashboard selbst testet, und
+dieser Leitfaden dokumentiert sie genau:
+
+- [Die KPIs](/de/docs/dashboard/kpis) — die vier Schlagzeilen-Zahlen und die Ehrlichkeits-
+  regel hinter dem „—", das dir manchmal begegnet.
+- [Die Diagramme](/de/docs/dashboard/charts) — was dir jede der sechs Visualisierungen sagt
+  und wie du sie liest.
+- [Die Bewerbungstabelle](/de/docs/dashboard/applications-table) — Filtern,
+  Bearbeiten und die Status-Zustandsmaschine.

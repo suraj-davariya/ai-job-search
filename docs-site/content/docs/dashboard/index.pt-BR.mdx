@@ -1,0 +1,60 @@
+---
+title: O Painel
+description: Toda a sua busca de emprego em uma tela — ao vivo, local e honesto sobre seus números.
+---
+
+Candidatar-se a vagas produz um tipo estranho de amnésia. Este mês foi melhor que
+o passado? Quantas candidaturas ainda estão de fato vivas? Para qual empresa você
+discretamente se candidatou quatro vezes? O painel existe para responder a essas
+perguntas num relance.
+
+É uma página web que roda **na sua própria máquina** e lê [o seu arquivo de
+rastreador](/pt-BR/docs/your-data) — o mesmo arquivo em que o `/apply` escreve.
+Abra-o num navegador e todo o seu funil vira números e imagens.
+
+## Experimente agora mesmo
+
+Tudo abaixo são os widgets reais do painel, rodando ao vivo no seu navegador com
+dados fictícios. Clique nos grupos de status. Alterne a janela de 7d/30d. O seu
+vai se parecer com isto, preenchido com a sua própria busca.
+
+<DashboardPreview />
+
+> **Quer o aplicativo inteiro, não só esses widgets?** Abra o
+> [**painel de demonstração ao vivo**](https://suraj-davariya.github.io/ai-job-search/dashboard/) —
+> a interface real do painel, cada página e tudo, rodando de forma estática nos
+> mesmos dados de exemplo. É somente leitura (edição, o Console e as
+> pré-visualizações de PDF precisam do aplicativo rodando localmente), mas a
+> navegação, os gráficos e a tabela são a coisa real.
+
+## Um espelho, não um painel de controle
+
+O painel deliberadamente edita quase nada. Os fatos de uma candidatura — quando,
+onde, qual cargo, a nota de aderência, quais arquivos foram gerados — são
+escritos uma vez pelo `/apply` e nunca mudam. O que *de fato* muda conforme a sua
+busca se desenrola é seu para atualizar, diretamente na tabela:
+
+- **Status** — Enviado? Entrevista marcada? Oferta? Um clique, e apenas
+  movimentos legais são oferecidos (veja [a tabela de
+  candidaturas](/pt-BR/docs/dashboard/applications-table)).
+- **Notas** — qualquer coisa que você rabiscaria na margem: nomes, datas,
+  intuições.
+
+Essa é toda a superfície de escrita. Todo o resto é somente leitura de
+propósito, para que o painel jamais possa corromper o seu histórico — e se um
+arquivo de dados estiver faltando ou danificado, as páginas mostram um honesto
+"no data yet" em vez de travar.
+
+## De onde vêm os números
+
+Cada gráfico e KPI é calculado a partir do seu arquivo de rastreador no momento
+da visualização — não há um segundo banco de dados que poderia ficar fora de
+sincronia. A aritmética é o mesmo pequeno conjunto de funções que o projeto testa
+contra o próprio painel, e este guia as documenta exatamente:
+
+- [Os KPIs](/pt-BR/docs/dashboard/kpis) — os quatro números de destaque e a regra
+  de honestidade por trás do "—" que você às vezes verá.
+- [Os gráficos](/pt-BR/docs/dashboard/charts) — o que cada um dos seis visuais te
+  diz e como lê-los.
+- [A tabela de candidaturas](/pt-BR/docs/dashboard/applications-table) —
+  filtragem, edição e a máquina de estados de status.

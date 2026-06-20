@@ -1,0 +1,61 @@
+---
+title: Os KPIs
+description: Quatro números de destaque e a regra da honestidade que às vezes mostra um traço em vez de um valor.
+---
+
+O topo do painel são quatro cartões. Aqui estão eles, ao vivo — role até
+deixá-los à vista e veja a contagem subir, e experimente o seletor 7d/30d no
+segundo cartão:
+
+<KpiCardsDemo />
+
+## O que cada cartão significa
+
+### Total de candidaturas
+
+Cada linha do seu rastreador, em todo o histórico. O número mais simples e o que
+discretamente mais importa nos dias em que a busca parece interminável: ele só
+sobe.
+
+### Candidaturas · 7d / 30d
+
+Quantas candidaturas você datou nos últimos 7 ou 30 dias corridos — o seletor
+alterna a janela. Este é o seu medidor de *atividade*. Um funil forte costuma
+começar com um número constante aqui, seja lá o que "constante" signifique para
+a sua situação.
+
+### Fit médio · 30d
+
+A pontuação média de fit (0–100) das candidaturas dos últimos 30 dias. Leia-a em
+conjunto com o cartão de atividade: muita atividade com fit médio baixo pode
+significar que você está atirando para todo lado; pouca atividade com fit médio
+alto pode significar que você está sendo apropriadamente seletivo — ou seletivo
+demais. Nenhum dos dois está errado; o número apenas torna o trade-off visível.
+
+### Taxa de entrevistas · 90d
+
+Das suas candidaturas ativas nos últimos 90 dias, a parcela que chegou a uma
+entrevista. Este é o seu medidor de *conversão* — o mais perto que uma busca por
+emprego tem de um retorno honesto sobre se os materiais estão funcionando.
+"Ativa" conta as candidaturas que você de fato enviou (em qualquer estado a
+partir de Sent); as que ainda estão em Draft não contam contra você.
+
+## A regra da honestidade — por que você às vezes verá "—"
+
+Um painel que tira a média de dois pontos de dados está mentindo educadamente
+para você. Por isso os dois cartões do tipo taxa têm um piso: **menos de 3
+candidaturas qualificadas na janela, e o cartão mostra "—" em vez de um
+número.**
+
+- *Fit médio · 30d* precisa de pelo menos 3 candidaturas datadas nos últimos 30
+  dias.
+- *Taxa de entrevistas · 90d* precisa de pelo menos 3 candidaturas ativas nos
+  últimos 90 dias.
+
+O traço não é um bug — é o painel se recusando a disfarçar ruído como insight.
+Candidate-se mais algumas vezes e o número aparece. O mesmo princípio percorre o
+produto inteiro: onde os dados estão faltando, você vê "sem dados", nunca um
+valor inventado.
+
+**Próximo:** [os gráficos](/pt-BR/docs/dashboard/charts) — a mesma honestidade,
+em imagens.

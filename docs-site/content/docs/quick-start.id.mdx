@@ -1,0 +1,167 @@
+---
+title: Panduan Cepat
+description: Dari belum memasang apa pun hingga lamaran pertama Anda yang disesuaikan, langkah demi langkah.
+---
+
+Halaman ini membawa Anda dari mesin kosong hingga CV dan surat lamaran pertama
+Anda yang disesuaikan. Siapkan sekitar tiga puluh menit untuk pertama kalinya;
+sebagian besar waktu itu dihabiskan oleh pemasangan LaTeX yang bekerja diam-diam.
+
+## Apa yang Anda butuhkan terlebih dahulu
+
+Jujurlah pada diri sendiri tentang tiga prasyarat ini — masing-masing tertaut ke
+panduan pemasangan yang layak, dan tak satu pun membutuhkan kemampuan pemrograman:
+
+1. **Claude Code** — asisten AI tempat CareerForge berjalan. Ini adalah program
+   yang Anda pasang sekali dan buka dari jendela terminal. Belum pernah memakai
+   terminal? Tidak masalah: Anda hanya akan mengetik perintah singkat yang
+   ditampilkan di halaman ini.
+2. **LaTeX** — sistem penataan huruf yang mengubah CV Anda menjadi PDF yang rapi.
+   Unduhannya besar, tetapi cukup pasang dan lupakan.
+3. **Python 3.10+** *(opsional)* — hanya dibutuhkan nanti untuk pembandingan gaji.
+   Lewati saja hari ini.
+
+<Steps>
+
+<Step>
+
+### Pasang Claude Code
+
+```bash title="Terminal"
+npm install -g @anthropic-ai/claude-code
+```
+
+Lalu jalankan sekali untuk masuk:
+
+```bash title="Terminal"
+claude
+```
+
+Anda akan membutuhkan [akun Anthropic](https://claude.ai) — paket Free maupun Pro
+keduanya berfungsi.
+
+**Apa yang terjadi berikutnya:** sebuah obrolan terbuka di terminal Anda. Jendela
+obrolan itulah tempat Anda menjalankan semua yang ada di bawah ini.
+
+</Step>
+
+<Step>
+
+### Pasang LaTeX
+
+Dua kompiler digunakan — `lualatex` untuk CV, `xelatex` untuk surat lamaran.
+Pemasangan di bawah ini mencakup keduanya.
+
+<Tabs items={["macOS", "Linux", "Windows"]}>
+
+<Tab value="macOS">
+
+```bash title="Terminal"
+brew install --cask mactex
+sudo tlmgr install fontawesome lato tcolorbox dashrule enumitem multirow \
+                   ifmtarg fontaxes mweights pgfopts
+```
+
+</Tab>
+
+<Tab value="Linux">
+
+```bash title="Terminal"
+sudo apt-get install texlive-full
+```
+
+</Tab>
+
+<Tab value="Windows">
+
+Pasang [MiKTeX](https://miktex.org/download) — ia mengambil paket yang hilang
+secara otomatis saat pertama kali Anda mengompilasi.
+
+</Tab>
+
+</Tabs>
+
+**Apa yang terjadi berikutnya:** tidak ada yang terlihat — LaTeX hanya menunggu
+siap hingga `/apply` perlu menghasilkan sebuah PDF.
+
+</Step>
+
+<Step>
+
+### Dapatkan CareerForge dan buka
+
+```bash title="Terminal"
+git clone https://github.com/suraj-davariya/ai-job-search.git
+cd ai-job-search
+claude
+```
+
+**Apa yang terjadi berikutnya:** Claude Code terbuka *di dalam* folder CareerForge,
+yang berarti ketiga perintah di bawah ini kini tersedia di obrolan Anda.
+
+</Step>
+
+<Step>
+
+### Bangun profil Anda
+
+```text title="In the Claude Code chat"
+/setup
+```
+
+Ia menawarkan tiga jalur: memindai folder berisi dokumen Anda, mengimpor satu CV,
+atau wawancara ramah di mana ia bertanya dan Anda menjawab. Pilih mana pun yang
+sesuai dengan yang Anda punya. Sebelum apa pun disimpan, ia menampilkan konten yang
+diusulkan dan meminta persetujuan Anda.
+
+**Apa yang terjadi berikutnya:** berkas profil Anda ada — pengalaman, keterampilan,
+tujuan, dan preferensi pencarian Anda, semuanya di mesin Anda. Anda hanya melakukan
+ini sekali.
+
+</Step>
+
+<Step>
+
+### Temukan pekerjaan
+
+```text title="In the Claude Code chat"
+/search
+```
+
+**Apa yang terjadi berikutnya:** sebuah tabel terperingkat berisi lowongan baru
+dari papan lowongan yang Anda konfigurasikan, masing-masing ditandai sebagai
+kecocokan Tinggi, Sedang, atau Rendah — dengan lowongan yang sudah Anda lihat
+disaring keluar. Balas dengan sebuah angka untuk mengevaluasi salah satunya secara
+mendalam.
+
+</Step>
+
+<Step>
+
+### Lamar salah satunya
+
+```text title="In the Claude Code chat"
+/apply https://company.com/jobs/the-role-you-want
+```
+
+Anda juga dapat menempelkan deskripsi pekerjaan langsung jika tidak ada tautan. Ia
+menilai kecocokan di lima dimensi dan bertanya apakah akan melanjutkan — itu titik
+pemeriksaan Anda, bukan formalitas.
+
+**Apa yang terjadi berikutnya:** sebuah CV dua halaman yang disesuaikan dan surat
+lamaran satu halaman, keduanya sebagai PDF, ditinjau oleh AI kedua dan diperiksa
+terhadap daftar verifikasi. Lamaran dicatat di pelacak Anda dengan status
+**Draft**. Anda membaca kedua PDF, lalu mengirimnya sendiri — CareerForge tidak
+pernah mengirimkan apa pun untuk Anda.
+
+</Step>
+
+</Steps>
+
+## Setelah lamaran pertama Anda
+
+- Buka [dasbor](/id/docs/dashboard) untuk mengamati alur Anda saat berkembang.
+- Baca [Data Anda](/id/docs/your-data) untuk melihat persis apa yang tercatat — ini
+  satu berkas yang dapat dibaca manusia.
+- Terjebak pada sesuatu? [FAQ](/id/docs/faq) mencakup pertanyaan minggu pertama yang
+  umum.

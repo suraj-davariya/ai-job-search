@@ -1,0 +1,56 @@
+---
+title: /search
+description: 扫描你选定的招聘网站，跳过你已经看过的，得到一份按匹配度排名的新职位列表。
+---
+
+`/search` 是你的侦察兵。它在你配置好的每一个招聘网站上，运行那些原本要你手动去
+做的搜索，扔掉重复的和你已经看过的职位，并按它们与*你*的契合程度对剩下的进行
+排名。
+
+## 一次运行是什么样子
+
+```text
+you:    /search
+claude: Searching your configured portals for the last 14 days…
+        Found 7 new positions (2 high, 3 medium, 2 low match)
+
+         #  Fit     Title                  Company     Location
+         1  High    Senior Data Engineer   Acme Corp   Amsterdam, NL
+         2  High    ML Platform Engineer   Beta Labs   Remote (EU)
+         3  Medium  Data Analyst           Gamma AG    Berlin, DE
+        …
+        Want me to evaluate any of these in detail? Just give me the number(s).
+```
+
+回复一个序号，那个职位就会被直接交给
+[`/apply`](/zh-Hans/docs/commands/apply)做完整评估。
+
+## 聚焦一次搜索
+
+| 你输入 | 它会做什么 |
+|----------|--------------|
+| `/search` | 运行你最靠前的三个优先级查询类别 |
+| `/search data science` | 优先匹配“data science”的那些类别 |
+| `/search broad` | 运行你配置的*所有*查询类别——撒下大网 |
+
+## 它如何决定你看到什么
+
+1. **你的配置驱动一切。** 招聘网站、搜索短语、地点和距离层级，全都来自 `/setup`
+   与你一起构建的搜索配置。没有任何网站或国家是写死的——LinkedIn、Indeed、你所在
+   国家的某个本地门户，一律欢迎。
+2. **它记得你看过什么。** 它曾向你展示过的每一个职位都会被记录下来，这样同一个
+   职位永远不会两次浪费你的注意力——即便是在不同日子的不同运行之间也是如此。
+3. **它会预先排名匹配度。** 每个新职位都会对照你的档案得到一个快速的高/中/低
+   信号，而高匹配会附上两三个要点来解释*为什么*。
+   在那个信号旁边，你还会看到一个快速的真实性标记——在看起来像骗局或幽灵职位的
+   职位上会有一个 **⚠ Suspicious** 标记——这样你就能在为它投入一整次
+   [`/apply`](/zh-Hans/docs/commands/apply)之前，发现一个有风险的招聘。
+   （彻底的真实性检查仍然在 `/apply` 内部进行；这只是一次提早的提醒。）
+4. **它尊重你的边界。** 在你可接受地点之外，或者比十四天更早的职位，会在你看到
+   之前就被过滤掉。
+
+这个快速信号是刻意做得粗糙的——它的职责是初筛。完整的五维评分会在你把一个职位
+送进 `/apply` 时进行。
+
+**接下来会发生什么：** 选一个序号，[/apply](/zh-Hans/docs/commands/apply) 就会
+接手，做一次正经的评估，并在你批准后生成文档。

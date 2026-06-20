@@ -1,0 +1,54 @@
+---
+title: KPI
+description: Empat angka utama, dan aturan kejujuran yang terkadang menampilkan tanda hubung kepada Anda.
+---
+
+Bagian atas dashboard berisi empat kartu. Inilah mereka, secara langsung — gulir hingga
+terlihat dan saksikan mereka menghitung, dan coba alihkan 7d/30d pada kartu kedua:
+
+<KpiCardsDemo />
+
+## Apa arti setiap kartu
+
+### Total lamaran
+
+Setiap baris di pelacak Anda, sepanjang waktu. Angka paling sederhana dan yang diam-diam
+paling penting pada hari-hari ketika pencarian terasa tak berujung: ia hanya naik.
+
+### Applied · 7d / 30d
+
+Berapa banyak lamaran yang Anda tanggali dalam 7 atau 30 hari kalender terakhir — pengalih
+mengganti jendelanya. Ini adalah pengukur *aktivitas* Anda. Alur yang kuat biasanya dimulai
+dengan angka yang stabil di sini, apa pun arti "stabil" bagi situasi Anda.
+
+### Avg fit · 30d
+
+Rata-rata skor kecocokan (0–100) dari lamaran 30 hari terakhir. Bacalah bersama dengan kartu
+aktivitas: aktivitas tinggi dengan rata-rata kecocokan rendah bisa berarti Anda menebar
+sembarangan; aktivitas rendah dengan rata-rata tinggi bisa berarti Anda selektif secara wajar
+— atau terlalu selektif. Tidak ada yang salah; angka itu sekadar membuat pertukaran ini
+terlihat.
+
+### Interview rate · 90d
+
+Dari lamaran aktif Anda dalam 90 hari terakhir, porsi yang mencapai wawancara. Ini adalah
+pengukur *konversi* Anda — hal yang paling mendekati umpan balik jujur yang dimiliki sebuah
+pencarian kerja tentang apakah materinya berhasil. "Aktif" menghitung lamaran yang benar-benar
+Anda kirim (dalam keadaan apa pun mulai dari Sent dan seterusnya); yang masih berada di Draft
+tidak diperhitungkan terhadap Anda.
+
+## Aturan kejujuran — mengapa terkadang Anda melihat "—"
+
+Sebuah dashboard yang merata-ratakan dua titik data sedang berbohong kepada Anda secara sopan.
+Maka dua kartu bergaya tingkat ini memiliki ambang batas: **kurang dari 3 lamaran yang
+memenuhi syarat dalam jendela tersebut, dan kartu menampilkan "—" alih-alih sebuah angka.**
+
+- *Avg fit · 30d* membutuhkan setidaknya 3 lamaran yang ditanggali dalam 30 hari terakhir.
+- *Interview rate · 90d* membutuhkan setidaknya 3 lamaran aktif dalam 90 hari terakhir.
+
+Tanda hubung itu bukan bug — itu adalah dashboard yang menolak mendandani kebisingan sebagai
+wawasan. Melamarlah beberapa kali lagi dan angkanya akan muncul. Prinsip yang sama mengalir di
+seluruh produk: di mana data hilang, Anda melihat "no data", tidak pernah sebuah nilai
+rekaan.
+
+**Berikutnya:** [grafik](/id/docs/dashboard/charts) — kejujuran yang sama, dalam gambar.

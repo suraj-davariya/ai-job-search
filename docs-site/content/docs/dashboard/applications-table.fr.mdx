@@ -1,0 +1,74 @@
+---
+title: Le tableau des candidatures
+description: La surface de travail — trier, filtrer, mettre à jour les statuts et prendre des notes, avec des garde-fous.
+---
+
+Les graphiques servent à prendre du recul ; le tableau est là où vous
+travaillez réellement. Chaque candidature est une ligne, les plus récentes en
+premier, et le quotidien d'une recherche d'emploi — *« le recruteur a appelé,
+passe-la en Interview »* — se passe ici.
+
+<ApplicationsTableDemo />
+
+## Retrouver des éléments
+
+Chaque colonne se trie. Les filtres restreignent le tableau par statut,
+secteur, type de poste ou canal, et se mettent à jour en direct. La [bande de
+pipeline](/fr/docs/dashboard/charts#pipeline-strip) au-dessus du tableau fait
+aussi office de filtre de statut — cliquez sur un segment, le tableau suit.
+Cliquer sur une ligne ouvre un tiroir avec l'enregistrement complet : chaque
+champ, vos notes, et les liens vers les PDF exacts du CV et de la lettre de
+motivation qui ont été envoyés.
+
+## Modifier — exactement deux choses
+
+Seuls le **statut** et les **notes** sont modifiables (la date de *dernière
+mise à jour* s'horodate elle-même). Tout le reste — date, entreprise, poste,
+score d'adéquation, chemins de fichiers — est l'enregistrement factuel écrit
+par `/apply`, et le tableau de bord le traite comme étant en lecture seule.
+
+## La machine à états des statuts
+
+Les statuts ne sont pas du texte libre ; ce sont sept étapes fixes, et le
+tableau de bord ne propose que les transitions qui ont du sens. Essayez —
+choisissez un statut :
+
+<StatusFlowDemo />
+
+En détail :
+
+| Depuis | Peut passer à |
+|------|------------|
+| Draft | Sent, Withdrawn |
+| Sent | Interview, Rejected, Withdrawn, Closed |
+| Interview | Offer, Rejected, Withdrawn, Closed |
+| Offer / Rejected / Withdrawn / Closed | — final |
+
+Pourquoi tant de rigueur ? Parce que les statuts alimentent le [KPI de taux
+d'entretien](/fr/docs/dashboard/kpis) et les [graphiques de
+statut](/fr/docs/dashboard/charts) — et ces chiffres ne valent la peine d'être
+lus que si un « Sent » signifie toujours la même chose. Les transitions
+illégales sont rejetées avant d'être écrites, de sorte qu'un clic malheureux ne
+peut pas corrompre discrètement vos statistiques.
+
+Deux détails à connaître :
+
+- **Final ne veut pas dire masqué.** Les lignes Rejected, Withdrawn et Closed
+  restent dans le tableau, grisées. Votre historique fait partie des données —
+  et regarder la pile des Rejected se transformer lentement en pile d'Interview
+  est une forme de progrès en soi.
+- **Mauvais statut final ?** Le tableau de bord ne fera pas sortir une ligne
+  d'un état final. Votre tracker est [un simple fichier qui vous
+  appartient](/fr/docs/your-data), donc une véritable erreur peut toujours être
+  corrigée dans n'importe quel tableur.
+
+## Ajouter une ligne à la main
+
+Vous avez postulé ailleurs qu'avec CareerForge — une recommandation, une
+candidature spontanée, un e-mail ? Le bouton **+ New** ajoute une ligne
+manuellement pour que vos statistiques restent complètes. La date, l'entreprise
+et le poste sont obligatoires ; les champs du CV et de la lettre de motivation
+restent simplement vides.
+
+**Suite :** [Vos données](/fr/docs/your-data) — le fichier unique derrière tout
+cela.

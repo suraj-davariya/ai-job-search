@@ -1,0 +1,65 @@
+---
+title: /reset
+description: Lösche deine persönlichen Daten und fang neu an — mit einer Inventur zuerst, einer harten Bestätigung und dem Framework unangetastet.
+---
+
+`/reset` ist der Knopf für den Neuanfang. Manchmal willst du von vorn beginnen — eine neue
+berufliche Richtung, ein frisches Profil, oder du übergibst das Repository an jemand anderen.
+`/reset` entfernt **deine Daten**, während es sorgfältig das **Framework** bewahrt, das
+CareerForge zum Laufen bringt, sodass das Tool danach weiterhin einwandfrei funktioniert.
+
+## Wähle, was gelöscht werden soll
+
+| Du tippst | Löscht |
+|----------|--------|
+| `/reset profile` | Deine Profil-Skill-Dateien — zurück zu leeren Vorlagen |
+| `/reset documents` | Deine Dateien in `documents/` (die Ordner und die README bleiben) |
+| `/reset all` | Beides |
+
+Wenn du keinen Geltungsbereich angibst, fragt es dich, zu wählen, und erklärt, was jeder
+einzelne betrifft.
+
+## Es zeigt dir zuerst alles
+
+Bevor irgendetwas gelöscht wird, gibt `/reset` eine **Inventur** aus:
+
+```text
+you:    /reset profile
+claude: Profile reset — here's what I'll clear vs. keep:
+
+        Will clear:
+          01-candidate-profile.md     (has your data)
+          02-behavioral-profile.md    (has your data)
+          07 STAR examples            (3 examples)
+        Already empty:
+          05 profile statements       (template)
+        NEVER touched (framework):
+          03-writing-style.md, 04 scoring framework,
+          06 cover-letter templates, 07 framework + roleplay
+
+        This cannot be undone — your git history is the only recovery.
+        Type RESET to proceed.
+you:    RESET
+claude: Cleared 3 files. Run /setup to rebuild your profile.
+```
+
+## Die Sicherheitsvorkehrungen
+
+- **Inventur vor dem Löschen** — du siehst immer genau, was geht und was bleibt.
+- **Du musst `RESET`** in Großbuchstaben tippen. Jede andere Antwort bricht ab mit „nothing was
+  changed".
+- **Das Framework wird nie angetastet** — der Schreibstil-Leitfaden, das Bewertungs-Framework, die
+  Anschreiben-Vorlagen und das Framework zur Interviewvorbereitung (einschließlich deiner
+  Rollenspiel-Richtlinien) bleiben alle erhalten. Nur deine *Daten* werden gelöscht.
+- **Ehrliche Berichterstattung** — es listet auf, was tatsächlich gelöscht wurde, im Vergleich zu
+  dem, was bereits leer war, und behauptet nie, etwas gelöscht zu haben, das gar nicht da war.
+- **Kein Rückgängigmachen.** Es sagt das von vornherein und verweist dich auf deinen Git-Verlauf.
+
+## Nach einem Reset
+
+`/reset` nennt dir den natürlichen nächsten Schritt für das, was du gelöscht hast — fast immer
+[`/setup`](/de/docs/commands/setup), um dein Profil neu aufzubauen (füge zuerst Dokumente hinzu,
+falls du diese gelöscht hast).
+
+> Weil es destruktiv ist, ist `/reset` absichtlich **nicht** über die Dashboard-Konsole
+> verfügbar — es läuft nur hier, wo die getippte `RESET`-Bestätigung dich schützt.

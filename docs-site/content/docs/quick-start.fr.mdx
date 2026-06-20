@@ -1,0 +1,169 @@
+---
+title: Démarrage rapide
+description: De rien d'installé à votre première candidature sur mesure, étape par étape.
+---
+
+Cette page vous mène d'une machine vierge à votre premier CV et lettre de
+motivation sur mesure. Prévoyez environ trente minutes la première fois ; la
+majeure partie est l'installation de LaTeX qui fait tranquillement son travail.
+
+## Ce dont vous aurez besoin d'abord
+
+Soyez honnête avec vous-même sur ces trois prérequis — chacun renvoie à un
+véritable guide d'installation, et aucun ne demande de programmer :
+
+1. **Claude Code** — l'assistant IA dans lequel CareerForge s'exécute. C'est un
+   programme que vous installez une fois et ouvrez depuis une fenêtre de
+   terminal. Vous n'avez jamais utilisé de terminal ? Pas de souci : vous ne
+   taperez que de courtes commandes indiquées sur cette page.
+2. **LaTeX** — le système de composition qui transforme votre CV en un PDF
+   soigné. C'est un gros téléchargement, mais on l'installe et on l'oublie.
+3. **Python 3.10+** *(optionnel)* — nécessaire seulement plus tard pour le
+   comparatif salarial. Ignorez-le aujourd'hui.
+
+<Steps>
+
+<Step>
+
+### Installer Claude Code
+
+```bash title="Terminal"
+npm install -g @anthropic-ai/claude-code
+```
+
+Puis lancez-le une fois pour vous connecter :
+
+```bash title="Terminal"
+claude
+```
+
+Vous aurez besoin d'un [compte Anthropic](https://claude.ai) — les forfaits
+Free et Pro fonctionnent tous les deux.
+
+**Ce qui se passe ensuite :** une conversation s'ouvre dans votre terminal.
+Cette fenêtre de conversation est l'endroit où vous exécuterez tout ce qui
+suit.
+
+</Step>
+
+<Step>
+
+### Installer LaTeX
+
+Deux compilateurs sont utilisés — `lualatex` pour le CV, `xelatex` pour la
+lettre de motivation. Les installations ci-dessous incluent les deux.
+
+<Tabs items={["macOS", "Linux", "Windows"]}>
+
+<Tab value="macOS">
+
+```bash title="Terminal"
+brew install --cask mactex
+sudo tlmgr install fontawesome lato tcolorbox dashrule enumitem multirow \
+                   ifmtarg fontaxes mweights pgfopts
+```
+
+</Tab>
+
+<Tab value="Linux">
+
+```bash title="Terminal"
+sudo apt-get install texlive-full
+```
+
+</Tab>
+
+<Tab value="Windows">
+
+Installez [MiKTeX](https://miktex.org/download) — il récupère automatiquement
+tout paquet manquant lors de la première compilation.
+
+</Tab>
+
+</Tabs>
+
+**Ce qui se passe ensuite :** rien de visible — LaTeX attend simplement, prêt,
+jusqu'à ce que `/apply` ait besoin de produire un PDF.
+
+</Step>
+
+<Step>
+
+### Obtenir CareerForge et l'ouvrir
+
+```bash title="Terminal"
+git clone https://github.com/suraj-davariya/ai-job-search.git
+cd ai-job-search
+claude
+```
+
+**Ce qui se passe ensuite :** Claude Code s'ouvre *à l'intérieur* du dossier
+CareerForge, ce qui signifie que les trois commandes ci-dessous sont désormais
+disponibles dans votre conversation.
+
+</Step>
+
+<Step>
+
+### Construire votre profil
+
+```text title="Dans la conversation Claude Code"
+/setup
+```
+
+Il propose trois voies : scanner un dossier de vos documents, importer un seul
+CV, ou un entretien convivial où il pose des questions et vous répondez.
+Choisissez celle qui convient à ce que vous avez. Avant tout enregistrement, il
+vous montre le contenu proposé et demande votre approbation.
+
+**Ce qui se passe ensuite :** vos fichiers de profil existent — votre
+expérience, vos compétences, vos objectifs et vos préférences de recherche,
+tout sur votre machine. Vous ne faites cela qu'une seule fois.
+
+</Step>
+
+<Step>
+
+### Trouver des emplois
+
+```text title="Dans la conversation Claude Code"
+/search
+```
+
+**Ce qui se passe ensuite :** un tableau classé de nouvelles offres provenant
+de vos sites d'emploi configurés, chacune marquée Élevée, Moyenne ou Faible —
+les offres que vous avez déjà vues étant filtrées. Répondez avec un numéro
+pour en évaluer une en profondeur.
+
+</Step>
+
+<Step>
+
+### Postuler à une offre
+
+```text title="Dans la conversation Claude Code"
+/apply https://company.com/jobs/the-role-you-want
+```
+
+Vous pouvez aussi coller directement la description du poste s'il n'y a pas de
+lien. Il évalue l'adéquation sur cinq dimensions et demande s'il faut
+continuer — c'est votre point de contrôle, pas une formalité.
+
+**Ce qui se passe ensuite :** un CV de deux pages sur mesure et une lettre de
+motivation d'une page, tous deux en PDF, relus par une seconde IA et vérifiés
+par rapport à une liste de contrôle. La candidature est consignée dans votre
+outil de suivi avec le statut **Draft**. Vous lisez les deux PDF, puis les
+envoyez vous-même — CareerForge ne soumet jamais rien à votre place.
+
+</Step>
+
+</Steps>
+
+## Après votre première candidature
+
+- Ouvrez [le tableau de bord](/fr/docs/dashboard) pour observer votre pipeline
+  à mesure qu'il grandit.
+- Lisez [Vos données](/fr/docs/your-data) pour voir exactement ce qui a été
+  enregistré — c'est un seul fichier lisible par un humain.
+- Coincé sur quelque chose ? La [FAQ](/fr/docs/faq) couvre les questions
+  courantes de la première semaine.

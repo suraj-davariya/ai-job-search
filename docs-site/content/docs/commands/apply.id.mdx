@@ -1,0 +1,141 @@
+---
+title: /apply
+description: Dari sebuah lowongan ke CV dan surat lamaran yang disesuaikan, sebagai PDF terverifikasi — dengan Anda menyetujui setiap gerbang.
+---
+
+`/apply` adalah jantung CareerForge. Berikan ia sebuah lowongan — sebuah tautan atau
+teks yang ditempel, keduanya sama-sama berfungsi — dan ia menjalankan alur tujuh
+tahap yang berakhir dengan dua PDF siap cetak dan satu baris baru di pelacak lamaran
+Anda.
+
+```text
+/apply https://careers.acme.com/jobs/senior-data-engineer-42
+```
+
+## Pertama, ia memeriksa lowongan itu nyata
+
+Penipuan, ghost job, dan kedok pengumpulan data ada di mana-mana, dan sebuah lowongan
+yang rapi tidak mengatakan apa pun dengan sendirinya. Jadi sebelum membuat draf apa
+pun, `/apply` menilai apakah lowongan itu asli dan aman untuk ditindaklanjuti, dan
+memberi Anda putusan yang jelas:
+
+| Putusan | Apa artinya |
+|---------|---------------|
+| **Verified** | Sinyalnya selaras — perusahaan nyata, posisi yang tampak nyata, tidak ada tanda bahaya yang perlu dijeda. |
+| **Caution** | Ada yang sedikit janggal — pemberi kerja yang kabur, saluran yang aneh, gaji yang terlalu bagus. Layak ditinjau ulang. |
+| **Suspicious** | Beberapa tanda bahaya — biaya di muka, pengumpulan data pribadi, domain yang tidak cocok dengan perusahaan. |
+
+Setiap putusan disertai **alasan di baliknya**, terkutip dari apa yang sebenarnya ia
+temukan, sehingga Anda dapat menilai sendiri alih-alih memercayai sebuah label.
+
+Ini sengaja dijaga **terpisah dari skor kecocokan**. Sebuah penipuan bisa menjadi
+kecocokan keterampilan yang sempurna, dan jika keabsahan dilipat ke dalam angka
+0–100, kecocokan yang hebat bisa merata-ratakan sebuah peringatan hingga tak terlihat.
+Dua pertanyaan — *apakah ini kecocokan yang baik?* dan *apakah lowongan ini nyata?* —
+layak mendapat dua jawaban.
+
+Sistem memperingatkan; **Anda yang memutuskan**. Ia tidak pernah memblokir otomatis
+sebuah lowongan. Putusan **Suspicious** memang meminta konfirmasi eksplisit Anda
+sebelum ia menghabiskan upaya membuat draf — sebuah gundukan kecepatan, bukan tembok.
+
+## Lalu ia menilai kecocokan — dan bertanya
+
+Sebelum menulis sepatah kata pun, ia mengevaluasi posisi terhadap profil Anda di lima
+dimensi:
+
+| Dimensi | Bobot |
+|-----------|--------|
+| Technical Skills Match | 30% |
+| Career Alignment | 30% |
+| Experience Match | 25% |
+| Behavioral / Culture Fit | 15% |
+| Location & Logistics | Pass / Fail |
+
+Total berbobot dipetakan ke sebuah putusan: **Strong** (75+), **Good** (60–74),
+**Moderate** (45–59), **Weak** (30–44), **Poor** (di bawah 30). Satu penimpaan: jika
+lokasi gagal memenuhi batasan Anda, putusannya adalah Poor sebaik apa pun kecocokan
+keterampilannya — pekerjaan yang tidak bisa Anda ambil bukanlah kecocokan.
+
+Lalu ia berhenti dan bertanya: **lanjutkan dengan membuat draf?** Gerbang itu milik
+Anda. Katakan tidak dan tidak ada yang ditulis; evaluasi saja sering kali sudah
+sepadan dengan proses ini.
+
+## Lalu ia menulis — dalam aturan ketat
+
+- **CV** disesuaikan dengan lowongan, dan bahasa serta jumlah halamannya mengikuti
+  [locale pack](/id/docs/languages) yang aktif — satu halaman ukuran Letter di mana
+  itu normanya, dua halaman A4 di mana bukan.
+- **Surat lamaran** ditulis dalam *bahasa lowongan* — lowongan berbahasa Denmark
+  mendapat surat berbahasa Denmark — tepat satu halaman, berfokus pada masalah yang
+  akan Anda selesaikan alih-alih mendaftar ulang CV Anda.
+- **Setiap klaim harus lolos uji wawancara.** Jika Anda tidak bisa dengan nyaman
+  mendukung sebuah kalimat dalam wawancara, ia tidak pantas ada. Hal yang dipaksakan
+  ditandai kepada Anda: *pertahankan, lunakkan, atau buang?*
+
+## AI kedua memeriksa yang pertama
+
+Secara bawaan, seorang peninjau terpisah dengan perspektif segar mengkritik kedua
+draf — kata kunci yang terlewat, ungkapan yang generik, sudut pandang tentang
+perusahaan yang layak disebutkan. Agen utama lalu menerapkan saran yang baik, dan
+secara independen memverifikasi ulang setiap klaim faktual tentang perusahaan sebelum
+diizinkan masuk ke surat Anda.
+
+Anda mengendalikan kedalamannya (dan biayanya):
+
+| Yang Anda ketik | Apa yang terjadi |
+|----------|--------------|
+| `/apply <posting>` | Tinjauan penuh, termasuk riset perusahaan (bawaan) |
+| `/apply --review=quick <posting>` | Tinjauan tanpa riset perusahaan — lebih cepat |
+| `/apply --review=none <posting>` | Lewati peninjau — tercepat |
+
+## Akhirnya: kompilasi, periksa, catat
+
+Dokumen dikompilasi ke PDF dan *diperiksa secara visual* — jumlah halaman, judul yang
+terpisah, ketidakcocokan font — dan diperbaiki ulang hingga bersih. Lalu lamaran
+dicatat di [berkas pelacak Anda](/id/docs/your-data) dengan status **Draft**, skor
+kecocokan, dan jalur ke kedua PDF. Sebuah daftar verifikasi akhir (akurasi faktual,
+penargetan, konsistensi, tata letak) dijalankan sekali, dan Anda mendapat ringkasan
+singkat tentang keputusan penyesuaian yang ia buat.
+
+## Ekspor yang bisa dibaca robot juga
+
+Sebuah PDF LaTeX yang indah ditujukan untuk manusia di ujung sana — tetapi pembaca
+pertama sering kali adalah **sistem pelacak pelamar (ATS)** yang mengurai teks, bukan
+tata letak. Jadi di samping PDF (tetap keluaran utama yang rapi), `/apply`
+menghasilkan dua versi ramah-mesin dari konten yang *sama*:
+
+- Sebuah **`.txt`** teks polos — hal yang paling andal dapat dicerna oleh ATS.
+- Sebuah **`.docx`** Word — untuk portal yang meminta dokumen yang dapat disunting.
+
+Lalu ia menjalankan **pemeriksaan-mandiri penguraian**: ia menarik teks kembali keluar
+dari PDF dan memastikan nama Anda, judul bagian, dan keterampilan kunci semuanya dapat
+dipulihkan. Jika pengurai akan tersedak, Anda akan tahu sebelum perangkat lunak
+perekrut melakukannya.
+
+Tambahan ini menurun secara anggun ketika alatnya tidak terpasang. `.txt` selalu
+berfungsi. `.docx` membutuhkan [`pandoc`](https://pandoc.org/); pemeriksaan penguraian
+membutuhkan `poppler` (`pdftotext`). Jika salah satunya hilang, langkah itu cukup
+dilewati dengan catatan — PDF Anda tidak pernah terhalang olehnya.
+
+## Setiap klaim, dilacak ke sumbernya
+
+Janji paling teguh CareerForge adalah ia tidak pernah mengarang pengalaman. `/apply`
+membuat itu *dapat diaudit*: ia memancarkan sebuah **buku besar provenans** — setiap
+klaim di CV Anda dipetakan kembali ke berkas profil yang mendukungnya. Apa pun yang
+tidak bisa ia lacak ke profil nyata Anda **ditandai untuk peninjauan Anda**, tidak
+pernah dikirim diam-diam.
+
+Anda membaca buku besar yang sama nanti di [panel Provenance
+dasbor](/id/docs/dashboard/provenance), klaim demi klaim, dengan yang tak terdukung
+disorot.
+
+## Apa yang tidak akan ia lakukan
+
+- **Mengirimkan lamaran.** Anda meninjau PDF dan mengirimnya sendiri.
+- **Mengarang pengalaman.** Penyusunan ulang dan penekanan diperbolehkan; mengklaim
+  keterampilan yang tidak Anda miliki tidak.
+- **Menyentuh riwayat Anda.** `/apply` hanya pernah *menambahkan* satu baris ke
+  pelacak Anda — ia tidak pernah mengubah yang sudah ada.
+
+**Apa yang terjadi berikutnya:** lamaran Anda muncul di [dasbor](/id/docs/dashboard),
+tempat Anda akan memperbarui statusnya seiring perkembangan.

@@ -1,0 +1,64 @@
+---
+title: /search
+description: Varra os sites de vagas que você escolheu, pule o que já viu e obtenha uma lista classificada de novas correspondências.
+---
+
+O `/search` é o seu batedor. Ele executa as buscas que você faria à mão em cada
+site de vagas que você configurou, descarta duplicatas e anúncios que você já
+viu, e classifica o que sobra pelo quanto se encaixa em *você*.
+
+## Como é uma execução
+
+```text
+you:    /search
+claude: Searching your configured portals for the last 14 days…
+        Found 7 new positions (2 high, 3 medium, 2 low match)
+
+         #  Fit     Title                  Company     Location
+         1  High    Senior Data Engineer   Acme Corp   Amsterdam, NL
+         2  High    ML Platform Engineer   Beta Labs   Remote (EU)
+         3  Medium  Data Analyst           Gamma AG    Berlin, DE
+        …
+        Want me to evaluate any of these in detail? Just give me the number(s).
+```
+
+Responda com um número e esse anúncio é entregue diretamente ao
+[`/apply`](/pt-BR/docs/commands/apply) para a avaliação completa.
+
+## Focando uma busca
+
+| Você digita | O que faz |
+|----------|--------------|
+| `/search` | Executa suas três categorias de consulta prioritárias |
+| `/search data science` | Prioriza as categorias que correspondem a "data science" |
+| `/search broad` | Executa *todas* as suas categorias de consulta configuradas — a rede ampla |
+
+## Como ele decide o que você vê
+
+1. **Sua configuração comanda tudo.** Os sites de vagas, frases de busca,
+   localizações e faixas de distância vêm todos da configuração de busca que o
+   `/setup` construiu com você. Nenhum site ou país está fixado no código —
+   LinkedIn, Indeed, um portal nacional do seu país, todos igualmente
+   bem-vindos.
+2. **Ele lembra o que você viu.** Todo anúncio que já te foi mostrado é
+   registrado, então o mesmo cargo nunca desperdiça sua atenção duas vezes —
+   mesmo em execuções diferentes em dias diferentes.
+3. **Ele pré-classifica a aderência.** Cada novo anúncio recebe um sinal rápido
+   Alta / Média / Baixa contra o seu perfil, e correspondências Altas vêm com
+   dois ou três tópicos explicando o *porquê*.
+   Ao lado desse sinal você também verá uma marca rápida de legitimidade — um
+   marcador **⚠ Suspicious** em anúncios que parecem golpes ou vagas-fantasma —
+   para que você consiga identificar uma listagem arriscada antes de investir um
+   [`/apply`](/pt-BR/docs/commands/apply) completo nela. (A verificação completa
+   de legitimidade ainda acontece dentro do `/apply`; isto é só o aviso
+   antecipado.)
+4. **Ele respeita seus limites.** Anúncios fora das suas localizações aceitáveis
+   ou mais antigos que quatorze dias são filtrados antes de você os ver.
+
+O sinal rápido é deliberadamente grosseiro — seu trabalho é a triagem. A
+pontuação completa em cinco dimensões acontece quando você envia um anúncio ao
+`/apply`.
+
+**O que acontece em seguida:** escolha um número, e o
+[/apply](/pt-BR/docs/commands/apply) assume com uma avaliação adequada e, se você
+aprovar, os documentos.

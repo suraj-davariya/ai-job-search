@@ -1,0 +1,68 @@
+---
+title: /setup
+description: Construa seu perfil de candidato uma vez — a partir dos seus documentos, de um currículo ou de uma conversa.
+---
+
+Tudo que o CareerForge escreve sobre você vem de um único lugar: o seu perfil. O
+`/setup` o constrói. Você o executa uma vez no início, e novamente apenas quando
+algo sobre você muda — um emprego novo, uma certificação nova, uma cidade nova.
+
+## Três formas de entrar, mesmo resultado
+
+Quando você digita `/setup`, ele olha o que você tem e oferece três caminhos:
+
+| Caminho | Melhor quando | O que acontece |
+|------|-----------|--------------|
+| **A — Escanear meus documentos** | Você jogou currículos, uma exportação do LinkedIn, diplomas ou cartas de recomendação na pasta `documents/` | Ele lê tudo, faz a verificação cruzada das fontes entre si e propõe o conteúdo do perfil |
+| **B — Importar um único currículo** | Você tem um bom currículo e quer um começo rápido | Ele extrai o que o currículo contém e depois faz perguntas direcionadas sobre o que os currículos costumam deixar de fora |
+| **C — Me entrevistar** | Você está começando do zero, sem documentos necessários | Uma conversa guiada por nove tópicos: identidade, formação, experiência, habilidades, e assim por diante |
+
+Os três caminhos terminam no mesmo lugar: um conjunto de arquivos de perfil
+descrevendo sua experiência, estilo de trabalho, preferências de avaliação e
+alvos de busca de emprego.
+
+## As regras que ele segue
+
+Vale conhecê-las, porque são o motivo de você poder confiar no resultado:
+
+- **Nada é escrito sem o seu OK.** Toda mudança proposta é mostrada primeiro.
+  Conteúdo novo chega como uma lista de verificação que você aprova; qualquer
+  coisa que *conflite* com o que já está no arquivo é apresentada um item por
+  vez com opções de manter / substituir / editar.
+- **Ele nunca preenche lacunas com palpites.** Se ele não souber seu ano de
+  formatura, ele pergunta — não inventa um.
+- **Fontes que discordam são sinalizadas.** Se o seu currículo diz que um
+  emprego terminou em 2021 e o LinkedIn diz 2022, você verá os dois e escolhe o
+  certo.
+- **Executá-lo duas vezes é seguro.** O `/setup` é idempotente: reexecutá-lo com
+  as mesmas entradas não propõe nada novo e não sobrescreve nada.
+
+## Atualizando uma seção depois
+
+Você não refaz a entrevista inteira para mudar uma coisa:
+
+```text
+/setup --section experience
+```
+
+Seções válidas incluem `identity`, `education`, `experience`, `skills`,
+`behavioral`, `interview-prep` e `search` — esta última regenera as consultas
+aos sites de vagas e as preferências de localização, o que é útil quando você se
+muda ou troca de alvos:
+
+```text
+/setup --section search
+```
+
+## O que ele constrói
+
+Sete documentos de perfil mais a sua configuração de busca — entre eles o seu
+perfil de candidato (experiência, habilidades, formação), um perfil
+comportamental (estilo de trabalho e preferências), declarações de perfil para
+diferentes tipos de cargo e histórias de entrevista no formato STAR extraídas
+das suas conquistas reais. Onde uma história precisa da sua memória em primeira
+pessoa para se completar, ele deixa uma lacuna claramente marcada para você em
+vez de inventar os detalhes.
+
+**O que acontece em seguida:** você está pronto para [encontrar vagas com
+/search](/pt-BR/docs/commands/search).

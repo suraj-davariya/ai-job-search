@@ -1,0 +1,76 @@
+---
+title: /upskill
+description: Veja exatamente onde você fica aquém das vagas que quer — e receba um plano real, com fontes da web, para fechar a lacuna.
+---
+
+O `/upskill` é o seu coach de carreira. Ele olha a distância entre onde você está
+e onde as vagas que você quer precisam que você esteja, e então te entrega uma
+lista priorizada do que aprender e onde aprender — cada recurso retirado de uma
+busca ao vivo na web, nunca inventado.
+
+## Duas formas de executá-lo
+
+| Você digita | Modo | O que ele olha |
+|----------|------|------------------|
+| `/upskill` | **Agregado** | Toda vaga no seu rastreador. Os cargos em que você se encaixa *menos* contam mais, então o plano aponta para o que de fato está te segurando. |
+| `/upskill <job url>` | **Direcionado** | Um anúncio específico. (Cole o texto em vez disso se o link não carregar.) |
+
+## Como é uma execução
+
+```text
+you:    /upskill
+claude: Reading your tracker (12 applications) and your profile…
+
+        Skill Gap Heatmap
+        ──────────────────────────────────────────────────────────
+        Priority  Skill / Area          Type        Seen in
+        Critical  Kubernetes            tooling     7 of 12 roles
+        High      Terraform / IaC       tooling     5 of 12 roles
+        High      MLOps pipelines       domain      4 of 12 roles
+        Medium    Stakeholder comms     soft        3 of 12 roles
+        Low       Go                    —           1 of 12 roles
+        ──────────────────────────────────────────────────────────
+
+        Building your learning plan (searching for current resources)…
+        Saved → upskill/report-2026-06-17.md
+```
+
+O mapa de calor é impresso primeiro para que você veja o formato da lacuna antes
+do detalhe.
+
+## Com o que você sai
+
+1. **Um mapa de calor de lacunas** — cada lacuna classificada como Crítica /
+   Alta / Média / Baixa, marcada por tipo (uma ferramenta faltando, um domínio
+   em que você não trabalhou, uma soft skill ou uma credencial).
+2. **Um plano de aprendizado** — para cada lacuna que importa, dois ou três
+   recursos reais (com links e um motivo de uma linha), uma direção de estudo
+   ajustada ao que você *já* sabe para que você não reaprenda o básico, e uma
+   estimativa de tempo.
+3. **Uma ordem de estudo** — uma sequência numerada que respeita dependências,
+   adianta as vitórias rápidas e guarda o conhecimento amplo de domínio para o
+   final, com um tempo total no fim.
+4. **Um relatório salvo** em `upskill/report-*.md`. Execute-o de novo no mês
+   seguinte e o relatório agregado abre com um *delta*: quais lacunas você
+   fechou e quais são novas.
+
+## Como ele se mantém honesto
+
+- **Sem recursos inventados.** Todo curso, documento e livro vem de uma busca
+  real na web com o ano atual na consulta. Se nada de bom existir para uma
+  lacuna, ele diz isso.
+- **Ele não vai encher linguiça num rastreador vazio.** Nenhuma candidatura
+  registrada ainda? Em vez de um relatório vazio, ele te incentiva a executar
+  primeiro o [`/search`](/pt-BR/docs/commands/search) e o
+  [`/apply`](/pt-BR/docs/commands/apply), ou a apontá-lo para uma única vaga com
+  `/upskill <url>`.
+- **Lacunas de baixa prioridade** aparecem no mapa de calor por completude mas
+  não ganham uma entrada no plano a menos que você peça — o plano permanece
+  focado no que move o ponteiro.
+
+## Vendo no painel
+
+Todo relatório vai parar em `upskill/report-*.md`, e a aba **Upskill** do painel
+os lista para você reler a qualquer momento. Você também pode disparar uma nova
+execução direto do Console do painel — ele executa este mesmo comando
+`/upskill`.

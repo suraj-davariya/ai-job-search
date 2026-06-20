@@ -1,0 +1,52 @@
+---
+title: Das Herkunfts-Panel
+description: Jede Aussage im Lebenslauf, zurückverfolgt bis zur Profildatei, die sie belegt — das Fabrikations-Audit, sichtbar gemacht.
+---
+
+Das älteste Versprechen von CareerForge ist, dass es niemals Erfahrung erfindet. Das
+**Herkunfts-Panel** ist der Ort, an dem du dieses Versprechen *überprüfen* kannst, Bewerbung
+für Bewerbung, statt ihm einfach zu vertrauen.
+
+Es befindet sich in der Detail-Ansicht einer Bewerbung: Öffne eine Zeile in [der
+Bewerbungstabelle](/de/docs/dashboard/applications-table) und das Herkunfts-Panel erscheint
+neben dem Datensatz. Es listet jede Aussage auf, die der maßgeschneiderte Lebenslauf trifft, und
+daneben jeweils die **Profilquelle**, die sie belegt.
+
+## Was es anzeigt
+
+Jede Zeile verknüpft eine Aussage mit ihrem Ursprung:
+
+- **Die Aussage** — eine Fähigkeit, ein Ergebnis, eine Verantwortung, genau so, wie sie auf
+  dem generierten Lebenslauf erscheint.
+- **Ihre Quelle** — die Profildatei, aus der diese Aussage stammt, damit du siehst,
+  *warum* das Dokument sie überhaupt treffen darf.
+- **Eine Markierung, wenn es keine gibt.** Jede Aussage, die `/apply` nicht auf
+  dein echtes Profil zurückführen konnte, wird **zur Prüfung hervorgehoben** statt versteckt. Das ist
+  der ganze Sinn: eine unbelegte Aussage ist etwas, das man sich ansehen sollte, nicht etwas, das man
+  stillschweigend verschickt.
+
+## Ein Spiegel, wie der Rest des Dashboards
+
+Das Panel ist **schreibgeschützt**. Es bearbeitet weder deinen Lebenslauf noch dein Profil noch deinen
+Tracker — es spiegelt nur das Audit wider, das `/apply` bereits erstellt hat. Es liest aus einer
+einfachen Datei, die neben den Dokumenten der Bewerbung geschrieben wird:
+
+```text
+documents/applications/<company>_<role>/provenance.json
+```
+
+Das ist wieder [Datei-als-DB](/de/docs/your-data): das Verzeichnis ist eine menschenlesbare
+Datei auf deinem Rechner, einmal erzeugt zusammen mit den Dokumenten und niemals nach Hause
+telefoniert. Fehlt die Datei — etwa bei einer von Hand hinzugefügten Bewerbung —
+zeigt das Panel einfach nichts zum Prüfen an, statt einen Fehler zu werfen.
+
+## Warum sich ein Blick lohnt
+
+Eine markierte Aussage ist keine Anklage; sie ist eine Einladung. Vielleicht fehlt im Profil
+einfach etwas, das du tatsächlich getan hast — ergänze das Profil und führe den Vorgang erneut aus. Vielleicht
+ist eine Formulierung über das hinausgedriftet, was du bequem vertreten kannst — entschärfe oder streiche sie, bevor
+du sie verschickst. So oder so verwandelt das Herkunfts-Panel *„vertrau mir, nichts ist
+erfunden"* in etwas, das du Zeile für Zeile überprüfen kannst.
+
+**Verwandt:** [`/apply`](/de/docs/commands/apply#every-claim-traced-to-its-source)
+ist der Ort, an dem das Verzeichnis erzeugt wird; dieses Panel ist der Ort, an dem du es zurückliest.

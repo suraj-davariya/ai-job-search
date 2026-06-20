@@ -1,0 +1,76 @@
+---
+title: FAQ
+description: Les questions que tout le monde se pose la première semaine, répondues sans détour.
+---
+
+## Dois-je savoir coder ?
+
+Non. Vous installerez deux programmes, taperez de courtes commandes comme
+`/search`, et répondrez à des questions en langage courant. Le plus
+« technique » que vous ferez sera d'ouvrir une fenêtre de terminal, et le
+[Démarrage rapide](/fr/docs/quick-start) vous tient la main pour cela.
+
+## Va-t-il postuler aux emplois à ma place ?
+
+Non — délibérément. Il prépare tout : l'évaluation, le CV, la lettre de
+motivation, le suivi. *Vous* lisez les PDF et appuyez sur envoyer. Une
+candidature est une représentation personnelle de vous ; le rôle de
+CareerForge est de rendre la vôtre excellente, pas de les expédier sans
+supervision.
+
+## Fonctionne-t-il dans mon pays et ma langue ?
+
+C'est l'objectif de conception. Aucun site d'emploi, pays ou langue n'est codé
+en dur — vous dites à `/setup` où vous cherchez et quels sites comptent sur
+votre marché. Les lettres de motivation sont rédigées automatiquement dans la
+langue de l'offre. Le CV est toujours en anglais ; si votre marché a besoin de
+CV dans une autre langue, c'est une limitation actuelle qu'il vaut mieux
+connaître d'emblée.
+
+## Que signifie réellement le score d'adéquation ?
+
+Un score de 0 à 100 sur [cinq dimensions
+pondérées](/fr/docs/commands/apply#first-it-scores-the-fit--and-asks) :
+compétences techniques, alignement de carrière, expérience, adéquation
+comportementale, et une réussite/échec sur la localisation. 75+ est une forte
+correspondance. Considérez-le comme un second avis structuré, pas un oracle —
+sa vraie valeur est le *pourquoi* : le tableau des dimensions montre exactement
+où vous êtes fort et où sont les écarts.
+
+## L'IA pourrait-elle inventer quelque chose à mon sujet ?
+
+Elle est conçue pour ne pas le faire : chaque affirmation du CV et de la lettre
+de motivation doit remonter à votre profil, les exagérations sont signalées
+pour votre décision, et les affirmations sur l'entreprise sont vérifiées
+indépendamment avant d'être utilisées. Et la relecture finale est la vôtre — ce
+qui est l'autre raison pour laquelle rien ne s'envoie automatiquement.
+
+## Où vont mes données ?
+
+Nulle part. Profil, outil de suivi et PDF vivent tous dans un seul dossier sur
+votre machine — voir [Confidentialité](/fr/docs/privacy) pour le tableau
+complet, y compris la seule nuance (la conversation avec l'IA elle-même
+s'exécute sur Claude).
+
+## Suis-je obligé d'utiliser le tableau de bord ?
+
+Non. L'outil de suivi est [un simple CSV](/fr/docs/your-data) que vous pouvez
+ouvrir dans n'importe quel tableur. Le tableau de bord le rend simplement
+agréable : graphiques, modification sûre du statut, notes. Ignorez-le
+entièrement et rien d'autre ne se casse.
+
+## Combien cela coûte-t-il ?
+
+CareerForge lui-même est gratuit et open source (MIT). Vous aurez besoin d'un
+compte Claude pour Claude Code — le forfait Free fonctionne ; Pro est plus
+confortable pour un usage intensif. Il n'y a aucun frais CareerForge en plus.
+
+## Quelque chose ne marche pas — où regarder ?
+
+Les deux coupables habituels lors d'une première exécution sont LaTeX (un
+paquet manquant — relancez la ligne d'installation du [Démarrage
+rapide](/fr/docs/quick-start)) et le fait d'être dans le mauvais dossier
+(lancez `claude` depuis l'intérieur du répertoire CareerForge, sinon les
+commandes n'existeront pas). Au-delà, les [issues
+GitHub](https://github.com/suraj-davariya/ai-job-search/issues) sont ouvertes,
+et les rapports de bogue sont une contribution réellement utile.

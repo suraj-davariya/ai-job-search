@@ -1,0 +1,68 @@
+---
+title: /reset
+description: Borra tus datos personales y empieza de cero — con un inventario primero, una confirmación dura y el framework intacto.
+---
+
+`/reset` es el botón de borrón y cuenta nueva. A veces quieres empezar de nuevo
+— una nueva dirección de carrera, un perfil fresco, o le estás entregando el
+repo a alguien más. `/reset` elimina **tus datos** mientras preserva
+cuidadosamente el **framework** que hace funcionar a CareerForge, así que la
+herramienta sigue funcionando perfectamente después.
+
+## Elige qué borrar
+
+| Lo que escribes | Borra |
+|----------|--------|
+| `/reset profile` | Los archivos de skill de tu perfil — de vuelta a plantillas en blanco |
+| `/reset documents` | Tus archivos en `documents/` (las carpetas y el README se quedan) |
+| `/reset all` | Ambos |
+
+Si no pasas un alcance, te pide elegir y explica a qué afecta cada uno.
+
+## Te muestra todo primero
+
+Antes de borrar nada, `/reset` imprime un **inventario**:
+
+```text
+you:    /reset profile
+claude: Profile reset — here's what I'll clear vs. keep:
+
+        Will clear:
+          01-candidate-profile.md     (has your data)
+          02-behavioral-profile.md    (has your data)
+          07 STAR examples            (3 examples)
+        Already empty:
+          05 profile statements       (template)
+        NEVER touched (framework):
+          03-writing-style.md, 04 scoring framework,
+          06 cover-letter templates, 07 framework + roleplay
+
+        This cannot be undone — your git history is the only recovery.
+        Type RESET to proceed.
+you:    RESET
+claude: Cleared 3 files. Run /setup to rebuild your profile.
+```
+
+## Las barreras de seguridad
+
+- **Inventario antes de borrar** — siempre ves exactamente qué se va y qué se
+  queda.
+- **Debes escribir `RESET`** en mayúsculas. Cualquier otra respuesta cancela
+  con "nothing was changed".
+- **El framework nunca se toca** — la guía de estilo de escritura, el marco de
+  puntuación, las plantillas de carta de presentación y el marco de
+  preparación de entrevista (incluyendo tus pautas de roleplay) todos
+  sobreviven. Solo se borran tus *datos*.
+- **Reporte honesto** — lista qué se borró realmente versus qué ya estaba
+  vacío, y nunca afirma haber borrado algo que no estaba allí.
+- **Sin deshacer.** Lo dice de antemano y te apunta a tu historial de git.
+
+## Después de un reset
+
+`/reset` te dice el siguiente paso natural para lo que borraste — casi siempre
+[`/setup`](/es/docs/commands/setup) para reconstruir tu perfil (agrega
+documentos primero si los borraste).
+
+> Como es destructivo, `/reset` está intencionalmente **no** disponible desde
+> la Consola del panel — solo se ejecuta aquí, donde la confirmación escrita
+> `RESET` te protege.

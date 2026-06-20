@@ -1,0 +1,62 @@
+---
+title: Privasi
+description: Lokal secara bawaan — apa yang tetap berada di mesin Anda (semuanya), dan kebiasaan yang menjaganya tetap demikian.
+---
+
+Pencarian kerja menghasilkan sebagian data paling pribadi yang Anda miliki: di
+mana Anda pernah bekerja, berapa penghasilan Anda, ke mana Anda bersedia pindah,
+perusahaan mana yang menolak Anda. Sikap CareerForge sederhana — **data itu bukan
+urusan siapa pun selain Anda**, jadi ia tidak pernah meninggalkan komputer Anda.
+
+## Di mana data Anda berada
+
+Semuanya, secara lokal:
+
+| Data | Berada di | Pernah diunggah? |
+|------|----------|----------------|
+| Profil kandidat | folder CareerForge Anda | Tidak |
+| CV & surat lamaran yang dihasilkan | `cv/`, `cover_letters/` | Tidak |
+| Pelacak lamaran | `job_search_tracker.csv` | Tidak |
+| Registri pekerjaan-terlihat | `job_scraper/` | Tidak |
+| Dokumen sumber (CV, ijazah…) | `documents/` | Tidak |
+| Data gaji (opsional) | `salary_data.json` | Tidak |
+
+Tidak ada akun, tidak ada pendaftaran, tidak ada telemetri, tidak ada analitik, dan
+tidak ada "statistik penggunaan anonim". Bahkan situs dokumentasi ini dibuat untuk
+tidak mengambil apa pun — font dan aset disertakan, bukan dimuat dari server pihak
+ketiga.
+
+## Apa yang memang melewati jaringan — dan kapan
+
+Kejujuran menuntut gambaran utuh. Dua hal menyentuh internet, keduanya hanya saat
+Anda meminta:
+
+1. **AI itu sendiri.** CareerForge berjalan di Claude Code, jadi teks percakapan
+   Anda — termasuk konten profil yang sedang diproses AI — diproses oleh layanan
+   Anthropic di bawah [ketentuan privasi
+   mereka](https://www.anthropic.com/privacy). Itu kesepakatan yang sama seperti
+   menggunakan Claude untuk hal lain; jika dapat diterima untuk obrolan Anda, ini
+   pengaturan yang sama.
+2. **Pencarian web yang Anda picu.** `/search` menanyakan papan lowongan publik, dan
+   `/apply` mengambil lowongan serta memverifikasi klaim tentang perusahaan. Ini
+   tampak seperti penjelajahan web biasa.
+
+Apa yang tidak pernah terjadi: unggahan latar belakang, berkas Anda dikirim ke mana
+pun sebagai berkas, atau server CareerForge mana pun — tidak ada server seperti itu.
+
+## Git dan satu kebiasaan yang penting
+
+CareerForge hadir dengan `.gitignore` yang mengecualikan setiap artefak pribadi di
+atas, sehingga riwayat folder tetap bersih dari data Anda secara bawaan.
+
+Satu kebiasaan untuk dijaga, dalam dua kata: **fork privat.** Jika Anda mendorong
+salinan CareerForge Anda ke GitHub, jadikan repositori itu privat. Profil Anda
+berada di pohon folder yang sama dengan kode, dan meskipun aturan pengabaian
+melindungi Anda, repo privat berarti bahkan sebuah kesalahan tetap menjadi milik
+Anda.
+
+## Menghapus semuanya
+
+Tidak ada akun untuk ditutup, tidak ada tiket dukungan. Hapus folder itu, dan
+CareerForge — bersama setiap jejak pencarian Anda — lenyap. Itulah arti
+mengutamakan-lokal.
