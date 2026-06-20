@@ -105,3 +105,6 @@ bun.lockb
 .env
 .env.*
 !.env.example
+
+# Test fixture (fake data) — keep tracked despite the broad salary_data.json ignore above
+!dashboard/test/fixtures/salary_data.json
