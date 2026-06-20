@@ -1,0 +1,22 @@
+{
+  "title": "Зарплата",
+  "description": "Просматривайте свои зарплатные ориентиры и выполняйте поиск по компании.",
+  "empty": {
+    "title": "Нет данных о зарплате",
+    "hint": "Добавьте salary_data.json в корень репозитория (или импортируйте таблицу Excel с помощью tools/convert_salary_excel.py). А пока поиск ниже всё равно работает.",
+    "milestone": "REQ-5014"
+  },
+  "tableCaption": "{key} ({count})",
+  "lookupHeading": "Найти компанию",
+  "company": "Компания",
+  "companyPlaceholder": "Название компании",
+  "lookUp": "Найти",
+  "looking": "Поиск…",
+  "noMatch": "Совпадений для «{query}» не найдено.",
+  "unnamed": "(без названия)",
+  "noOutput": "Нет вывода.",
+  "tip": {
+    "readOnly": "Режим только для чтения — действия отключены",
+    "pythonMissing": "python3 не найден в PATH"
+  }
+}

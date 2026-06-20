@@ -13,6 +13,17 @@ export interface ApplicationDocs {
   outcome: string | null;
 }
 
+/**
+ * Per-application directory name under `documents/applications/`.
+ * The `/apply` pipeline names each folder `<company>_<role>` (data-requirements
+ * §11; fixture `Acme_Engineer`), so the dashboard derives the same slug to find
+ * an application's generated docs. Casing and inner spaces are preserved to
+ * match what the CLI writes verbatim.
+ */
+export function applicationSlug(company: string, role: string): string {
+  return `${company}_${role}`;
+}
+
 async function readIfExists(file: string): Promise<string | null> {
   try {
     return await fs.readFile(file, "utf8");

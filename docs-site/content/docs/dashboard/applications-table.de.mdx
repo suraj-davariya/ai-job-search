@@ -1,0 +1,65 @@
+---
+title: Die Bewerbungstabelle
+description: Die Arbeitsfläche — sortieren, filtern, Status aktualisieren und Notizen führen, mit Leitplanken.
+---
+
+Die Diagramme dienen der Perspektive; die Tabelle ist, wo du tatsächlich arbeitest. Jede
+Bewerbung ist eine Zeile, die neuesten zuerst, und das Tagesgeschäft einer Jobsuche — *„der
+Recruiter hat angerufen, verschieb sie auf Interview"* — passiert hier.
+
+<ApplicationsTableDemo />
+
+## Dinge finden
+
+Jede Spalte ist sortierbar. Filter grenzen die Tabelle nach Status, Branche, Rollentyp oder
+Kanal ein, und sie aktualisieren live. Der [Pipeline-Streifen](/de/docs/dashboard/charts#pipeline-strip)
+über der Tabelle dient zugleich als
+Status-Filter — klicke einen Bucket, die Tabelle folgt. Ein Klick auf eine Zeile öffnet eine
+Schublade mit dem vollständigen Datensatz: jedes Feld, deine Notizen und Links zu genau den
+CV- und Anschreiben-PDFs, die gesendet wurden.
+
+## Bearbeiten — genau zwei Dinge
+
+Nur **Status** und **Notizen** sind bearbeitbar (das *zuletzt aktualisiert*-Datum stempelt
+sich selbst). Alles andere — Datum, Unternehmen, Rolle, Eignungs-Score, Dateipfade — ist der
+faktische Datensatz, den `/apply` geschrieben hat, und das Dashboard behandelt ihn als schreibgeschützt.
+
+## Die Status-Zustandsmaschine
+
+Status sind kein Freitext; es sind sieben feste Stufen, und das Dashboard
+bietet nur Züge an, die Sinn ergeben. Probier es — wähle einen Status:
+
+<StatusFlowDemo />
+
+Vollständig:
+
+| Von | Kann wechseln zu |
+|------|------------|
+| Draft | Sent, Withdrawn |
+| Sent | Interview, Rejected, Withdrawn, Closed |
+| Interview | Offer, Rejected, Withdrawn, Closed |
+| Offer / Rejected / Withdrawn / Closed | — endgültig |
+
+Warum so streng? Weil die Status den [Interview-Quoten-KPI](/de/docs/dashboard/kpis)
+und die [Status-Diagramme](/de/docs/dashboard/charts) speisen —
+und diese Zahlen sind nur lesenswert, wenn ein „Sent" immer dasselbe
+bedeutet. Unerlaubte Züge werden abgelehnt, bevor sie geschrieben werden, sodass ein Fehlklick deine Statistiken
+nicht klammheimlich beschädigen kann.
+
+Zwei wissenswerte Details:
+
+- **Endgültig bedeutet nicht versteckt.** Rejected-, Withdrawn- und Closed-Zeilen bleiben in
+  der Tabelle, gedimmt. Dein Verlauf ist Teil der Daten — und zu beobachten, wie der
+  Rejected-Stapel langsam zu einem Interview-Stapel wird, ist eine eigene Art von Fortschritt.
+- **Falscher endgültiger Status?** Das Dashboard verschiebt eine Zeile nicht aus einem endgültigen Zustand heraus.
+  Dein Tracker ist [eine einfache Datei, die dir gehört](/de/docs/your-data), sodass ein echter
+  Fehler immer in jeder Tabellenkalkulations-App behoben werden kann.
+
+## Eine Zeile von Hand hinzufügen
+
+Hast du dich irgendwo außerhalb von CareerForge beworben — eine Empfehlung, ein spontaner Besuch, eine E-Mail? Der
+**+ New**-Button fügt eine Zeile manuell hinzu, damit deine Statistiken vollständig bleiben. Datum,
+Unternehmen und Rolle sind erforderlich; die CV- und Anschreiben-Felder bleiben einfach
+leer.
+
+**Weiter:** [Deine Daten](/de/docs/your-data) — die eine Datei hinter all dem.

@@ -1,0 +1,37 @@
+{
+  "app": {
+    "name": "CareerForge",
+    "description": "Dasbor pelacakan lamaran kerja yang lokal dan privat."
+  },
+  "nav": {
+    "dashboard": "Dasbor",
+    "applications": "Lamaran",
+    "companies": "Perusahaan",
+    "profile": "Profil",
+    "salary": "Gaji",
+    "upskill": "Upskill",
+    "console": "Konsol",
+    "settings": "Pengaturan"
+  },
+  "shell": {
+    "local": "Lokal · 127.0.0.1"
+  },
+  "theme": {
+    "toggle": "Ganti tema"
+  },
+  "status": {
+    "Draft": "Draf",
+    "Sent": "Terkirim",
+    "Interview": "Wawancara",
+    "Offer": "Penawaran",
+    "Rejected": "Ditolak",
+    "Withdrawn": "Ditarik",
+    "Closed": "Ditutup"
+  },
+  "banner": {
+    "readOnly": "Mode hanya-baca — pengeditan dinonaktifkan.",
+    "demoTitle": "Demo dengan data contoh.",
+    "demoBody": "Pengeditan, Konsol, dan pratinjau PDF dinonaktifkan — semuanya memerlukan dasbor asli yang berjalan secara lokal.",
+    "demoBack": "Kembali ke panduan →"
+  }
+}

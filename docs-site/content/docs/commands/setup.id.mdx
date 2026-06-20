@@ -1,0 +1,68 @@
+---
+title: /setup
+description: Bangun profil kandidat Anda sekali — dari dokumen Anda, sebuah CV, atau sebuah percakapan.
+---
+
+Segala yang ditulis CareerForge tentang Anda berasal dari satu tempat: profil Anda.
+`/setup` membangunnya. Anda menjalankannya sekali di awal, dan lagi hanya saat ada
+sesuatu tentang Anda yang berubah — pekerjaan baru, sertifikasi baru, kota baru.
+
+## Tiga cara masuk, hasil yang sama
+
+Saat Anda mengetik `/setup`, ia melihat apa yang Anda miliki dan menawarkan tiga
+jalur:
+
+| Jalur | Terbaik saat | Apa yang terjadi |
+|------|-----------|--------------|
+| **A — Pindai dokumen saya** | Anda telah menaruh CV, ekspor LinkedIn, ijazah, atau surat referensi ke dalam folder `documents/` | Ia membaca semuanya, memeriksa silang sumber-sumber satu sama lain, dan mengusulkan konten profil |
+| **B — Impor satu CV** | Anda punya satu CV yang bagus dan ingin memulai cepat | Ia mengekstrak isi CV, lalu mengajukan pertanyaan tertarget tentang apa yang biasanya tertinggal dari CV |
+| **C — Wawancarai saya** | Anda memulai dari awal, tanpa perlu dokumen | Percakapan terpandu melalui sembilan topik: identitas, pendidikan, pengalaman, keterampilan, dan seterusnya |
+
+Ketiga jalur berakhir di tempat yang sama: sekumpulan berkas profil yang menjelaskan
+pengalaman, gaya kerja, preferensi evaluasi, dan target pencarian kerja Anda.
+
+## Aturan yang ia ikuti
+
+Ini layak diketahui, karena inilah alasan Anda dapat mempercayai hasilnya:
+
+- **Tidak ada yang ditulis tanpa persetujuan Anda.** Setiap perubahan yang diusulkan
+  ditampilkan dulu. Konten baru datang sebagai daftar periksa yang Anda setujui; apa
+  pun yang *bertentangan* dengan yang sudah tercatat ditampilkan satu per satu dengan
+  pilihan pertahankan / ganti / sunting.
+- **Ia tidak pernah mengisi kekosongan dengan tebakan.** Jika ia tidak tahu tahun
+  kelulusan Anda, ia bertanya — ia tidak mengarangnya.
+- **Sumber yang tidak sepakat ditandai.** Jika CV Anda menyatakan sebuah pekerjaan
+  berakhir pada 2021 dan LinkedIn menyatakan 2022, Anda akan melihat keduanya dan
+  memilih yang benar.
+- **Menjalankannya dua kali aman.** `/setup` bersifat idempoten: menjalankannya ulang
+  dengan masukan yang sama tidak mengusulkan apa pun yang baru dan tidak menimpa apa
+  pun.
+
+## Memperbarui satu bagian nanti
+
+Anda tidak mengulang seluruh wawancara untuk mengubah satu hal:
+
+```text
+/setup --section experience
+```
+
+Bagian yang valid mencakup `identity`, `education`, `experience`, `skills`,
+`behavioral`, `interview-prep`, dan `search` — yang terakhir itu menghasilkan ulang
+kueri papan lowongan dan preferensi lokasi Anda, yang berguna saat Anda pindah atau
+mengganti target:
+
+```text
+/setup --section search
+```
+
+## Apa yang ia bangun
+
+Tujuh dokumen profil ditambah konfigurasi pencarian Anda — di antaranya profil
+kandidat Anda (pengalaman, keterampilan, pendidikan), profil perilaku (gaya kerja dan
+preferensi), pernyataan profil untuk berbagai jenis posisi, dan cerita wawancara
+dalam format STAR yang diambil dari pencapaian nyata Anda. Ketika sebuah cerita
+membutuhkan ingatan sudut pandang orang pertama Anda untuk melengkapinya, ia
+meninggalkan rangka yang ditandai jelas untuk Anda alih-alih mengarang detailnya.
+
+**Apa yang terjadi berikutnya:** Anda siap [menemukan pekerjaan dengan
+/search](/id/docs/commands/search).

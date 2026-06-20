@@ -15,6 +15,9 @@ const schema = z.object({
   repoRoot: z.string().optional(),
   port: z.number().int().min(1).max(65535).optional(),
   readOnly: z.boolean().optional(),
+  // Active UI locale (REQ-7002). A short code; validated against the released
+  // language registry at resolution time, so an unknown value falls back to en.
+  locale: z.string().min(2).max(35).optional(),
 });
 
 export async function updateSettingsAction(

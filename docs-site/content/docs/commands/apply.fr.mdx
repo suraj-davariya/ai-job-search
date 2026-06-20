@@ -1,0 +1,151 @@
+---
+title: /apply
+description: D'une offre d'emploi à un CV et une lettre de motivation sur mesure, en PDF vérifiés — avec vous approuvant chaque étape.
+---
+
+`/apply` est le cœur de CareerForge. Donnez-lui une offre d'emploi — un lien ou
+du texte collé, les deux fonctionnent aussi bien — et il exécute un pipeline en
+sept étapes qui se termine par deux PDF prêts à imprimer et une nouvelle ligne
+dans votre outil de suivi des candidatures.
+
+```text
+/apply https://careers.acme.com/jobs/senior-data-engineer-42
+```
+
+## D'abord, il vérifie que l'offre est réelle
+
+Les arnaques, les emplois fantômes et les façades de collecte de données sont
+partout, et une annonce soignée ne vous dit rien à elle seule. Donc avant de
+rédiger quoi que ce soit, `/apply` évalue si l'offre est authentique et sûre, et
+vous donne un verdict clair :
+
+| Verdict | Ce que cela signifie |
+|---------|---------------|
+| **Verified** | Les signaux concordent — entreprise réelle, poste à l'allure réelle, aucun signal d'alerte méritant qu'on s'arrête. |
+| **Caution** | Quelque chose cloche un peu — un employeur vague, un canal étrange, un salaire trop beau. Mérite un second regard. |
+| **Suspicious** | Plusieurs signaux d'alerte — frais à l'avance, collecte de données personnelles, un domaine qui ne correspond pas à l'entreprise. |
+
+Chaque verdict s'accompagne des **raisons qui le sous-tendent**, citées à partir
+de ce qu'il a réellement trouvé, pour que vous puissiez juger par vous-même
+plutôt que de faire confiance à une étiquette.
+
+Ceci est tenu délibérément **séparé du score d'adéquation**. Une arnaque peut
+être une correspondance de compétences parfaite, et si la légitimité était
+intégrée au chiffre 0–100, une excellente correspondance pourrait noyer un
+avertissement dans la moyenne jusqu'à l'invisibilité. Deux questions — *est-ce
+une bonne adéquation ?* et *cette offre est-elle réelle ?* — méritent deux
+réponses.
+
+Le système avertit ; **vous décidez**. Il ne bloque jamais automatiquement une
+offre. Un verdict **Suspicious** demande toutefois votre confirmation explicite
+avant de consacrer des efforts à la rédaction — un ralentisseur, pas un mur.
+
+## Ensuite, il évalue l'adéquation — et demande
+
+Avant d'écrire un mot, il évalue le poste par rapport à votre profil sur cinq
+dimensions :
+
+| Dimension | Poids |
+|-----------|--------|
+| Correspondance des compétences techniques | 30 % |
+| Alignement de carrière | 30 % |
+| Correspondance d'expérience | 25 % |
+| Adéquation comportementale / culturelle | 15 % |
+| Localisation et logistique | Réussite / Échec |
+
+Le total pondéré correspond à un verdict : **Strong** (75+), **Good** (60–74),
+**Moderate** (45–59), **Weak** (30–44), **Poor** (en dessous de 30). Une seule
+dérogation : si la localisation échoue à vos contraintes, le verdict est Poor
+quelle que soit la qualité de la correspondance des compétences — un emploi que
+vous ne pouvez pas accepter n'est pas une adéquation.
+
+Puis il s'arrête et demande : **continuer avec la rédaction ?** Cette étape est
+la vôtre. Dites non et rien n'est écrit ; l'évaluation seule vaut souvent
+l'exécution.
+
+## Ensuite, il rédige — selon des règles strictes
+
+- **Le CV** est adapté à l'offre, et sa langue et son nombre de pages suivent le
+  [locale pack](/fr/docs/languages) actif — une page format Letter là où c'est
+  la norme, deux pages A4 là où ça ne l'est pas.
+- **La lettre de motivation** est rédigée dans *la langue de l'offre* — une
+  offre en danois donne une lettre en danois — exactement une page, axée sur les
+  problèmes que vous résoudriez plutôt qu'une reprise de votre CV.
+- **Chaque affirmation doit survivre au test de l'entretien.** Si vous ne
+  pouviez pas défendre confortablement une phrase en entretien, elle n'a pas sa
+  place. Les exagérations vous sont signalées : *conserver, adoucir ou
+  abandonner ?*
+
+## Une seconde IA contrôle la première
+
+Par défaut, un relecteur distinct avec une perspective neuve critique les deux
+brouillons — mots-clés manqués, formulations génériques, angles sur l'entreprise
+à mentionner. L'agent principal applique ensuite les bonnes suggestions, et
+revérifie indépendamment toute affirmation factuelle sur l'entreprise avant
+qu'elle ne soit autorisée dans votre lettre.
+
+Vous contrôlez la profondeur (et le coût) :
+
+| Vous tapez | Ce qui se passe |
+|----------|--------------|
+| `/apply <posting>` | Relecture complète, y compris la recherche sur l'entreprise (par défaut) |
+| `/apply --review=quick <posting>` | Relecture sans recherche sur l'entreprise — plus rapide |
+| `/apply --review=none <posting>` | Ignorer le relecteur — le plus rapide |
+
+## Enfin : compiler, inspecter, enregistrer
+
+Les documents sont compilés en PDF et *inspectés visuellement* — nombre de
+pages, titres orphelins, discordances de polices — et corrigés à nouveau jusqu'à
+ce que ce soit impeccable. Puis la candidature est enregistrée dans [votre
+fichier de suivi](/fr/docs/your-data) avec le statut **Draft**, le score
+d'adéquation, et les chemins vers les deux PDF. Une liste de contrôle de
+vérification finale (exactitude factuelle, ciblage, cohérence, mise en page)
+s'exécute une fois, et vous recevez un court résumé des décisions
+d'adaptation qu'il a prises.
+
+## Des exports qu'un robot peut lire aussi
+
+Un beau PDF LaTeX est destiné à l'humain de l'autre côté — mais le premier
+lecteur est souvent un **système de suivi des candidatures (ATS)** qui analyse
+le texte, pas la mise en page. Donc à côté du PDF (qui reste la sortie
+principale, soignée), `/apply` produit deux versions adaptées aux machines à
+partir du *même* contenu :
+
+- Un **`.txt`** en texte brut — la chose la plus fiable qu'un ATS puisse
+  ingérer.
+- Un **`.docx`** Word — pour les portails qui demandent un document modifiable.
+
+Il exécute ensuite une **auto-vérification d'analyse** : il extrait le texte du
+PDF et confirme que votre nom, les titres de sections et les compétences clés
+sont tous récupérables. Si l'analyseur devait s'étrangler, vous le saurez avant
+le logiciel d'un recruteur.
+
+Ces extras se dégradent en douceur lorsque leurs outils ne sont pas installés.
+Le `.txt` fonctionne toujours. Le `.docx` a besoin de
+[`pandoc`](https://pandoc.org/) ; la vérification d'analyse a besoin de
+`poppler` (`pdftotext`). L'absence de l'un ou l'autre saute simplement cette
+étape avec une note — votre PDF n'est jamais bloqué pour autant.
+
+## Chaque affirmation, retracée jusqu'à sa source
+
+La promesse la plus ferme de CareerForge est qu'il n'invente jamais
+d'expérience. `/apply` rend cela *auditable* : il émet un **registre de
+provenance** — chaque affirmation de votre CV reliée au fichier de profil qui
+l'étaye. Tout ce qu'il n'a pas pu retracer jusqu'à votre profil réel est
+**signalé pour votre relecture**, jamais expédié en silence.
+
+Vous lisez le même registre plus tard dans [le panneau Provenance du tableau de
+bord](/fr/docs/dashboard/provenance), affirmation par affirmation, les non
+étayées étant mises en évidence.
+
+## Ce qu'il ne fera pas
+
+- **Soumettre la candidature.** Vous relisez les PDF et les envoyez vous-même.
+- **Inventer de l'expérience.** Réorganiser et mettre l'accent sont permis ;
+  revendiquer des compétences que vous n'avez pas ne l'est pas.
+- **Toucher à votre historique.** `/apply` ne fait jamais qu'*ajouter* une ligne
+  à votre outil de suivi — il ne modifie jamais les lignes existantes.
+
+**Ce qui se passe ensuite :** votre candidature apparaît dans [le tableau de
+bord](/fr/docs/dashboard), où vous mettrez à jour son statut à mesure que les
+choses évoluent.

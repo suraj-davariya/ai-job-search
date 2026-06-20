@@ -1,0 +1,22 @@
+{
+  "title": "薪资",
+  "description": "浏览您的薪资基准并运行公司查询。",
+  "empty": {
+    "title": "暂无薪资数据",
+    "hint": "将 salary_data.json 添加到仓库根目录（或使用 tools/convert_salary_excel.py 导入 Excel 表格）。在此之前，下方的查询功能仍可使用。",
+    "milestone": "REQ-5014"
+  },
+  "tableCaption": "{key}（{count}）",
+  "lookupHeading": "查询公司",
+  "company": "公司",
+  "companyPlaceholder": "公司名称",
+  "lookUp": "查询",
+  "looking": "查询中…",
+  "noMatch": "未找到与“{query}”匹配的结果。",
+  "unnamed": "（未命名）",
+  "noOutput": "无输出。",
+  "tip": {
+    "readOnly": "只读模式 — 操作已禁用",
+    "pythonMissing": "在 PATH 中未找到 python3"
+  }
+}

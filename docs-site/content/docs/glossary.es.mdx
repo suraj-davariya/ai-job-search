@@ -1,0 +1,253 @@
+---
+title: Glosario
+description: Cada término de CareerForge, en lenguaje sencillo — reflejado desde el glosario canónico del proyecto.
+---
+
+Los mismos términos, con los mismos significados, que el
+[glosario de ingeniería](https://github.com/suraj-davariya/ai-job-search/blob/main/docs/glossary.md)
+canónico del proyecto — formulados aquí para humanos primero. Donde un término
+tiene su propia página de guía, está enlazado.
+
+## A
+
+**Application Pipeline** — el recorrido de extremo a extremo que ejecuta
+[`/apply`](/es/docs/commands/apply): publicación de entrada → evaluación de
+ajuste, CV adaptado, carta de presentación, revisión, PDF compilados de
+salida.
+
+**Application Tracker** — [el archivo CSV](/es/docs/your-data) que registra
+cada postulación: empresa, puesto, estado, puntuación de ajuste y enlaces a
+los documentos exactos enviados. Alimenta el panel y la deduplicación en
+`/search`.
+
+**Application Status Enum** — los siete valores permitidos de la columna de
+estado: `Draft, Sent, Interview, Offer, Rejected, Withdrawn, Closed`. El panel
+[impone qué movimientos entre ellos son
+legales](/es/docs/dashboard/applications-table#the-status-state-machine).
+
+**Atomic CSV Write** — cómo el panel guarda tu tracker sin dejar jamás un
+archivo escrito a medias, incluso si algo lo interrumpe a mitad del guardado:
+escribir primero una copia temporal, mantener un respaldo, y luego
+intercambiarla en su sitio en un solo paso.
+
+**ATS-Safe Export** — los acompañantes legibles por máquina que produce
+[`/apply`](/es/docs/commands/apply#exports-a-robot-can-read-too) junto al PDF
+pulido — un `.txt` de texto plano y un `.docx` de Word del mismo contenido —
+para que un sistema de seguimiento de candidatos pueda analizar tu CV de forma
+confiable. Una autoverificación confirma que el texto se puede recuperar del
+PDF.
+
+**Allowed-Tools** — una lista de seguridad interna que declara qué
+herramientas puede usar cada skill de CareerForge; cualquier cosa no listada
+es rechazada.
+
+## B
+
+**Behavioral Profile** — la parte de tu perfil que describe cómo trabajas:
+estilo, fortalezas, áreas de crecimiento, entorno preferido. Da forma a la voz
+de la carta de presentación y a la puntuación de ajuste cultural.
+
+**Business Rules Engine** — los marcos de puntuación fijos y reglas de
+validación detrás de la evaluación de ajuste, el recorte de contenido y las
+comprobaciones finales de calidad.
+
+## C
+
+**Candidate Profile** — el registro estructurado de tu identidad, educación,
+experiencia y habilidades. [Construido por `/setup`](/es/docs/commands/setup);
+la fuente de verdad a la que debe rastrearse cada afirmación del CV.
+
+**Competency Expansion** — descubrir habilidades que tus documentos implican
+pero que tu perfil aún no lista (planeado: el comando `/expand`).
+
+**Compile-and-Inspect Loop** — tras el borrador, los documentos se compilan a
+PDF y se revisan visualmente — conteo de páginas, encabezados huérfanos,
+desajustes de fuentes — y se vuelven a corregir hasta quedar limpios.
+
+**Content Cutting (Relevance-Weighted)** — cuando un CV se pasa de dos
+páginas, las líneas menos relevantes para *esta* publicación se recortan
+primero, dondequiera que estén.
+
+**Cross-Reference Check** — durante el onboarding, tus fuentes se comparan
+entre sí (CV vs LinkedIn vs diplomas); cualquier desacuerdo se te muestra para
+que lo resuelvas, nunca se elige en silencio.
+
+## D
+
+**Deal-Breaker** — una restricción dura tuya (no reubicación, salario mínimo)
+que descalifica un empleo sin importar cualquier otra puntuación.
+
+**Drafter Agent** — la IA primaria en el pipeline: evalúa el ajuste, escribe
+los documentos, aplica la retroalimentación del revisor.
+
+**Document Folder** — `documents/`, donde colocas CVs, exportaciones de
+LinkedIn, diplomas y cartas de referencia para que
+[`/setup`](/es/docs/commands/setup) los escanee.
+
+## E
+
+**Evaluation Framework** — el sistema de puntuación de cinco dimensiones:
+Habilidades Técnicas 30%, Alineación de Carrera 30%, Experiencia 25%, Ajuste
+Conductual 15%, Ubicación aprobado/reprobado. Ver
+[`/apply`](/es/docs/commands/apply).
+
+## F
+
+**Fabrication Audit** — la comprobación, ejecutada por
+[`/apply`](/es/docs/commands/apply#every-claim-traced-to-its-source), que
+rastrea cada afirmación del CV de vuelta al archivo de perfil que la respalda y
+marca cualquiera que no pueda. Lees el resultado en el [panel de
+Procedencia](/es/docs/dashboard/provenance).
+
+**Fit Assessment (Quick)** — la rápida clasificación Alto / Medio / Bajo que
+[`/search`](/es/docs/commands/search) da a cada nueva publicación. Triaje, no
+la evaluación completa.
+
+**Fit Rating** — la puntuación ponderada 0–100 de la evaluación completa.
+Columna 9 de [tu tracker](/es/docs/your-data); el combustible para los
+[gráficos de ajuste](/es/docs/dashboard/charts#fit-distribution).
+
+**Forward-Looking Framing** — el principio de la carta de presentación:
+escribe sobre los problemas que resolverás para ellos, no un resumen de tu CV.
+
+## G
+
+**Gap Heatmap** — una tabla priorizada de brechas de habilidades entre tu
+perfil y las publicaciones objetivo (planeado: el comando `/upskill`).
+
+**Ghost Job** — una publicación que se anuncia pero que en realidad no se está
+cubriendo — dejada abierta para recolectar currículos, medir un mercado o
+parecer crecimiento. Una de las señales de alerta que vigila la comprobación
+de [legitimidad de la publicación](#p).
+
+## I
+
+**Idempotent Operation** — seguro de ejecutar dos veces: volver a ejecutar
+`/setup` con las mismas entradas no duplica nada y no sobrescribe nada.
+
+**Interview Backtrack Test** — el estándar de calidad para cada afirmación:
+¿podrías respaldar esta frase en una entrevista sin "bueno, lo que realmente
+quise decir fue…"? Si no, se suaviza o se corta.
+
+## J
+
+**Job Portal Adapter** — un conector enchufable para una bolsa de empleo, para
+que se puedan añadir nuevas bolsas sin tocar el núcleo (planeado para un hito
+futuro).
+
+## L
+
+**Language Registry** — el conjunto de idiomas de interfaz que incluye
+CareerForge, actualmente 12 (traducidos por máquina, en beta), con inglés como
+canónico. Ver [Idiomas y locales](/es/docs/languages).
+
+**Learning Plan** — una guía de estudio estructurada producida a partir del
+análisis de brechas de habilidades (planeado: `/upskill`).
+
+**Legitimacy Verdict** — el juicio independiente que
+[`/apply`](/es/docs/commands/apply#first-it-checks-the-posting-is-real) da a
+una publicación — **Verified**, **Caution** o **Suspicious** — con razones
+citadas, mantenido separado de la puntuación de ajuste para que una advertencia
+no pueda promediarse hasta desaparecer.
+
+**Locale Pack** — un paquete por mercado de convenciones de CV (término del
+documento, tamaño y número de páginas, norma de foto, campos personales,
+formato de fecha, cláusulas GDPR) que [`/apply`](/es/docs/commands/apply)
+aplica para el mercado al que apuntas. Separado del idioma de interfaz. Ver
+[Idiomas y locales](/es/docs/languages).
+
+## N
+
+**Named Sub-Agent** — un mecanismo interno para definir agentes de IA extra
+(el revisor es uno) con sus propias instrucciones y, opcionalmente, su propio
+modelo.
+
+## O
+
+**Onboarding** — los tres caminos convergentes de
+[`/setup`](/es/docs/commands/setup) — escanear documentos, importar un CV o
+entrevistar — todos terminando en el mismo perfil.
+
+## P
+
+**Profile Files** — los siete documentos que definen tu identidad profesional:
+perfil del candidato, perfil conductual, estilo de escritura, marco de
+evaluación, plantillas de CV, plantillas de carta de presentación, preparación
+de entrevista.
+
+**Pipeline KPI** — los números destacados del panel: conteos de estado, ajuste
+promedio (30 días), tasa de entrevistas (90 días). Ver [los
+KPI](/es/docs/dashboard/kpis).
+
+**Posting Legitimacy** — la cuestión de si una publicación de empleo es
+genuina y segura de abordar, evaluada por
+[`/apply`](/es/docs/commands/apply#first-it-checks-the-posting-is-real) antes
+del borrador y mostrada como un [Veredicto de Legitimidad](#l). El sistema
+advierte; tú decides.
+
+**Profile Statement** — el discurso de 3–5 líneas en la parte superior de tu
+CV, mantenido en varias variantes y adaptado por postulación.
+
+**Provenance Panel** — la vista del panel, en el cajón de detalle de una
+postulación, que muestra cada afirmación del CV junto a la fuente del perfil
+que la respalda, con las afirmaciones sin respaldo marcadas. Solo lectura. Ver
+[el panel de Procedencia](/es/docs/dashboard/provenance).
+
+## R
+
+**Read-Only Mode** — una bandera del panel que desactiva toda edición — útil
+para demos, capturas de pantalla o garantizar un recorrido sin accidentes.
+
+**Red Flag** — una señal de advertencia en una publicación de empleo — tarifas
+por adelantado, recolección de datos personales, un dominio que no coincide, un
+salario demasiado bueno — que alimenta el [Veredicto de Legitimidad](#l).
+
+**Reviewer Agent** — la segunda IA en [`/apply`](/es/docs/commands/apply):
+perspectiva fresca, investiga la empresa, critica ambos borradores. Sugiere; el
+drafter (y tú) deciden.
+
+## S
+
+**Salary Benchmark** — comparación salarial opcional contra datos que tú
+proporcionas — estadísticas sindicales, encuestas, tu propia investigación (la
+herramienta `salary_lookup`).
+
+**Search Queries** — tus frases de búsqueda configuradas, organizadas por
+prioridad, que [`/search`](/es/docs/commands/search) ejecuta en los portales
+que elegiste.
+
+**Seen Jobs Registry** — el archivo local que recuerda cada publicación que
+alguna vez se te ha mostrado, para que `/search` nunca se repita.
+
+**SKILL.md Orchestrator** — el archivo ancla interno con el que viene cada
+skill de CareerForge, declarando qué hace y qué herramientas puede usar.
+
+**STAR Format** — Situación, Tarea, Acción, Resultado: la estructura de
+respuesta de entrevista. `/setup` construye historias STAR a partir de tu
+experiencia real y deja stubs claramente marcados donde solo tu memoria puede
+completar los detalles.
+
+## T
+
+**Tracking Dashboard** — [la interfaz web local](/es/docs/dashboard) sobre tu
+archivo de tracker. Funciona solo en tu máquina (`127.0.0.1`), edita solo el
+estado y las notas, y renderiza todo lo demás como solo lectura.
+
+**Two-Plane Skill Architecture** — la división interna entre skills de tipo
+conocimiento (instrucciones que la IA lee) y skills de tipo herramienta
+(programas externos que ejecuta).
+
+**Traceability** — la práctica del proyecto de enlazar cada requisito con el
+diseño, código y pruebas que lo satisfacen, mediante IDs como `REQ-…` y `TC-…`.
+
+## V
+
+**Verification Checklist** — la lista final de aprobado/reprobado que `/apply`
+ejecuta una vez al final: precisión factual, segmentación, consistencia,
+calidad de LaTeX y maquetación del PDF.
+
+## W
+
+**Workspace Settings** — el archivo de configuración local que declara qué
+herramientas puede usar la IA en tu copia de CareerForge. Personal, y nunca
+comiteado.

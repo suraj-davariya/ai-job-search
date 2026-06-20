@@ -75,6 +75,8 @@ Common difficult interview questions with framing guidance.
 
 - **"Tell me about a failure"** — Choose a real failure. Focus 20% on what happened and 80% on what you learned and what you changed. Do not choose a trivial failure.
 
+- **"You don't have X"** (a requirement you genuinely lack) — Acknowledge the gap honestly; never claim the skill. Bridge from the closest adjacent experience you do have, then give concrete evidence that you learn fast (a time you picked up a comparable skill quickly). Honest reframing, never fabrication (ARCH-0007).
+
 - **"Why do you want to work here?"** — Must reference a specific, verified fact about the company (product, mission, published research, culture signal). If you cannot find one, do not answer with a generic claim.
 
 ---
@@ -86,18 +88,26 @@ Always have at least 3 questions ready. If a question gets answered earlier in t
 **Role:**
 - What does success look like in the first 90 days?
 - What are the most important problems this role is solving right now?
+- How will my performance be measured, and by whom?
+- What's the most common reason someone hasn't worked out in this role before?
 
 **Team:**
 - How does the team typically handle disagreements on technical or product decisions?
 - What's the team's working style — more async or synchronous?
+- Who would I work with most closely, and how is the team structured?
+- How does the team handle on-call, incidents, or crunch periods?
 
 **Tech/Process:**
 - What does the development/delivery cycle look like end-to-end?
 - What's the biggest technical challenge the team is working through right now?
+- How much room is there to improve tooling, process, or architecture?
+- What does the path to more senior or specialised work look like here?
 
 **Culture:**
 - How does the company support learning and professional development?
 - What do people who thrive here tend to have in common?
+- How are decisions actually made — and where does this team have real autonomy?
+- What's something about working here that surprised you, good or bad?
 
 ---
 
@@ -115,8 +125,9 @@ Always have at least 3 questions ready. If a question gets answered earlier in t
 
 ## Follow-Up Etiquette
 
-- **Thank-you email within 24 hours:** reference one specific topic from the interview; express continued interest; keep it under 150 words.
-- **If you haven't heard back** after the stated timeline: send one follow-up email only, asking for a status update. Do not send multiple follow-ups.
+- **Thank-you email within 24 hours:** reference one specific topic from the interview; express continued interest; keep it brief (2–3 sentences, under 150 words).
+- **Don't call to "stand out".** Phoning to make an impression usually backfires and reads as pushy — it risks a negative impression, not a positive one. Respect the employer's stated timeline.
+- **If you haven't heard back:** when a timeline was given, wait until it passes; when none was given, a brief follow-up email is acceptable after **2+ weeks**. Send **one** follow-up only, asking for a status update — never multiple.
 - **If rejected:** thank them for their time; ask for feedback (many interviewers will share it); keep the door open for future opportunities.
 
 ---

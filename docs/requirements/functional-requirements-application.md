@@ -309,3 +309,44 @@ Related documents:
 **Acceptance Criteria:**
 - Lists CV and cover letter file paths
 - Tells user: "Both files are ready for your review"
+
+## Step 7: ATS Exports & Provenance
+
+### REQ-2063: ATS-Safe CV Exports
+**Priority:** Should
+**Description:** In addition to the polished LaTeX-compiled PDF (which remains the primary, human-facing output and is not replaced), the system shall produce ATS-safe export variants of the CV from the same content model: a **plain-text** (`.txt`) variant and a **`.docx`** variant. The PDF is for human reviewers; the TXT and DOCX exist so applicant-tracking-system parsers — which can choke on typeset PDFs and often prefer Word/plain text — recover the content reliably.
+**Acceptance Criteria:**
+- The polished LaTeX PDF is always produced (existing behavior preserved — REQ-2020, REQ-2050)
+- A `.txt` export and a `.docx` export are generated from the same tailored content (single source of truth — no divergent re-authoring)
+- ATS exports use a single-column, plain reading order: standard section headings, no text in images, no multi-column tables, no letter-spacing tricks
+- The three artifacts are content-equivalent (same claims, same wording); only formatting differs
+- ATS exports honor the active locale pack (REQ-7010) for section terms and included fields
+- No fabrication: exports contain exactly the claims in the PDF (ARCH-0007)
+
+### REQ-2064: ATS Parse Self-Check
+**Priority:** Should
+**Description:** The system shall verify that the generated CV is machine-parseable by extracting text back out of the compiled PDF and asserting that key fields are recoverable, warning the user if not.
+**Acceptance Criteria:**
+- Extracts text from the generated PDF and checks recoverability of: candidate name, contact details, section headers, and top skills/keywords targeted for the role
+- If a field is not recoverable, the system warns the user and points to the `.txt`/`.docx` export as the ATS-safe fallback
+- The check never blocks delivery — it informs (ARCH-0006); failure to run degrades gracefully (ARCH-0005)
+- Result is reported as part of the final presentation
+
+### REQ-2065: Fabrication Audit Artifact
+**Priority:** Must
+**Description:** The verification step shall emit a fabrication-audit artifact that maps every substantive CV claim to the profile file (and location) that backs it, and flags any claim not traceable to the profile for user attention rather than shipping it silently. This makes the existing no-fabrication guarantee (ARCH-0007, REQ-2023) demonstrable rather than implicit.
+**Acceptance Criteria:**
+- Produces a claim → backing-source ledger (each substantive CV/cover-letter claim linked to the profile file/section it derives from)
+- Any claim without a profile-backed source is flagged to the user, not silently included
+- Builds on the existing interview-backtrack test (REQ-2023) — a flagged claim is one that would fail it
+- The audit never invents a source; if backing is uncertain, it says so honestly (ARCH-0007)
+- The audit runs as part of the verification checklist (REQ-2060)
+
+### REQ-2066: Provenance Surfacing
+**Priority:** Should
+**Description:** The system shall surface the fabrication audit to the user in the `/apply` output and as a per-application "Provenance" panel in the tracking dashboard, so the user can see, for every line of their CV, where it came from.
+**Acceptance Criteria:**
+- `/apply` presentation includes a readable summary of the fabrication audit (REQ-2065)
+- The dashboard renders a per-application Provenance panel sourced from the audit artifact (file-as-DB; read-only)
+- Flagged (unbacked) claims are visually distinct so the user can review them before submitting
+- No personal data leaves the machine to render provenance (NFR-0017 local-first)

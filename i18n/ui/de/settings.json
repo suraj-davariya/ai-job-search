@@ -1,0 +1,20 @@
+{
+  "title": "Einstellungen",
+  "description": "Nur lokale Einstellungen – keine Geheimnisse, keine Konten. Loopback, Einzelbenutzer.",
+  "theme": "Design",
+  "themeHint": "Standardmäßig dunkel.",
+  "repoPath": "Repo-Pfad",
+  "repoPathHint": "Ordner, den das Dashboard liest/schreibt (gilt ab dem nächsten Start).",
+  "port": "Standardport",
+  "portHint": "Loopback-Port (gilt ab dem nächsten Start).",
+  "readOnly": "Schreibgeschützter Modus",
+  "readOnlyHint": "Deaktiviert alle Bearbeitungen und Aktionen.",
+  "on": "Ein",
+  "off": "Aus",
+  "language": "Sprache",
+  "languageHint": "Wählen Sie die Anzeigesprache des Dashboards. Nicht übersetzter Text wird auf Englisch zurückgesetzt.",
+  "save": "Einstellungen speichern",
+  "saving": "Wird gespeichert…",
+  "saved": "Einstellungen gespeichert",
+  "saveError": "Einstellungen konnten nicht gespeichert werden: {error}"
+}

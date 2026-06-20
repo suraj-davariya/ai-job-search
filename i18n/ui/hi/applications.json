@@ -1,0 +1,112 @@
+{
+  "page": {
+    "title": "आवेदन",
+    "description": "{count, plural, one {# आवेदन} other {# आवेदन}} ट्रैक किए गए।"
+  },
+  "table": {
+    "date": "दिनांक",
+    "company": "कंपनी",
+    "role": "भूमिका",
+    "type": "प्रकार",
+    "channel": "माध्यम",
+    "status": "स्थिति",
+    "fit": "मेल",
+    "contact": "संपर्क",
+    "notes": "टिप्पणियाँ",
+    "cv": "CV",
+    "cover": "कवर",
+    "source": "स्रोत",
+    "pdf": "PDF",
+    "open": "खोलें"
+  },
+  "empty": {
+    "title": "अभी तक कोई आवेदन नहीं",
+    "hintBefore": "चलाएँ",
+    "hintAfter": "एक जोड़ने के लिए।",
+    "newApplication": "नया आवेदन"
+  },
+  "filter": {
+    "search": "आवेदन खोजें",
+    "searchPlaceholder": "कंपनी, भूमिका या टिप्पणियाँ खोजें…",
+    "roleType": "भूमिका प्रकार",
+    "allTypes": "सभी प्रकार",
+    "channel": "माध्यम",
+    "allChannels": "सभी माध्यम",
+    "minFit": "न्यूनतम मेल",
+    "fitPlaceholder": "मेल ≥",
+    "fromDate": "इस दिनांक से",
+    "toDate": "इस दिनांक तक",
+    "clear": "साफ़ करें",
+    "resultCount": "{total} में से {count}"
+  },
+  "pipeline": {
+    "group": "पाइपलाइन गणना",
+    "statusCount": "{status}: {count}",
+    "total": "कुल {count}"
+  },
+  "new": {
+    "button": "नया आवेदन",
+    "title": "नया आवेदन",
+    "add": "आवेदन जोड़ें",
+    "cancel": "रद्द करें",
+    "close": "बंद करें",
+    "readOnlyTip": "केवल-पढ़ने का मोड — संपादन अक्षम है"
+  },
+  "fields": {
+    "date": "दिनांक",
+    "status": "स्थिति",
+    "company": "कंपनी",
+    "role": "भूमिका",
+    "sector": "क्षेत्र",
+    "roleType": "भूमिका प्रकार",
+    "channel": "माध्यम",
+    "contact": "संपर्क",
+    "fit": "मेल (0–100)",
+    "source": "स्रोत URL"
+  },
+  "validation": {
+    "dateRequired": "दिनांक आवश्यक है",
+    "companyRequired": "कंपनी आवश्यक है",
+    "roleRequired": "भूमिका आवश्यक है"
+  },
+  "aria": {
+    "statusFor": "{company} के लिए स्थिति",
+    "notesFor": "{company} के लिए टिप्पणियाँ"
+  },
+  "notes": {
+    "placeholder": "—"
+  },
+  "drawer": {
+    "closeDetails": "विवरण बंद करें",
+    "date": "दिनांक",
+    "lastUpdated": "अंतिम अद्यतन",
+    "sector": "क्षेत्र",
+    "roleType": "भूमिका प्रकार",
+    "channel": "माध्यम",
+    "contact": "संपर्क",
+    "notes": "टिप्पणियाँ",
+    "documents": "दस्तावेज़",
+    "cv": "CV",
+    "coverLetter": "कवर लेटर",
+    "noCv": "कोई CV नहीं",
+    "noCover": "कोई कवर लेटर नहीं",
+    "sourcePosting": "स्रोत पोस्टिंग",
+    "rerunApply": "/apply पुनः चलाएँ",
+    "fileNotFound": "{label}: फ़ाइल नहीं मिली"
+  },
+  "provenance": {
+    "title": "स्रोत-प्रमाण",
+    "none": "कोई स्रोत-प्रमाण दर्ज नहीं",
+    "summary": "{total, plural, one {# दावा} other {# दावे}} · {flagged, plural, =0 {कोई चिह्नित नहीं} one {# चिह्नित} other {# चिह्नित}}",
+    "backedBy": "{source} › {location}",
+    "backedBySource": "{source}",
+    "flagged": "चिह्नित — प्रोफ़ाइल में कोई आधार नहीं"
+  },
+  "toast": {
+    "updated": "अद्यतन · {time}",
+    "statusError": "स्थिति अद्यतन नहीं हो सकी: {error}",
+    "notesError": "टिप्पणियाँ सहेजी नहीं जा सकीं: {error}",
+    "added": "आवेदन जोड़ा गया",
+    "addError": "आवेदन जोड़ा नहीं जा सका: {error}"
+  }
+}

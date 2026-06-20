@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Search } from "lucide-react";
 
 interface Match {
@@ -21,6 +22,8 @@ export function SalaryLookup({
   pythonOk: boolean;
   readOnly: boolean;
 }) {
+  const t = useTranslations("salary");
+  const te = useTranslations("errors");
   const [company, setCompany] = useState("");
   const [running, setRunning] = useState(false);
   const [matches, setMatches] = useState<Match[] | null>(null);
@@ -64,10 +67,10 @@ export function SalaryLookup({
         const parsed = JSON.parse(out);
         setMatches(Array.isArray(parsed.matches) ? parsed.matches : []);
       } catch {
-        setRaw(out || "No output.");
+        setRaw(out || t("noOutput"));
       }
     } catch (err) {
-      setRaw(err instanceof Error ? err.message : "lookup failed");
+      setRaw(err instanceof Error ? err.message : te("lookupFailed"));
     } finally {
       setRunning(false);
     }
@@ -75,21 +78,21 @@ export function SalaryLookup({
 
   const disabled = readOnly || !pythonOk;
   const tip = readOnly
-    ? "Read-only mode — actions are disabled"
+    ? t("tip.readOnly")
     : !pythonOk
-      ? "python3 not found on PATH"
+      ? t("tip.pythonMissing")
       : undefined;
 
   return (
     <div className="rounded-xl border border-border bg-card/50 p-4">
-      <h3 className="mb-3 text-sm font-medium">Look up a company</h3>
+      <h3 className="mb-3 text-sm font-medium">{t("lookupHeading")}</h3>
       <div className="flex gap-2">
         <input
-          aria-label="Company"
+          aria-label={t("company")}
           value={company}
           onChange={(e) => setCompany(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && run()}
-          placeholder="Company name"
+          placeholder={t("companyPlaceholder")}
           className="h-9 flex-1 rounded-lg border border-input bg-background px-2 text-sm"
         />
         <button
@@ -99,20 +102,20 @@ export function SalaryLookup({
           onClick={run}
           className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-primary px-3 text-sm font-medium text-primary-foreground disabled:opacity-50"
         >
-          <Search className="h-4 w-4" aria-hidden /> {running ? "Looking…" : "Look up"}
+          <Search className="h-4 w-4" aria-hidden /> {running ? t("looking") : t("lookUp")}
         </button>
       </div>
 
       {matches !== null ? (
         matches.length === 0 ? (
           <p data-testid="salary-result" className="mt-3 text-sm text-muted-foreground">
-            No match found for “{searched}”.
+            {t("noMatch", { query: searched })}
           </p>
         ) : (
           <ul data-testid="salary-result" className="mt-3 space-y-2">
             {matches.map((m, i) => (
               <li key={i} className="rounded-lg border border-border bg-background p-3">
-                <p className="text-sm font-medium">{m.company ?? "(unnamed)"}</p>
+                <p className="text-sm font-medium">{m.company ?? t("unnamed")}</p>
                 <pre className="mt-1 whitespace-pre-wrap break-words text-xs text-muted-foreground">
                   {JSON.stringify(m, null, 2)}
                 </pre>

@@ -183,3 +183,40 @@
 - `.claude/settings.local.json` is the single workspace-wide permission file for Plane 1; its schema is documented in `architecture/security-architecture.md`
 - The composition rule is enforced: a tool call succeeds iff both the skill's `allowed-tools` and the workspace `settings.local.json` permit it
 - Plane 2 sub-agent skills declare permissions in their own `cli/package.json` (per ADR-0004); workspace permissions still gate the invocation
+
+## NFR-0019: Bidirectional & Non-Latin Script Rendering
+**Priority:** Should
+**Description:** The product — both the dashboard UI and the LaTeX document pipeline — shall correctly render scripts beyond Latin, so candidates working in any language see accurate, professional output. This covers right-to-left languages, CJK, and complex-shaping Indic scripts, and ties to the multi-compiler typography decision (ADR-0003), the i18n/parity decision (ADR-0007), and REQ-7008.
+**Acceptance Criteria:**
+- Right-to-left languages (Arabic, Hebrew, Persian, Urdu) render with bidi-aware layout, mirrored UI, and logical CSS properties (e.g. `margin-inline-start`, `text-align: start`) rather than physical left/right
+- CJK content uses correct line-breaking rules and full-width punctuation
+- Indic complex scripts (Devanagari, Bengali, Tamil, Telugu) are shaped correctly using shaping-capable fonts
+- Shaping-capable fonts (e.g. the Noto family) are bundled for both the dashboard and the `lualatex`/`xelatex` pipeline
+- A sample document and a sample dashboard view in each script category render without tofu (missing-glyph boxes), broken bidi runs, or clipped marks
+
+## NFR-0020: Translation Completeness Threshold
+**Priority:** Should
+**Description:** A language is marked "released" only when its translation completeness meets a defined threshold; below that threshold the language is marked "beta." This keeps the language picker honest about which locales are production-ready. The threshold and per-language completeness are surfaced by the parity check (REQ-7006, ADR-0007).
+**Acceptance Criteria:**
+- A completeness threshold is defined and documented (percentage of translatable strings present and non-stale)
+- A language at or above the threshold is labeled "released"; below it is labeled "beta"
+- The parity check (REQ-7006) computes and surfaces per-language completeness and each language's released/beta status
+- The beta label is visible to users in the language selection surface, not just in internal tooling
+
+## NFR-0021: Cost-Aware Search
+**Priority:** Could
+**Description:** Where a portal adapter can provide structured listings deterministically (REQ-1013), the system shall prefer that deterministic path over LLM calls for the listing and pre-filter stage, minimizing token cost while preserving result quality.
+**Acceptance Criteria:**
+- When a portal adapter returns structured listings deterministically, the listing/pre-filter stage uses adapter output rather than LLM calls
+- LLM involvement at the listing/pre-filter stage is reserved for cases the deterministic path cannot cover, so result quality is preserved
+- When no adapter is available, the system falls back gracefully to web search (ARCH-0005)
+- Token usage for an adapter-backed search is measurably lower than the equivalent LLM-only listing path
+
+## NFR-0022: Provider-Limit Resilience
+**Priority:** Should
+**Description:** The system shall detect AI-provider rate-limit, availability, and account failures and degrade gracefully — never crashing or stalling silently — and shall document safe-usage guidance that discourages abuse-tripping, high-volume headless batching. This aligns with ARCH-0005 (graceful degradation). This is guidance plus graceful handling, not a hard throttle enforced by the framework.
+**Acceptance Criteria:**
+- Provider rate-limit, availability, and account-level failures are detected and surfaced to the user with a clear, actionable message
+- A failure never manifests as a crash or a silent indefinite stall
+- Safe-usage guidance is documented and discourages high-volume headless batching that can trip provider abuse limits
+- The behavior is explicitly graceful handling plus guidance — the framework does not impose a hard request throttle

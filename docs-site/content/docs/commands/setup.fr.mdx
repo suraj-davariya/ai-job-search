@@ -1,0 +1,71 @@
+---
+title: /setup
+description: Construisez votre profil de candidat une fois — à partir de vos documents, d'un CV ou d'une conversation.
+---
+
+Tout ce que CareerForge écrit à votre sujet provient d'un seul endroit : votre
+profil. `/setup` le construit. Vous l'exécutez une fois au début, puis de
+nouveau uniquement quand quelque chose change chez vous — un nouvel emploi, une
+nouvelle certification, une nouvelle ville.
+
+## Trois voies d'entrée, un même résultat
+
+Quand vous tapez `/setup`, il regarde ce que vous avez et propose trois voies :
+
+| Voie | Idéale quand | Ce qui se passe |
+|------|-----------|--------------|
+| **A — Scanner mes documents** | Vous avez déposé des CV, un export LinkedIn, des diplômes ou des lettres de recommandation dans le dossier `documents/` | Il lit tout, recoupe les sources entre elles, et propose un contenu de profil |
+| **B — Importer un seul CV** | Vous avez un bon CV et voulez démarrer vite | Il extrait ce que contient le CV, puis pose des questions ciblées sur ce que les CV omettent généralement |
+| **C — M'interroger** | Vous partez de zéro, aucun document requis | Une conversation guidée à travers neuf sujets : identité, formation, expérience, compétences, et ainsi de suite |
+
+Les trois voies aboutissent au même endroit : un ensemble de fichiers de profil
+décrivant votre expérience, votre style de travail, vos préférences
+d'évaluation et vos cibles de recherche d'emploi.
+
+## Les règles qu'il suit
+
+Elles valent la peine d'être connues, car ce sont la raison pour laquelle vous
+pouvez faire confiance au résultat :
+
+- **Rien n'est écrit sans votre accord.** Chaque modification proposée est
+  montrée d'abord. Le nouveau contenu arrive sous forme de liste de contrôle que
+  vous approuvez ; tout ce qui *entre en conflit* avec ce qui est déjà
+  enregistré est présenté un élément à la fois avec les choix conserver /
+  remplacer / modifier.
+- **Il ne comble jamais les lacunes par des suppositions.** S'il ne connaît pas
+  votre année de diplôme, il demande — il n'en invente pas une.
+- **Les sources divergentes sont signalées.** Si votre CV dit qu'un emploi
+  s'est terminé en 2021 et que LinkedIn dit 2022, vous verrez les deux et
+  choisirez la bonne.
+- **L'exécuter deux fois est sans danger.** `/setup` est idempotent : le
+  relancer avec les mêmes entrées ne propose rien de nouveau et n'écrase rien.
+
+## Mettre à jour une section plus tard
+
+Vous ne refaites pas tout l'entretien pour changer une seule chose :
+
+```text
+/setup --section experience
+```
+
+Les sections valides incluent `identity`, `education`, `experience`, `skills`,
+`behavioral`, `interview-prep` et `search` — cette dernière régénère vos
+requêtes pour les sites d'emploi et vos préférences de localisation, ce qui est
+pratique lorsque vous déménagez ou changez de cible :
+
+```text
+/setup --section search
+```
+
+## Ce qu'il construit
+
+Sept documents de profil plus votre configuration de recherche — parmi eux
+votre profil de candidat (expérience, compétences, formation), un profil
+comportemental (style de travail et préférences), des énoncés de profil pour
+différents types de postes, et des récits d'entretien au format STAR tirés de
+vos réalisations réelles. Lorsqu'un récit a besoin de votre mémoire à la
+première personne pour être complété, il vous laisse une ébauche clairement
+marquée plutôt que d'inventer les détails.
+
+**Ce qui se passe ensuite :** vous êtes prêt à [trouver des emplois avec
+/search](/fr/docs/commands/search).

@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { format } from "date-fns";
+import { useTranslations } from "next-intl";
 import { updateRowAction } from "@/app/actions/tracker";
 import {
   transitionOptions,
@@ -27,6 +28,8 @@ export function StatusSelect({
 }) {
   const [value, setValue] = useState<Status>(row.status);
   const [pending, startTransition] = useTransition();
+  const t = useTranslations("applications");
+  const ts = useTranslations("common");
 
   const options = transitionOptions(value); // [current, ...allowed-next]
 
@@ -45,16 +48,16 @@ export function StatusSelect({
       const res = await updateRowAction(row._row!, { status: next });
       if ("error" in res) {
         setValue(prev); // revert
-        toast(`Couldn't update status: ${res.error}`, "error");
+        toast(t("toast.statusError", { error: res.error }), "error");
       } else {
-        toast(`Updated · ${format(new Date(), "h:mm")}`);
+        toast(t("toast.updated", { time: format(new Date(), "h:mm") }));
       }
     });
   }
 
   return (
     <select
-      aria-label={`Status for ${row.company}`}
+      aria-label={t("aria.statusFor", { company: row.company })}
       value={value}
       disabled={pending}
       onChange={onChange}
@@ -63,7 +66,7 @@ export function StatusSelect({
     >
       {options.map((s) => (
         <option key={s} value={s}>
-          {s}
+          {ts(`status.${s}`)}
         </option>
       ))}
     </select>

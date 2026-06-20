@@ -1,0 +1,72 @@
+---
+title: La Tabla de Postulaciones
+description: La superficie de trabajo — ordena, filtra, actualiza estados y mantén notas, con barandillas.
+---
+
+Los gráficos son para la perspectiva; la tabla es donde realmente trabajas.
+Cada postulación es una fila, la más reciente primero, y el día a día de una
+búsqueda de empleo — *"el reclutador llamó, muévela a Interview"* — ocurre
+aquí.
+
+<ApplicationsTableDemo />
+
+## Encontrar cosas
+
+Cada columna ordena. Los filtros estrechan la tabla por estado, sector, tipo de
+puesto o canal, y se actualizan en vivo. La [tira del
+proceso](/es/docs/dashboard/charts#pipeline-strip) sobre la tabla funciona
+también como filtro de estado — haz clic en un grupo, la tabla lo sigue. Hacer
+clic en una fila abre un cajón con el registro completo: cada campo, tus notas
+y enlaces a los PDF exactos del CV y la carta de presentación que se enviaron.
+
+## Editar — exactamente dos cosas
+
+Solo **status** y **notes** son editables (la fecha de *last updated* se sella
+sola). Todo lo demás — fecha, empresa, puesto, puntuación de ajuste, rutas de
+archivos — es el registro factual que `/apply` escribió, y el panel lo trata
+como solo lectura.
+
+## La máquina de estados del estado
+
+Los estados no son texto libre; son siete etapas fijas, y el panel solo ofrece
+movimientos que tienen sentido. Pruébalo — elige un estado:
+
+<StatusFlowDemo />
+
+En completo:
+
+| Desde | Puede moverse a |
+|------|------------|
+| Draft | Sent, Withdrawn |
+| Sent | Interview, Rejected, Withdrawn, Closed |
+| Interview | Offer, Rejected, Withdrawn, Closed |
+| Offer / Rejected / Withdrawn / Closed | — final |
+
+¿Por qué tan estricto? Porque los estados alimentan el [KPI de tasa de
+entrevistas](/es/docs/dashboard/kpis) y los [gráficos de
+estado](/es/docs/dashboard/charts) — y esos números solo valen la pena si un
+"Sent" siempre significa lo mismo. Los movimientos ilegales se rechazan antes
+de escribirse, así que un clic equivocado no puede corromper calladamente tus
+estadísticas.
+
+Dos detalles que vale la pena conocer:
+
+- **Final no significa oculto.** Las filas Rejected, Withdrawn y Closed
+  permanecen en la tabla, atenuadas. Tu historial es parte de los datos — y ver
+  la pila de Rejected convertirse lentamente en una pila de Interview es su
+  propia clase de progreso.
+- **¿Estado final equivocado?** El panel no moverá una fila fuera de un estado
+  final. Tu tracker es [un archivo plano que te pertenece](/es/docs/your-data),
+  así que un error genuino siempre se puede corregir en cualquier app de hojas
+  de cálculo.
+
+## Agregar una fila a mano
+
+¿Postulaste en algún lugar fuera de CareerForge — un referido, una visita en
+persona, un correo? El botón **+ New** agrega una fila manualmente para que tus
+estadísticas se mantengan completas. La fecha, la empresa y el puesto son
+obligatorios; los campos del CV y la carta de presentación simplemente quedan
+vacíos.
+
+**Siguiente:** [Tus datos](/es/docs/your-data) — el único archivo detrás de
+todo esto.

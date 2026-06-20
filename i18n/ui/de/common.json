@@ -1,0 +1,37 @@
+{
+  "app": {
+    "name": "CareerForge",
+    "description": "Lokales, privates Dashboard zur Verfolgung von Bewerbungen."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "applications": "Bewerbungen",
+    "companies": "Unternehmen",
+    "profile": "Profil",
+    "salary": "Gehalt",
+    "upskill": "Weiterbildung",
+    "console": "Konsole",
+    "settings": "Einstellungen"
+  },
+  "shell": {
+    "local": "Lokal · 127.0.0.1"
+  },
+  "theme": {
+    "toggle": "Design umschalten"
+  },
+  "status": {
+    "Draft": "Entwurf",
+    "Sent": "Gesendet",
+    "Interview": "Vorstellungsgespräch",
+    "Offer": "Angebot",
+    "Rejected": "Abgelehnt",
+    "Withdrawn": "Zurückgezogen",
+    "Closed": "Geschlossen"
+  },
+  "banner": {
+    "readOnly": "Schreibgeschützter Modus – Bearbeiten ist deaktiviert.",
+    "demoTitle": "Demo mit Beispieldaten.",
+    "demoBody": "Bearbeiten, die Konsole und PDF-Vorschauen sind deaktiviert – dafür muss das echte Dashboard lokal laufen.",
+    "demoBack": "Zurück zur Anleitung →"
+  }
+}

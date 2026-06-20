@@ -1,0 +1,60 @@
+---
+title: Languages & Locales
+description: The two different ways CareerForge speaks your language — the interface you read, and the CV conventions of the market you apply to.
+---
+
+"Language" in a job search means two different things, and CareerForge keeps
+them apart on purpose:
+
+- **The language you read CareerForge in** — the dashboard, the command-line
+  output, the README.
+- **The conventions a CV follows in the market you're applying to** — what the
+  document is even *called*, what paper size it prints on, whether it carries a
+  photo.
+
+They're independent. A Spanish speaker applying to a job in Germany reads the
+tool in Spanish, but their CV should follow *German* conventions. Below, each
+half on its own.
+
+## UI languages — the interface you read
+
+The dashboard, CLI output, and README are available in **12 languages**:
+
+Arabic, Bengali, Chinese (Simplified), English, French, German, Hindi,
+Indonesian, Japanese, Portuguese (Brazil), Russian, and Spanish.
+
+These translations are currently **machine-translated and in beta**, pending
+human review — so **English is canonical**: if a translated string ever reads
+oddly or disagrees with the English, the English is the source of truth. More
+languages are planned, and contributions (corrections or whole new languages)
+are welcome via
+[`i18n/CONTRIBUTING.md`](https://github.com/suraj-davariya/ai-job-search/blob/main/i18n/CONTRIBUTING.md).
+
+## Locale packs — the conventions your CV follows
+
+A **locale pack** is separate from UI language. It captures how a CV is
+expected to look in one market, so a document generated for that market reads
+like it belongs there. A pack settles things like:
+
+| Convention | Examples |
+|------------|----------|
+| What the document is called | CV · Résumé · Lebenslauf · Rirekisho · Currículo |
+| Page size | A4 · Letter |
+| Expected length | one page · two pages |
+| Photo norm | included · omitted |
+| Personal fields | which details belong on the document (and which never should) |
+| Date format | `YYYY-MM-DD` · `DD/MM/YYYY` · `MM/DD/YYYY` |
+| Privacy / GDPR clauses | the data-consent line a market expects, where one applies |
+
+When you run [`/apply`](/docs/commands/apply), it applies the **target
+market's** locale pack — which is why the CV's language and page count follow
+the locale rather than being fixed.
+
+## The one rule to remember
+
+**Language is not locale.** The language is *how you read*; the locale pack is
+*how your CV is expected to look where you're applying*. Set them to match your
+situation, not each other.
+
+**Next:** [`/apply`](/docs/commands/apply) to see locale packs in action, or
+[the Quick Start](/docs/quick-start) if you haven't built a profile yet.

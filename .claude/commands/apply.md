@@ -43,6 +43,9 @@ skipped when `--review=none`.
    drafting. Flag stretch claims for the user (REQ-2023).
 5. **Token efficiency (REQ-2024).** Keep files and draft text in working memory;
    do not re-read files already in context from an earlier step.
+6. **Provider resilience (NFR-0022, ARCH-0005).** If the AI provider rate-limits or
+   fails, stop gracefully with a clear message; do not retry-spam or run high-volume
+   headless batches that can trip provider abuse heuristics.
 
 **Profile + template files this command consumes:**
 
@@ -54,6 +57,9 @@ skipped when `--review=none`.
 | `.claude/skills/job-application-assistant/04-job-evaluation.md` | Step 1 (scoring framework) |
 | `.claude/skills/job-application-assistant/05-cv-templates.md` | Step 2/5 (CV LaTeX guide + cutting) |
 | `.claude/skills/job-application-assistant/06-cover-letter-templates.md` | Step 2/5 (cover-letter LaTeX guide) |
+| `.claude/skills/job-application-assistant/08-legitimacy.md` | Step 1 (posting legitimacy gate) |
+| `locale-packs/<code>.json` | Steps 0–2 (target-market conventions; default `locale-packs/default.json`) |
+| `trust-safety/scam-patterns.json` | Step 1 (red-flag catalog) |
 
 ---
 
@@ -65,13 +71,26 @@ equal-priority inputs; paste is a first-class choice, never a fallback.
 - **URL:** fetch with WebFetch and parse the content.
 - **Text:** use directly.
 
+**Liveness re-check (REQ-1015):** if the posting comes from an earlier search (a known
+URL stored in `seen_jobs.json` or the tracker), re-fetch/HEAD it to confirm it still
+appears **open** before investing in drafting. If it looks closed/expired, warn the user
+and ask whether to proceed — never auto-skip (ARCH-0006). If liveness can't be determined,
+proceed with a neutral note (ARCH-0005). This extends the search-time date filter
+(REQ-1011) from "posted recently" to "still open now."
+
 Extract metadata: **company name, role title, department** (if mentioned),
 **location**, and **language of the posting**. Both input modes produce identical
 downstream behavior.
 
-**Language rule (REQ-2002):** the cover letter is written in the **posting's
-language** (e.g. a Danish posting → Danish cover letter). The **CV is always in
-English** regardless of posting language.
+**Language rule (REQ-2002, REQ-7001):** the cover letter is written in the **posting's
+language** (e.g. a Danish posting → Danish cover letter). The **CV language follows the
+active locale pack / user preference** (default: the posting language, falling back to
+English) — it is no longer hardcoded to English.
+
+**Resolve the locale pack (REQ-7009):** from the employer country / job location (or a
+user preference), load `locale-packs/<code>.json` for the target market; fall back to
+`locale-packs/default.json` if none matches (ARCH-0005). It drives CV page size, page
+count, photo norm, personal fields, date format, and legal clauses in Steps 1–2.
 
 ---
 
@@ -95,6 +114,15 @@ regardless of the weighted score.
 **Salary (REQ-2011, optional):** invoke `python3 salary_lookup.py "<company>" --city "<city>"` (omit `--city` if no city is known).
 If the tool or data is unavailable, note "Salary data not available" and proceed — never block on it.
 
+**Posting legitimacy — separate gate (REQ-8001–8005, read `08-legitimacy.md`):** assess
+whether the posting is genuine and safe to engage with, **independently** of the fit
+score. Check it against `trust-safety/scam-patterns.json` (global signals + any `byRegion`
+entries for the active locale pack), corroborate the employer/domain via web search, and
+produce a standalone verdict — **Verified / Caution / Suspicious** — with cited evidence.
+This is **not** folded into the 0–100 fit score (business-rules §10). Never auto-block
+(ARCH-0006); never accuse without cited evidence, use Caution when unsure (ARCH-0007);
+fail open with a neutral note if signals can't be gathered (ARCH-0005).
+
 **Present the evaluation (REQ-2012)** using the output format in
 `04-job-evaluation.md`: the dimension table with notes, weighted total, verdict
 (Strong 75+ / Good 60–74 / Moderate 45–59 / Weak 30–44 / Poor <30), key
@@ -106,6 +134,8 @@ pre-application call guidance only when substantive questions exist.
 - If **yes** → continue.
 - If **Experience Match < 50**, warn that extensive reframing would be needed
   before the user decides.
+- If the **legitimacy verdict is Suspicious**, surface it prominently, recommend against
+  proceeding, and require explicit user confirmation to continue (ARCH-0006).
 
 ---
 
@@ -123,7 +153,7 @@ tooling, name the specific tool. Default **Claude Code**; use the
 `[AI_TOOL_NAME]` override from `01-candidate-profile.md` if set. Never "an AI
 assistant".
 
-### CV (REQ-2020) — always English
+### CV (REQ-2020) — language + conventions per the active locale pack
 
 1. Copy the base template: `cp cv/main_example.tex cv/main_<company>.tex`.
 2. Tailor per `05-cv-templates.md`:
@@ -133,9 +163,13 @@ assistant".
      posting-relevant items; lead each role with its most relevant bullet.
    - Apply the section-order variant for the role type (Technical / Domain /
      Consulting / Leadership).
+   - Apply the **locale pack** (`05` Locale Adaptation): page size (A4/Letter),
+     photo norm, included/discouraged personal fields, date format. Never fabricate a
+     locale-required field — prompt the user if it's missing (ARCH-0007).
    - Use class macros (`\company`, `\education`, `\skillset`, `\divider`); **no
      `\vspace` inside `itemize`**.
-3. Target: exactly **2 pages** when compiled (enforced in Step 5).
+3. Target the locale pack's `pageCountExpectation` (default **2 pages**) when compiled
+   (enforced in Step 5).
 
 ### Cover letter (REQ-2021) — posting language
 
@@ -275,11 +309,63 @@ both `.tex` files once to confirm their on-disk state. Report each item pass/fai
 - **Compiled PDF (§5.5):** CV lualatex/2 pages/no orphans; cover letter
   xelatex/1 page/signature visible/bullet font matches.
 
+**Fabrication audit — emit a provenance ledger (REQ-2065).** As part of verification,
+build a **claim → backing-source** ledger: for every substantive claim in the CV (and
+cover letter), record the profile file and section that backs it. Any claim not traceable
+to the profile is **flagged**, never shipped silently — this is the interview-backtrack
+test (REQ-2023) made explicit and auditable. Write it to
+`documents/applications/<company>_<role>/provenance.json`:
+
+```json
+{
+  "generated": "YYYY-MM-DD",
+  "company": "<company>", "role": "<role>",
+  "claims": [
+    { "claim": "<verbatim claim>", "source": "01-candidate-profile.md", "location": "<section>", "backed": true },
+    { "claim": "<verbatim claim>", "source": null, "location": null, "backed": false, "note": "flagged — no profile backing" }
+  ],
+  "summary": { "total": 0, "backed": 0, "flagged": 0 }
+}
+```
+
+Never invent a source (ARCH-0007). The dashboard renders this as a per-application
+**Provenance** panel (REQ-2066).
+
 Then:
 - **Tailoring summary (REQ-2061):** 3–5 key decisions — what was emphasized and
   why, company-specific angles, gaps acknowledged or reframed.
-- **File listing (REQ-2062):** the CV and cover letter paths, then:
-  *"Both files are ready for your review."*
+- **Provenance (REQ-2066):** report the fabrication-audit summary — e.g. "12 claims, all
+  profile-backed" or "12 claims, 1 flagged for your review" — and list any flagged claims
+  for the user to confirm or drop before submitting.
+- **File listing (REQ-2062):** the CV (PDF) and cover letter paths, plus the ATS exports
+  produced in Step 7 (`.txt`, `.docx`), then:
+  *"Your documents are ready for your review."*
+
+---
+
+## Step 7 — ATS Exports & Parse Check (REQ-2063, REQ-2064)
+
+The polished LaTeX **PDF stays the primary, human-facing output**. In addition, produce
+the machine-parseable companions ATS systems prefer — from **one** source so all three
+artifacts stay content-equivalent:
+
+1. **ATS-safe Markdown** (write it from the same tailored content): `cv/main_<company>.ats.md`
+   — a flat, parseable structure: standard headings (Summary, Experience, Education,
+   Skills), plain text, no tables/columns/graphics, name + contact at the top. **Identical
+   claims to the PDF — no fabrication** (ARCH-0007).
+2. **Generate exports + verify the PDF:**
+   ```bash
+   node scripts/ats-export.mjs --md cv/main_<company>.ats.md --out cv/output \
+     --pdf cv/output/main_<company>.pdf \
+     --name "<Full Name>" --keywords "<top role keywords>"
+   ```
+   Produces `cv/output/main_<company>.txt` and `.docx`, and runs the ATS parse self-check
+   on the PDF (name + section headers + keywords recoverable).
+3. **Graceful degradation (ARCH-0005, REQ-2064):** the `.txt` always works; `.docx` needs
+   `pandoc` and the parse check needs `pdftotext` (poppler). If a tool is absent the script
+   notes it and continues — **never block delivery** on these.
+4. Report the parse-check result; if a field isn't recoverable from the PDF, point the
+   user to the `.txt`/`.docx` as the ATS-safe fallback.
 
 ---
 
@@ -295,3 +381,4 @@ Then:
 | REQ-2050–2055 compile + fix loop | Step 5 |
 | data-req §11 tracker row | Step 6 |
 | REQ-2060–2062 verify + summary | Step 6 |
+| REQ-2063/2064 ATS exports + parse check | Step 7 |

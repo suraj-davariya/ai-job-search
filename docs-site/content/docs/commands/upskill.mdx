@@ -1,0 +1,67 @@
+---
+title: /upskill
+description: See exactly where you fall short of the jobs you want — and get a real, web-sourced plan to close the gap.
+---
+
+`/upskill` is your career coach. It looks at the distance between where you are and
+where the jobs you want need you to be, then hands you a prioritised list of what to
+learn and where to learn it — every resource pulled from a live web search, never
+invented.
+
+## Two ways to run it
+
+| You type | Mode | What it looks at |
+|----------|------|------------------|
+| `/upskill` | **Aggregate** | Every job in your tracker. Roles you fit *least* count most, so the plan points at what's actually holding you back. |
+| `/upskill <job url>` | **Targeted** | One specific posting. (Paste the text instead if the link won't load.) |
+
+## What a run looks like
+
+```text
+you:    /upskill
+claude: Reading your tracker (12 applications) and your profile…
+
+        Skill Gap Heatmap
+        ──────────────────────────────────────────────────────────
+        Priority  Skill / Area          Type        Seen in
+        Critical  Kubernetes            tooling     7 of 12 roles
+        High      Terraform / IaC       tooling     5 of 12 roles
+        High      MLOps pipelines       domain      4 of 12 roles
+        Medium    Stakeholder comms     soft        3 of 12 roles
+        Low       Go                    —           1 of 12 roles
+        ──────────────────────────────────────────────────────────
+
+        Building your learning plan (searching for current resources)…
+        Saved → upskill/report-2026-06-17.md
+```
+
+The heatmap prints first so you can see the shape of the gap before the detail.
+
+## What you walk away with
+
+1. **A gap heatmap** — every gap rated Critical / High / Medium / Low, tagged by kind
+   (a missing tool, a domain you haven't worked in, a soft skill, or a credential).
+2. **A learning plan** — for each gap that matters, two or three real resources (with
+   links and a one-line reason), a study direction tuned to what you *already* know so
+   you don't re-learn the basics, and a time estimate.
+3. **A study order** — a numbered sequence that respects dependencies, front-loads quick
+   wins, and saves broad domain knowledge for last, with a total time at the bottom.
+4. **A saved report** at `upskill/report-*.md`. Run it again next month and the aggregate
+   report opens with a *delta*: which gaps you've closed, and which are new.
+
+## How it stays honest
+
+- **No invented resources.** Every course, doc, and book comes from an actual web search
+  with the current year in the query. If nothing good exists for a gap, it says so.
+- **It won't pad an empty tracker.** No applications logged yet? Instead of an empty
+  report, it nudges you to run [`/search`](/docs/commands/search) and
+  [`/apply`](/docs/commands/apply) first, or to point it at a single job with
+  `/upskill <url>`.
+- **Low-priority gaps** show in the heatmap for completeness but don't get a plan entry
+  unless you ask — the plan stays focused on what moves the needle.
+
+## Seeing it in the dashboard
+
+Every report lands in `upskill/report-*.md`, and the dashboard's **Upskill** tab lists
+them for you to re-read any time. You can also kick off a fresh run straight from the
+dashboard Console — it runs this same `/upskill` command.

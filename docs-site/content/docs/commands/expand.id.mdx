@@ -1,0 +1,73 @@
+---
+title: /expand
+description: Gali dokumen Anda, GitHub Anda, dan web untuk menemukan keterampilan yang sudah Anda miliki tetapi belum pernah Anda tuliskan — lalu tambahkan ke profil Anda, dengan aman.
+---
+
+`/expand` adalah arkeolog profil Anda. Anda telah melakukan lebih banyak hal daripada yang
+tertera di profil — sebuah kursus di sini, proyek sampingan di sana, sebuah alat yang Anda
+pelajari saat bekerja. `/expand` mencari kompetensi tersebut di seluruh sumber yang dapat
+dijangkaunya dan **menambahkannya** ke profil Anda. Ia tidak pernah mengubah atau menghapus
+apa pun yang sudah ada, jadi menjalankannya selalu aman.
+
+## Di mana ia mencari
+
+1. **Dokumen Anda** — `documents/cv`, `linkedin`, `diplomas`, `references`.
+2. **GitHub Anda** — setiap repositori publik, baik yang disematkan maupun tidak: ia membaca
+   README dan mencatat bahasa serta topiknya.
+3. **Tautan Anda yang lain** — portofolio, Kaggle, Google Scholar, situs pribadi.
+
+## Bagaimana ia mengubah temuan menjadi keterampilan
+
+Untuk setiap hal yang ditemukannya, ia menelusuri web dengan dua cara sekaligus:
+
+- **Pencarian langsung** — silabus asli dari sebuah kursus tertentu, keterampilan di balik
+  sebuah sertifikasi, dokumentasi sebuah alat.
+- **Inferensi** — metode dan rangkaian alat apa yang biasanya dibutuhkan oleh jenis pekerjaan
+  tersebut.
+
+Item hasil inferensi selalu diberi label sebagai inferensi, sehingga Anda dapat membedakan
+keterampilan yang terdokumentasi dari yang merupakan hasil penalaran.
+
+## Anda melihat semuanya sebelum apa pun ditulis
+
+```text
+you:    /expand
+claude: Read your profile. Scanning documents/, GitHub (14 repos), and your Kaggle…
+
+        Competency Map (new items only)
+        ── Technical — Primary ────────────────────────────────────
+        PyTorch          GitHub: vision-experiments        direct
+        ── Methods & Practices ────────────────────────────────────
+        MLflow tracking  Coursera: MLOps Specialisation    both
+        ── Domain Knowledge ───────────────────────────────────────
+        Time-series forecasting   GitHub: demand-forecaster inference
+
+        Add these? (all / review each / skip / skip a group)
+you:    all
+claude: Added 7 competencies across 2 files. Report below.
+```
+
+Pilihan Anda adalah **all**, **review** (menelusuri kelompok demi kelompok), **skip**, atau
+melewati hanya satu kategori. Tidak ada yang ditulis sampai Anda mengatakannya.
+
+## Aditif dan idempoten — secara desain
+
+- **Ia hanya menambah.** Baris yang sudah ada tidak pernah diubah atau dihapus.
+- **Setiap penambahan membawa catatan sumber**, seperti *(Coursera — Deep Learning
+  Specialisation)* atau *(GitHub — repo: demand-forecaster)*. Catatan itu juga merupakan cara
+  `/expand` tetap idempoten: jalankan lagi bulan depan dan ia hanya membawa masuk hal-hal yang
+  baru.
+- **Tidak ada yang dikarang.** Setiap kompetensi dapat dilacak ke sumber nyata atau ditandai
+  sebagai inferensi, dan dokumen apa pun yang tidak dapat dibacanya dilaporkan alih-alih
+  ditebak.
+
+## Apa yang Anda dapatkan di akhir
+
+Sebuah **laporan ekspansi**: apa yang ditambahkan ke setiap file (beserta sumbernya), setiap
+sumber yang dipindainya dan berapa banyak kompetensi yang dihasilkan masing-masing, apa pun
+yang dilewatinya beserta alasannya, dan item apa pun yang perlu ditinjau secara manual.
+Langkah lanjutan yang baik setelahnya adalah
+[`/upskill`](/id/docs/commands/upskill) — periksa kembali kesenjangan Anda sekarang setelah
+kumpulan keterampilan Anda lebih kaya.
+
+`/expand` juga dapat diluncurkan dari Console dasbor; ia menjalankan perintah yang sama ini.

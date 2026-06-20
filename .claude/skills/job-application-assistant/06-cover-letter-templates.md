@@ -28,6 +28,22 @@ The font `Path=` directives in `cfcl.cls` are relative to the xelatex working di
 
 ---
 
+## Locale Adaptation (Locale Packs)
+
+The cover letter adapts to the **target market** via the active locale pack
+(`locale-packs/<code>.json`, REQ-7010, ADR-0007), separately from its language:
+
+- **Language:** the cover letter is written in the posting's language (existing rule,
+  NFR-0006). Language and locale are independent.
+- **`pageSize`:** A4 vs Letter — match the CV's paper size for the target market.
+- **`dateFormat`:** format the letter date per the pack (e.g. `MM.yyyy` DE, `yyyy/MM` JP).
+- **`legalClauses`:** if the pack lists `gdpr-consent` (EU markets), include a short
+  data-processing consent line at the foot.
+- Fall back to `locale-packs/default.json` when no market-specific pack applies
+  (ARCH-0005). Never fabricate locale-required content (ARCH-0007).
+
+---
+
 ## Compile Instructions
 
 Always compile from the `cover_letters/` directory. Font paths in `cfcl.cls` resolve relative to the working directory — compiling from any other location breaks font loading.

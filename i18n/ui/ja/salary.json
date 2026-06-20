@@ -1,0 +1,22 @@
+{
+  "title": "給与",
+  "description": "給与ベンチマークを閲覧し、企業のルックアップを実行できます。",
+  "empty": {
+    "title": "給与データがありません",
+    "hint": "リポジトリのルートに salary_data.json を追加する（または tools/convert_salary_excel.py でExcelシートをインポートする）と表示されます。それまでも下のルックアップは利用できます。",
+    "milestone": "REQ-5014"
+  },
+  "tableCaption": "{key}（{count}）",
+  "lookupHeading": "企業を検索",
+  "company": "企業",
+  "companyPlaceholder": "企業名",
+  "lookUp": "検索",
+  "looking": "検索中…",
+  "noMatch": "「{query}」に一致するものが見つかりませんでした。",
+  "unnamed": "（名称未設定）",
+  "noOutput": "出力はありません。",
+  "tip": {
+    "readOnly": "読み取り専用モード — 操作は無効になっています",
+    "pythonMissing": "python3 が PATH に見つかりません"
+  }
+}

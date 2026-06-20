@@ -1,0 +1,70 @@
+---
+title: /reset
+description: Apague seus dados pessoais e comece do zero — com um inventário antes, uma confirmação rígida e o framework intocado.
+---
+
+O `/reset` é o botão de recomeço. Às vezes você quer começar de novo — uma nova
+direção de carreira, um perfil fresco, ou você está entregando o repositório para
+outra pessoa. O `/reset` remove **os seus dados** enquanto preserva
+cuidadosamente o **framework** que faz o CareerForge funcionar, de modo que a
+ferramenta ainda roda perfeitamente depois.
+
+## Escolha o que limpar
+
+| Você digita | Limpa |
+|----------|--------|
+| `/reset profile` | Seus arquivos de skill de perfil — de volta a modelos em branco |
+| `/reset documents` | Seus arquivos em `documents/` (as pastas e o README permanecem) |
+| `/reset all` | Ambos |
+
+Se você não passar um escopo, ele te pede para escolher e explica o que cada um
+afeta.
+
+## Ele mostra tudo primeiro
+
+Antes de apagar qualquer coisa, o `/reset` imprime um **inventário**:
+
+```text
+you:    /reset profile
+claude: Profile reset — here's what I'll clear vs. keep:
+
+        Will clear:
+          01-candidate-profile.md     (has your data)
+          02-behavioral-profile.md    (has your data)
+          07 STAR examples            (3 examples)
+        Already empty:
+          05 profile statements       (template)
+        NEVER touched (framework):
+          03-writing-style.md, 04 scoring framework,
+          06 cover-letter templates, 07 framework + roleplay
+
+        This cannot be undone — your git history is the only recovery.
+        Type RESET to proceed.
+you:    RESET
+claude: Cleared 3 files. Run /setup to rebuild your profile.
+```
+
+## As travas de segurança
+
+- **Inventário antes da exclusão** — você sempre vê exatamente o que vai e o que
+  fica.
+- **Você precisa digitar `RESET`** em maiúsculas. Qualquer outra resposta cancela
+  com "nothing was changed".
+- **O framework nunca é tocado** — o guia de estilo de escrita, o framework de
+  pontuação, os modelos de carta de apresentação e o framework de preparação para
+  entrevistas (incluindo suas diretrizes de roleplay) sobrevivem todos. Apenas os
+  seus *dados* são limpos.
+- **Relato honesto** — ele lista o que foi de fato limpo versus o que já estava
+  vazio, e nunca alega ter apagado algo que não estava lá.
+- **Sem desfazer.** Ele diz isso logo de cara e te aponta para o seu histórico do
+  git.
+
+## Depois de um reset
+
+O `/reset` te diz o próximo passo natural para o que você limpou — quase sempre o
+[`/setup`](/pt-BR/docs/commands/setup) para reconstruir seu perfil (adicione
+documentos primeiro se você os limpou).
+
+> Por ser destrutivo, o `/reset` é intencionalmente **não** disponível a partir
+> do Console do painel — ele só roda aqui, onde a confirmação digitada `RESET` te
+> protege.

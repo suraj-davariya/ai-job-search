@@ -1,0 +1,54 @@
+---
+title: /reset
+description: 個人データを消去してまっさらな状態から始める — まずインベントリを表示し、確実な確認を求め、フレームワークには手を付けません。
+---
+
+`/reset` は白紙に戻すためのボタンです。新しいキャリアの方向性、まっさらなプロフィール、あるいはリポジトリを誰かに引き継ぐときなど、最初からやり直したくなることがあります。`/reset` は **あなたのデータ** を削除する一方で、CareerForge を動かしている **フレームワーク** は慎重に保持するため、実行後もツールは完璧に動き続けます。
+
+## 何を消すかを選ぶ
+
+| 入力するもの | 消去対象 |
+|----------|--------|
+| `/reset profile` | プロフィールのスキルファイル — 空白のテンプレートに戻ります |
+| `/reset documents` | `documents/` 内のあなたのファイル（フォルダと README は残ります） |
+| `/reset all` | 両方 |
+
+スコープを渡さなかった場合は、選択を促し、それぞれが何に影響するかを説明します。
+
+## 削除前にすべてを表示します
+
+何かを削除する前に、`/reset` は **インベントリ** を表示します。
+
+```text
+you:    /reset profile
+claude: Profile reset — here's what I'll clear vs. keep:
+
+        Will clear:
+          01-candidate-profile.md     (has your data)
+          02-behavioral-profile.md    (has your data)
+          07 STAR examples            (3 examples)
+        Already empty:
+          05 profile statements       (template)
+        NEVER touched (framework):
+          03-writing-style.md, 04 scoring framework,
+          06 cover-letter templates, 07 framework + roleplay
+
+        This cannot be undone — your git history is the only recovery.
+        Type RESET to proceed.
+you:    RESET
+claude: Cleared 3 files. Run /setup to rebuild your profile.
+```
+
+## 安全のための仕組み
+
+- **削除前のインベントリ表示** — 何が消えて何が残るのかを常に正確に確認できます。
+- **`RESET` と大文字で入力する必要があります**。それ以外の返答はすべて「何も変更されませんでした」としてキャンセルされます。
+- **フレームワークには決して手を付けません** — ライティングスタイルガイド、スコアリングフレームワーク、カバーレターのテンプレート、面接準備フレームワーク（ロールプレイのガイドラインを含む）はすべて残ります。消去されるのはあなたの *データ* のみです。
+- **正直な報告** — 実際に消去されたものと、すでに空だったものを区別して一覧表示し、存在しなかったものを消去したと主張することは決してありません。
+- **取り消し不可。** その旨を最初に明言し、git の履歴を参照するよう案内します。
+
+## リセット後
+
+`/reset` は、消去した内容に対して自然な次のステップを案内します。ほとんどの場合、プロフィールを再構築するための [`/setup`](/ja/docs/commands/setup) です（documents を消去した場合は、まずドキュメントを追加してください）。
+
+> 破壊的な操作であるため、`/reset` は意図的にダッシュボードの Console からは利用 **できません** — 入力された `RESET` の確認があなたを守る、この場所でのみ実行されます。

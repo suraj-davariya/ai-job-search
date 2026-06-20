@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { readTracker } from "@/lib/data/tracker";
 import { kpis } from "@/lib/domain/kpi";
 import {
@@ -22,17 +23,18 @@ export const dynamic = "force-dynamic";
 export default async function DashboardPage() {
   const rows = await readTracker();
   const k = kpis(rows);
+  const t = await getTranslations("dashboard");
 
   return (
     <PageSection
-      title="Overview"
-      description="Pipeline health at a glance, computed live from your tracker."
+      title={t("overview.title")}
+      description={t("overview.description")}
     >
       {rows.length === 0 ? (
         <EmptyState
-          title="No applications yet"
-          hint="Run /apply <posting> or use + New application on the Applications page. Your KPIs and charts appear here once the tracker has rows."
-          milestone="Overview"
+          title={t("overview.empty.title")}
+          hint={t("overview.empty.hint")}
+          milestone={t("overview.empty.milestone")}
         />
       ) : (
         <div className="space-y-4">

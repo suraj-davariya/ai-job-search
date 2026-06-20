@@ -2,10 +2,12 @@
 
 import { Fragment, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { ExternalLink, FileText, FileX, Play, X } from "lucide-react";
 import type { TrackerRow } from "@/lib/domain/status";
 import { StatusPill } from "./StatusPill";
 import { FitBadge } from "./FitBadge";
+import { ProvenancePanel } from "./ProvenancePanel";
 
 /** Split text into plain spans and clickable links for any http(s) URLs. */
 function linkify(text: string) {
@@ -33,6 +35,7 @@ function linkify(text: string) {
  * "file not found" badge instead of a broken link.
  */
 function FileLink({ label, file }: { label: string; file: string }) {
+  const t = useTranslations("applications");
   const [state, setState] = useState<"checking" | "ok" | "missing">("checking");
 
   useEffect(() => {
@@ -55,7 +58,7 @@ function FileLink({ label, file }: { label: string; file: string }) {
         className="inline-flex items-center gap-1.5 rounded-md border border-destructive/40 bg-destructive/10 px-2 py-1 text-xs text-destructive"
       >
         <FileX className="h-3.5 w-3.5" aria-hidden />
-        {label}: file not found
+        {t("drawer.fileNotFound", { label })}
       </span>
     );
   }
@@ -101,6 +104,7 @@ export function RowDrawer({
 }) {
   const closeRef = useRef<HTMLButtonElement>(null);
   const titleId = "row-drawer-title";
+  const t = useTranslations("applications");
 
   useEffect(() => {
     const previouslyFocused = document.activeElement as HTMLElement | null;
@@ -149,7 +153,7 @@ export function RowDrawer({
             ref={closeRef}
             type="button"
             onClick={onClose}
-            aria-label="Close details"
+            aria-label={t("drawer.closeDetails")}
             className="rounded-md p-1 text-muted-foreground hover:bg-muted/60 hover:text-foreground"
           >
             <X className="h-4 w-4" aria-hidden />
@@ -163,20 +167,20 @@ export function RowDrawer({
           </div>
 
           <dl className="grid grid-cols-2 gap-x-4 gap-y-3">
-            <Field label="Date" value={<span className="tabular-nums">{row.date}</span>} />
+            <Field label={t("drawer.date")} value={<span className="tabular-nums">{row.date}</span>} />
             <Field
-              label="Last updated"
+              label={t("drawer.lastUpdated")}
               value={<span className="tabular-nums">{row.last_updated}</span>}
             />
-            <Field label="Sector" value={row.sector} />
-            <Field label="Role type" value={row.role_type} />
-            <Field label="Channel" value={row.channel} />
-            <Field label="Contact" value={row.contact_person} />
+            <Field label={t("drawer.sector")} value={row.sector} />
+            <Field label={t("drawer.roleType")} value={row.role_type} />
+            <Field label={t("drawer.channel")} value={row.channel} />
+            <Field label={t("drawer.contact")} value={row.contact_person} />
           </dl>
 
           <div className="mt-4 space-y-1">
             <h3 className="text-xs uppercase tracking-wide text-muted-foreground">
-              Notes
+              {t("drawer.notes")}
             </h3>
             <p className="whitespace-pre-wrap break-words text-sm">
               {row.notes ? linkify(row.notes) : <span className="text-muted-foreground">—</span>}
@@ -185,18 +189,18 @@ export function RowDrawer({
 
           <div className="mt-5 space-y-2">
             <h3 className="text-xs uppercase tracking-wide text-muted-foreground">
-              Documents
+              {t("drawer.documents")}
             </h3>
             <div className="flex flex-wrap gap-2">
               {row.cv_file ? (
-                <FileLink label="CV" file={row.cv_file} />
+                <FileLink label={t("drawer.cv")} file={row.cv_file} />
               ) : (
-                <span className="text-xs text-muted-foreground">No CV</span>
+                <span className="text-xs text-muted-foreground">{t("drawer.noCv")}</span>
               )}
               {row.cover_letter_file ? (
-                <FileLink label="Cover letter" file={row.cover_letter_file} />
+                <FileLink label={t("drawer.coverLetter")} file={row.cover_letter_file} />
               ) : (
-                <span className="text-xs text-muted-foreground">No cover letter</span>
+                <span className="text-xs text-muted-foreground">{t("drawer.noCover")}</span>
               )}
               {row.source ? (
                 <a
@@ -206,7 +210,7 @@ export function RowDrawer({
                   className="inline-flex items-center gap-1.5 rounded-md border border-border bg-card px-2 py-1 text-xs text-primary hover:bg-muted/60"
                 >
                   <ExternalLink className="h-3.5 w-3.5" aria-hidden />
-                  Source posting
+                  {t("drawer.sourcePosting")}
                 </a>
               ) : null}
             </div>
@@ -216,10 +220,12 @@ export function RowDrawer({
                 className="inline-flex items-center gap-1.5 rounded-md border border-border bg-card px-2 py-1 text-xs hover:bg-muted/60"
               >
                 <Play className="h-3.5 w-3.5 text-primary" aria-hidden />
-                Re-run /apply
+                {t("drawer.rerunApply")}
               </Link>
             ) : null}
           </div>
+
+          <ProvenancePanel company={row.company} role={row.role} />
         </div>
       </div>
     </div>

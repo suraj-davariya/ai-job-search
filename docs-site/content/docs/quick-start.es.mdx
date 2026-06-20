@@ -1,0 +1,167 @@
+---
+title: Inicio rápido
+description: De no tener nada instalado a tu primera postulación a medida, paso a paso.
+---
+
+Esta página te lleva de una máquina en blanco a tu primer CV y carta de
+presentación a medida. Calcula unos treinta minutos la primera vez; la mayor
+parte es la instalación de LaTeX haciendo su trabajo en silencio.
+
+## Lo que necesitarás primero
+
+Sé honesto contigo mismo sobre estos tres requisitos previos: cada uno enlaza a
+una guía de instalación adecuada, y ninguno requiere programar.
+
+1. **Claude Code** — el asistente de IA dentro del cual se ejecuta CareerForge.
+   Es un programa que instalas una vez y abres desde una ventana de terminal.
+   ¿Nunca usaste una terminal? No pasa nada: solo escribirás los comandos
+   cortos que se muestran en esta página.
+2. **LaTeX** — el sistema de composición tipográfica que convierte tu CV en un
+   PDF pulido. Es una descarga grande, pero se instala y se olvida.
+3. **Python 3.10+** *(opcional)* — solo se necesita más adelante para comparar
+   salarios. Sáltalo por hoy.
+
+<Steps>
+
+<Step>
+
+### Instala Claude Code
+
+```bash title="Terminal"
+npm install -g @anthropic-ai/claude-code
+```
+
+Luego inícialo una vez para iniciar sesión:
+
+```bash title="Terminal"
+claude
+```
+
+Necesitarás una [cuenta de Anthropic](https://claude.ai) — los planes Free y
+Pro funcionan ambos.
+
+**Qué pasa después:** se abre un chat en tu terminal. Esa ventana de chat es
+donde ejecutarás todo lo que sigue.
+
+</Step>
+
+<Step>
+
+### Instala LaTeX
+
+Se usan dos compiladores: `lualatex` para el CV y `xelatex` para la carta de
+presentación. Las instalaciones de abajo incluyen ambos.
+
+<Tabs items={["macOS", "Linux", "Windows"]}>
+
+<Tab value="macOS">
+
+```bash title="Terminal"
+brew install --cask mactex
+sudo tlmgr install fontawesome lato tcolorbox dashrule enumitem multirow \
+                   ifmtarg fontaxes mweights pgfopts
+```
+
+</Tab>
+
+<Tab value="Linux">
+
+```bash title="Terminal"
+sudo apt-get install texlive-full
+```
+
+</Tab>
+
+<Tab value="Windows">
+
+Instala [MiKTeX](https://miktex.org/download) — descarga automáticamente
+cualquier paquete que falte la primera vez que compiles.
+
+</Tab>
+
+</Tabs>
+
+**Qué pasa después:** nada visible — LaTeX solo queda listo hasta que `/apply`
+necesite producir un PDF.
+
+</Step>
+
+<Step>
+
+### Obtén CareerForge y ábrelo
+
+```bash title="Terminal"
+git clone https://github.com/suraj-davariya/ai-job-search.git
+cd ai-job-search
+claude
+```
+
+**Qué pasa después:** Claude Code se abre *dentro* de la carpeta de
+CareerForge, lo que significa que los tres comandos de abajo ya están
+disponibles en tu chat.
+
+</Step>
+
+<Step>
+
+### Construye tu perfil
+
+```text title="En el chat de Claude Code"
+/setup
+```
+
+Ofrece tres caminos: escanear una carpeta con tus documentos, importar un único
+CV o una entrevista amistosa en la que pregunta y tú respondes. Elige el que
+mejor se adapte a lo que tienes. Antes de guardar nada, te muestra el contenido
+propuesto y te pide tu aprobación.
+
+**Qué pasa después:** tus archivos de perfil existen —tu experiencia,
+habilidades, objetivos y preferencias de búsqueda—, todo en tu máquina. Esto
+solo lo haces una vez.
+
+</Step>
+
+<Step>
+
+### Encuentra empleos
+
+```text title="En el chat de Claude Code"
+/search
+```
+
+**Qué pasa después:** una tabla ordenada de nuevas ofertas de los portales de
+empleo que configuraste, cada una marcada como compatibilidad Alta, Media o
+Baja, con las ofertas que ya viste filtradas. Responde con un número para
+evaluar una en profundidad.
+
+</Step>
+
+<Step>
+
+### Postúlate a una
+
+```text title="En el chat de Claude Code"
+/apply https://company.com/jobs/the-role-you-want
+```
+
+También puedes pegar directamente la descripción del puesto si no hay enlace.
+Evalúa la compatibilidad en cinco dimensiones y pregunta si quieres continuar:
+ese es tu punto de control, no un formalismo.
+
+**Qué pasa después:** un CV a medida de dos páginas y una carta de presentación
+de una página, ambos como PDF, revisados por una segunda IA y verificados con
+una lista de comprobación. La postulación queda registrada en tu rastreador con
+estado **Draft**. Lees ambos PDF y luego los envías tú mismo — CareerForge
+nunca envía nada por ti.
+
+</Step>
+
+</Steps>
+
+## Después de tu primera postulación
+
+- Abre [el panel](/es/docs/dashboard) para observar tu canal a medida que crece.
+- Lee [Tus datos](/es/docs/your-data) para ver exactamente qué quedó registrado:
+  es un único archivo legible por humanos.
+- ¿Atascado en algo? Las [Preguntas frecuentes](/es/docs/faq) cubren las dudas
+  comunes de la primera semana.

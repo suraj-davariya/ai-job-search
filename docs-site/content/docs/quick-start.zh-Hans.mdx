@@ -1,0 +1,155 @@
+---
+title: 快速上手
+description: 从什么都没装，到你的第一份量身定制的申请，一步一步带你完成。
+---
+
+本页带你从一台空白的机器，走到你的第一份量身定制的简历和求职信。第一次大约预留
+三十分钟；其中大部分时间是 LaTeX 安装在后台默默运行。
+
+## 你首先需要准备什么
+
+对这三项前置条件，请对自己诚实——每一项都链接到一份正经的安装指南，而且没有一项
+需要编程：
+
+1. **Claude Code** —— CareerForge 运行所依托的 AI 助手。这是一个你只需安装一次、
+   并从终端窗口打开的程序。从没用过终端？没关系：你只会输入本页上展示的简短命令。
+2. **LaTeX** —— 把你的简历变成一份精美 PDF 的排版系统。它的下载体积很大，但
+   装好就可以忘掉它。
+3. **Python 3.10+** *（可选）* —— 仅在之后做薪资基准对比时需要。今天先跳过它。
+
+<Steps>
+
+<Step>
+
+### 安装 Claude Code
+
+```bash title="Terminal"
+npm install -g @anthropic-ai/claude-code
+```
+
+然后启动它一次以登录：
+
+```bash title="Terminal"
+claude
+```
+
+你需要一个 [Anthropic 账户](https://claude.ai)——免费版和 Pro 版都可以用。
+
+**接下来会发生什么：** 终端里会打开一个聊天界面。那个聊天窗口就是你运行下面
+所有内容的地方。
+
+</Step>
+
+<Step>
+
+### 安装 LaTeX
+
+会用到两个编译器——`lualatex` 用于简历，`xelatex` 用于求职信。下面的安装步骤
+两者都包含。
+
+<Tabs items={["macOS", "Linux", "Windows"]}>
+
+<Tab value="macOS">
+
+```bash title="Terminal"
+brew install --cask mactex
+sudo tlmgr install fontawesome lato tcolorbox dashrule enumitem multirow \
+                   ifmtarg fontaxes mweights pgfopts
+```
+
+</Tab>
+
+<Tab value="Linux">
+
+```bash title="Terminal"
+sudo apt-get install texlive-full
+```
+
+</Tab>
+
+<Tab value="Windows">
+
+安装 [MiKTeX](https://miktex.org/download)——第一次编译时，它会自动获取任何
+缺失的宏包。
+
+</Tab>
+
+</Tabs>
+
+**接下来会发生什么：** 看不到任何动静——LaTeX 只是静静待命，直到 `/apply`
+需要生成 PDF 时才上场。
+
+</Step>
+
+<Step>
+
+### 获取 CareerForge 并打开它
+
+```bash title="Terminal"
+git clone https://github.com/suraj-davariya/ai-job-search.git
+cd ai-job-search
+claude
+```
+
+**接下来会发生什么：** Claude Code 会在 CareerForge 文件夹*内部*打开，这意味着
+下面三个命令现在可以在你的聊天里使用了。
+
+</Step>
+
+<Step>
+
+### 构建你的档案
+
+```text title="In the Claude Code chat"
+/setup
+```
+
+它提供三条路径：扫描一个装有你文档的文件夹、导入单份简历，或者通过一场友好的
+访谈——它问你答。挑选最契合你手头资料的那种。在保存任何内容之前，它会先把拟定
+的内容展示给你，并征求你的同意。
+
+**接下来会发生什么：** 你的档案文件就存在了——你的经历、技能、目标和搜索偏好，
+全都在你自己的机器上。这一步你只需做一次。
+
+</Step>
+
+<Step>
+
+### 找工作
+
+```text title="In the Claude Code chat"
+/search
+```
+
+**接下来会发生什么：** 一张来自你已配置招聘网站的新职位排名表，每条都标注了
+高、中或低匹配度——已经看过的职位会被过滤掉。回复一个序号，即可对某条职位做
+深入评估。
+
+</Step>
+
+<Step>
+
+### 投递其中一个
+
+```text title="In the Claude Code chat"
+/apply https://company.com/jobs/the-role-you-want
+```
+
+如果没有链接，你也可以直接粘贴职位描述。它会从五个维度评估匹配度，并询问是否
+继续——那是你的检查点，而不是走过场。
+
+**接下来会发生什么：** 一份量身定制的两页简历和一封一页的求职信，都以 PDF 形式
+呈现，经过第二个 AI 审阅，并对照一份核验清单做过检查。这份申请会以状态
+**Draft** 记录在你的追踪表里。你阅读两份 PDF，然后自己发送出去——CareerForge
+绝不会替你提交任何东西。
+
+</Step>
+
+</Steps>
+
+## 完成第一份申请之后
+
+- 打开[仪表盘](/zh-Hans/docs/dashboard)，看着你的流水线随着投递不断增长。
+- 阅读[你的数据](/zh-Hans/docs/your-data)，看看到底记录了什么——它就是一个
+  人类可读的文件。
+- 卡在哪里了？[常见问题](/zh-Hans/docs/faq)涵盖了第一周里常见的疑问。

@@ -1,0 +1,72 @@
+---
+title: A Tabela de Candidaturas
+description: A superfície de trabalho — ordene, filtre, atualize status e mantenha anotações, com proteções.
+---
+
+Os gráficos servem para ter perspectiva; a tabela é onde você de fato
+trabalha. Cada candidatura é uma linha, das mais recentes para as mais antigas,
+e o dia a dia de uma busca por emprego — *"o recrutador ligou, mova para
+Interview"* — acontece aqui.
+
+<ApplicationsTableDemo />
+
+## Encontrando coisas
+
+Toda coluna pode ser ordenada. Os filtros estreitam a tabela por status, setor,
+tipo de cargo ou canal, e são atualizados ao vivo. A [faixa de
+pipeline](/pt-BR/docs/dashboard/charts#pipeline-strip) acima da tabela também
+funciona como filtro de status — clique em um grupo e a tabela acompanha.
+Clicar em uma linha abre uma gaveta com o registro completo: cada campo, suas
+anotações e links para os PDFs exatos do CV e da carta de apresentação que
+foram enviados.
+
+## Edição — exatamente duas coisas
+
+Apenas **status** e **anotações** são editáveis (a data de *última
+atualização* se registra sozinha). Todo o restante — data, empresa, cargo,
+pontuação de aderência, caminhos de arquivo — é o registro factual que o
+`/apply` escreveu, e o dashboard o trata como somente leitura.
+
+## A máquina de estados de status
+
+Os status não são texto livre; são sete estágios fixos, e o dashboard só
+oferece movimentos que façam sentido. Experimente — escolha um status:
+
+<StatusFlowDemo />
+
+Na íntegra:
+
+| De | Pode mover para |
+|------|------------|
+| Draft | Sent, Withdrawn |
+| Sent | Interview, Rejected, Withdrawn, Closed |
+| Interview | Offer, Rejected, Withdrawn, Closed |
+| Offer / Rejected / Withdrawn / Closed | — final |
+
+Por que tão rígido? Porque os status alimentam o [KPI de taxa de
+entrevistas](/pt-BR/docs/dashboard/kpis) e os [gráficos de
+status](/pt-BR/docs/dashboard/charts) — e esses números só valem a pena ser
+lidos se um "Sent" sempre significar a mesma coisa. Movimentos ilegais são
+rejeitados antes de serem gravados, então um clique errado não pode corromper
+silenciosamente suas estatísticas.
+
+Dois detalhes que vale a pena conhecer:
+
+- **Final não significa oculto.** Linhas Rejected, Withdrawn e Closed
+  permanecem na tabela, esmaecidas. Seu histórico é parte dos dados — e ver a
+  pilha de Rejected lentamente virar uma pilha de Interview é um tipo de
+  progresso por si só.
+- **Status final errado?** O dashboard não tira uma linha de um estado final.
+  Seu rastreador é [um arquivo simples que pertence a você](/pt-BR/docs/your-data),
+  então um erro genuíno sempre pode ser corrigido em qualquer aplicativo de
+  planilha.
+
+## Adicionando uma linha manualmente
+
+Candidatou-se a algo fora do CareerForge — uma indicação, uma visita
+presencial, um e-mail? O botão **+ New** adiciona uma linha manualmente para
+que suas estatísticas fiquem completas. Data, empresa e cargo são obrigatórios;
+os campos de CV e carta de apresentação simplesmente ficam vazios.
+
+**A seguir:** [Seus dados](/pt-BR/docs/your-data) — o único arquivo por trás de
+tudo isso.

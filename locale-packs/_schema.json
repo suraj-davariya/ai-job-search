@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CareerForge Locale Pack",
+  "description": "A region's job-application conventions, DECOUPLED from UI language (REQ-7009, ADR-0007). A Spanish speaker applying in Germany uses UI language=es + locale pack=de. Packs are data: adding a region adds a file here, no core change. A missing pack falls back to locale-packs/default.json (ARCH-0005).",
+  "type": "object",
+  "required": ["code", "name", "documentTerm", "pageSize", "pageCountExpectation", "photo", "nameOrder", "dateFormat"],
+  "properties": {
+    "code": { "type": "string", "description": "Region/locale code (ISO 3166-1 alpha-2 upper, or 'EU'/'default')" },
+    "name": { "type": "string", "description": "Human-readable region name" },
+    "documentTerm": { "type": "string", "description": "What the CV is called locally (CV, Résumé, Lebenslauf, Rirekisho, Currículo)" },
+    "pageSize": { "type": "string", "enum": ["A4", "Letter"], "description": "Paper size for the compiled PDF" },
+    "pageCountExpectation": { "type": "string", "description": "Expected length, e.g. '1', '1-2', '2', '2-3'" },
+    "photo": { "type": "string", "enum": ["forbidden", "optional", "expected", "required"], "description": "Photo inclusion norm. 'forbidden' = omit (anti-discrimination markets); 'required' = include per spec." },
+    "photoSpec": { "type": "string", "description": "If photo expected/required, any size/placement spec (e.g. 'passport-style, top-right, 4.5x6cm')" },
+    "includedPersonalFields": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["dateOfBirth", "maritalStatus", "nationality", "nationalId", "gender", "address", "photo"] },
+      "description": "Personal fields conventionally INCLUDED in this market"
+    },
+    "discouragedPersonalFields": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["dateOfBirth", "maritalStatus", "nationality", "nationalId", "gender", "photo"] },
+      "description": "Personal fields conventionally OMITTED (often for anti-discrimination reasons)"
+    },
+    "nameOrder": { "type": "string", "enum": ["given-family", "family-given"], "description": "Display order of given vs family name" },
+    "dateFormat": { "type": "string", "description": "Preferred date format (Unicode/CLDR-ish, e.g. 'MMM yyyy', 'yyyy-MM', 'dd/MM/yyyy')" },
+    "currency": { "type": "string", "description": "ISO 4217 currency code commonly used for salary in this market (informational)" },
+    "legalClauses": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Standard legal/consent clauses, e.g. 'gdpr-consent' for an EU data-processing consent line"
+    },
+    "documentSystem": { "type": "string", "description": "Optional: special multi-document conventions, e.g. Japan's rirekisho + shokumukeirekisho" },
+    "notes": { "type": "string", "description": "Free-text caveats for the drafter" }
+  }
+}

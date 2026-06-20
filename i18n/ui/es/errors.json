@@ -1,0 +1,6 @@
+{
+  "requestFailed": "la solicitud falló",
+  "lookupFailed": "la consulta falló",
+  "csvParse": "No se pudo leer el archivo de registro. Comprueba que job_search_tracker.csv sea un CSV válido.",
+  "generic": "Algo salió mal."
+}

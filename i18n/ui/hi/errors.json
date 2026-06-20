@@ -1,0 +1,6 @@
+{
+  "requestFailed": "अनुरोध विफल",
+  "lookupFailed": "खोज विफल",
+  "csvParse": "ट्रैकर फ़ाइल पढ़ी नहीं जा सकी। जाँचें कि job_search_tracker.csv वैध CSV है।",
+  "generic": "कुछ गलत हो गया।"
+}

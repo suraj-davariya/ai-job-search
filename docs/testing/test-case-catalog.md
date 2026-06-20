@@ -41,6 +41,10 @@
 | **TC-APP-010** | Application | Critique Loop execution limit. | REQ-2040 | Integration | Loops exit after max 2 iterations. |
 | **TC-APP-011** | Application | Invalid URL parameter fetch. | REQ-1002 | E2E | Print fetch error, exit with code 1. |
 | **TC-APP-012** | Application | Dry-run execution prints prompts. | REQ-2080 | E2E | No files written; displays token costs. |
+| **TC-APP-013** | Application | ATS export trio from one source. | REQ-2063 | Integration | Same tailored content yields the polished LaTeX PDF *and* a plain-text `.txt` *and* a `.docx`; all three present in output with no content divergence. |
+| **TC-APP-014** | Application | ATS parse self-check on generated PDF. | REQ-2064 | Integration | Self-check recovers name, contact, section headers, and top skills from the generated PDF; warns when any field is unrecoverable. |
+| **TC-APP-015** | Application | Fabrication-audit claim mapping. | REQ-2065 | Integration / LLM | Audit artifact maps every CV claim to a backing profile file; any unbacked claim is flagged (ARCH-0007). |
+| **TC-APP-016** | Application | Provenance surfaced to user and dashboard. | REQ-2066 | E2E | Provenance is shown to the user and rendered as a dashboard panel. |
 | **TC-SEA-001** | Search | Headless fetch SPA content. | REQ-1004 | Integration | Raw HTML elements parsed to markdown. |
 | **TC-SEA-002** | Search | Target page block exception. | REQ-1005 | Integration | Print user alert, exit cleanly. |
 | **TC-SEA-003** | Search | seen_jobs hashing check. | REQ-1008 | Unit / Integration | Duplicate hash items hidden from list. |
@@ -61,3 +65,21 @@
 | **TC-CAR-009** | Career | STAR Result validation checks. | REQ-3052 | Integration / LLM | Flags missing metric/quantifiable data. |
 | **TC-CAR-010** | Career | Interview voice validator. | REQ-3053 | Unit | Warnings on plural pluralizing ("we"). |
 | **TC-CAR-011** | Career | Complete interview prep scorecard. | REQ-3054 | E2E | Outputs performance summary card. |
+| **TC-I18N-001** | Internationalization | Language-agnostic generation output. | REQ-7001 | Integration | Output produced in the target language with no country/locale assumptions baked into core logic. |
+| **TC-I18N-002** | Internationalization | Externalized user-facing strings. | REQ-7002 | Unit | No hardcoded user-facing strings in core; all strings resolve from externalized resource bundles. |
+| **TC-I18N-003** | Internationalization | ICU + CLDR plural rendering. | REQ-7003 | Unit | ICU MessageFormat with CLDR plural rules renders an Arabic and a Russian plural form correctly. |
+| **TC-I18N-004** | Internationalization | Language registry drives availability. | REQ-7004 | Integration | Only languages present in the registry are offered; an unregistered language is unavailable. |
+| **TC-I18N-005** | Internationalization | Translation parity/staleness check. | REQ-7005 | Integration | Parity check flags a translation that is behind the source as stale. |
+| **TC-I18N-006** | Internationalization | Localized README location. | REQ-7006 | Unit | Localized READMEs live under `i18n/readme/`; none are added to the repo root. |
+| **TC-I18N-007** | Internationalization | Dashboard RTL rendering. | REQ-7007 | E2E | Dashboard renders right-to-left for the Arabic locale. |
+| **TC-I18N-008** | Internationalization | Locale pack drives CV conventions. | REQ-7008 | Integration | Locale pack controls CV photo inclusion, page size, and personal-detail fields. |
+| **TC-I18N-009** | Internationalization | Missing locale pack fallback. | REQ-7009 | Integration | Absent locale pack falls back to a neutral default; no error and no country assumption. |
+| **TC-I18N-010** | Internationalization | Low-resource language caveat. | REQ-7010 | Integration / LLM | Output for a low-resource language carries a review caveat. |
+| **TC-I18N-011** | Internationalization | No silent language switch. | REQ-7011 | Integration | System never silently switches output language; any change is explicit to the user. |
+| **TC-TRUST-001** | Trust & Safety | Legitimacy verdict before drafting. | REQ-8001 | E2E | Verdict (Verified/Caution/Suspicious) is produced and shown before any CV/cover-letter drafting begins. |
+| **TC-TRUST-002** | Trust & Safety | Legitimacy independent of fit score. | REQ-8002 | Integration | A high (0–100) fit posting is still flagged when scam signals are present; verdict stays separate from the fit score. |
+| **TC-TRUST-003** | Trust & Safety | Quick legitimacy flag in search. | REQ-8003 | E2E | `/search` results show a quick legitimacy flag per posting. |
+| **TC-TRUST-004** | Trust & Safety | Ghost-job / repost detection. | REQ-8004 | Integration | Reposted/ghost listings are detected and marked. |
+| **TC-TRUST-005** | Trust & Safety | Locale-aware scam-pattern catalog. | REQ-8005 | Unit / Integration | Scam-pattern matching is data-driven and locale-aware; new patterns are added via data, not code. |
+| **TC-TRUST-006** | Trust & Safety | Warn, never auto-block. | REQ-8001 | Integration | System warns but never auto-blocks an application (ARCH-0006). |
+| **TC-TRUST-007** | Trust & Safety | No fabricated accusation. | REQ-8002 | Integration / LLM | No scam accusation is made without cited evidence (ARCH-0007). |

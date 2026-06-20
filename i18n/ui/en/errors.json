@@ -1,0 +1,6 @@
+{
+  "requestFailed": "request failed",
+  "lookupFailed": "lookup failed",
+  "csvParse": "Could not read the tracker file. Check that job_search_tracker.csv is valid CSV.",
+  "generic": "Something went wrong."
+}

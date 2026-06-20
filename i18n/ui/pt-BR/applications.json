@@ -1,0 +1,112 @@
+{
+  "page": {
+    "title": "Candidaturas",
+    "description": "{count, plural, one {# candidatura} other {# candidaturas}} no acompanhamento."
+  },
+  "table": {
+    "date": "Data",
+    "company": "Empresa",
+    "role": "Cargo",
+    "type": "Tipo",
+    "channel": "Canal",
+    "status": "Status",
+    "fit": "Aderência",
+    "contact": "Contato",
+    "notes": "Notas",
+    "cv": "CV",
+    "cover": "Carta",
+    "source": "Origem",
+    "pdf": "PDF",
+    "open": "Abrir"
+  },
+  "empty": {
+    "title": "Nenhuma candidatura ainda",
+    "hintBefore": "Execute",
+    "hintAfter": "para adicionar uma.",
+    "newApplication": "Nova candidatura"
+  },
+  "filter": {
+    "search": "Buscar candidaturas",
+    "searchPlaceholder": "Buscar empresa, cargo ou notas…",
+    "roleType": "Tipo de cargo",
+    "allTypes": "Todos os tipos",
+    "channel": "Canal",
+    "allChannels": "Todos os canais",
+    "minFit": "Aderência mínima",
+    "fitPlaceholder": "Aderência ≥",
+    "fromDate": "Data inicial",
+    "toDate": "Data final",
+    "clear": "Limpar",
+    "resultCount": "{count} de {total}"
+  },
+  "pipeline": {
+    "group": "Contagens do funil",
+    "statusCount": "{status}: {count}",
+    "total": "{count} no total"
+  },
+  "new": {
+    "button": "Nova candidatura",
+    "title": "Nova candidatura",
+    "add": "Adicionar candidatura",
+    "cancel": "Cancelar",
+    "close": "Fechar",
+    "readOnlyTip": "Modo somente leitura — a edição está desativada"
+  },
+  "fields": {
+    "date": "Data",
+    "status": "Status",
+    "company": "Empresa",
+    "role": "Cargo",
+    "sector": "Setor",
+    "roleType": "Tipo de cargo",
+    "channel": "Canal",
+    "contact": "Contato",
+    "fit": "Aderência (0–100)",
+    "source": "URL de origem"
+  },
+  "validation": {
+    "dateRequired": "A data é obrigatória",
+    "companyRequired": "A empresa é obrigatória",
+    "roleRequired": "O cargo é obrigatório"
+  },
+  "aria": {
+    "statusFor": "Status de {company}",
+    "notesFor": "Notas de {company}"
+  },
+  "notes": {
+    "placeholder": "—"
+  },
+  "drawer": {
+    "closeDetails": "Fechar detalhes",
+    "date": "Data",
+    "lastUpdated": "Última atualização",
+    "sector": "Setor",
+    "roleType": "Tipo de cargo",
+    "channel": "Canal",
+    "contact": "Contato",
+    "notes": "Notas",
+    "documents": "Documentos",
+    "cv": "CV",
+    "coverLetter": "Carta de apresentação",
+    "noCv": "Sem CV",
+    "noCover": "Sem carta de apresentação",
+    "sourcePosting": "Vaga de origem",
+    "rerunApply": "Reexecutar /apply",
+    "fileNotFound": "{label}: arquivo não encontrado"
+  },
+  "provenance": {
+    "title": "Proveniência",
+    "none": "Nenhuma proveniência registrada",
+    "summary": "{total, plural, one {# afirmação} other {# afirmações}} · {flagged, plural, =0 {nenhuma sinalizada} one {# sinalizada} other {# sinalizadas}}",
+    "backedBy": "{source} › {location}",
+    "backedBySource": "{source}",
+    "flagged": "Sinalizada — sem respaldo no perfil"
+  },
+  "toast": {
+    "updated": "Atualizada · {time}",
+    "statusError": "Não foi possível atualizar o status: {error}",
+    "notesError": "Não foi possível salvar as notas: {error}",
+    "added": "Candidatura adicionada",
+    "addError": "Não foi possível adicionar a candidatura: {error}"
+  }
+}

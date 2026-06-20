@@ -26,6 +26,11 @@ documents sent. Feeds the dashboard and the deduplication in `/search`.
 leaving a half-written file, even if something interrupts it mid-save: write a
 temporary copy first, keep a backup, then swap it into place in one step.
 
+**ATS-Safe Export** — the machine-readable companions [`/apply`](/docs/commands/apply#exports-a-robot-can-read-too)
+produces beside the polished PDF — a plain-text `.txt` and a Word `.docx` from
+the same content — so an applicant-tracking system can parse your CV reliably.
+A self-check confirms the text is recoverable from the PDF.
+
 **Allowed-Tools** — an internal safety list declaring which tools each
 CareerForge skill may use; anything not listed is refused.
 
@@ -77,6 +82,10 @@ Technical Skills 30%, Career Alignment 30%, Experience 25%, Behavioral Fit
 
 ## F
 
+**Fabrication Audit** — the check, run by [`/apply`](/docs/commands/apply#every-claim-traced-to-its-source),
+that traces every CV claim back to the profile file backing it and flags any it
+can't. You read the result in the [Provenance panel](/docs/dashboard/provenance).
+
 **Fit Assessment (Quick)** — the fast High / Medium / Low ranking
 [`/search`](/docs/commands/search) gives each new posting. Triage, not the
 full evaluation.
@@ -92,6 +101,10 @@ problems you'll solve for them, not a recap of your CV.
 
 **Gap Heatmap** — a prioritized table of skill gaps between your profile and
 target postings (planned: the `/upskill` command).
+
+**Ghost Job** — a posting that's advertised but isn't really being filled —
+left open to collect résumés, gauge a market, or look like growth. One of the
+red flags the [posting legitimacy](#p) check watches for.
 
 ## I
 
@@ -110,8 +123,21 @@ milestone).
 
 ## L
 
+**Language Registry** — the set of UI languages CareerForge ships, currently
+12 (machine-translated, in beta), with English as canonical. See
+[Languages & Locales](/docs/languages).
+
 **Learning Plan** — a structured study guide produced from skill-gap analysis
 (planned: `/upskill`).
+
+**Legitimacy Verdict** — the standalone judgment [`/apply`](/docs/commands/apply#first-it-checks-the-posting-is-real)
+gives a posting — **Verified**, **Caution**, or **Suspicious** — with cited
+reasons, kept separate from the fit score so a warning can't be averaged away.
+
+**Locale Pack** — a per-market bundle of CV conventions (document term, page
+size and count, photo norm, personal fields, date format, GDPR clauses) that
+[`/apply`](/docs/commands/apply) applies for the market you're targeting.
+Separate from UI language. See [Languages & Locales](/docs/languages).
 
 ## N
 
@@ -132,13 +158,26 @@ CV templates, cover-letter templates, interview prep.
 **Pipeline KPI** — the dashboard's headline numbers: status counts, average
 fit (30 days), interview rate (90 days). See [the KPIs](/docs/dashboard/kpis).
 
+**Posting Legitimacy** — the question of whether a job posting is genuine and
+safe to engage with, assessed by [`/apply`](/docs/commands/apply#first-it-checks-the-posting-is-real)
+before drafting and surfaced as a [Legitimacy Verdict](#l). The system warns;
+you decide.
+
 **Profile Statement** — the 3–5 line pitch at the top of your CV, kept in
 several variants and tailored per application.
+
+**Provenance Panel** — the dashboard view, in an application's detail drawer,
+that shows each CV claim beside the profile source backing it, with unbacked
+claims flagged. Read-only. See [the Provenance panel](/docs/dashboard/provenance).
 
 ## R
 
 **Read-Only Mode** — a dashboard flag that disables all editing — handy for
 demos, screenshots, or guaranteeing an accident-free look around.
+
+**Red Flag** — a warning sign in a job posting — upfront fees, personal-data
+harvesting, a mismatched domain, a too-good salary — that feeds the
+[Legitimacy Verdict](#l).
 
 **Reviewer Agent** — the second AI in [`/apply`](/docs/commands/apply):
 fresh perspective, researches the company, critiques both drafts. It

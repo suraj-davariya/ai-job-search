@@ -1,0 +1,37 @@
+{
+  "app": {
+    "name": "CareerForge",
+    "description": "Panel local y privado para el seguimiento de candidaturas."
+  },
+  "nav": {
+    "dashboard": "Panel",
+    "applications": "Candidaturas",
+    "companies": "Empresas",
+    "profile": "Perfil",
+    "salary": "Salario",
+    "upskill": "Mejora de competencias",
+    "console": "Consola",
+    "settings": "Ajustes"
+  },
+  "shell": {
+    "local": "Local · 127.0.0.1"
+  },
+  "theme": {
+    "toggle": "Cambiar tema"
+  },
+  "status": {
+    "Draft": "Borrador",
+    "Sent": "Enviada",
+    "Interview": "Entrevista",
+    "Offer": "Oferta",
+    "Rejected": "Rechazada",
+    "Withdrawn": "Retirada",
+    "Closed": "Cerrada"
+  },
+  "banner": {
+    "readOnly": "Modo de solo lectura — la edición está desactivada.",
+    "demoTitle": "Demostración con datos de ejemplo.",
+    "demoBody": "La edición, la Consola y las vistas previas en PDF están desactivadas — requieren el panel real ejecutándose localmente.",
+    "demoBack": "Volver a la guía →"
+  }
+}

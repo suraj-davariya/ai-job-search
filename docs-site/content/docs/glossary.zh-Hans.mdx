@@ -1,0 +1,213 @@
+---
+title: 术语表
+description: 用平实的语言解释每一个 CareerForge 术语——与项目的权威术语表保持一致。
+---
+
+这里的术语，与项目权威的[工程术语表](https://github.com/suraj-davariya/ai-job-search/blob/main/docs/glossary.md)
+含义相同——但在此优先用面向普通人的方式表述。凡是有专属指南页面的术语，都附上了
+链接。
+
+## A
+
+**Application Pipeline（申请流水线）** —— [`/apply`](/zh-Hans/docs/commands/apply)
+运行的端到端旅程：职位输入 → 匹配评估、量身定制简历、求职信、审阅、编译出 PDF。
+
+**Application Tracker（申请追踪表）** —— [那个 CSV 文件](/zh-Hans/docs/your-data)，
+记录每一次申请：公司、职位、状态、匹配分，以及指向所发送确切文档的链接。它为
+仪表盘以及 `/search` 中的去重提供数据。
+
+**Application Status Enum（申请状态枚举）** —— 状态列允许的七个取值：
+`Draft, Sent, Interview, Offer, Rejected, Withdrawn, Closed`。仪表盘会
+[强制执行它们之间哪些变更是合法的](/zh-Hans/docs/dashboard/applications-table#the-status-state-machine)。
+
+**Atomic CSV Write（CSV 原子写入）** —— 仪表盘保存你的追踪表的方式，即便保存
+中途被打断，也绝不会留下一个写到一半的文件：先写一份临时副本，保留一个备份，
+然后一步将其换到位。
+
+**ATS-Safe Export（ATS 友好导出）** —— [`/apply`](/zh-Hans/docs/commands/apply#exports-a-robot-can-read-too)
+在精美 PDF 旁边生成的机器可读伴生文件——由相同内容生成的纯文本 `.txt` 和 Word
+`.docx`——这样申请人追踪系统就能可靠地解析你的简历。一次自检会确认文本能从 PDF
+中还原出来。
+
+**Allowed-Tools（允许的工具）** —— 一份内部安全清单，声明每个 CareerForge 技能
+可以使用哪些工具；未列出的一律拒绝。
+
+## B
+
+**Behavioral Profile（行为档案）** —— 你档案中描述你如何工作的部分：风格、长处、
+成长空间、偏好的环境。它塑造求职信的语气和文化契合度评分。
+
+**Business Rules Engine（业务规则引擎）** —— 支撑匹配评估、内容裁剪以及最终质量
+检查的那些固定评分框架和校验规则。
+
+## C
+
+**Candidate Profile（候选人档案）** —— 关于你的身份、教育、经历和技能的结构化
+记录。[由 `/setup` 构建](/zh-Hans/docs/commands/setup)；是每一条简历声明都必须
+追溯到的事实来源。
+
+**Competency Expansion（能力扩充）** —— 发现你的文档暗示了、但你的档案尚未列出的
+技能（计划中：`/expand` 命令）。
+
+**Compile-and-Inspect Loop（编译并检查循环）** —— 起草之后，文档会被编译成 PDF
+并接受视觉检查——页数、孤立的标题、字体不匹配——然后反复修复，直至干净。
+
+**Content Cutting (Relevance-Weighted)（相关性加权的内容裁剪）** —— 当简历超过
+两页时，与*本次*职位最不相关的行会被最先裁掉，无论它们在哪个位置。
+
+**Cross-Reference Check（交叉比对检查）** —— 在入门过程中，你的各个来源会彼此
+对照（简历 vs LinkedIn vs 文凭）；任何不一致都会展示给你来定夺，绝不会悄悄
+替你选定。
+
+## D
+
+**Deal-Breaker（一票否决条件）** —— 你的某个硬性约束（不接受搬迁、最低薪资），
+无论其他各项分数如何，都会让一个职位被淘汰。
+
+**Drafter Agent（起草 Agent）** —— 流水线中的主力 AI：评估匹配度、撰写文档、
+采纳审阅者的反馈。
+
+**Document Folder（文档文件夹）** —— `documents/`，你把简历、LinkedIn 导出文件、
+文凭和推荐信放进去，供 [`/setup`](/zh-Hans/docs/commands/setup) 扫描。
+
+## E
+
+**Evaluation Framework（评估框架）** —— 五个维度的评分体系：
+技术技能 30%、职业契合 30%、经历 25%、行为契合 15%、地点（通过/不通过）。
+参见 [`/apply`](/zh-Hans/docs/commands/apply)。
+
+## F
+
+**Fabrication Audit（虚构审计）** —— 由 [`/apply`](/zh-Hans/docs/commands/apply#every-claim-traced-to-its-source)
+运行的检查，把每一条简历声明追溯回支撑它的档案文件，并标记出无法追溯的那些。
+你可以在[来源面板](/zh-Hans/docs/dashboard/provenance)里读到结果。
+
+**Fit Assessment (Quick)（快速匹配评估）** ——
+[`/search`](/zh-Hans/docs/commands/search) 给每个新职位的快速高/中/低排名。是
+初筛，而非完整评估。
+
+**Fit Rating（匹配分）** —— 来自完整评估的 0–100 加权分。是[你追踪表](/zh-Hans/docs/your-data)
+的第 9 列；也是[匹配图表](/zh-Hans/docs/dashboard/charts#fit-distribution)的燃料。
+
+**Forward-Looking Framing（面向未来的表述）** —— 求职信的原则：写你将为他们解决
+的问题，而不是把你的简历再复述一遍。
+
+## G
+
+**Gap Heatmap（差距热力图）** —— 一张按优先级排列的表格，列出你的档案与目标职位
+之间的技能差距（计划中：`/upskill` 命令）。
+
+**Ghost Job（幽灵职位）** —— 一个挂出来却并不真正打算填补的职位——留着它是为了
+收集简历、试探市场或显得在扩张。这是[职位真实性](#p)检查所警惕的危险信号之一。
+
+## I
+
+**Idempotent Operation（幂等操作）** —— 运行两次也安全：用相同的输入再次运行
+`/setup`，不会重复任何内容，也不会覆盖任何内容。
+
+**Interview Backtrack Test（面试回溯测试）** —— 对每一条声明的质量标准：你能否
+在面试中支撑这句话，而不需要“呃，我其实想说的是……”？如果不能，它就会被弱化
+或删掉。
+
+## J
+
+**Job Portal Adapter（招聘门户适配器）** —— 针对某个招聘网站的可插拔连接器，
+这样添加新网站时无需触碰核心（计划在未来的里程碑实现）。
+
+## L
+
+**Language Registry（语言登记表）** —— CareerForge 自带的界面语言集合，目前为
+12 种（机器翻译，处于 beta 阶段），以英语为准。参见[语言与地区](/zh-Hans/docs/languages)。
+
+**Learning Plan（学习计划）** —— 由技能差距分析生成的结构化学习指南（计划中：
+`/upskill`）。
+
+**Legitimacy Verdict（真实性裁定）** —— [`/apply`](/zh-Hans/docs/commands/apply#first-it-checks-the-posting-is-real)
+对某个职位给出的独立判断——**Verified**、**Caution** 或 **Suspicious**——并附上
+带引用的理由，与匹配分保持分离，这样一个警告不会被平均掉。
+
+**Locale Pack（地区包）** —— 一套针对特定市场的简历惯例集合（文档术语、纸张
+尺寸与页数、照片规范、个人字段、日期格式、GDPR 条款），由
+[`/apply`](/zh-Hans/docs/commands/apply) 针对你所瞄准的市场来套用。它与界面语言
+分开。参见[语言与地区](/zh-Hans/docs/languages)。
+
+## N
+
+**Named Sub-Agent（具名子 Agent）** —— 一种用于定义额外 AI agent（审阅者就是
+其中之一）的内部机制，它们拥有各自的指令，并可选地拥有各自的模型。
+
+## O
+
+**Onboarding（入门）** —— [`/setup`](/zh-Hans/docs/commands/setup) 的三条最终
+汇合的路径——扫描文档、导入简历或访谈——它们都通向同一份档案。
+
+## P
+
+**Profile Files（档案文件）** —— 定义你职业身份的七份文档：候选人档案、行为
+档案、写作风格、评估框架、简历模板、求职信模板、面试准备。
+
+**Pipeline KPI（流水线 KPI）** —— 仪表盘的头条数字：状态计数、平均匹配度
+（30 天）、面试率（90 天）。参见 [KPI](/zh-Hans/docs/dashboard/kpis)。
+
+**Posting Legitimacy（职位真实性）** —— 一个职位是否真实、是否值得安全地去接触
+的问题，由 [`/apply`](/zh-Hans/docs/commands/apply#first-it-checks-the-posting-is-real)
+在起草之前评估，并以[真实性裁定](#l)的形式呈现。系统给出警告；你来决定。
+
+**Profile Statement（档案陈述）** —— 你简历顶部那段 3–5 行的自我推介，保留多个
+变体，并按每次申请量身定制。
+
+**Provenance Panel（来源面板）** —— 仪表盘中位于某次申请详情抽屉里的视图，把每
+一条简历声明与支撑它的档案来源并排展示，无依据的声明会被标记。只读。参见
+[来源面板](/zh-Hans/docs/dashboard/provenance)。
+
+## R
+
+**Read-Only Mode（只读模式）** —— 仪表盘的一个开关，会禁用所有编辑——在演示、
+截图，或想要保证一次无意外的查看时很方便。
+
+**Red Flag（危险信号）** —— 职位中的一个警示迹象——预付费用、个人数据收割、
+不匹配的域名、好到不真实的薪资——它会作为[真实性裁定](#l)的输入。
+
+**Reviewer Agent（审阅 Agent）** —— [`/apply`](/zh-Hans/docs/commands/apply) 中
+的第二个 AI：以全新的视角，研究公司，对两份草稿挑刺。它提建议；起草者（和你）
+来决定。
+
+## S
+
+**Salary Benchmark（薪资基准）** —— 可选的薪资对比，对照你提供的数据——工会
+统计、调研、你自己的研究（`salary_lookup` 工具）。
+
+**Search Queries（搜索查询）** —— 你配置好的搜索短语，按优先级组织，由
+[`/search`](/zh-Hans/docs/commands/search) 在你选定的门户上运行。
+
+**Seen Jobs Registry（已见职位登记表）** —— 那个本地文件，记住了曾向你展示过的
+每一个职位，这样 `/search` 永远不会重复。
+
+**SKILL.md Orchestrator（SKILL.md 编排器）** —— 每个 CareerForge 技能自带的
+内部锚点文件，声明它做什么以及它可以使用哪些工具。
+
+**STAR Format（STAR 格式）** —— Situation、Task、Action、Result：面试回答的
+结构。`/setup` 会从你真实的经历中构建 STAR 故事，并在只有你的记忆才能补全细节的
+地方留下明确标记的占位。
+
+## T
+
+**Tracking Dashboard（追踪仪表盘）** —— 覆盖在你追踪文件之上的[本地网页
+界面](/zh-Hans/docs/dashboard)。它只在你的机器上运行（`127.0.0.1`），只编辑
+状态和备注，其余一切都以只读方式呈现。
+
+**Two-Plane Skill Architecture（双平面技能架构）** —— 知识型技能（AI 阅读的
+指令）与工具型技能（它运行的外部程序）之间的内部划分。
+
+**Traceability（可追溯性）** —— 项目的做法：通过形如 `REQ-…` 和 `TC-…` 的 ID，
+把每一条需求链接到满足它的设计、代码和测试。
+
+## V
+
+**Verification Checklist（核验清单）** —— `/apply` 在最后运行一次的那份
+通过/不通过清单：事实准确性、针对性、一致性、LaTeX 质量和 PDF 排版。
+
+## W
+
+**Workspace Settings（工作区设置）** —— 那个本地配置文件，声明在你这份
+CareerForge 副本中 AI 可以使用哪些工具。属于个人，绝不提交。

@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Play, Square, Terminal } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -44,6 +45,8 @@ export function RunLog({
   readOnly: boolean;
 }) {
   const params = useSearchParams();
+  const t = useTranslations("console");
+  const te = useTranslations("errors");
   const prefillUrl =
     params.get("command") === "apply" ? (params.get("url") ?? "") : "";
 
@@ -95,7 +98,7 @@ export function RunLog({
       setStatus({
         ok: false,
         code: null,
-        error: err instanceof Error ? err.message : "request failed",
+        error: err instanceof Error ? err.message : te("requestFailed"),
       });
     } finally {
       setElapsed(Date.now() - startedRef.current);
@@ -115,9 +118,9 @@ export function RunLog({
     readOnly || !binOk || running;
   const tip = (binOk: boolean, bin: string) =>
     readOnly
-      ? "Read-only mode — actions are disabled"
+      ? t("tip.readOnly")
       : !binOk
-        ? `${bin} not found on PATH`
+        ? t("tip.binMissing", { bin })
         : undefined;
 
   return (
@@ -131,7 +134,7 @@ export function RunLog({
             onClick={() => run("apply", { url: prefillUrl })}
             className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground disabled:opacity-50"
           >
-            <Play className="h-4 w-4" aria-hidden /> Re-run /apply
+            <Play className="h-4 w-4" aria-hidden /> {t("rerunApply")}
           </button>
         ) : null}
 
@@ -142,19 +145,19 @@ export function RunLog({
           onClick={() => run("upskill", {})}
           className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm disabled:opacity-50"
         >
-          <Play className="h-4 w-4" aria-hidden /> Run /upskill
+          <Play className="h-4 w-4" aria-hidden /> {t("runUpskill")}
         </button>
 
         <div className="flex items-end gap-2">
           <label className="text-sm">
             <span className="mb-1 block text-xs uppercase tracking-wide text-muted-foreground">
-              Salary lookup
+              {t("salaryLookup")}
             </span>
             <input
-              aria-label="Company"
+              aria-label={t("company")}
               value={company}
               onChange={(e) => setCompany(e.target.value)}
-              placeholder="Company"
+              placeholder={t("companyPlaceholder")}
               className="h-9 rounded-lg border border-input bg-background px-2 text-sm"
             />
           </label>
@@ -165,7 +168,7 @@ export function RunLog({
             onClick={() => run("salary-lookup", { company })}
             className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border px-3 text-sm disabled:opacity-50"
           >
-            Look up
+            {t("lookUp")}
           </button>
         </div>
 
@@ -175,7 +178,7 @@ export function RunLog({
             onClick={stop}
             className="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-destructive/40 px-3 py-1.5 text-sm text-destructive"
           >
-            <Square className="h-3.5 w-3.5" aria-hidden /> Stop
+            <Square className="h-3.5 w-3.5" aria-hidden /> {t("stop")}
           </button>
         ) : null}
       </div>
@@ -184,21 +187,23 @@ export function RunLog({
         <div className="flex items-center gap-2 border-b border-border px-3 py-2 text-xs text-muted-foreground">
           <Terminal className="h-3.5 w-3.5" aria-hidden />
           {running
-            ? "Running…"
+            ? t("running")
             : status
-              ? `Exit ${status.code ?? "—"} · ${status.ok ? "ok" : "failed"}${
-                  elapsed != null ? ` · ${(elapsed / 1000).toFixed(1)}s` : ""
-                }`
-              : "Idle"}
+              ? t("status", {
+                  code: status.code ?? "—",
+                  result: status.ok ? t("ok") : t("failed"),
+                }) +
+                (elapsed != null
+                  ? t("elapsed", { seconds: (elapsed / 1000).toFixed(1) })
+                  : "")
+              : t("idle")}
         </div>
         <pre
           data-testid="run-output"
           className="max-h-80 overflow-auto p-3 font-mono text-xs leading-relaxed"
         >
           {lines.length === 0 && !running ? (
-            <span className="text-muted-foreground">
-              No output yet. Trigger a command above.
-            </span>
+            <span className="text-muted-foreground">{t("noOutput")}</span>
           ) : (
             lines.map((l, i) => (
               <span key={i} className={cn(l.stream === "stderr" && "text-destructive")}>

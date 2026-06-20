@@ -1,17 +1,19 @@
 "use client";
 
 import { ResponsiveBar } from "@nivo/bar";
+import { useTranslations } from "next-intl";
 import type { Bin } from "@/lib/domain/aggregate";
 import { ChartFrame, chartColor } from "./ChartFrame";
 
 /** Applications per ISO week (REQ-5009). */
 export function WeeklyBar({ data }: { data: Bin[] }) {
+  const t = useTranslations("dashboard");
   return (
     <ChartFrame
-      title="Applications per week"
+      title={t("charts.weekly.title")}
       empty={data.length === 0}
-      caption="Applications per ISO week"
-      head={["Week", "Applications"]}
+      caption={t("charts.weekly.caption")}
+      head={[t("charts.weekly.colWeek"), t("charts.weekly.colApplications")]}
       body={data.map((d) => [d.key, d.count])}
     >
       <ResponsiveBar
@@ -25,7 +27,7 @@ export function WeeklyBar({ data }: { data: Bin[] }) {
         enableLabel={false}
         animate={false}
         role="img"
-        ariaLabel="Applications per week"
+        ariaLabel={t("charts.weekly.title")}
       />
     </ChartFrame>
   );

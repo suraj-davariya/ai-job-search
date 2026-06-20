@@ -1,0 +1,54 @@
+---
+title: O Painel de Proveniência
+description: Cada afirmação do CV, rastreada de volta ao arquivo de perfil que a sustenta — a auditoria de fabricação, tornada visível.
+---
+
+A promessa mais antiga do CareerForge é que ele nunca inventa experiência. O
+**Painel de Proveniência** é onde você pode *verificar* essa promessa,
+candidatura por candidatura, em vez de aceitá-la por confiança.
+
+Ele fica dentro da gaveta de detalhes de uma candidatura: abra uma linha na [a
+tabela de candidaturas](/pt-BR/docs/dashboard/applications-table) e o Painel de
+Proveniência aparece ao lado do registro. Ele dispõe cada afirmação que o CV
+personalizado faz e, ao lado de cada uma, a **fonte do perfil** que a sustenta.
+
+## O que ele mostra
+
+Cada linha emparelha uma afirmação com sua origem:
+
+- **A afirmação** — uma habilidade, um resultado, uma responsabilidade,
+  exatamente como aparece no CV gerado.
+- **Sua fonte** — o arquivo de perfil de onde a afirmação foi extraída, para
+  que você possa ver *por que* o documento tem permissão para dizê-la.
+- **Um sinalizador, quando não há fonte.** Qualquer afirmação que o `/apply`
+  não conseguiu rastrear de volta ao seu perfil real é **destacada para
+  revisão** em vez de ocultada. É exatamente esse o objetivo: uma afirmação sem
+  embasamento é algo para olhar, não algo para enviar silenciosamente.
+
+## Um espelho, como o resto do dashboard
+
+O painel é **somente leitura**. Ele não edita seu CV, seu perfil ou seu
+rastreador — apenas reflete a auditoria que o `/apply` já produziu. Ele lê de
+um arquivo simples escrito junto aos documentos da candidatura:
+
+```text
+documents/applications/<company>_<role>/provenance.json
+```
+
+Isso é o [file-as-DB](/pt-BR/docs/your-data) novamente: o registro é um arquivo
+legível por humanos na sua máquina, gerado uma vez quando os documentos foram
+criados, e nunca enviado para casa. Se o arquivo estiver ausente — digamos,
+para uma candidatura adicionada manualmente — o painel simplesmente não mostra
+nada para auditar, em vez de falhar.
+
+## Por que vale a pena dar uma olhada
+
+Uma afirmação sinalizada não é uma acusação; é um convite. Talvez o perfil
+esteja apenas faltando algo que você genuinamente fez — corrija o perfil e
+execute novamente. Talvez uma formulação tenha extrapolado o que você consegue
+defender confortavelmente — suavize-a ou corte-a antes de enviar. De qualquer
+forma, o Painel de Proveniência transforma *"confie em mim, nada foi
+inventado"* em algo que você pode verificar linha por linha.
+
+**Relacionado:** [`/apply`](/pt-BR/docs/commands/apply#every-claim-traced-to-its-source)
+é onde o registro é produzido; este painel é onde você o lê de volta.

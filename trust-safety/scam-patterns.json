@@ -1,0 +1,27 @@
+{
+  "$schema": "./scam-patterns.schema.json",
+  "comment": "Community-extensible, locale-aware catalog of job-posting red-flag signals (REQ-8002, REQ-8005). Data, not logic: adding a signal is a data edit. `globalSignals` apply everywhere; `byRegion` adds market-specific scams keyed by locale-pack code. The drafter weighs cited evidence into a Legitimacy Verdict (see business-rules §10 and 08-legitimacy.md). Never accuse without cited evidence (ARCH-0007); the system warns, the user decides (ARCH-0006).",
+  "severityLevels": {
+    "high": "A strong scam indicator on its own — one is usually enough for a Suspicious verdict.",
+    "medium": "Concerning; two or more push toward Caution/Suspicious.",
+    "low": "Worth noting; rarely decisive alone."
+  },
+  "globalSignals": [
+    { "id": "upfront-fee", "label": "Upfront fee or payment", "severity": "high", "description": "Asks the candidate to pay for training, equipment, background checks, a 'starter kit', or a visa/processing fee.", "examples": ["pay a refundable training deposit", "purchase your own equipment up front and we reimburse later"] },
+    { "id": "data-harvesting", "label": "Personal-data / ID / banking harvesting", "severity": "high", "description": "Requests sensitive data (national ID, passport scan, bank account, SSN, copies of cards) before any genuine interview or offer.", "examples": ["send a copy of your ID and bank details to set up payroll before interview"] },
+    { "id": "offplatform-redirect", "label": "Off-platform redirect", "severity": "medium", "description": "Pushes the conversation immediately to personal messaging (Telegram/WhatsApp/Signal) or a personal email, away from any verifiable channel.", "examples": ["contact our hiring manager directly on Telegram @..."] },
+    { "id": "too-good-comp", "label": "Too-good-to-be-true compensation", "severity": "medium", "description": "Pay far above market for little experience or vague duties; 'earn $X/day from home, no experience'.", "examples": ["$500/day, 2 hours, no experience needed"] },
+    { "id": "vague-identity", "label": "Vague or absent company identity", "severity": "medium", "description": "No verifiable company name, domain, registration, or web presence; generic free-email contact; mismatched company/domain.", "examples": ["recruiter emails from a gmail address with no company website"] },
+    { "id": "pressure-tactics", "label": "High-pressure / urgency tactics", "severity": "medium", "description": "Artificial urgency, 'offer expires today', pressure to accept or pay before verifying.", "examples": ["you must confirm and pay the deposit within 2 hours"] },
+    { "id": "unverifiable-contact", "label": "Unverifiable contact details", "severity": "low", "description": "Contact name/title/phone cannot be corroborated against the stated company.", "examples": ["hiring manager name does not appear anywhere at the company"] },
+    { "id": "no-interview-offer", "label": "Offer without process", "severity": "high", "description": "A job 'offer' or hire with no real interview or assessment.", "examples": ["you're hired! just complete onboarding payment"] },
+    { "id": "check-overpayment", "label": "Overpayment / money-movement", "severity": "high", "description": "Asks the candidate to receive and forward money, deposit a check and send part back, or process payments — a money-mule pattern.", "examples": ["we'll send a check; buy equipment and wire the remainder to our vendor"] }
+  ],
+  "byRegion": {
+    "comment": "Region keys match locale-pack codes (REQ-8005). Communities can add market-specific scams here without touching core.",
+    "IN": [
+      { "id": "in-placement-fee", "label": "Placement/registration fee", "severity": "high", "description": "Consultancy demands a registration or placement fee to forward your profile.", "examples": ["pay ₹X registration to be shortlisted"] }
+    ],
+    "default": []
+  }
+}

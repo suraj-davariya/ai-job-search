@@ -1,6 +1,7 @@
 "use client";
 
 import { Search, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { STATUSES, type TrackerRow } from "@/lib/domain/status";
 import {
   type FilterState,
@@ -23,6 +24,8 @@ export function FilterBar({
   rows: TrackerRow[];
   resultCount: number;
 }) {
+  const t = useTranslations("applications");
+  const ts = useTranslations("common");
   const set = (patch: Partial<FilterState>) => onChange({ ...value, ...patch });
 
   const toggleStatus = (s: (typeof STATUSES)[number]) => {
@@ -54,8 +57,8 @@ export function FilterBar({
           />
           <input
             type="search"
-            aria-label="Search applications"
-            placeholder="Search company, role, or notes…"
+            aria-label={t("filter.search")}
+            placeholder={t("filter.searchPlaceholder")}
             value={value.q}
             onChange={(e) => set({ q: e.target.value })}
             onKeyDown={(e) => {
@@ -66,12 +69,12 @@ export function FilterBar({
         </div>
 
         <select
-          aria-label="Role type"
+          aria-label={t("filter.roleType")}
           value={value.role_type}
           onChange={(e) => set({ role_type: e.target.value })}
           className="h-9 rounded-lg border border-input bg-background px-2 text-sm"
         >
-          <option value="">All types</option>
+          <option value="">{t("filter.allTypes")}</option>
           {distinct(rows, "role_type").map((t) => (
             <option key={t} value={t}>
               {t}
@@ -80,12 +83,12 @@ export function FilterBar({
         </select>
 
         <select
-          aria-label="Channel"
+          aria-label={t("filter.channel")}
           value={value.channel}
           onChange={(e) => set({ channel: e.target.value })}
           className="h-9 rounded-lg border border-input bg-background px-2 text-sm"
         >
-          <option value="">All channels</option>
+          <option value="">{t("filter.allChannels")}</option>
           {distinct(rows, "channel").map((c) => (
             <option key={c} value={c}>
               {c}
@@ -95,8 +98,8 @@ export function FilterBar({
 
         <input
           type="number"
-          aria-label="Minimum fit"
-          placeholder="Fit ≥"
+          aria-label={t("filter.minFit")}
+          placeholder={t("filter.fitPlaceholder")}
           min={0}
           max={100}
           value={value.fit_min ?? ""}
@@ -108,14 +111,14 @@ export function FilterBar({
 
         <input
           type="date"
-          aria-label="From date"
+          aria-label={t("filter.fromDate")}
           value={value.from}
           onChange={(e) => set({ from: e.target.value })}
           className="h-9 rounded-lg border border-input bg-background px-2 text-sm"
         />
         <input
           type="date"
-          aria-label="To date"
+          aria-label={t("filter.toDate")}
           value={value.to}
           onChange={(e) => set({ to: e.target.value })}
           className="h-9 rounded-lg border border-input bg-background px-2 text-sm"
@@ -128,7 +131,7 @@ export function FilterBar({
             className="inline-flex h-9 items-center gap-1 rounded-lg border border-border px-2.5 text-sm text-muted-foreground hover:text-foreground"
           >
             <X className="h-3.5 w-3.5" aria-hidden />
-            Clear
+            {t("filter.clear")}
           </button>
         ) : null}
       </div>
@@ -149,12 +152,12 @@ export function FilterBar({
                   : "border-border text-muted-foreground hover:text-foreground",
               )}
             >
-              {s}
+              {ts(`status.${s}`)}
             </button>
           );
         })}
         <span className="ml-auto text-xs text-muted-foreground">
-          {resultCount} of {rows.length}
+          {t("filter.resultCount", { count: resultCount, total: rows.length })}
         </span>
       </div>
     </div>

@@ -1,0 +1,57 @@
+---
+title: Panel Provenans
+description: Setiap klaim CV, ditelusuri kembali ke file profil yang mendukungnya — audit pemalsuan, dibuat terlihat.
+---
+
+Janji tertua CareerForge adalah bahwa ia tidak pernah mengarang pengalaman. **Panel
+Provenans** adalah tempat Anda bisa *memeriksa* janji itu, lamaran demi
+lamaran, alih-alih menerimanya begitu saja.
+
+Panel ini berada di dalam laci detail sebuah lamaran: buka satu baris di [tabel
+lamaran](/id/docs/dashboard/applications-table) dan panel Provenans akan muncul
+berdampingan dengan catatan tersebut. Panel ini menjabarkan setiap klaim yang
+dibuat oleh CV yang sudah disesuaikan dan, di sebelah masing-masing, **sumber
+profil** yang mendukungnya.
+
+## Apa yang ditampilkannya
+
+Setiap baris memasangkan sebuah klaim dengan asal-usulnya:
+
+- **Klaim itu sendiri** — sebuah keterampilan, sebuah hasil, sebuah tanggung
+  jawab, persis seperti yang muncul pada CV yang dihasilkan.
+- **Sumbernya** — file profil tempat klaim itu diambil, sehingga Anda bisa
+  melihat *mengapa* dokumen tersebut diperbolehkan menyatakannya.
+- **Sebuah tanda, ketika tidak ada sumbernya.** Setiap klaim yang tidak bisa
+  ditelusuri kembali oleh `/apply` ke profil asli Anda akan **disorot untuk
+  ditinjau** alih-alih disembunyikan. Itulah inti keseluruhannya: sebuah klaim
+  tanpa pendukung adalah sesuatu yang perlu diperiksa, bukan sesuatu yang
+  dikirim diam-diam.
+
+## Sebuah cermin, seperti bagian dashboard lainnya
+
+Panel ini bersifat **hanya-baca**. Ia tidak menyunting CV, profil, atau tracker
+Anda — ia hanya mencerminkan audit yang sudah dihasilkan oleh `/apply`. Ia
+membaca dari sebuah file biasa yang ditulis bersama dokumen lamaran:
+
+```text
+documents/applications/<company>_<role>/provenance.json
+```
+
+Itu adalah [file-as-DB](/id/docs/your-data) lagi: buku besar tersebut adalah
+file yang dapat dibaca manusia di mesin Anda, dihasilkan sekali ketika dokumen
+dibuat, dan tidak pernah dikirim balik ke mana pun. Jika file tersebut hilang —
+misalnya untuk lamaran yang ditambahkan secara manual — panel ini cukup
+menampilkan tidak ada yang perlu diaudit alih-alih gagal.
+
+## Mengapa layak dilihat
+
+Sebuah klaim yang ditandai bukanlah tuduhan; itu adalah undangan. Mungkin
+profil hanya melewatkan sesuatu yang benar-benar Anda lakukan — perbaiki profil
+dan jalankan ulang. Mungkin sebuah frasa bergeser melampaui apa yang bisa Anda
+pertanggungjawabkan dengan nyaman — perhalus atau hapus sebelum Anda mengirim.
+Bagaimanapun juga, panel Provenans mengubah *"percayalah, tidak ada yang
+dikarang"* menjadi sesuatu yang bisa Anda verifikasi baris demi baris.
+
+**Terkait:** [`/apply`](/id/docs/commands/apply#every-claim-traced-to-its-source)
+adalah tempat buku besar itu dihasilkan; panel ini adalah tempat Anda
+membacanya kembali.

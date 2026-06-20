@@ -1,0 +1,6 @@
+{
+  "requestFailed": "a requisição falhou",
+  "lookupFailed": "a consulta falhou",
+  "csvParse": "Não foi possível ler o arquivo do rastreador. Verifique se job_search_tracker.csv é um CSV válido.",
+  "generic": "Algo deu errado."
+}

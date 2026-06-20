@@ -1,0 +1,37 @@
+{
+  "app": {
+    "name": "CareerForge",
+    "description": "ローカルで動作する、プライベートな求人応募トラッキングダッシュボード。"
+  },
+  "nav": {
+    "dashboard": "ダッシュボード",
+    "applications": "応募",
+    "companies": "企業",
+    "profile": "プロフィール",
+    "salary": "給与",
+    "upskill": "スキルアップ",
+    "console": "コンソール",
+    "settings": "設定"
+  },
+  "shell": {
+    "local": "ローカル · 127.0.0.1"
+  },
+  "theme": {
+    "toggle": "テーマを切り替え"
+  },
+  "status": {
+    "Draft": "下書き",
+    "Sent": "送信済み",
+    "Interview": "面接",
+    "Offer": "内定",
+    "Rejected": "不採用",
+    "Withdrawn": "辞退",
+    "Closed": "終了"
+  },
+  "banner": {
+    "readOnly": "読み取り専用モード — 編集は無効になっています。",
+    "demoTitle": "サンプルデータによるデモ。",
+    "demoBody": "編集、コンソール、PDFプレビューは無効です — これらにはローカルで実際のダッシュボードを実行する必要があります。",
+    "demoBack": "ガイドに戻る →"
+  }
+}

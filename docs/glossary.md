@@ -82,6 +82,9 @@ A writing principle for cover letters: focus on tasks the user can solve for the
 **Gap Heatmap**
 A prioritized table of skill gaps between the user's profile and their tracked job postings (or a single target posting). Gaps are classified as Critical, High, Medium, or Low priority.
 
+**Ghost Job**
+A posting not genuinely intended to be filled — e.g., one left open indefinitely, repeatedly reposted, or never closed. Detected as a trust-and-safety signal (REQ-8004), distinct from fit.
+
 ## I
 
 **Idempotent Operation**
@@ -97,8 +100,25 @@ A pluggable CLI tool that searches a specific job board (e.g., Indeed, LinkedIn,
 
 ## L
 
+**Language Registry**
+The canonical list of supported languages at `i18n/_meta/languages.json`, recording each language's BCP-47 code, English name, endonym, text direction (ltr/rtl), script, tier, and status (released/beta). Adding a language adds a registry entry plus files under `i18n/` — no core code change (REQ-7004, ADR-0007).
+
 **Learning Plan**
 A structured study guide produced by skill gap analysis, containing prioritized skills to learn, curated resources (courses, documentation, books), study directions tailored to the user's existing knowledge, and time estimates.
+
+**Legitimacy Verdict**
+The standalone outcome of the posting-legitimacy gate — `Verified`, `Caution`, or `Suspicious` — with cited reasons, surfaced before drafting. Deliberately kept separate from the 0–100 fit score so a scam that is otherwise a strong fit cannot score high and slip through (REQ-8001).
+
+**Locale Pack**
+A pluggable data file of a region's conventions (document term, page count, photo norm, included personal fields, name ordering, date/number/currency formats, privacy/legal clauses), decoupled from UI language and from core, in the spirit of ADR-0004 portal adapters. Consumed by document generation (REQ-7009, REQ-7010).
+
+**Localization Tree (`i18n/`)**
+The single top-level repository directory holding all static translation artifacts (UI strings, localized READMEs, translated glossary, language registry), keeping the repo root uncluttered as languages scale (ADR-0007).
+
+## M
+
+**MTPE (Machine-Translation Post-Editing)**
+The translation-seeding model: machine-translate a language first, then have a human reviewer post-edit before it is marked "released." The default workflow for scaling many languages affordably (REQ-7005).
 
 ## N
 
@@ -125,6 +145,9 @@ The set of seven structured documents that define the user's professional identi
 **Pipeline KPI**
 Aggregate counts per application status plus average fit rating (last 30 days) and interviews-per-application rate (last 90 days); rendered in the dashboard summary strip (REQ-5003).
 
+**Posting Legitimacy**
+Whether a job posting is genuine and safe to engage with — assessed independently of fit and expressed as a Legitimacy Verdict with cited red-flag evidence (REQ-8001). Never an automatic block; the user decides (ARCH-0006).
+
 **Profile Statement**
 A 3–5 line elevator pitch at the top of a CV, tailored to the specific role being applied for. Multiple templates are maintained for different role types.
 
@@ -132,6 +155,9 @@ A 3–5 line elevator pitch at the top of a CV, tailored to the specific role be
 
 **Read-Only Mode**
 Dashboard launch flag (`--read-only`) that disables all mutating routes and renders all edit controls as disabled. Used for screenshots, demos, and accidental-write protection (REQ-5007).
+
+**Red Flag**
+A detectable signal suggesting a posting may be illegitimate — e.g., upfront fees, personal-data/ID/banking harvesting, off-platform redirects, too-good-to-be-true compensation, vague company identity, or pressure tactics. Expressed as externalized, country-agnostic data, never hardcoded logic (REQ-8002).
 
 **Relevance-Weighted Cutting**
 See: Content Cutting (Relevance-Weighted).
@@ -166,6 +192,9 @@ Skills are split into two filesystem trees with different roles: Plane 1 (Claude
 
 **Traceability**
 The practice of linking every requirement to the architecture elements that satisfy it, the plan tasks that build it, and the test cases that verify it. Uses the ID scheme: `REQ-####`, `NFR-####`, `ARCH-####`, `ADR-####`, `RISK-####`, `TC-####`.
+
+**Translation Staleness**
+The condition where a translated file has fallen behind the English source it was derived from. Detected by a custom CI parity check that compares each translation's recorded `source-hash` against the current English source hash and reports "N behind" (REQ-7006).
 
 ## V
 

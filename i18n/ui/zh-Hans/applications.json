@@ -1,0 +1,112 @@
+{
+  "page": {
+    "title": "申请",
+    "description": "已追踪 {count, plural, other {# 份申请}}。"
+  },
+  "table": {
+    "date": "日期",
+    "company": "公司",
+    "role": "职位",
+    "type": "类型",
+    "channel": "渠道",
+    "status": "状态",
+    "fit": "匹配度",
+    "contact": "联系人",
+    "notes": "备注",
+    "cv": "简历",
+    "cover": "求职信",
+    "source": "来源",
+    "pdf": "PDF",
+    "open": "打开"
+  },
+  "empty": {
+    "title": "暂无申请",
+    "hintBefore": "运行",
+    "hintAfter": "以添加一条。",
+    "newApplication": "新建申请"
+  },
+  "filter": {
+    "search": "搜索申请",
+    "searchPlaceholder": "搜索公司、职位或备注…",
+    "roleType": "职位类型",
+    "allTypes": "全部类型",
+    "channel": "渠道",
+    "allChannels": "全部渠道",
+    "minFit": "最低匹配度",
+    "fitPlaceholder": "匹配度 ≥",
+    "fromDate": "起始日期",
+    "toDate": "结束日期",
+    "clear": "清除",
+    "resultCount": "{count} / {total}"
+  },
+  "pipeline": {
+    "group": "流程计数",
+    "statusCount": "{status}：{count}",
+    "total": "共 {count} 条"
+  },
+  "new": {
+    "button": "新建申请",
+    "title": "新建申请",
+    "add": "添加申请",
+    "cancel": "取消",
+    "close": "关闭",
+    "readOnlyTip": "只读模式 — 编辑功能已禁用"
+  },
+  "fields": {
+    "date": "日期",
+    "status": "状态",
+    "company": "公司",
+    "role": "职位",
+    "sector": "行业",
+    "roleType": "职位类型",
+    "channel": "渠道",
+    "contact": "联系人",
+    "fit": "匹配度（0–100）",
+    "source": "来源 URL"
+  },
+  "validation": {
+    "dateRequired": "日期为必填项",
+    "companyRequired": "公司为必填项",
+    "roleRequired": "职位为必填项"
+  },
+  "aria": {
+    "statusFor": "{company} 的状态",
+    "notesFor": "{company} 的备注"
+  },
+  "notes": {
+    "placeholder": "—"
+  },
+  "drawer": {
+    "closeDetails": "关闭详情",
+    "date": "日期",
+    "lastUpdated": "最后更新",
+    "sector": "行业",
+    "roleType": "职位类型",
+    "channel": "渠道",
+    "contact": "联系人",
+    "notes": "备注",
+    "documents": "文档",
+    "cv": "简历",
+    "coverLetter": "求职信",
+    "noCv": "无简历",
+    "noCover": "无求职信",
+    "sourcePosting": "原始招聘信息",
+    "rerunApply": "重新运行 /apply",
+    "fileNotFound": "{label}：未找到文件"
+  },
+  "provenance": {
+    "title": "来源溯源",
+    "none": "未记录来源溯源",
+    "summary": "{total, plural, other {# 条声明}} · {flagged, plural, =0 {无标记} other {# 条已标记}}",
+    "backedBy": "{source} › {location}",
+    "backedBySource": "{source}",
+    "flagged": "已标记 — 无档案支撑"
+  },
+  "toast": {
+    "updated": "已更新 · {time}",
+    "statusError": "无法更新状态：{error}",
+    "notesError": "无法保存备注：{error}",
+    "added": "已添加申请",
+    "addError": "无法添加申请：{error}"
+  }
+}

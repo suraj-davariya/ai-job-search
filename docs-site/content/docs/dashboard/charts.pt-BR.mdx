@@ -1,0 +1,85 @@
+---
+title: Os Gráficos
+description: Seis imagens da sua busca — o que cada uma revela e como interpretá-la.
+---
+
+Seis gráficos, cada um respondendo a uma pergunta sobre a sua busca. Todos estão
+ao vivo abaixo, extraídos do mesmo rastreador fictício do restante deste guia —
+role, passe o mouse e clique à vontade.
+
+## Candidaturas por semana
+
+*Estou mantendo um ritmo?*
+
+<WeeklyBarDemo />
+
+Cada barra é uma semana (as semanas começam na segunda-feira), e sua altura é
+quantas candidaturas você datou nela. Buscas por emprego vivem ou morrem pelo
+ritmo, e este é o gráfico que mostra o seu — incluindo as lacunas. Uma barra
+ausente não é vergonha, é informação.
+
+## Calendário de atividade
+
+*Como é a minha consistência na prática?*
+
+<ActivityCalendarDemo />
+
+Os mesmos dados das barras semanais, mas dia a dia, como um diário de visão
+anual. Quadrados mais quentes significam mais candidaturas naquele dia. Padrões
+saltam aos olhos aqui que o gráfico de barras suaviza: a pausa de duas semanas em
+abril, o hábito só aos domingos, as arrancadas de fim de mês.
+
+## Distribuição de status
+
+*Onde está tudo neste momento?*
+
+<StatusDonutDemo />
+
+Cada candidatura no seu rastreador, agrupada pelo seu status atual. O número no
+meio é o seu total de todos os tempos. Um anel saudável muda de forma com o
+tempo: no início é majoritariamente Sent; depois, Interview e os estados
+finalizados crescem. Um anel todo em Draft é uma pilha de cartas não enviadas —
+algo útil de se notar.
+
+## Distribuição de fit
+
+*Estou mirando nas vagas certas?*
+
+<FitHistogramDemo />
+
+A pontuação de fit (0–100) de cada candidatura, agrupada em cinco faixas. Massa
+nas faixas de 60–100 significa que você está se candidatando onde realmente
+compete. Uma cauda alta em 0–39 geralmente significa que a busca precisa ser
+estreitada — ou que você está forçando candidaturas que já desconfia serem tiros
+de longo alcance.
+
+## Principais empresas
+
+*Para onde está indo a minha atenção?*
+
+<TopCompaniesDemo />
+
+As cinco empresas para as quais você mais se candidatou. Candidaturas repetidas a
+uma mesma empresa podem ser persistência ou um sinal para variar a abordagem — de
+qualquer forma, é melhor saber do que ser surpreendido.
+
+## Faixa do funil
+
+*O resumo de uma linha.*
+
+<PipelineStripDemo />
+
+As mesmas contagens de status do gráfico de rosca, em uma faixa compacta que fica
+acima da tabela de candidaturas. No painel real os dois ficam sincronizados:
+clique em um status aqui e a tabela filtra de acordo. Status terminais (Rejected,
+Withdrawn, Closed) aparecem esmaecidos — fora do caminho, nunca excluídos.
+
+---
+
+Uma nota sobre confiança: cada gráfico acima é calculado pela mesma aritmética do
+painel real, testado automaticamente contra ele, e todo gráfico carrega uma
+tabela de dados oculta para leitores de tela — então o que você *vê* sempre está
+respaldado por números que você poderia ler de outra forma.
+
+**Próximo:** [a tabela de candidaturas](/pt-BR/docs/dashboard/applications-table),
+onde o trabalho do dia a dia acontece.

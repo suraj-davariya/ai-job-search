@@ -1,0 +1,76 @@
+---
+title: /upskill
+description: Sieh genau, wo du hinter den von dir gewünschten Jobs zurückbleibst — und erhalte einen echten, im Web recherchierten Plan, um die Lücke zu schließen.
+---
+
+`/upskill` ist dein Karriere-Coach. Es betrachtet den Abstand zwischen dort, wo
+du stehst, und dort, wo die von dir gewünschten Jobs dich brauchen, und reicht
+dir dann eine priorisierte Liste, was du lernen sollst und wo — jede Ressource
+aus einer Live-Websuche gezogen, niemals erfunden.
+
+## Zwei Wege, es auszuführen
+
+| Du tippst | Modus | Was es betrachtet |
+|----------|------|------------------|
+| `/upskill` | **Aggregat** | Jeden Job in deinem Tracker. Stellen, zu denen du *am wenigsten* passt, zählen am meisten, sodass der Plan auf das zeigt, was dich tatsächlich zurückhält. |
+| `/upskill <job url>` | **Gezielt** | Eine bestimmte Anzeige. (Füge stattdessen den Text ein, wenn der Link nicht lädt.) |
+
+## Wie ein Lauf aussieht
+
+```text
+you:    /upskill
+claude: Reading your tracker (12 applications) and your profile…
+
+        Skill Gap Heatmap
+        ──────────────────────────────────────────────────────────
+        Priority  Skill / Area          Type        Seen in
+        Critical  Kubernetes            tooling     7 of 12 roles
+        High      Terraform / IaC       tooling     5 of 12 roles
+        High      MLOps pipelines       domain      4 of 12 roles
+        Medium    Stakeholder comms     soft        3 of 12 roles
+        Low       Go                    —           1 of 12 roles
+        ──────────────────────────────────────────────────────────
+
+        Building your learning plan (searching for current resources)…
+        Saved → upskill/report-2026-06-17.md
+```
+
+Die Heatmap wird zuerst gedruckt, sodass du die Form der Lücke sehen kannst,
+bevor das Detail kommt.
+
+## Was du am Ende mitnimmst
+
+1. **Eine Lücken-Heatmap** — jede Lücke bewertet als Critical / High / Medium /
+   Low, nach Art getaggt (ein fehlendes Werkzeug, eine Domäne, in der du nicht
+   gearbeitet hast, eine Soft Skill oder ein Nachweis).
+2. **Ein Lernplan** — für jede Lücke, die zählt, zwei oder drei echte Ressourcen
+   (mit Links und einer einzeiligen Begründung), eine Lernrichtung, die auf das
+   abgestimmt ist, was du *bereits* weißt, sodass du die Grundlagen nicht neu
+   lernst, und eine Zeitschätzung.
+3. **Eine Lernreihenfolge** — eine nummerierte Sequenz, die Abhängigkeiten
+   respektiert, schnelle Erfolge nach vorne stellt und breites Domänenwissen für
+   zuletzt aufspart, mit einer Gesamtzeit am Ende.
+4. **Ein gespeicherter Bericht** unter `upskill/report-*.md`. Führe es nächsten
+   Monat erneut aus, und der Aggregat-Bericht öffnet mit einem *Delta*: welche
+   Lücken du geschlossen hast und welche neu sind.
+
+## Wie es ehrlich bleibt
+
+- **Keine erfundenen Ressourcen.** Jeder Kurs, jede Doku und jedes Buch kommt
+  aus einer tatsächlichen Websuche mit dem aktuellen Jahr in der Anfrage. Wenn
+  für eine Lücke nichts Gutes existiert, sagt es das.
+- **Es füllt keinen leeren Tracker auf.** Noch keine Bewerbungen
+  protokolliert? Statt eines leeren Berichts stupst es dich an, zuerst
+  [`/search`](/de/docs/commands/search) und
+  [`/apply`](/de/docs/commands/apply) auszuführen oder es mit `/upskill <url>`
+  auf einen einzelnen Job zu richten.
+- **Lücken mit niedriger Priorität** erscheinen in der Heatmap der
+  Vollständigkeit halber, erhalten aber keinen Plan-Eintrag, es sei denn, du
+  fragst danach — der Plan bleibt auf das fokussiert, was den Unterschied macht.
+
+## Es im Dashboard sehen
+
+Jeder Bericht landet in `upskill/report-*.md`, und der **Upskill**-Tab des
+Dashboards listet sie auf, damit du sie jederzeit erneut lesen kannst. Du
+kannst auch einen frischen Lauf direkt aus der Dashboard-Konsole starten — er
+führt denselben `/upskill`-Befehl aus.

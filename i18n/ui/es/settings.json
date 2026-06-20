@@ -1,0 +1,20 @@
+{
+  "title": "Ajustes",
+  "description": "Solo preferencias locales — sin secretos ni cuentas. Bucle local, un solo usuario.",
+  "theme": "Tema",
+  "themeHint": "Por defecto, oscuro.",
+  "repoPath": "Ruta del repositorio",
+  "repoPathHint": "Carpeta que el panel lee y escribe (se aplica en el próximo inicio).",
+  "port": "Puerto predeterminado",
+  "portHint": "Puerto de bucle local (se aplica en el próximo inicio).",
+  "readOnly": "Modo de solo lectura",
+  "readOnlyHint": "Desactiva todas las ediciones y acciones.",
+  "on": "Activado",
+  "off": "Desactivado",
+  "language": "Idioma",
+  "languageHint": "Elige el idioma de visualización del panel. El texto sin traducir vuelve al inglés.",
+  "save": "Guardar ajustes",
+  "saving": "Guardando…",
+  "saved": "Ajustes guardados",
+  "saveError": "No se pudieron guardar los ajustes: {error}"
+}

@@ -1,0 +1,112 @@
+{
+  "page": {
+    "title": "Bewerbungen",
+    "description": "{count, plural, one {# Bewerbung} other {# Bewerbungen}} erfasst."
+  },
+  "table": {
+    "date": "Datum",
+    "company": "Unternehmen",
+    "role": "Position",
+    "type": "Typ",
+    "channel": "Kanal",
+    "status": "Status",
+    "fit": "Passung",
+    "contact": "Kontakt",
+    "notes": "Notizen",
+    "cv": "Lebenslauf",
+    "cover": "Anschreiben",
+    "source": "Quelle",
+    "pdf": "PDF",
+    "open": "Öffnen"
+  },
+  "empty": {
+    "title": "Noch keine Bewerbungen",
+    "hintBefore": "Führen Sie",
+    "hintAfter": "aus, um eine hinzuzufügen.",
+    "newApplication": "Neue Bewerbung"
+  },
+  "filter": {
+    "search": "Bewerbungen durchsuchen",
+    "searchPlaceholder": "Unternehmen, Position oder Notizen durchsuchen…",
+    "roleType": "Positionstyp",
+    "allTypes": "Alle Typen",
+    "channel": "Kanal",
+    "allChannels": "Alle Kanäle",
+    "minFit": "Mindestpassung",
+    "fitPlaceholder": "Passung ≥",
+    "fromDate": "Von Datum",
+    "toDate": "Bis Datum",
+    "clear": "Zurücksetzen",
+    "resultCount": "{count} von {total}"
+  },
+  "pipeline": {
+    "group": "Pipeline-Zählungen",
+    "statusCount": "{status}: {count}",
+    "total": "{count} gesamt"
+  },
+  "new": {
+    "button": "Neue Bewerbung",
+    "title": "Neue Bewerbung",
+    "add": "Bewerbung hinzufügen",
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "readOnlyTip": "Schreibgeschützter Modus – Bearbeiten ist deaktiviert"
+  },
+  "fields": {
+    "date": "Datum",
+    "status": "Status",
+    "company": "Unternehmen",
+    "role": "Position",
+    "sector": "Branche",
+    "roleType": "Positionstyp",
+    "channel": "Kanal",
+    "contact": "Kontakt",
+    "fit": "Passung (0–100)",
+    "source": "Quell-URL"
+  },
+  "validation": {
+    "dateRequired": "Datum ist erforderlich",
+    "companyRequired": "Unternehmen ist erforderlich",
+    "roleRequired": "Position ist erforderlich"
+  },
+  "aria": {
+    "statusFor": "Status für {company}",
+    "notesFor": "Notizen für {company}"
+  },
+  "notes": {
+    "placeholder": "—"
+  },
+  "drawer": {
+    "closeDetails": "Details schließen",
+    "date": "Datum",
+    "lastUpdated": "Zuletzt aktualisiert",
+    "sector": "Branche",
+    "roleType": "Positionstyp",
+    "channel": "Kanal",
+    "contact": "Kontakt",
+    "notes": "Notizen",
+    "documents": "Dokumente",
+    "cv": "Lebenslauf",
+    "coverLetter": "Anschreiben",
+    "noCv": "Kein Lebenslauf",
+    "noCover": "Kein Anschreiben",
+    "sourcePosting": "Quellanzeige",
+    "rerunApply": "/apply erneut ausführen",
+    "fileNotFound": "{label}: Datei nicht gefunden"
+  },
+  "provenance": {
+    "title": "Herkunft",
+    "none": "Keine Herkunft erfasst",
+    "summary": "{total, plural, one {# Angabe} other {# Angaben}} · {flagged, plural, =0 {keine markiert} one {# markiert} other {# markiert}}",
+    "backedBy": "{source} › {location}",
+    "backedBySource": "{source}",
+    "flagged": "Markiert – keine Profil-Grundlage"
+  },
+  "toast": {
+    "updated": "Aktualisiert · {time}",
+    "statusError": "Status konnte nicht aktualisiert werden: {error}",
+    "notesError": "Notizen konnten nicht gespeichert werden: {error}",
+    "added": "Bewerbung hinzugefügt",
+    "addError": "Bewerbung konnte nicht hinzugefügt werden: {error}"
+  }
+}

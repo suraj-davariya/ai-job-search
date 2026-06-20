@@ -1,0 +1,20 @@
+{
+  "title": "Settings",
+  "description": "Local preferences only — no secrets, no accounts. Loopback, single-user.",
+  "theme": "Theme",
+  "themeHint": "Defaults to dark.",
+  "repoPath": "Repo path",
+  "repoPathHint": "Folder the dashboard reads/writes (applies on next launch).",
+  "port": "Default port",
+  "portHint": "Loopback port (applies on next launch).",
+  "readOnly": "Read-only mode",
+  "readOnlyHint": "Disables all edits and actions.",
+  "on": "On",
+  "off": "Off",
+  "language": "Language",
+  "languageHint": "Choose the dashboard display language. Untranslated text falls back to English.",
+  "save": "Save settings",
+  "saving": "Saving…",
+  "saved": "Settings saved",
+  "saveError": "Couldn't save settings: {error}"
+}

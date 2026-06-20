@@ -1,0 +1,104 @@
+{
+  "overview": {
+    "title": "Resumen",
+    "description": "Estado del flujo de un vistazo, calculado en directo a partir de tu registro.",
+    "empty": {
+      "title": "Aún no hay candidaturas",
+      "hint": "Ejecuta /apply <oferta> o usa + Nueva candidatura en la página de Candidaturas. Tus KPI y gráficos aparecerán aquí en cuanto el registro tenga filas.",
+      "milestone": "Resumen"
+    }
+  },
+  "kpi": {
+    "total": "Candidaturas totales",
+    "applied": "Enviadas · {window}d",
+    "appliedWindow": "Ventana de envíos",
+    "windowDays": "{days}d",
+    "avgFit30": "Ajuste medio · 30d",
+    "interviewRate90": "Tasa de entrevistas · 90d",
+    "floorHint": "Necesita ≥3 en la ventana"
+  },
+  "charts": {
+    "noData": "Aún no hay datos",
+    "weekly": {
+      "title": "Candidaturas por semana",
+      "caption": "Candidaturas por semana ISO",
+      "colWeek": "Semana",
+      "colApplications": "Candidaturas"
+    },
+    "activity": {
+      "title": "Actividad",
+      "caption": "Candidaturas por día natural",
+      "colDay": "Día",
+      "colApplications": "Candidaturas"
+    },
+    "status": {
+      "title": "Distribución por estado",
+      "caption": "Candidaturas por estado",
+      "colStatus": "Estado",
+      "colCount": "Recuento"
+    },
+    "fit": {
+      "title": "Distribución del ajuste",
+      "caption": "Número de candidaturas por franja de puntuación de ajuste",
+      "colRange": "Rango de ajuste",
+      "colCount": "Recuento"
+    },
+    "top": {
+      "title": "Empresas principales",
+      "label": "Empresa",
+      "caption": "{label} por número de candidaturas",
+      "colApplications": "Candidaturas"
+    }
+  },
+  "recent": {
+    "title": "Actividad reciente",
+    "mode": "Modo de actividad reciente",
+    "new": "Nueva",
+    "updated": "Actualizada"
+  },
+  "companies": {
+    "title": "Empresas",
+    "description": "{count, plural, one {# empresa} other {# empresas}} en tu registro.",
+    "empty": {
+      "title": "Aún no hay empresas",
+      "hint": "Las empresas se derivan del registro. Añade una candidatura para rellenar esta vista.",
+      "milestone": "Empresas"
+    },
+    "col": {
+      "company": "Empresa",
+      "sector": "Sector",
+      "apps": "Candid.",
+      "bestFit": "Mejor ajuste",
+      "statusMix": "Distribución por estado"
+    },
+    "salaryHeading": "Referencias salariales",
+    "salaryAvailable": "Hay datos de referencia disponibles — ",
+    "salaryLink": "consúltalos en la página de Salario",
+    "noSalary": {
+      "title": "Sin datos salariales",
+      "hint": "Añade salary_data.json (o ejecuta una consulta en la página de Salario) para enriquecer las empresas con referencias.",
+      "milestone": "REQ-5012"
+    }
+  },
+  "profile": {
+    "title": "Perfil",
+    "description": "Perfil de candidatura de solo lectura, compuesto a partir de tus archivos de competencias.",
+    "projectMemory": "Memoria del proyecto",
+    "empty": {
+      "title": "No se encontró ningún perfil",
+      "hint": "Ejecuta /setup para construir tu perfil de candidatura (archivos de competencias 01–07). Una vez presentes, sus secciones se muestran aquí en solo lectura.",
+      "milestone": "Perfil"
+    }
+  },
+  "upskill": {
+    "title": "Mejora de competencias",
+    "description": "Tus informes de mejora de competencias, junto con un disparador para generar uno nuevo.",
+    "run": "Ejecuta /upskill en la consola",
+    "unreadable": "(no se pudo leer este informe)",
+    "empty": {
+      "title": "Aún no hay informes de mejora de competencias",
+      "hint": "Ejecuta /upskill (arriba) para generar un informe de carencias de competencias. Los nuevos informes aparecen aquí en cuanto se escriben en upskill/report-*.md.",
+      "milestone": "Mejora de competencias"
+    }
+  }
+}

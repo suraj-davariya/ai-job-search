@@ -330,3 +330,54 @@ For visual treatment in the dashboard (REQ-5001), the **muted set** is: `Rejecte
 ### 9.5 Pipeline KPI Buckets
 
 For REQ-5003 pipeline counts, the buckets are: `Draft`, `Sent`, `Interview`, `Offer`, `Rejected`, `Withdrawn`, `Closed`. The "interviews-per-application rate" KPI uses `Interview` (numerator) over `Sent + Interview + Offer + Rejected + Withdrawn + Closed` (denominator) within the active window.
+
+---
+
+## 10. Posting Legitimacy & Red Flags
+
+Governs the standalone legitimacy gate (REQ-8001, REQ-8002, trust-and-safety §Step 0). This gate answers *"should you trust this posting?"* — a different question from *"is this posting right for you?"*, which the fit framework (§1) answers. The two are computed and presented **independently**.
+
+### 10.1 Legitimacy Is a Separate Gate, Not a Scoring Dimension
+
+This is an **owner-locked decision** and must not be re-litigated in implementation.
+
+- The posting-legitimacy assessment produces a **verdict** — one of `Verified` / `Caution` / `Suspicious` — computed and presented **independently** of the 0–100 five-dimension fit score defined in §1 (Job Fit Evaluation Framework).
+- Legitimacy is **never** added as a sixth dimension to §1.1, and it **never** contributes to or modifies the overall fit number in §1.3. It sits **beside** the fit evaluation, in its own reported section.
+- **Rationale:** a scam that is otherwise an excellent fit must not average out to a high "apply" score and slip through. A posting could score 85 (Strong Fit, §1.3) and still be `Suspicious`. Folding legitimacy into the fit score would let a legitimacy problem be masked by a strong fit. Keeping the gate orthogonal prevents that.
+- **Cross-reference only:** §1 (the five-dimension fit framework) is unchanged by this section. Legitimacy is assessed in parallel and reported separately; the fit score is computed exactly as §1 specifies.
+
+### 10.2 Red-Flag Signal Set
+
+Signals are **externalized, country-agnostic data** (id, description, severity, locale scope) — not hardcoded branching logic. Adding or tuning a signal does not change the assessment engine. Each fired signal contributes **evidence** toward the verdict and carries the posting text that triggered it (for citation per §10.4).
+
+| Signal | What it detects | Default severity |
+|--------|-----------------|------------------|
+| Upfront fees / payments | Any request for money from the applicant — training fees, equipment deposits, "processing" charges | Strong |
+| Personal-data / ID / banking harvesting | Requests for government ID numbers, bank or card details, or identity-document copies before a legitimate offer stage | Strong |
+| Off-platform redirects | Pushing the conversation to untraceable channels (personal messaging apps, throwaway email) early in the process | Strong |
+| Too-good-to-be-true compensation | Pay or benefits implausibly high for the stated role and effort | Soft |
+| Vague / absent company identity | No verifiable company name, address, registration, or web presence | Soft |
+| High-pressure tactics | Artificial urgency, "act now," or coercion to skip normal hiring steps | Soft |
+| Unverifiable contact details | No legitimate corporate contact path; only anonymous or free-mail addresses | Soft |
+
+Severity is parameterized data, not baked-in code; thresholds and examples make no assumption about country, currency, language, or portal.
+
+### 10.3 Verdict Rules
+
+The verdict is exactly one of three values, derived from the signals that fired:
+
+| Verdict | Condition | Action |
+|---------|-----------|--------|
+| `Verified` | No material red flags; an identifiable, legitimate employer | Proceed normally; note that no red flags were found |
+| `Caution` | Some unverifiable elements or one or more minor (soft) flags only | Proceed with care; surface the soft signals and their evidence |
+| `Suspicious` | One or more strong scam signals fired | Strongly discourage; warn plainly and ask whether to proceed anyway — **never auto-block** |
+
+A single soft signal maps to at most `Caution`; any strong signal maps to `Suspicious`. No single signal silently blocks the user (§10.4).
+
+### 10.4 Invariants
+
+These hold regardless of the verdict and trace to architecture invariants:
+
+- **The system warns, the user decides (ARCH-0006).** A `Suspicious` verdict is advisory: the user is warned plainly and asked whether to proceed. The gate **never** auto-blocks, auto-skips, or removes a posting on the user's behalf.
+- **Never fabricate a scam accusation without cited evidence (ARCH-0007).** Every fired signal and every verdict reason must cite the specific posting text that triggered it. No reason is asserted without evidence. State uncertainty honestly rather than asserting a conclusion the evidence does not support.
+- **Fail open, neutrally (ARCH-0005).** If signals cannot be gathered (content too sparse, signals unavailable), the gate returns a neutral "legitimacy could not be assessed" note and the pipeline continues — it does not abort, and it does not default to alarm.

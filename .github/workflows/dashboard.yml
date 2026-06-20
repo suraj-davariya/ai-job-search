@@ -1,0 +1,44 @@
+# Dashboard CI gate.
+# The dashboard is the only compiled component in CareerForge and the single
+# source of truth for the tracker UI. Lint, typecheck, and the vitest suite
+# (domain logic, every page, the run-route, a11y) must pass before merge so a
+# regression can't ship silently. Runs only when dashboard code changes.
+name: dashboard
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "dashboard/**"
+      - ".github/workflows/dashboard.yml"
+  pull_request:
+    paths:
+      - "dashboard/**"
+      - ".github/workflows/dashboard.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: dashboard
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: dashboard/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Tests (vitest)
+        run: npm test

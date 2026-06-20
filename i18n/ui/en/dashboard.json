@@ -1,0 +1,104 @@
+{
+  "overview": {
+    "title": "Overview",
+    "description": "Pipeline health at a glance, computed live from your tracker.",
+    "empty": {
+      "title": "No applications yet",
+      "hint": "Run /apply <posting> or use + New application on the Applications page. Your KPIs and charts appear here once the tracker has rows.",
+      "milestone": "Overview"
+    }
+  },
+  "kpi": {
+    "total": "Total applications",
+    "applied": "Applied · {window}d",
+    "appliedWindow": "Applied window",
+    "windowDays": "{days}d",
+    "avgFit30": "Avg fit · 30d",
+    "interviewRate90": "Interview rate · 90d",
+    "floorHint": "Needs ≥3 in window"
+  },
+  "charts": {
+    "noData": "No data yet",
+    "weekly": {
+      "title": "Applications per week",
+      "caption": "Applications per ISO week",
+      "colWeek": "Week",
+      "colApplications": "Applications"
+    },
+    "activity": {
+      "title": "Activity",
+      "caption": "Applications per calendar day",
+      "colDay": "Day",
+      "colApplications": "Applications"
+    },
+    "status": {
+      "title": "Status mix",
+      "caption": "Applications by status",
+      "colStatus": "Status",
+      "colCount": "Count"
+    },
+    "fit": {
+      "title": "Fit distribution",
+      "caption": "Number of applications per fit-rating band",
+      "colRange": "Fit range",
+      "colCount": "Count"
+    },
+    "top": {
+      "title": "Top companies",
+      "label": "Company",
+      "caption": "{label} by application count",
+      "colApplications": "Applications"
+    }
+  },
+  "recent": {
+    "title": "Recent activity",
+    "mode": "Recent activity mode",
+    "new": "New",
+    "updated": "Updated"
+  },
+  "companies": {
+    "title": "Companies",
+    "description": "{count, plural, one {# company} other {# companies}} across your tracker.",
+    "empty": {
+      "title": "No companies yet",
+      "hint": "Companies are derived from the tracker. Add an application to populate this view.",
+      "milestone": "Companies"
+    },
+    "col": {
+      "company": "Company",
+      "sector": "Sector",
+      "apps": "Apps",
+      "bestFit": "Best fit",
+      "statusMix": "Status mix"
+    },
+    "salaryHeading": "Salary benchmarks",
+    "salaryAvailable": "Benchmark data is available — ",
+    "salaryLink": "browse it on the Salary page",
+    "noSalary": {
+      "title": "No salary data",
+      "hint": "Add salary_data.json (or run a lookup on the Salary page) to enrich companies with benchmarks.",
+      "milestone": "REQ-5012"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "description": "Read-only candidate profile, assembled from your skill files.",
+    "projectMemory": "Project memory",
+    "empty": {
+      "title": "No profile found",
+      "hint": "Run /setup to build your candidate profile (01–07 skill files). Once present, its sections render here read-only.",
+      "milestone": "Profile"
+    }
+  },
+  "upskill": {
+    "title": "Upskill",
+    "description": "Your upskill reports, plus a trigger to generate a new one.",
+    "run": "Run /upskill in console",
+    "unreadable": "(could not read this report)",
+    "empty": {
+      "title": "No upskill reports yet",
+      "hint": "Run /upskill (above) to generate a skills-gap report. New reports appear here once written to upskill/report-*.md.",
+      "milestone": "Upskill"
+    }
+  }
+}

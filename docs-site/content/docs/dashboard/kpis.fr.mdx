@@ -1,0 +1,56 @@
+---
+title: Les KPI
+description: Quatre chiffres phares, et la règle d'honnêteté qui vous montre parfois un tiret à la place.
+---
+
+Le haut du tableau de bord, ce sont quatre cartes. Les voici, en direct — faites-les défiler jusque dans
+le champ de vision et regardez-les compter, et essayez le bascule 7j/30j sur la deuxième carte :
+
+<KpiCardsDemo />
+
+## Ce que signifie chaque carte
+
+### Total des candidatures
+
+Chaque ligne de votre fichier de suivi, depuis toujours. Le chiffre le plus simple et celui qui
+compte discrètement le plus les jours où la recherche semble interminable : il ne fait que monter.
+
+### Candidatures · 7j / 30j
+
+Combien de candidatures vous avez datées au cours des 7 ou 30 derniers jours calendaires — le
+bascule change la fenêtre. C'est votre indicateur d'*activité*. Un bon pipeline
+commence généralement par un chiffre régulier ici, quel que soit le sens de « régulier » pour votre
+situation.
+
+### Adéquation moy. · 30j
+
+Le score d'adéquation moyen (0–100) des candidatures des 30 derniers jours. Lisez-le
+avec la carte d'activité : une forte activité avec une faible adéquation moyenne peut
+signifier que vous arrosez ; une faible activité avec une moyenne élevée peut signifier que vous êtes
+sélectif à juste titre — ou trop sélectif. Ni l'un ni l'autre n'est faux ; le chiffre rend simplement
+le compromis visible.
+
+### Taux d'entretien · 90j
+
+Parmi vos candidatures actives des 90 derniers jours, la part qui a atteint un
+entretien. C'est votre indicateur de *conversion* — ce qui se rapproche le plus, pour une recherche d'emploi,
+d'un retour honnête sur le fait que vos documents portent ou non. « Actives » compte les
+candidatures que vous avez réellement envoyées (dans n'importe quel état à partir de Sent) ; celles encore
+en Draft ne comptent pas contre vous.
+
+## La règle d'honnêteté — pourquoi vous verrez parfois « — »
+
+Un tableau de bord qui fait la moyenne de deux points de données vous ment poliment. Aussi, les deux
+cartes de type taux ont un seuil : **moins de 3 candidatures qualifiantes dans la
+fenêtre, et la carte affiche « — » au lieu d'un chiffre.**
+
+- *Adéquation moy. · 30j* nécessite au moins 3 candidatures datées dans les 30 derniers jours.
+- *Taux d'entretien · 90j* nécessite au moins 3 candidatures actives dans les 90 derniers
+  jours.
+
+Le tiret n'est pas un bug — c'est le tableau de bord qui refuse de déguiser le bruit en
+information utile. Postulez quelques fois de plus et le chiffre apparaît. Le même principe
+parcourt tout le produit : là où la donnée manque, vous voyez « no data »,
+jamais une valeur inventée.
+
+**Suite :** [les graphiques](/fr/docs/dashboard/charts) — la même honnêteté, en images.

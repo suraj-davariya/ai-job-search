@@ -1,0 +1,60 @@
+---
+title: El Panel
+description: Toda tu búsqueda de empleo en una pantalla — en vivo, local y honesta con sus números.
+---
+
+Postularse a empleos produce una extraña clase de amnesia. ¿Fue este mes mejor
+que el pasado? ¿Cuántas postulaciones siguen realmente vivas? ¿A qué empresa te
+has postulado calladamente cuatro veces? El panel existe para responder esas
+preguntas de un vistazo.
+
+Es una página web que se ejecuta **en tu propia máquina** y lee [tu archivo de
+tracker](/es/docs/your-data) — el mismo archivo en el que escribe `/apply`.
+Ábrelo en un navegador y todo tu proceso se convierte en números e imágenes.
+
+## Pruébalo ahora mismo
+
+Todo lo de abajo son los widgets reales del panel, ejecutándose en vivo en tu
+navegador con datos ficticios. Haz clic en los grupos de estado. Alterna la
+ventana de 7d/30d. El tuyo se verá así, lleno de tu propia búsqueda.
+
+<DashboardPreview />
+
+> **¿Quieres la app completa, no solo estos widgets?** Abre el [**panel de
+> demostración en vivo**](https://suraj-davariya.github.io/ai-job-search/dashboard/) —
+> la interfaz real del panel, cada página y todo, ejecutándose estáticamente
+> sobre los mismos datos de muestra. Es de solo lectura (la edición, la Consola
+> y las vistas previas de PDF necesitan la app ejecutándose localmente), pero la
+> navegación, los gráficos y la tabla son los reales.
+
+## Un espejo, no un panel de control
+
+El panel deliberadamente edita casi nada. Los hechos de una postulación —
+cuándo, dónde, qué puesto, la puntuación de ajuste, qué archivos se generaron —
+los escribe una vez `/apply` y nunca cambian. Lo que *sí* cambia a medida que
+tu búsqueda se desarrolla es tuyo para actualizar, directamente en la tabla:
+
+- **Estado** — ¿Sent? ¿Interview agendada? ¿Offer? Un clic, y solo se ofrecen
+  movimientos legales (ver [la tabla de
+  postulaciones](/es/docs/dashboard/applications-table)).
+- **Notas** — lo que garabatearías en un margen: nombres, fechas,
+  corazonadas.
+
+Esa es toda la superficie de escritura. Todo lo demás es de solo lectura a
+propósito, para que el panel nunca pueda corromper tu historial — y si un
+archivo de datos falta o está dañado, las páginas muestran un honesto "no data
+yet" en lugar de fallar.
+
+## De dónde vienen los números
+
+Cada gráfico y KPI se calcula desde tu archivo de tracker en el momento de la
+vista — no hay una segunda base de datos que pudiera desincronizarse. La
+aritmética es el mismo pequeño conjunto de funciones que el proyecto prueba
+contra el panel mismo, y esta guía las documenta exactamente:
+
+- [Los KPI](/es/docs/dashboard/kpis) — los cuatro números destacados y la
+  regla de honestidad detrás del "—" que a veces verás.
+- [Los gráficos](/es/docs/dashboard/charts) — qué te dice cada uno de los seis
+  visuales, y cómo leerlos.
+- [La tabla de postulaciones](/es/docs/dashboard/applications-table) —
+  filtrado, edición y la máquina de estados del estado.

@@ -1,0 +1,104 @@
+{
+  "overview": {
+    "title": "Visão geral",
+    "description": "A saúde do seu funil em um relance, calculada ao vivo a partir do seu rastreador.",
+    "empty": {
+      "title": "Nenhuma candidatura ainda",
+      "hint": "Execute /apply <vaga> ou use + Nova candidatura na página Candidaturas. Seus KPIs e gráficos aparecem aqui assim que o rastreador tiver linhas.",
+      "milestone": "Visão geral"
+    }
+  },
+  "kpi": {
+    "total": "Total de candidaturas",
+    "applied": "Enviadas · {window}d",
+    "appliedWindow": "Janela de envio",
+    "windowDays": "{days}d",
+    "avgFit30": "Aderência média · 30d",
+    "interviewRate90": "Taxa de entrevistas · 90d",
+    "floorHint": "Precisa de ≥3 na janela"
+  },
+  "charts": {
+    "noData": "Nenhum dado ainda",
+    "weekly": {
+      "title": "Candidaturas por semana",
+      "caption": "Candidaturas por semana ISO",
+      "colWeek": "Semana",
+      "colApplications": "Candidaturas"
+    },
+    "activity": {
+      "title": "Atividade",
+      "caption": "Candidaturas por dia do calendário",
+      "colDay": "Dia",
+      "colApplications": "Candidaturas"
+    },
+    "status": {
+      "title": "Distribuição por status",
+      "caption": "Candidaturas por status",
+      "colStatus": "Status",
+      "colCount": "Quantidade"
+    },
+    "fit": {
+      "title": "Distribuição de aderência",
+      "caption": "Número de candidaturas por faixa de aderência",
+      "colRange": "Faixa de aderência",
+      "colCount": "Quantidade"
+    },
+    "top": {
+      "title": "Principais empresas",
+      "label": "Empresa",
+      "caption": "{label} por número de candidaturas",
+      "colApplications": "Candidaturas"
+    }
+  },
+  "recent": {
+    "title": "Atividade recente",
+    "mode": "Modo de atividade recente",
+    "new": "Nova",
+    "updated": "Atualizada"
+  },
+  "companies": {
+    "title": "Empresas",
+    "description": "{count, plural, one {# empresa} other {# empresas}} no seu rastreador.",
+    "empty": {
+      "title": "Nenhuma empresa ainda",
+      "hint": "As empresas são derivadas do rastreador. Adicione uma candidatura para preencher esta visão.",
+      "milestone": "Empresas"
+    },
+    "col": {
+      "company": "Empresa",
+      "sector": "Setor",
+      "apps": "Candidaturas",
+      "bestFit": "Melhor aderência",
+      "statusMix": "Distribuição por status"
+    },
+    "salaryHeading": "Referências salariais",
+    "salaryAvailable": "Dados de referência estão disponíveis — ",
+    "salaryLink": "consulte na página Salário",
+    "noSalary": {
+      "title": "Nenhum dado salarial",
+      "hint": "Adicione salary_data.json (ou faça uma consulta na página Salário) para enriquecer as empresas com referências.",
+      "milestone": "REQ-5012"
+    }
+  },
+  "profile": {
+    "title": "Perfil",
+    "description": "Perfil do candidato em modo somente leitura, montado a partir dos seus arquivos de competências.",
+    "projectMemory": "Memória do projeto",
+    "empty": {
+      "title": "Nenhum perfil encontrado",
+      "hint": "Execute /setup para construir seu perfil de candidato (arquivos de competências 01–07). Uma vez presente, suas seções são exibidas aqui em modo somente leitura.",
+      "milestone": "Perfil"
+    }
+  },
+  "upskill": {
+    "title": "Capacitação",
+    "description": "Seus relatórios de capacitação, além de um gatilho para gerar um novo.",
+    "run": "Execute /upskill no console",
+    "unreadable": "(não foi possível ler este relatório)",
+    "empty": {
+      "title": "Nenhum relatório de capacitação ainda",
+      "hint": "Execute /upskill (acima) para gerar um relatório de lacunas de competências. Novos relatórios aparecem aqui assim que forem gravados em upskill/report-*.md.",
+      "milestone": "Capacitação"
+    }
+  }
+}

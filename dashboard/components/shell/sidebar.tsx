@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Flame } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { NAV_ITEMS } from "./nav";
@@ -9,16 +10,19 @@ import { NAV_ITEMS } from "./nav";
 /** Persistent left navigation rail (build-prompt §5). */
 export function Sidebar() {
   const pathname = usePathname();
+  const t = useTranslations("common");
 
   return (
     <aside className="hidden w-60 shrink-0 flex-col border-r border-border bg-card md:flex">
       <div className="flex h-16 items-center gap-2 border-b border-border px-5">
         <Flame className="h-6 w-6 text-primary" aria-hidden />
-        <span className="text-lg font-semibold tracking-tight">CareerForge</span>
+        <span className="text-lg font-semibold tracking-tight">
+          {t("app.name")}
+        </span>
       </div>
 
       <nav className="flex flex-1 flex-col gap-1 p-3" aria-label="Primary">
-        {NAV_ITEMS.map(({ href, label, icon: Icon }) => {
+        {NAV_ITEMS.map(({ href, key, icon: Icon }) => {
           const active =
             href === "/" ? pathname === "/" : pathname.startsWith(href);
           return (
@@ -34,14 +38,14 @@ export function Sidebar() {
               )}
             >
               <Icon className="h-4 w-4" aria-hidden />
-              {label}
+              {t(`nav.${key}`)}
             </Link>
           );
         })}
       </nav>
 
       <div className="border-t border-border px-5 py-3 text-xs text-muted-foreground">
-        Local · 127.0.0.1
+        {t("shell.local")}
       </div>
     </aside>
   );

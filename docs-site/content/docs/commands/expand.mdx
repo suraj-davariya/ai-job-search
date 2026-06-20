@@ -1,0 +1,68 @@
+---
+title: /expand
+description: Mine your documents, your GitHub, and the web for skills you already have but never wrote down — and add them to your profile, safely.
+---
+
+`/expand` is your profile's archaeologist. You've done more than your profile says — a
+course here, a side project there, a tool you picked up on the job. `/expand` goes
+looking for those competencies across everything it can reach and **adds** them to your
+profile. It never edits or deletes what's already there, so running it is always safe.
+
+## Where it looks
+
+1. **Your documents** — `documents/cv`, `linkedin`, `diplomas`, `references`.
+2. **Your GitHub** — every public repository, pinned or not: it reads the READMEs and
+   notes the languages and topics.
+3. **Your other links** — portfolio, Kaggle, Google Scholar, a personal site.
+
+## How it turns a find into a skill
+
+For each thing it discovers, it searches the web two ways at once:
+
+- **Direct lookup** — the actual syllabus of a named course, the skills behind a
+  certification, the docs for a tool.
+- **Inference** — what methods and toolchains that kind of work normally requires.
+
+Inferred items are always labelled as inferred, so you can tell a documented skill from a
+reasoned one.
+
+## You see everything before anything is written
+
+```text
+you:    /expand
+claude: Read your profile. Scanning documents/, GitHub (14 repos), and your Kaggle…
+
+        Competency Map (new items only)
+        ── Technical — Primary ────────────────────────────────────
+        PyTorch          GitHub: vision-experiments        direct
+        ── Methods & Practices ────────────────────────────────────
+        MLflow tracking  Coursera: MLOps Specialisation    both
+        ── Domain Knowledge ───────────────────────────────────────
+        Time-series forecasting   GitHub: demand-forecaster inference
+
+        Add these? (all / review each / skip / skip a group)
+you:    all
+claude: Added 7 competencies across 2 files. Report below.
+```
+
+Your options are **all**, **review** (walk group by group), **skip**, or skip just one
+category. Nothing is written until you say so.
+
+## Additive and idempotent — by design
+
+- **It only adds.** Existing lines are never changed or removed.
+- **Every addition carries a source note**, like *(Coursera — Deep Learning
+  Specialisation)* or *(GitHub — repo: demand-forecaster)*. That note is also how
+  `/expand` stays idempotent: run it again next month and it brings in only what's new.
+- **Nothing is invented.** Every competency traces to a real source or is flagged as an
+  inference, and any document it can't read is reported rather than guessed at.
+
+## What you get at the end
+
+An **expansion report**: what was added to each file (with sources), every source it
+scanned and how many competencies each yielded, anything it skipped and why, and any
+items worth a manual look. A good next move afterwards is
+[`/upskill`](/docs/commands/upskill) — re-check your gaps now that your skill set is
+richer.
+
+`/expand` can also be launched from the dashboard Console; it runs this same command.

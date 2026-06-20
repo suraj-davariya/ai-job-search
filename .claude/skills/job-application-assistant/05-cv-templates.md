@@ -127,6 +127,63 @@ Available in the class but intentionally omitted from the default templates (con
 
 ---
 
+## ATS-Safe Exports (TXT + DOCX)
+
+The compiled LaTeX **PDF is the primary, human-facing CV** and is never replaced. Because
+some applicant-tracking systems parse typeset PDFs poorly (and many prefer Word or plain
+text), every CV is **also** exported as `.txt` and `.docx` (REQ-2063), generated from one
+ATS-safe Markdown source so all three stay content-equivalent.
+
+- **Source:** write `cv/main_<company>.ats.md` with the same tailored content as the
+  `.tex`, in a flat parseable structure — standard headings (`Summary`, `Experience`,
+  `Education`, `Skills`), name + contact at the top, plain text, **no tables, columns, or
+  graphics**, no letter-spacing tricks.
+- **Generate + verify:** `node scripts/ats-export.mjs --md cv/main_<company>.ats.md --out cv/output --pdf <pdf> --name "<name>" --keywords "<kw>"`
+  produces the `.txt`/`.docx` and runs an **ATS parse self-check** (REQ-2064) confirming
+  name, section headers, and top keywords are recoverable from the PDF.
+- **Optional tools (graceful, ARCH-0005):** `.txt` always works; `.docx` needs `pandoc`;
+  the parse check needs `pdftotext` (poppler). Missing tools are noted, never fatal.
+- **No fabrication (ARCH-0007):** the exports contain exactly the claims in the PDF.
+
+---
+
+## Locale Adaptation (Locale Packs)
+
+CV conventions differ by **target market**, not by language (REQ-7009, REQ-7010,
+ADR-0007). A locale pack is a data file under `locale-packs/<code>.json` describing one
+region's conventions. Language (what the CV is written in) and locale (the market's
+conventions) are **separate**: a Spanish speaker applying in Germany writes in their
+chosen language but follows the `de` locale pack.
+
+### Resolving the active locale pack
+
+1. Determine the target market from the posting (employer country / job location) or an
+   explicit user preference.
+2. Load `locale-packs/<code>.json` (e.g. `us`, `gb`, `de`, `fr`, `jp`, `br`, `in`, `eu`).
+3. If no pack matches, fall back to `locale-packs/default.json` — a neutral, conservative
+   profile (A4, no photo, no personal fields). Never crash on a missing pack (ARCH-0005).
+
+### Applying the pack
+
+| Pack field | How to apply |
+|------------|--------------|
+| `pageSize` | `\documentclass[10pt, a4paper]{cfcv}` for A4, `letterpaper` for Letter. Default A4. |
+| `pageCountExpectation` | Sets the page budget below (overrides the default "2"). |
+| `photo` | `forbidden` → never include a photo. `optional` → omit unless the user supplies one. `expected`/`required` → include the user's photo in the header per `photoSpec`; if the user has **not** provided a photo, prompt — never fabricate or use a placeholder (ARCH-0007). |
+| `includedPersonalFields` | Add only fields the user has actually provided (e.g. `dateOfBirth`, `maritalStatus`, `nationalId`). Never invent a value to satisfy a field (ARCH-0007); if missing, ask the user. |
+| `discouragedPersonalFields` | Omit these even if present in the profile (e.g. US/UK: no photo, DOB, marital status — anti-discrimination norms). |
+| `documentTerm` | Use the local term where a label is needed (Résumé / Lebenslauf / Rirekisho / Currículo). |
+| `nameOrder` | `family-given` (e.g. Japan) reorders the displayed name. |
+| `dateFormat` | Format experience/education dates per the pack (e.g. `MM.yyyy` for DE, `yyyy/MM` for JP). |
+| `legalClauses` | `gdpr-consent` → add a short data-processing consent line at the foot (EU markets). |
+| `documentSystem` | Honor multi-document conventions (e.g. Japan's Rirekisho + Shokumukeirekisho). |
+
+**Hard rule (ARCH-0007):** locale packs may *require* a field, but a required field is
+never a license to fabricate. If the candidate has not supplied a photo, date of birth,
+national ID, etc., prompt for it — do not invent or placeholder it.
+
+---
+
 ## Color Override Rules
 
 The class defines the accent color as DodgerBlue (`#4F83FF`). The `\colorlet{accent}{DodgerBlue}` definition in `cfcv.cls` is the single source of truth.
@@ -182,9 +239,13 @@ Use the template matching the target role type. These tokens are 3–4 line prof
 
 ## Page Budget
 
-### 2.1 Hard 2-Page Limit
+### 2.1 Page Limit (locale-aware)
 
-The CV must compile to exactly 2 pages. No exceptions.
+The CV must compile to the page count the active locale pack specifies in
+`pageCountExpectation` (default **2** when no pack applies — e.g. US/UK markets). Some
+markets expect 2–3 pages (DE, BR, IN); the US expects 1–2. Treat the resolved number as
+a hard limit — no exceptions. The budget table below assumes the default 2-page target;
+scale it to the resolved page count.
 
 | Section | Maximum Budget |
 |---------|---------------|
@@ -198,7 +259,7 @@ The CV must compile to exactly 2 pages. No exceptions.
 | Awards | 3 entries, single line each |
 | References | "Available upon request." (single line) |
 
-**Hard 2-page limit. No exceptions.** If in doubt, cut rather than squeeze. Reducing spacing or margins to force-fit content makes the CV look cramped.
+**Hard limit at the locale pack's page count (default 2). No exceptions.** If in doubt, cut rather than squeeze. Reducing spacing or margins to force-fit content makes the CV look cramped.
 
 ---
 

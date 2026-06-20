@@ -1,0 +1,112 @@
+{
+  "page": {
+    "title": "応募",
+    "description": "{count, plural, other {#件}}の応募を記録中。"
+  },
+  "table": {
+    "date": "日付",
+    "company": "企業",
+    "role": "職種",
+    "type": "区分",
+    "channel": "チャネル",
+    "status": "ステータス",
+    "fit": "適合度",
+    "contact": "連絡先",
+    "notes": "メモ",
+    "cv": "CV",
+    "cover": "カバーレター",
+    "source": "出典",
+    "pdf": "PDF",
+    "open": "開く"
+  },
+  "empty": {
+    "title": "応募はまだありません",
+    "hintBefore": "実行",
+    "hintAfter": "して追加してください。",
+    "newApplication": "新規応募"
+  },
+  "filter": {
+    "search": "応募を検索",
+    "searchPlaceholder": "企業、職種、メモを検索…",
+    "roleType": "職種区分",
+    "allTypes": "すべての区分",
+    "channel": "チャネル",
+    "allChannels": "すべてのチャネル",
+    "minFit": "最小適合度",
+    "fitPlaceholder": "適合度 ≥",
+    "fromDate": "開始日",
+    "toDate": "終了日",
+    "clear": "クリア",
+    "resultCount": "{total}件中{count}件"
+  },
+  "pipeline": {
+    "group": "パイプライン件数",
+    "statusCount": "{status}: {count}",
+    "total": "合計{count}件"
+  },
+  "new": {
+    "button": "新規応募",
+    "title": "新規応募",
+    "add": "応募を追加",
+    "cancel": "キャンセル",
+    "close": "閉じる",
+    "readOnlyTip": "読み取り専用モード — 編集は無効になっています"
+  },
+  "fields": {
+    "date": "日付",
+    "status": "ステータス",
+    "company": "企業",
+    "role": "職種",
+    "sector": "業種",
+    "roleType": "職種区分",
+    "channel": "チャネル",
+    "contact": "連絡先",
+    "fit": "適合度（0〜100）",
+    "source": "出典URL"
+  },
+  "validation": {
+    "dateRequired": "日付は必須です",
+    "companyRequired": "企業は必須です",
+    "roleRequired": "職種は必須です"
+  },
+  "aria": {
+    "statusFor": "{company}のステータス",
+    "notesFor": "{company}のメモ"
+  },
+  "notes": {
+    "placeholder": "—"
+  },
+  "drawer": {
+    "closeDetails": "詳細を閉じる",
+    "date": "日付",
+    "lastUpdated": "最終更新",
+    "sector": "業種",
+    "roleType": "職種区分",
+    "channel": "チャネル",
+    "contact": "連絡先",
+    "notes": "メモ",
+    "documents": "ドキュメント",
+    "cv": "CV",
+    "coverLetter": "カバーレター",
+    "noCv": "CVなし",
+    "noCover": "カバーレターなし",
+    "sourcePosting": "出典の求人",
+    "rerunApply": "/apply を再実行",
+    "fileNotFound": "{label}: ファイルが見つかりません"
+  },
+  "provenance": {
+    "title": "出典",
+    "none": "出典は記録されていません",
+    "summary": "{total, plural, other {#件の主張}} · {flagged, plural, =0 {フラグなし} other {#件にフラグ}}",
+    "backedBy": "{source} › {location}",
+    "backedBySource": "{source}",
+    "flagged": "フラグ付き — プロフィールの裏付けなし"
+  },
+  "toast": {
+    "updated": "更新済み · {time}",
+    "statusError": "ステータスを更新できませんでした: {error}",
+    "notesError": "メモを保存できませんでした: {error}",
+    "added": "応募を追加しました",
+    "addError": "応募を追加できませんでした: {error}"
+  }
+}

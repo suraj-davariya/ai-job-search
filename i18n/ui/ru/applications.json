@@ -1,0 +1,112 @@
+{
+  "page": {
+    "title": "Заявки",
+    "description": "{count, plural, one {Отслеживается # заявка} few {Отслеживается # заявки} many {Отслеживается # заявок} other {Отслеживается # заявки}}."
+  },
+  "table": {
+    "date": "Дата",
+    "company": "Компания",
+    "role": "Должность",
+    "type": "Тип",
+    "channel": "Канал",
+    "status": "Статус",
+    "fit": "Соответствие",
+    "contact": "Контакт",
+    "notes": "Заметки",
+    "cv": "Резюме",
+    "cover": "Письмо",
+    "source": "Источник",
+    "pdf": "PDF",
+    "open": "Открыть"
+  },
+  "empty": {
+    "title": "Пока нет заявок",
+    "hintBefore": "Выполните",
+    "hintAfter": "чтобы добавить одну.",
+    "newApplication": "Новая заявка"
+  },
+  "filter": {
+    "search": "Поиск по заявкам",
+    "searchPlaceholder": "Поиск по компании, должности или заметкам…",
+    "roleType": "Тип должности",
+    "allTypes": "Все типы",
+    "channel": "Канал",
+    "allChannels": "Все каналы",
+    "minFit": "Минимальное соответствие",
+    "fitPlaceholder": "Соответствие ≥",
+    "fromDate": "С даты",
+    "toDate": "По дату",
+    "clear": "Очистить",
+    "resultCount": "{count} из {total}"
+  },
+  "pipeline": {
+    "group": "Счётчики воронки",
+    "statusCount": "{status}: {count}",
+    "total": "Всего: {count}"
+  },
+  "new": {
+    "button": "Новая заявка",
+    "title": "Новая заявка",
+    "add": "Добавить заявку",
+    "cancel": "Отмена",
+    "close": "Закрыть",
+    "readOnlyTip": "Режим только для чтения — редактирование отключено"
+  },
+  "fields": {
+    "date": "Дата",
+    "status": "Статус",
+    "company": "Компания",
+    "role": "Должность",
+    "sector": "Отрасль",
+    "roleType": "Тип должности",
+    "channel": "Канал",
+    "contact": "Контакт",
+    "fit": "Соответствие (0–100)",
+    "source": "URL источника"
+  },
+  "validation": {
+    "dateRequired": "Укажите дату",
+    "companyRequired": "Укажите компанию",
+    "roleRequired": "Укажите должность"
+  },
+  "aria": {
+    "statusFor": "Статус для {company}",
+    "notesFor": "Заметки для {company}"
+  },
+  "notes": {
+    "placeholder": "—"
+  },
+  "drawer": {
+    "closeDetails": "Закрыть подробности",
+    "date": "Дата",
+    "lastUpdated": "Последнее обновление",
+    "sector": "Отрасль",
+    "roleType": "Тип должности",
+    "channel": "Канал",
+    "contact": "Контакт",
+    "notes": "Заметки",
+    "documents": "Документы",
+    "cv": "Резюме",
+    "coverLetter": "Сопроводительное письмо",
+    "noCv": "Нет резюме",
+    "noCover": "Нет сопроводительного письма",
+    "sourcePosting": "Исходная вакансия",
+    "rerunApply": "Перезапустить /apply",
+    "fileNotFound": "{label}: файл не найден"
+  },
+  "provenance": {
+    "title": "Источники",
+    "none": "Источники не зафиксированы",
+    "summary": "{total, plural, one {# утверждение} few {# утверждения} many {# утверждений} other {# утверждения}} · {flagged, plural, =0 {ни одного помеченного} one {# помечено} few {# помечено} many {# помечено} other {# помечено}}",
+    "backedBy": "{source} › {location}",
+    "backedBySource": "{source}",
+    "flagged": "Помечено — нет подтверждения в профиле"
+  },
+  "toast": {
+    "updated": "Обновлено · {time}",
+    "statusError": "Не удалось обновить статус: {error}",
+    "notesError": "Не удалось сохранить заметки: {error}",
+    "added": "Заявка добавлена",
+    "addError": "Не удалось добавить заявку: {error}"
+  }
+}

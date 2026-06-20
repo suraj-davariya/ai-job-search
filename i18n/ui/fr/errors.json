@@ -1,0 +1,6 @@
+{
+  "requestFailed": "échec de la requête",
+  "lookupFailed": "échec de la recherche",
+  "csvParse": "Impossible de lire le fichier de suivi. Vérifiez que job_search_tracker.csv est un CSV valide.",
+  "generic": "Une erreur s'est produite."
+}

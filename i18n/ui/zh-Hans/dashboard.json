@@ -1,0 +1,104 @@
+{
+  "overview": {
+    "title": "概览",
+    "description": "一眼掌握求职流程的健康状况，由您的追踪器实时计算得出。",
+    "empty": {
+      "title": "暂无申请",
+      "hint": "运行 /apply <posting>，或在“申请”页面使用“+ 新建申请”。追踪器有数据后，您的 KPI 和图表会显示在此处。",
+      "milestone": "概览"
+    }
+  },
+  "kpi": {
+    "total": "申请总数",
+    "applied": "已投递 · {window}天",
+    "appliedWindow": "投递时间窗",
+    "windowDays": "{days}天",
+    "avgFit30": "平均匹配度 · 30天",
+    "interviewRate90": "面试率 · 90天",
+    "floorHint": "时间窗内需 ≥3 条"
+  },
+  "charts": {
+    "noData": "暂无数据",
+    "weekly": {
+      "title": "每周申请数",
+      "caption": "按 ISO 周统计的申请数",
+      "colWeek": "周",
+      "colApplications": "申请数"
+    },
+    "activity": {
+      "title": "活动",
+      "caption": "按日历日统计的申请数",
+      "colDay": "日",
+      "colApplications": "申请数"
+    },
+    "status": {
+      "title": "状态分布",
+      "caption": "按状态统计的申请",
+      "colStatus": "状态",
+      "colCount": "数量"
+    },
+    "fit": {
+      "title": "匹配度分布",
+      "caption": "每个匹配度区间的申请数量",
+      "colRange": "匹配度区间",
+      "colCount": "数量"
+    },
+    "top": {
+      "title": "热门公司",
+      "label": "公司",
+      "caption": "按申请数统计的{label}",
+      "colApplications": "申请数"
+    }
+  },
+  "recent": {
+    "title": "最近活动",
+    "mode": "最近活动模式",
+    "new": "新增",
+    "updated": "已更新"
+  },
+  "companies": {
+    "title": "公司",
+    "description": "您的追踪器中共有 {count, plural, other {# 家公司}}。",
+    "empty": {
+      "title": "暂无公司",
+      "hint": "公司信息由追踪器派生。添加一条申请即可填充此视图。",
+      "milestone": "公司"
+    },
+    "col": {
+      "company": "公司",
+      "sector": "行业",
+      "apps": "申请",
+      "bestFit": "最佳匹配度",
+      "statusMix": "状态分布"
+    },
+    "salaryHeading": "薪资基准",
+    "salaryAvailable": "基准数据可用 — ",
+    "salaryLink": "在“薪资”页面浏览",
+    "noSalary": {
+      "title": "暂无薪资数据",
+      "hint": "添加 salary_data.json（或在“薪资”页面运行查询），即可用基准数据丰富公司信息。",
+      "milestone": "REQ-5012"
+    }
+  },
+  "profile": {
+    "title": "个人档案",
+    "description": "只读的候选人档案，由您的技能文件汇编而成。",
+    "projectMemory": "项目记忆",
+    "empty": {
+      "title": "未找到档案",
+      "hint": "运行 /setup 构建您的候选人档案（01–07 技能文件）。生成后，其各部分将在此处以只读方式呈现。",
+      "milestone": "个人档案"
+    }
+  },
+  "upskill": {
+    "title": "技能提升",
+    "description": "您的技能提升报告，以及生成新报告的触发入口。",
+    "run": "在控制台运行 /upskill",
+    "unreadable": "（无法读取此报告）",
+    "empty": {
+      "title": "暂无技能提升报告",
+      "hint": "运行 /upskill（上方）生成技能差距报告。报告写入 upskill/report-*.md 后将显示在此处。",
+      "milestone": "技能提升"
+    }
+  }
+}

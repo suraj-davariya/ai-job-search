@@ -1,0 +1,22 @@
+{
+  "title": "Gehalt",
+  "description": "Durchsuchen Sie Ihre Gehalts-Benchmarks und führen Sie eine Unternehmenssuche aus.",
+  "empty": {
+    "title": "Keine Gehaltsdaten",
+    "hint": "Fügen Sie salary_data.json im Repo-Stammverzeichnis hinzu (oder importieren Sie eine Excel-Tabelle mit tools/convert_salary_excel.py). Bis dahin funktioniert die Suche unten weiterhin.",
+    "milestone": "REQ-5014"
+  },
+  "tableCaption": "{key} ({count})",
+  "lookupHeading": "Ein Unternehmen suchen",
+  "company": "Unternehmen",
+  "companyPlaceholder": "Unternehmensname",
+  "lookUp": "Suchen",
+  "looking": "Wird gesucht…",
+  "noMatch": "Keine Übereinstimmung für „{query}“ gefunden.",
+  "unnamed": "(ohne Namen)",
+  "noOutput": "Keine Ausgabe.",
+  "tip": {
+    "readOnly": "Schreibgeschützter Modus – Aktionen sind deaktiviert",
+    "pythonMissing": "python3 nicht im PATH gefunden"
+  }
+}

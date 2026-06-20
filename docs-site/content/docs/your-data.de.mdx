@@ -1,0 +1,78 @@
+---
+title: Deine Daten
+description: Eine einzige menschenlesbare Datei enthält deine gesamte Suche — hier ist jede Spalte und wer was schreibt.
+---
+
+Die meisten Jobsuch-Tools speichern deine Historie in *ihrer* Datenbank.
+CareerForge speichert sie in **einer Datei auf deinem Computer**:
+`job_search_tracker.csv`. CSV ist das einfachste Datenformat, das es gibt —
+öffne es in Excel, Numbers, Google Sheets oder einem Texteditor, und du siehst
+genau, was jeder Teil von CareerForge sieht. Nichts versteckt sich hinter einem
+Export-Knopf, weil es nichts gibt, *von dem* man exportieren müsste.
+
+Das ist einen Moment der Wertschätzung wert: Wenn du CareerForge morgen nicht
+mehr nutzt, verlierst du nichts. Die Datei gehört dir, für immer lesbar, von
+allem.
+
+## Die 14 Spalten
+
+Jede Bewerbung ist eine Zeile mit diesen Feldern, in dieser Reihenfolge:
+
+| # | Spalte | Was sie enthält | Wer sie ausfüllt |
+|---|--------|---------------|-----------------|
+| 1 | `date` | Das Bewerbungsdatum (`YYYY-MM-DD`) | `/apply` |
+| 2 | `company` | Unternehmensname | `/apply` |
+| 3 | `sector` | Branche, z. B. *Software*, *Fintech* | `/apply` |
+| 4 | `role` | Der Stellentitel | `/apply` |
+| 5 | `role_type` | z. B. *Full-time*, *Contract* | `/apply` |
+| 6 | `channel` | Wie du dich beworben hast — *LinkedIn*, *Referral*, *Company site*… | `/apply` |
+| 7 | `status` | Eine der sieben Pipeline-Stufen | **Du**, über das Dashboard |
+| 8 | `contact_person` | Dein dortiger Kontakt, falls vorhanden | `/apply`, oder du in den Notizen |
+| 9 | `fit_rating` | Der Passungswert von 0–100 aus der Bewertung | `/apply` |
+| 10 | `notes` | Alles, was du dir merken willst | **Du**, über das Dashboard |
+| 11 | `cv_file` | Pfad zum genauen gesendeten Lebenslauf-PDF | `/apply` |
+| 12 | `cover_letter_file` | Pfad zum genauen Anschreiben-PDF | `/apply` |
+| 13 | `source` | Link zur ursprünglichen Anzeige | `/apply` |
+| 14 | `last_updated` | Wann sich die Zeile zuletzt geändert hat | Automatisch gestempelt |
+
+## Wer was schreibt — der Vertrag
+
+Drei Akteure berühren diese Datei, jeder mit einer streng begrenzten Rolle:
+
+1. **`/apply` hängt nur an.** Eine fertige Bewerbung wird zu einer *neuen* Zeile
+   am unteren Rand (Status **Draft**). Es ändert niemals eine bestehende Zeile
+   — deine Historie kann durch einen späteren Lauf nicht umgeschrieben werden.
+2. **Das Dashboard bearbeitet genau drei Zellen:** `status` (nur legale Züge),
+   `notes` und das sich selbst stempelnde `last_updated`. Jede andere Spalte ist
+   in der Oberfläche schreibgeschützt.
+3. **Du kannst alles bearbeiten,** jederzeit, in jeder
+   Tabellenkalkulations-App. Es ist deine Datei. Das Dashboard liest sie
+   einfach neu ein, und die Diagramme folgen.
+
+Diese Disziplin ist der Grund, warum die Zahlen des Dashboards vertrauenswürdig
+sind: Der faktische Datensatz wird einmal zum Bewerbungszeitpunkt geschrieben,
+und nur die Dinge, die sich wirklich ändern — wo die Bewerbung steht, was du
+gelernt hast — ändern sich jemals.
+
+## Die Status-Werte
+
+Die Spalte `status` akzeptiert genau sieben Werte — `Draft`, `Sent`,
+`Interview`, `Offer`, `Rejected`, `Withdrawn`, `Closed` — und das Dashboard
+erzwingt, [welche Züge zwischen ihnen legal
+sind](/de/docs/dashboard/applications-table#the-status-state-machine). Wenn du
+die Datei von Hand bearbeitest, hält das Festhalten an diesen sieben die
+Diagramme aussagekräftig.
+
+## Freunde des Trackers
+
+Ein paar andere Dateien leben daneben, alle lokal, alle in `.gitignore`:
+
+- **Dein Profil** — die Dokumente, die `/setup` gebaut hat; die Quelle der
+  Wahrheit für jeden Lebenslauf.
+- **Das Register gesehener Jobs** — jede Anzeige, die `/search` dir gezeigt hat,
+  damit Duplikate nie wiederkommen.
+- **Deine generierten PDFs** — Lebenslauf und Anschreiben jeder Bewerbung, genau
+  wie erzeugt, verlinkt aus den Spalten 11 und 12.
+
+Wo jede davon liegt — und warum keine von ihnen jemals deinen Rechner verlässt —
+wird als Nächstes behandelt, im [Datenschutz](/de/docs/privacy).

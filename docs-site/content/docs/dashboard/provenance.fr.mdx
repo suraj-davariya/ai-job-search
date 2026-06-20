@@ -1,0 +1,52 @@
+---
+title: Le panneau de provenance
+description: Chaque affirmation du CV, reliée au fichier de profil qui la justifie — l'audit anti-fabrication, rendu visible.
+---
+
+La plus ancienne promesse de CareerForge est qu'il n'invente jamais d'expérience. Le
+**panneau de provenance** est l'endroit où vous pouvez *vérifier* cette promesse, candidature après
+candidature, plutôt que de la prendre pour argent comptant.
+
+Il se trouve dans le tiroir de détail d'une candidature : ouvrez une ligne dans [le tableau des
+candidatures](/fr/docs/dashboard/applications-table) et le panneau de provenance s'affiche
+à côté de l'enregistrement. Il présente chaque affirmation faite par le CV personnalisé et, à
+côté de chacune, la **source du profil** qui la justifie.
+
+## Ce qu'il montre
+
+Chaque ligne associe une affirmation à son origine :
+
+- **L'affirmation** — une compétence, un résultat, une responsabilité, exactement telle qu'elle apparaît sur
+  le CV généré.
+- **Sa source** — le fichier de profil dont cette affirmation est tirée, afin que vous puissiez voir
+  *pourquoi* le document est autorisé à l'énoncer.
+- **Un signalement, lorsqu'il n'y en a pas.** Toute affirmation que `/apply` n'a pas pu relier à
+  votre profil réel est **mise en évidence pour révision** plutôt que masquée. C'est tout
+  l'intérêt : une affirmation non justifiée est quelque chose à examiner, pas quelque chose à
+  envoyer en silence.
+
+## Un miroir, comme le reste du tableau de bord
+
+Le panneau est en **lecture seule**. Il ne modifie ni votre CV, ni votre profil, ni votre
+suivi — il ne fait que refléter l'audit que `/apply` a déjà produit. Il lit à partir d'un
+simple fichier écrit aux côtés des documents de la candidature :
+
+```text
+documents/applications/<company>_<role>/provenance.json
+```
+
+C'est encore le principe du [fichier comme base de données](/fr/docs/your-data) : le registre est un fichier lisible par un humain
+sur votre machine, généré une seule fois en même temps que les documents, et qui ne communique jamais
+avec l'extérieur. Si le fichier est absent — par exemple pour une candidature ajoutée à la main —
+le panneau n'affiche simplement rien à auditer plutôt que d'échouer.
+
+## Pourquoi cela vaut le coup d'œil
+
+Une affirmation signalée n'est pas une accusation ; c'est une invitation. Peut-être que le profil
+omet simplement quelque chose que vous avez réellement fait — corrigez le profil et relancez. Peut-être qu'une
+formulation a dérivé au-delà de ce que vous pouvez défendre sereinement — adoucissez-la ou supprimez-la avant
+de l'envoyer. Dans tous les cas, le panneau de provenance transforme le *« faites-moi confiance, rien n'est
+inventé »* en quelque chose que vous pouvez vérifier ligne par ligne.
+
+**Voir aussi :** [`/apply`](/fr/docs/commands/apply#every-claim-traced-to-its-source)
+est l'endroit où le registre est produit ; ce panneau est l'endroit où vous le relisez.

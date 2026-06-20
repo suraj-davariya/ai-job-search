@@ -1,0 +1,71 @@
+---
+title: FAQ
+description: As perguntas que todo mundo faz na primeira semana, respondidas sem rodeios.
+---
+
+## Preciso saber programar?
+
+Não. Você vai instalar dois programas, digitar comandos curtos como `/search` e
+responder perguntas em linguagem comum. O mais próximo de "técnico" que você vai
+chegar é abrir uma janela de terminal, e o [Guia Rápido](/pt-BR/docs/quick-start)
+te conduz pela mão nisso.
+
+## Ele vai se candidatar às vagas por mim?
+
+Não — propositalmente. Ele prepara tudo: a avaliação, o currículo, a carta de
+apresentação, o acompanhamento. *Você* lê os PDFs e aperta enviar. Uma
+candidatura é uma representação pessoal de você; o trabalho do CareerForge é
+tornar a sua excelente, não dispará-la sem supervisão.
+
+## Funciona no meu país e idioma?
+
+Esse é o objetivo do design. Nenhum site de vagas, país ou idioma está fixado no
+código — você diz ao `/setup` onde está procurando e quais sites importam no seu
+mercado. As cartas de apresentação são escritas automaticamente no idioma do
+anúncio. O currículo é sempre em inglês; se o seu mercado precisa de currículos
+em outro idioma, essa é uma limitação atual que vale conhecer desde já.
+
+## O que a nota de aderência significa de verdade?
+
+Uma pontuação de 0–100 ao longo de [cinco dimensões
+ponderadas](/pt-BR/docs/commands/apply#first-it-scores-the-fit--and-asks):
+habilidades técnicas, alinhamento de carreira, experiência, aderência
+comportamental e um passa/não passa de localização. 75+ é uma forte
+correspondência. Trate-a como uma segunda opinião estruturada, não como um
+oráculo — seu valor real é o *porquê*: a tabela de dimensões mostra exatamente
+onde você é forte e onde estão as lacunas.
+
+## A IA poderia inventar algo sobre mim?
+
+Ela foi feita para não fazer isso: cada afirmação do currículo e da carta de
+apresentação precisa remontar ao seu perfil, exageros são sinalizados para a sua
+decisão, e afirmações sobre a empresa são verificadas de forma independente
+antes de serem usadas. E a leitura final é sua — o que é o outro motivo de nada
+ser enviado automaticamente.
+
+## Para onde vão meus dados?
+
+Para lugar nenhum. Perfil, rastreador e PDFs vivem todos em uma única pasta na
+sua máquina — veja [Privacidade](/pt-BR/docs/privacy) para o quadro completo,
+incluindo a única nuance (a própria conversa com a IA roda no Claude).
+
+## Sou obrigado a usar o painel?
+
+Não. O rastreador é [um CSV simples](/pt-BR/docs/your-data) que você pode abrir
+em qualquer planilha. O painel apenas o torna agradável: gráficos, edição segura
+de status, notas. Pule-o por completo e nada mais quebra.
+
+## Quanto custa?
+
+O CareerForge em si é gratuito e de código aberto (MIT). Você vai precisar de
+uma conta Claude para o Claude Code — o plano Free funciona; o Pro é mais
+confortável para uso intenso. Não há taxas do CareerForge por cima.
+
+## Algo quebrou — onde eu procuro?
+
+Os dois suspeitos de sempre numa primeira execução são o LaTeX (um pacote
+faltando — reexecute a linha de instalação do [Guia
+Rápido](/pt-BR/docs/quick-start)) e estar na pasta errada (execute `claude` de
+dentro do diretório do CareerForge, ou os comandos não vão existir). Além disso,
+as [issues do GitHub](https://github.com/suraj-davariya/ai-job-search/issues)
+estão abertas, e relatos de bug são uma contribuição genuinamente útil.

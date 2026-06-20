@@ -1,0 +1,90 @@
+---
+title: Les graphiques
+description: Six images de votre recherche — ce que chacune vous apprend et comment la lire.
+---
+
+Six graphiques, chacun répondant à une question sur votre recherche. Ils sont
+tous interactifs ci-dessous, tirés du même tracker fictif que le reste de ce
+guide — faites défiler, survolez et cliquez partout.
+
+## Candidatures par semaine
+
+*Est-ce que je maintiens un rythme ?*
+
+<WeeklyBarDemo />
+
+Chaque barre représente une semaine (les semaines commencent le lundi), et sa
+hauteur correspond au nombre de candidatures que vous avez datées dans cette
+semaine. Une recherche d'emploi vit et meurt au rythme, et c'est le graphique
+qui montre le vôtre — y compris les creux. Une barre manquante n'est pas une
+honte, c'est une information.
+
+## Calendrier d'activité
+
+*À quoi ressemble réellement ma régularité ?*
+
+<ActivityCalendarDemo />
+
+Les mêmes données que les barres hebdomadaires, mais jour par jour, comme un
+journal annuel d'un coup d'œil. Des carrés plus chauds signifient plus de
+candidatures ce jour-là. Des tendances ressortent ici que le diagramme en
+barres lisse : la pause de deux semaines en avril, l'habitude du dimanche
+uniquement, les sprints de fin de mois.
+
+## Répartition des statuts
+
+*Où en est tout actuellement ?*
+
+<StatusDonutDemo />
+
+Chaque candidature de votre tracker, regroupée par son statut actuel. Le
+nombre au centre est votre total de tous les temps. Un anneau sain change de
+forme avec le temps : au début, il est surtout Sent ; plus tard, Interview et
+les états terminaux grandissent. Un anneau entièrement Draft est une pile de
+lettres non envoyées — utile à remarquer.
+
+## Distribution de l'adéquation
+
+*Est-ce que je vise les bons emplois ?*
+
+<FitHistogramDemo />
+
+Le score d'adéquation de chaque candidature (0–100), regroupé en cinq bandes.
+Une masse dans les bandes 60–100 signifie que vous postulez là où vous êtes
+réellement compétitif. Une longue traîne 0–39 indique généralement que la
+recherche doit être affinée — ou que vous forcez des candidatures que vous
+soupçonnez déjà d'être perdues d'avance.
+
+## Principales entreprises
+
+*Où va mon attention ?*
+
+<TopCompaniesDemo />
+
+Les cinq entreprises auxquelles vous avez le plus postulé. Des candidatures
+répétées à une même entreprise peuvent traduire de la persévérance ou être un
+signal de varier l'approche — dans tous les cas, il vaut mieux le savoir que
+d'être surpris.
+
+## Bande de pipeline
+
+*Le résumé en une ligne.*
+
+<PipelineStripDemo />
+
+Les mêmes décomptes de statuts que l'anneau, sous forme de bande compacte
+placée au-dessus du tableau des candidatures. Dans le vrai tableau de bord,
+les deux restent synchronisés : cliquez sur un statut ici et le tableau se
+filtre en conséquence. Les statuts terminaux (Rejected, Withdrawn, Closed)
+s'affichent en grisé — à l'écart, jamais supprimés.
+
+---
+
+Une note sur la confiance : chaque graphique ci-dessus est calculé par la même
+arithmétique que le vrai tableau de bord, testé automatiquement par rapport à
+lui, et chaque graphique embarque un tableau de données masqué pour les
+lecteurs d'écran — ainsi, ce que vous *voyez* est toujours étayé par des
+chiffres que vous pourriez lire d'une autre manière.
+
+**Suite :** [le tableau des candidatures](/fr/docs/dashboard/applications-table),
+là où se déroule le travail quotidien.

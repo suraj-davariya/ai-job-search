@@ -1,0 +1,56 @@
+---
+title: Le tableau de bord
+description: Toute votre recherche d'emploi sur un seul écran — en direct, en local, et honnête quant à ses chiffres.
+---
+
+Postuler à des emplois produit une étrange forme d'amnésie. Ce mois-ci était-il meilleur
+que le précédent ? Combien de candidatures sont réellement encore en vie ? À quelle entreprise avez-vous
+discrètement postulé quatre fois ? Le tableau de bord existe pour répondre à ces
+questions d'un coup d'œil.
+
+C'est une page web qui s'exécute **sur votre propre machine** et lit [votre fichier de
+suivi](/fr/docs/your-data) — le même fichier dans lequel `/apply` écrit. Ouvrez-le dans un
+navigateur et tout votre pipeline devient chiffres et images.
+
+## Essayez-le tout de suite
+
+Tout ce qui suit, ce sont les vrais widgets du tableau de bord, fonctionnant en direct dans votre
+navigateur sur des données fictives. Cliquez sur les groupes de statuts. Basculez la fenêtre
+7j/30j. Le vôtre ressemblera à ceci, rempli de votre propre recherche.
+
+<DashboardPreview />
+
+> **Vous voulez toute l'application, pas seulement ces widgets ?** Ouvrez le
+> [**tableau de bord de démonstration en direct**](https://suraj-davariya.github.io/ai-job-search/dashboard/) —
+> l'interface réelle du tableau de bord, chaque page et tout, fonctionnant de manière statique sur les mêmes
+> données d'exemple. Il est en lecture seule (l'édition, la Console et les aperçus PDF nécessitent que
+> l'application tourne en local), mais la navigation, les graphiques et le tableau sont les vrais.
+
+## Un miroir, pas un panneau de commande
+
+Le tableau de bord ne modifie volontairement presque rien. Les faits d'une candidature —
+quand, où, quel poste, le score d'adéquation, quels fichiers ont été générés — sont
+écrits une fois par `/apply` et ne changent jamais. Ce qui *change* à mesure que votre recherche
+se déroule vous appartient et se met à jour directement dans le tableau :
+
+- **Statut** — Sent ? Entretien réservé ? Offre ? Un clic, et seuls les mouvements
+  autorisés sont proposés (voir [le tableau des candidatures](/fr/docs/dashboard/applications-table)).
+- **Notes** — tout ce que vous griffonneriez en marge : noms, dates, intuitions.
+
+C'est toute la surface d'écriture. Tout le reste est en lecture seule à dessein, afin que
+le tableau de bord ne puisse jamais corrompre votre historique — et si un fichier de données manque
+ou est endommagé, les pages affichent un honnête « no data yet » au lieu de planter.
+
+## D'où viennent les chiffres
+
+Chaque graphique et chaque KPI est calculé à partir de votre fichier de suivi au moment de l'affichage — il n'y a
+aucune seconde base de données qui pourrait se désynchroniser. Le calcul est le même
+petit ensemble de fonctions que le projet teste contre le tableau de bord lui-même, et
+ce guide les documente exactement :
+
+- [Les KPI](/fr/docs/dashboard/kpis) — les quatre chiffres phares et la règle d'honnêteté
+  derrière le « — » que vous verrez parfois.
+- [Les graphiques](/fr/docs/dashboard/charts) — ce que chacun des six visuels vous
+  apprend, et comment le lire.
+- [Le tableau des candidatures](/fr/docs/dashboard/applications-table) — le filtrage,
+  l'édition, et la machine à états des statuts.

@@ -1,0 +1,68 @@
+---
+title: /upskill
+description: Voyez précisément où vous êtes en deçà des emplois que vous visez — et obtenez un plan concret, issu du web, pour combler l'écart.
+---
+
+`/upskill` est votre coach de carrière. Il examine la distance entre votre situation actuelle et
+ce que les emplois que vous visez exigent de vous, puis vous remet une liste priorisée de ce qu'il faut
+apprendre et où l'apprendre — chaque ressource provenant d'une recherche web en direct, jamais
+inventée.
+
+## Deux façons de l'exécuter
+
+| Vous tapez | Mode | Ce qu'il examine |
+|----------|------|------------------|
+| `/upskill` | **Agrégé** | Chaque emploi de votre suivi. Les rôles pour lesquels vous correspondez *le moins* comptent le plus, afin que le plan pointe vers ce qui vous freine réellement. |
+| `/upskill <job url>` | **Ciblé** | Une annonce précise. (Collez le texte à la place si le lien ne se charge pas.) |
+
+## À quoi ressemble une exécution
+
+```text
+you:    /upskill
+claude: Reading your tracker (12 applications) and your profile…
+
+        Skill Gap Heatmap
+        ──────────────────────────────────────────────────────────
+        Priority  Skill / Area          Type        Seen in
+        Critical  Kubernetes            tooling     7 of 12 roles
+        High      Terraform / IaC       tooling     5 of 12 roles
+        High      MLOps pipelines       domain      4 of 12 roles
+        Medium    Stakeholder comms     soft        3 of 12 roles
+        Low       Go                    —           1 of 12 roles
+        ──────────────────────────────────────────────────────────
+
+        Building your learning plan (searching for current resources)…
+        Saved → upskill/report-2026-06-17.md
+```
+
+La carte thermique s'affiche en premier, pour que vous voyiez la forme de l'écart avant le détail.
+
+## Ce que vous en retirez
+
+1. **Une carte thermique des écarts** — chaque écart noté Critical / High / Medium / Low, étiqueté par type
+   (un outil manquant, un domaine dans lequel vous n'avez pas travaillé, une compétence relationnelle ou une certification).
+2. **Un plan d'apprentissage** — pour chaque écart qui compte, deux ou trois ressources réelles (avec
+   liens et une raison en une ligne), une orientation d'étude adaptée à ce que vous savez *déjà* afin que
+   vous ne réappreniez pas les bases, et une estimation de temps.
+3. **Un ordre d'étude** — une séquence numérotée qui respecte les dépendances, met en avant les gains
+   rapides et garde les connaissances de domaine larges pour la fin, avec un temps total en bas.
+4. **Un rapport enregistré** dans `upskill/report-*.md`. Relancez-le le mois prochain et le rapport agrégé
+   s'ouvre sur un *delta* : quels écarts vous avez comblés, et lesquels sont nouveaux.
+
+## Comment il reste honnête
+
+- **Aucune ressource inventée.** Chaque cours, document et livre provient d'une véritable recherche web
+  incluant l'année en cours dans la requête. Si rien de bon n'existe pour un écart, il le dit.
+- **Il ne remplira pas un suivi vide.** Aucune candidature enregistrée pour l'instant ? Au lieu d'un
+  rapport vide, il vous incite à lancer d'abord [`/search`](/fr/docs/commands/search) et
+  [`/apply`](/fr/docs/commands/apply), ou à le pointer vers un seul emploi avec
+  `/upskill <url>`.
+- **Les écarts de faible priorité** apparaissent dans la carte thermique par souci d'exhaustivité mais
+  n'obtiennent pas d'entrée dans le plan sauf si vous le demandez — le plan reste centré sur ce qui fait
+  bouger les choses.
+
+## Le voir dans le tableau de bord
+
+Chaque rapport atterrit dans `upskill/report-*.md`, et l'onglet **Upskill** du tableau de bord les liste
+pour que vous puissiez les relire à tout moment. Vous pouvez aussi lancer une nouvelle exécution directement
+depuis la Console du tableau de bord ; elle exécute cette même commande `/upskill`.

@@ -4,6 +4,12 @@
 
 **An AI job-search assistant that finds postings, writes tailored CVs and cover letters, and compiles them to print-ready PDFs — all on your own machine.**
 
+**🌍 Read this in your language** _(alphabetical · 12 available · all beta, English is canonical):_
+
+[العربية (Arabic)](i18n/readme/README.ar.md) · [বাংলা (Bengali)](i18n/readme/README.bn.md) · [简体中文 (Chinese, Simplified)](i18n/readme/README.zh-Hans.md) · [Deutsch (German)](i18n/readme/README.de.md) · [English](README.md) · [Español (Spanish)](i18n/readme/README.es.md) · [Français (French)](i18n/readme/README.fr.md) · [हिन्दी (Hindi)](i18n/readme/README.hi.md) · [Bahasa Indonesia (Indonesian)](i18n/readme/README.id.md) · [日本語 (Japanese)](i18n/readme/README.ja.md) · [Português BR (Portuguese)](i18n/readme/README.pt-BR.md) · [Русский (Russian)](i18n/readme/README.ru.md)
+
+<sub>**Planned** (help translate — [`i18n/CONTRIBUTING.md`](i18n/CONTRIBUTING.md)): Chinese (Traditional), Dutch, Filipino, Hebrew, Italian, Korean, Malay, Marathi, Persian, Polish, Portuguese (Portugal), Romanian, Swahili, Tamil, Telugu, Thai, Turkish, Ukrainian, Urdu, Vietnamese.</sub>
+
 <!-- Try it live — hosted on GitHub Pages, no install needed -->
 [![Live Docs](https://img.shields.io/badge/Docs-Live%20site-D97757?logo=githubpages&logoColor=white)](https://suraj-davariya.github.io/ai-job-search/)
 [![Live Dashboard Demo](https://img.shields.io/badge/Dashboard-Live%20demo-D97757?logo=nextdotjs&logoColor=white)](https://suraj-davariya.github.io/ai-job-search/dashboard/)
@@ -12,9 +18,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?logo=anthropic&logoColor=white)](https://claude.com/claude-code)
 [![AI-Native](https://img.shields.io/badge/AI--Native-Agentic%20workflow-8A4FFF)](docs/architecture/architecture-overview.md)
-[![Agents](https://img.shields.io/badge/Agents-Drafter%20%2B%20Reviewer-8A4FFF)](.claude/agents/)
-[![Skills](https://img.shields.io/badge/Skills-2-8A4FFF)](.claude/skills/)
-[![Commands](https://img.shields.io/badge/Commands-%2Fsetup%20%2Fsearch%20%2Fapply-8A4FFF)](.claude/commands/)
+[![Agents](https://img.shields.io/badge/Agents-Reviewer%20%2B%20Research-8A4FFF)](.claude/agents/)
+[![Skills](https://img.shields.io/badge/Skills-3-8A4FFF)](.claude/skills/)
+[![Commands](https://img.shields.io/badge/Commands-setup%20%C2%B7%20search%20%C2%B7%20apply%20%C2%B7%20upskill%20%C2%B7%20expand%20%C2%B7%20reset-8A4FFF)](.claude/commands/)
 [![Prompt-as-code](https://img.shields.io/badge/Architecture-Prompt--as--code-6E56CF)](docs/architecture/)
 
 <!-- How it's built — modern stack, privacy, reach -->
@@ -134,6 +140,16 @@ sudo apt-get install texlive-full   # Debian/Ubuntu
 python3 --version    # must be 3.10+
 pip install openpyxl # only needed if importing salary data from Excel
 ```
+
+### 4. pandoc & poppler _(optional — for ATS-safe CV exports)_
+
+```bash
+pandoc --version     # generates the .docx export (and higher-fidelity .txt)
+pdftotext -v         # poppler — runs the ATS parse self-check
+```
+
+Without these, `/apply` still produces the polished PDF **and** a plain-text `.txt`; only
+the `.docx` export and the PDF parse-check are skipped (graceful degradation).
 
 ---
 
@@ -308,6 +324,90 @@ Verdict: **Strong** (75+) · **Good** (60–74) · **Moderate** (45–59) · **W
 
 ---
 
+### `/upskill` — Find your skill gaps and a plan to close them
+
+Compares your profile against demand and produces a prioritised gap heatmap, a
+learning plan built from **real, web-searched** resources, and a dependency-aware study
+order — then saves it all as a report the dashboard can show you.
+
+**Two modes:**
+
+| Syntax | Mode | What it analyses |
+|--------|------|------------------|
+| `/upskill` | Aggregate | Every job in your tracker, weighted so the roles you fit *least* count most |
+| `/upskill <url>` | Targeted | One posting (paste the text if the URL won't fetch) |
+
+**What you get:**
+
+| Output | Location |
+|--------|---------|
+| Gap heatmap (Critical / High / Medium / Low) | In conversation |
+| Learning plan — 2–3 resources per gap, with study direction + time estimate | In the report |
+| Study order with total time | In the report |
+| Saved report (with since-last-run delta in aggregate mode) | `upskill/report-*.md` |
+
+Reports appear in the dashboard's **Upskill** tab. Nothing is fabricated — every
+resource comes from a live web search, and an empty tracker gets an honest nudge toward
+targeted mode rather than an empty report.
+
+---
+
+### `/expand` — Grow your profile from everything you've already done
+
+Finds competencies you have but haven't written down — from your documents, your public
+**GitHub** repos, and the web — and **adds** them to your profile. It never edits or
+removes what's already there.
+
+**How it works:**
+
+1. **Scans** `documents/`, your GitHub repositories (READMEs, languages, topics), and
+   other profile links (portfolio, Kaggle, Scholar).
+2. **Enriches** each find via web search — both a direct lookup (course syllabi,
+   certification skill lists, tool docs) and inference about the methods and toolchains
+   the work implies.
+3. **Shows you a competency map** grouped by category, each item traced to its source and
+   marked direct / inferred — for your review *before* anything is written.
+4. **Adds only what you approve**, each with a source note like *(Coursera — Deep
+   Learning Specialisation)*. Those notes make re-runs idempotent, and inferred
+   behavioural traits are clearly labelled.
+
+**Example prompts:**
+
+```
+/expand
+```
+```
+/expand github
+```
+> _(Prioritises your GitHub repositories as the source to mine.)_
+
+Because every addition is additive and source-annotated, you can run `/expand` again
+after a new course or project and it only brings in what's genuinely new.
+
+---
+
+### `/reset` — Start over, safely
+
+Clears your personal data so you can begin again — a new career direction, a fresh
+profile, or handing the repo to someone else — **without** touching the framework that
+makes CareerForge work.
+
+**Scopes:**
+
+| Syntax | Clears |
+|--------|--------|
+| `/reset profile` | Your profile skill files (back to blank templates) |
+| `/reset documents` | Your files in `documents/` (folder structure + README kept) |
+| `/reset all` | Both |
+
+It always **shows you an inventory first** (what will be cleared vs. what's preserved),
+and **nothing happens until you type `RESET`** in capitals — any other reply cancels. The
+writing-style guide, scoring framework, cover-letter templates, and the interview-prep
+framework are never touched; only your data is. There's no undo, so it points you at your
+git history as the only recovery, then suggests running `/setup` to rebuild.
+
+---
+
 ## The tracking dashboard
 
 A local-only web UI that **reads and atomically writes your `job_search_tracker.csv` as the single source of truth**, visualises your pipeline, and can drive the CLI (`/apply`, `/upskill`, salary lookups) from the browser. It is an optional companion — deleting it leaves your data and the `/apply` pipeline untouched.
@@ -334,13 +434,9 @@ npm run serve          # prints  ▶  http://127.0.0.1:4480/
 
 ---
 
-### Planned commands _(coming in future milestones)_
-
-| Command | Milestone | What it will do |
-|---------|-----------|----------------|
-| `/expand` | v1.1 | Enrich your profile with new courses, certifications, or projects |
-| `/upskill` | v1.1 | Compare your profile against a job or market, produce a skill-gap report and learning plan |
-| `/reset` | v1.2 | Clear and re-run a specific profile section |
+> **All planned commands have shipped.** `/setup`, `/search`, `/apply`, `/upskill`,
+> `/expand`, and `/reset` are all live (v1.0–v1.2). See the [Roadmap](#roadmap) for what's
+> next.
 
 ---
 
@@ -435,8 +531,9 @@ ai-job-search/
 │   │   ├── setup.md           # /setup  — build your profile
 │   │   ├── apply.md           # /apply  — full application pipeline
 │   │   ├── search.md          # /search — discover new job postings
-│   │   ├── expand.md          # /expand — (stub, v1.1)
-│   │   └── reset.md           # /reset  — (stub, v1.2)
+│   │   ├── upskill.md         # /upskill — skill-gap analysis + learning plan
+│   │   ├── expand.md          # /expand — competency expansion (additive)
+│   │   └── reset.md           # /reset  — clear data, preserve framework
 │   │
 │   └── skills/
 │       ├── job-application-assistant/   # AI knowledge for CV/CL/interview work
@@ -448,9 +545,12 @@ ai-job-search/
 │       │   ├── 06-cover-letter-templates.md
 │       │   └── 07-interview-prep.md     # STAR stories + practice questions
 │       │
-│       └── job-scraper/
-│           ├── SKILL.md                 # Job-search workflow (REQ-1001–1012)
-│           └── search-queries.md        # Your portals, queries, location tiers
+│       ├── job-scraper/
+│       │   ├── SKILL.md                 # Job-search workflow (REQ-1001–1012)
+│       │   └── search-queries.md        # Your portals, queries, location tiers
+│       │
+│       └── career-development/
+│           └── SKILL.md                 # Skill-gap analysis (REQ-3001–3011)
 │
 ├── cv/
 │   ├── cfcv.cls               # Custom LaTeX CV class (compile with lualatex)
@@ -460,6 +560,15 @@ ai-job-search/
 │   ├── cfcl.cls               # Custom LaTeX cover letter class (xelatex)
 │   ├── main_example.tex       # Cover letter template
 │   └── OpenFonts/fonts/       # Bundled Lato, Raleway, FontAwesome 6 Free TTFs
+│
+├── i18n/                      # Localization tree — UI/README in 12 languages
+│   ├── _meta/languages.json   # Language registry (12 Tier-1 + 20 Tier-2)
+│   ├── ui/<lang>/             # ICU UI strings (en = source of truth)
+│   └── readme/                # Localized READMEs (English is canonical)
+│
+├── locale-packs/              # Per-market CV conventions (us, de, jp, br, in, eu…)
+│
+├── trust-safety/              # Scam-pattern catalog for the legitimacy gate
 │
 ├── documents/                 # Drop your source docs here (gitignored)
 │   ├── cv/                    # Existing CVs (PDF or DOCX)
@@ -515,8 +624,9 @@ xelatex main_example.tex
 | **MVP** (Epics 1–5) | ✅ Complete | `/setup`, `/apply` (no reviewer), PDF compilation |
 | **v1.0** (Epics 6–8) | ✅ Complete | Reviewer agent, `/search`, application tracker |
 | **v1.0 — Dashboard** (Epic 9) | ✅ Complete | Local tracking dashboard at `127.0.0.1:4480` — view/edit tracker, analytics, run commands from the browser |
-| **v1.1** (Epics 10–11) | 🔜 Planned | `/expand` (profile enrichment), `/upskill` (skill-gap analysis) |
-| **v1.2** (Epic 12) | 🔜 Planned | `/reset`, interview prep, portal adapter pattern |
+| **v1.1** (Epics 10–11) | ✅ Complete | `/upskill` skill-gap analysis + learning plan, and `/expand` competency expansion from your docs, GitHub, and the web |
+| **v1.2** (Epic 12) | ✅ Complete | `/reset`, interview-prep framework, ADR-0004 portal-adapter pattern + example, research agent |
+| **v1.3 — Global Reach & Trust** (Epics 13–19) | ✅ Complete | UI + README in 12 languages (beta) + pluggable locale packs (CV conventions per market); posting-legitimacy gate (scam/ghost-job shield); ATS-safe CV exports (`.txt`/`.docx`) + parse self-check; fabrication-audit **Provenance** panel; token-free scan tier |
 | **v2.0** | 💡 Future | Template marketplace, community portal adapters, GUI |
 
 See the full plan in [`docs/plan/delivery-strategy.md`](docs/plan/delivery-strategy.md).

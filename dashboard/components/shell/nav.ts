@@ -12,18 +12,19 @@ import {
 
 export interface NavItem {
   href: string;
-  label: string;
+  /** Key under the `common.nav` catalog namespace (REQ-7008). */
+  key: string;
   icon: LucideIcon;
 }
 
 /** Left-sidebar navigation — mirrors the IA in build-prompt §5. */
 export const NAV_ITEMS: NavItem[] = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/applications", label: "Applications", icon: Briefcase },
-  { href: "/companies", label: "Companies", icon: Building2 },
-  { href: "/profile", label: "Profile", icon: User },
-  { href: "/salary", label: "Salary", icon: Banknote },
-  { href: "/upskill", label: "Upskill", icon: GraduationCap },
-  { href: "/console", label: "Console", icon: Terminal },
-  { href: "/settings", label: "Settings", icon: Settings },
+  { href: "/", key: "dashboard", icon: LayoutDashboard },
+  { href: "/applications", key: "applications", icon: Briefcase },
+  { href: "/companies", key: "companies", icon: Building2 },
+  { href: "/profile", key: "profile", icon: User },
+  { href: "/salary", key: "salary", icon: Banknote },
+  { href: "/upskill", key: "upskill", icon: GraduationCap },
+  { href: "/console", key: "console", icon: Terminal },
+  { href: "/settings", key: "settings", icon: Settings },
 ];

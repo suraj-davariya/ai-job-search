@@ -1,0 +1,32 @@
+{
+  "title": "Console",
+  "description": "Run allowlisted CLI commands and watch their output live.",
+  "demo": {
+    "title": "Available in the local dashboard",
+    "hint": "The Console runs /apply, /upskill, and salary lookups on your machine and streams their output. That needs the dashboard running locally — it can't work in this static demo. Install CareerForge and launch the dashboard to use it.",
+    "milestone": "Console",
+    "note": "Demo build — command execution is disabled."
+  },
+  "rerunApply": "Re-run /apply",
+  "runUpskill": "Run /upskill",
+  "salaryLookup": "Salary lookup",
+  "company": "Company",
+  "companyPlaceholder": "Company",
+  "lookUp": "Look up",
+  "stop": "Stop",
+  "running": "Running…",
+  "idle": "Idle",
+  "status": "Exit {code} · {result}",
+  "elapsed": " · {seconds}s",
+  "ok": "ok",
+  "failed": "failed",
+  "noOutput": "No output yet. Trigger a command above.",
+  "recentRuns": "Recent runs",
+  "refreshRuns": "Refresh runs",
+  "noRuns": "No runs yet.",
+  "exitCode": "exit {code}",
+  "tip": {
+    "readOnly": "Read-only mode — actions are disabled",
+    "binMissing": "{bin} not found on PATH"
+  }
+}

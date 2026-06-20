@@ -1,0 +1,104 @@
+{
+  "overview": {
+    "title": "Vue d'ensemble",
+    "description": "L'état de votre pipeline en un coup d'œil, calculé en direct à partir de votre suivi.",
+    "empty": {
+      "title": "Aucune candidature pour le moment",
+      "hint": "Lancez /apply <offre> ou utilisez + Nouvelle candidature sur la page Candidatures. Vos indicateurs et graphiques apparaissent ici dès que le suivi contient des lignes.",
+      "milestone": "Vue d'ensemble"
+    }
+  },
+  "kpi": {
+    "total": "Total des candidatures",
+    "applied": "Envoyées · {window} j",
+    "appliedWindow": "Fenêtre d'envoi",
+    "windowDays": "{days} j",
+    "avgFit30": "Adéquation moy. · 30 j",
+    "interviewRate90": "Taux d'entretien · 90 j",
+    "floorHint": "Nécessite ≥ 3 sur la fenêtre"
+  },
+  "charts": {
+    "noData": "Pas encore de données",
+    "weekly": {
+      "title": "Candidatures par semaine",
+      "caption": "Candidatures par semaine ISO",
+      "colWeek": "Semaine",
+      "colApplications": "Candidatures"
+    },
+    "activity": {
+      "title": "Activité",
+      "caption": "Candidatures par jour calendaire",
+      "colDay": "Jour",
+      "colApplications": "Candidatures"
+    },
+    "status": {
+      "title": "Répartition par statut",
+      "caption": "Candidatures par statut",
+      "colStatus": "Statut",
+      "colCount": "Nombre"
+    },
+    "fit": {
+      "title": "Distribution de l'adéquation",
+      "caption": "Nombre de candidatures par tranche d'adéquation",
+      "colRange": "Tranche d'adéquation",
+      "colCount": "Nombre"
+    },
+    "top": {
+      "title": "Principales entreprises",
+      "label": "Entreprise",
+      "caption": "{label} par nombre de candidatures",
+      "colApplications": "Candidatures"
+    }
+  },
+  "recent": {
+    "title": "Activité récente",
+    "mode": "Mode d'activité récente",
+    "new": "Nouvelle",
+    "updated": "Mise à jour"
+  },
+  "companies": {
+    "title": "Entreprises",
+    "description": "{count, plural, one {# entreprise} other {# entreprises}} dans votre suivi.",
+    "empty": {
+      "title": "Aucune entreprise pour le moment",
+      "hint": "Les entreprises sont dérivées du suivi. Ajoutez une candidature pour alimenter cette vue.",
+      "milestone": "Entreprises"
+    },
+    "col": {
+      "company": "Entreprise",
+      "sector": "Secteur",
+      "apps": "Cand.",
+      "bestFit": "Meilleure adéquation",
+      "statusMix": "Répartition par statut"
+    },
+    "salaryHeading": "Références salariales",
+    "salaryAvailable": "Des données de référence sont disponibles — ",
+    "salaryLink": "consultez-les sur la page Salaire",
+    "noSalary": {
+      "title": "Aucune donnée salariale",
+      "hint": "Ajoutez salary_data.json (ou lancez une recherche sur la page Salaire) pour enrichir les entreprises avec des références.",
+      "milestone": "REQ-5012"
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "description": "Profil de candidat en lecture seule, assemblé à partir de vos fichiers de compétences.",
+    "projectMemory": "Mémoire du projet",
+    "empty": {
+      "title": "Aucun profil trouvé",
+      "hint": "Lancez /setup pour constituer votre profil de candidat (fichiers de compétences 01–07). Une fois présent, ses sections s'affichent ici en lecture seule.",
+      "milestone": "Profil"
+    }
+  },
+  "upskill": {
+    "title": "Montée en compétences",
+    "description": "Vos rapports de montée en compétences, ainsi qu'un déclencheur pour en générer un nouveau.",
+    "run": "Lancer /upskill dans la console",
+    "unreadable": "(impossible de lire ce rapport)",
+    "empty": {
+      "title": "Aucun rapport de montée en compétences pour le moment",
+      "hint": "Lancez /upskill (ci-dessus) pour générer un rapport d'écarts de compétences. Les nouveaux rapports apparaissent ici dès qu'ils sont écrits dans upskill/report-*.md.",
+      "milestone": "Montée en compétences"
+    }
+  }
+}

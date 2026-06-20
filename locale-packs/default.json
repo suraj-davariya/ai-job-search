@@ -1,0 +1,13 @@
+{
+  "code": "default",
+  "name": "Generic / Unknown",
+  "documentTerm": "CV",
+  "pageSize": "A4",
+  "pageCountExpectation": "1-2",
+  "photo": "forbidden",
+  "includedPersonalFields": [],
+  "nameOrder": "given-family",
+  "dateFormat": "MMM yyyy",
+  "legalClauses": [],
+  "notes": "Conservative neutral fallback used when no region-specific pack matches the user's market (ARCH-0005, graceful degradation). Omits photo and all sensitive personal fields, uses internationally safe A4 / 1-2 page conventions, and adds no jurisdiction-specific legal clauses. Prefer a country-specific pack whenever one is available."
+}

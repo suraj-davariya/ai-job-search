@@ -1,0 +1,32 @@
+{
+  "title": "Konsol",
+  "description": "Jalankan perintah CLI yang masuk daftar izin dan saksikan keluarannya secara langsung.",
+  "demo": {
+    "title": "Tersedia di dasbor lokal",
+    "hint": "Konsol menjalankan /apply, /upskill, dan pencarian gaji di mesin Anda serta mengalirkan keluarannya secara langsung. Itu memerlukan dasbor yang berjalan secara lokal — tidak dapat berfungsi di demo statis ini. Instal CareerForge dan luncurkan dasbor untuk menggunakannya.",
+    "milestone": "Konsol",
+    "note": "Build demo — eksekusi perintah dinonaktifkan."
+  },
+  "rerunApply": "Jalankan ulang /apply",
+  "runUpskill": "Jalankan /upskill",
+  "salaryLookup": "Pencarian gaji",
+  "company": "Perusahaan",
+  "companyPlaceholder": "Perusahaan",
+  "lookUp": "Cari",
+  "stop": "Hentikan",
+  "running": "Berjalan…",
+  "idle": "Menganggur",
+  "status": "Keluar {code} · {result}",
+  "elapsed": " · {seconds} dtk",
+  "ok": "ok",
+  "failed": "gagal",
+  "noOutput": "Belum ada keluaran. Picu perintah di atas.",
+  "recentRuns": "Eksekusi terbaru",
+  "refreshRuns": "Segarkan eksekusi",
+  "noRuns": "Belum ada eksekusi.",
+  "exitCode": "keluar {code}",
+  "tip": {
+    "readOnly": "Mode hanya-baca — tindakan dinonaktifkan",
+    "binMissing": "{bin} tidak ditemukan di PATH"
+  }
+}

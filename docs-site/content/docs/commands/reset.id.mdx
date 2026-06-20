@@ -1,0 +1,66 @@
+---
+title: /reset
+description: Hapus data pribadi Anda dan mulai dari awal — dengan inventaris terlebih dahulu, konfirmasi tegas, dan kerangka kerja yang tetap utuh.
+---
+
+`/reset` adalah tombol untuk memulai dari nol. Terkadang Anda ingin memulai ulang — arah
+karier baru, profil yang segar, atau Anda menyerahkan repo ini kepada orang lain. `/reset`
+menghapus **data Anda** sambil dengan hati-hati mempertahankan **kerangka kerja** yang
+membuat CareerForge bekerja, sehingga alat ini tetap berjalan sempurna setelahnya.
+
+## Pilih apa yang ingin dihapus
+
+| Yang Anda ketik | Menghapus |
+|----------|--------|
+| `/reset profile` | Berkas skill profil Anda — kembali ke templat kosong |
+| `/reset documents` | Berkas Anda di `documents/` (folder dan README tetap ada) |
+| `/reset all` | Keduanya |
+
+Jika Anda tidak menyertakan cakupan, ia akan meminta Anda memilih dan menjelaskan apa yang
+dipengaruhi masing-masing.
+
+## Ia menunjukkan semuanya terlebih dahulu
+
+Sebelum menghapus apa pun, `/reset` mencetak sebuah **inventaris**:
+
+```text
+you:    /reset profile
+claude: Profile reset — here's what I'll clear vs. keep:
+
+        Will clear:
+          01-candidate-profile.md     (has your data)
+          02-behavioral-profile.md    (has your data)
+          07 STAR examples            (3 examples)
+        Already empty:
+          05 profile statements       (template)
+        NEVER touched (framework):
+          03-writing-style.md, 04 scoring framework,
+          06 cover-letter templates, 07 framework + roleplay
+
+        This cannot be undone — your git history is the only recovery.
+        Type RESET to proceed.
+you:    RESET
+claude: Cleared 3 files. Run /setup to rebuild your profile.
+```
+
+## Pengaman
+
+- **Inventaris sebelum penghapusan** — Anda selalu melihat persis apa yang dihapus dan apa
+  yang tetap ada.
+- **Anda harus mengetik `RESET`** dengan huruf kapital. Balasan lain apa pun akan
+  membatalkan dengan pesan "nothing was changed".
+- **Kerangka kerja tidak pernah disentuh** — panduan gaya penulisan, kerangka penilaian,
+  templat surat lamaran, dan kerangka persiapan wawancara (termasuk pedoman roleplay Anda)
+  semuanya tetap bertahan. Hanya *data* Anda yang dihapus.
+- **Pelaporan jujur** — ia mencantumkan apa yang sebenarnya dihapus versus apa yang sudah
+  kosong, dan tidak pernah mengklaim telah menghapus sesuatu yang sebenarnya tidak ada.
+- **Tidak ada urungkan.** Ia menyatakannya di awal dan mengarahkan Anda ke riwayat git Anda.
+
+## Setelah reset
+
+`/reset` memberi tahu Anda langkah berikutnya yang wajar untuk apa pun yang Anda hapus —
+hampir selalu [`/setup`](/id/docs/commands/setup) untuk membangun ulang profil Anda (tambahkan
+dokumen terlebih dahulu jika Anda menghapusnya).
+
+> Karena bersifat destruktif, `/reset` sengaja **tidak** tersedia dari Console dashboard
+> — ia hanya berjalan di sini, tempat konfirmasi `RESET` yang diketik melindungi Anda.

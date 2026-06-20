@@ -1,0 +1,168 @@
+---
+title: Guia Rápido
+description: De nada instalado à sua primeira candidatura sob medida, passo a passo.
+---
+
+Esta página leva você de uma máquina em branco ao seu primeiro currículo e carta
+de apresentação sob medida. Reserve cerca de trinta minutos na primeira vez; a
+maior parte é a instalação do LaTeX trabalhando em silêncio.
+
+## O que você vai precisar primeiro
+
+Seja honesto consigo mesmo sobre estes três pré-requisitos — cada um leva a um
+guia de instalação adequado, e nenhum deles exige programação:
+
+1. **Claude Code** — o assistente de IA dentro do qual o CareerForge roda. É um
+   programa que você instala uma vez e abre a partir de uma janela de terminal.
+   Nunca usou um terminal? Tudo bem: você só vai digitar comandos curtos
+   mostrados nesta página.
+2. **LaTeX** — o sistema de composição tipográfica que transforma seu currículo
+   em um PDF caprichado. É um download grande, mas é instalar e esquecer.
+3. **Python 3.10+** *(opcional)* — só é necessário mais tarde para comparação de
+   salários. Pule por hoje.
+
+<Steps>
+
+<Step>
+
+### Instale o Claude Code
+
+```bash title="Terminal"
+npm install -g @anthropic-ai/claude-code
+```
+
+Depois inicie-o uma vez para fazer login:
+
+```bash title="Terminal"
+claude
+```
+
+Você vai precisar de uma [conta Anthropic](https://claude.ai) — os planos Free e
+Pro funcionam.
+
+**O que acontece em seguida:** um chat se abre no seu terminal. Essa janela de
+chat é onde você vai executar tudo abaixo.
+
+</Step>
+
+<Step>
+
+### Instale o LaTeX
+
+Dois compiladores são usados — `lualatex` para o currículo, `xelatex` para a
+carta de apresentação. As instalações abaixo incluem ambos.
+
+<Tabs items={["macOS", "Linux", "Windows"]}>
+
+<Tab value="macOS">
+
+```bash title="Terminal"
+brew install --cask mactex
+sudo tlmgr install fontawesome lato tcolorbox dashrule enumitem multirow \
+                   ifmtarg fontaxes mweights pgfopts
+```
+
+</Tab>
+
+<Tab value="Linux">
+
+```bash title="Terminal"
+sudo apt-get install texlive-full
+```
+
+</Tab>
+
+<Tab value="Windows">
+
+Instale o [MiKTeX](https://miktex.org/download) — ele busca automaticamente
+quaisquer pacotes faltantes na primeira vez que você compilar.
+
+</Tab>
+
+</Tabs>
+
+**O que acontece em seguida:** nada visível — o LaTeX apenas fica de prontidão
+até que o `/apply` precise produzir um PDF.
+
+</Step>
+
+<Step>
+
+### Obtenha o CareerForge e abra-o
+
+```bash title="Terminal"
+git clone https://github.com/suraj-davariya/ai-job-search.git
+cd ai-job-search
+claude
+```
+
+**O que acontece em seguida:** o Claude Code abre *dentro* da pasta do
+CareerForge, o que significa que os três comandos abaixo agora estão disponíveis
+no seu chat.
+
+</Step>
+
+<Step>
+
+### Construa seu perfil
+
+```text title="No chat do Claude Code"
+/setup
+```
+
+Ele oferece três caminhos: escanear uma pasta com seus documentos, importar um
+único currículo, ou uma entrevista amigável em que ele pergunta e você responde.
+Escolha o que melhor se encaixa no que você tem. Antes de qualquer coisa ser
+salva, ele mostra o conteúdo proposto e pede sua aprovação.
+
+**O que acontece em seguida:** seus arquivos de perfil passam a existir — sua
+experiência, habilidades, objetivos e preferências de busca, tudo na sua
+máquina. Você só faz isso uma vez.
+
+</Step>
+
+<Step>
+
+### Encontre vagas
+
+```text title="No chat do Claude Code"
+/search
+```
+
+**O que acontece em seguida:** uma tabela classificada de novos anúncios dos
+sites de vagas que você configurou, cada um marcado como aderência Alta, Média
+ou Baixa — com os anúncios que você já viu filtrados. Responda com um número
+para avaliar um deles em profundidade.
+
+</Step>
+
+<Step>
+
+### Candidate-se a uma
+
+```text title="No chat do Claude Code"
+/apply https://company.com/jobs/the-role-you-want
+```
+
+Você também pode colar a descrição da vaga diretamente, caso não haja um link.
+Ele avalia a aderência em cinco dimensões e pergunta se deve prosseguir — esse é
+o seu ponto de checagem, não uma formalidade.
+
+**O que acontece em seguida:** um currículo de duas páginas sob medida e uma
+carta de apresentação de uma página, ambos em PDF, revisados por uma segunda IA
+e conferidos com uma lista de verificação. A candidatura é registrada no seu
+rastreador com status **Draft**. Você lê os dois PDFs e os envia você mesmo — o
+CareerForge nunca envia nada por você.
+
+</Step>
+
+</Steps>
+
+## Depois da sua primeira candidatura
+
+- Abra [o painel](/pt-BR/docs/dashboard) para acompanhar seu funil enquanto ele
+  cresce.
+- Leia [Seus dados](/pt-BR/docs/your-data) para ver exatamente o que foi
+  registrado — é um único arquivo legível por humanos.
+- Travou em algo? O [FAQ](/pt-BR/docs/faq) cobre as dúvidas comuns da primeira
+  semana.

@@ -1,0 +1,6 @@
+{
+  "requestFailed": "请求失败",
+  "lookupFailed": "查询失败",
+  "csvParse": "无法读取追踪器文件。请检查 job_search_tracker.csv 是否为有效的 CSV。",
+  "generic": "出了点问题。"
+}

@@ -1,0 +1,20 @@
+{
+  "title": "Paramètres",
+  "description": "Préférences locales uniquement — aucun secret, aucun compte. Boucle locale, mono-utilisateur.",
+  "theme": "Thème",
+  "themeHint": "Sombre par défaut.",
+  "repoPath": "Chemin du dépôt",
+  "repoPathHint": "Dossier que le tableau de bord lit/écrit (appliqué au prochain lancement).",
+  "port": "Port par défaut",
+  "portHint": "Port de boucle locale (appliqué au prochain lancement).",
+  "readOnly": "Mode lecture seule",
+  "readOnlyHint": "Désactive toutes les modifications et actions.",
+  "on": "Activé",
+  "off": "Désactivé",
+  "language": "Langue",
+  "languageHint": "Choisissez la langue d'affichage du tableau de bord. Le texte non traduit revient à l'anglais.",
+  "save": "Enregistrer les paramètres",
+  "saving": "Enregistrement…",
+  "saved": "Paramètres enregistrés",
+  "saveError": "Impossible d'enregistrer les paramètres : {error}"
+}

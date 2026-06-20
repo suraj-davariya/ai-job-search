@@ -1,0 +1,16 @@
+{
+  "name": "careerforge-example-portal-adapter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "TEMPLATE — CareerForge example job-portal adapter CLI (ADR-0004). Copy and implement real fetching.",
+  "bin": {
+    "example-portal": "./index.ts"
+  },
+  "scripts": {
+    "start": "bun run index.ts"
+  },
+  "engines": {
+    "bun": ">=1.1"
+  }
+}

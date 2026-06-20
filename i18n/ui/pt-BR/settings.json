@@ -1,0 +1,20 @@
+{
+  "title": "Configurações",
+  "description": "Apenas preferências locais — sem segredos, sem contas. Loopback, usuário único.",
+  "theme": "Tema",
+  "themeHint": "Padrão é escuro.",
+  "repoPath": "Caminho do repositório",
+  "repoPathHint": "Pasta que o painel lê/grava (aplica-se na próxima inicialização).",
+  "port": "Porta padrão",
+  "portHint": "Porta de loopback (aplica-se na próxima inicialização).",
+  "readOnly": "Modo somente leitura",
+  "readOnlyHint": "Desativa todas as edições e ações.",
+  "on": "Ativado",
+  "off": "Desativado",
+  "language": "Idioma",
+  "languageHint": "Escolha o idioma de exibição do painel. Textos não traduzidos voltam para o inglês.",
+  "save": "Salvar configurações",
+  "saving": "Salvando…",
+  "saved": "Configurações salvas",
+  "saveError": "Não foi possível salvar as configurações: {error}"
+}

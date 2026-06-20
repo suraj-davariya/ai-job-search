@@ -3,6 +3,7 @@ import path from "node:path";
 import { readSeenJobs } from "@/lib/data/seen-jobs";
 import { readSalary } from "@/lib/data/salary";
 import { readApplicationDir } from "@/lib/data/applications";
+import { readProvenance } from "@/lib/data/provenance";
 import { readUpskillReports } from "@/lib/data/upskill";
 import { readProfile } from "@/lib/data/profile";
 
@@ -42,6 +43,29 @@ describe("readApplicationDir", () => {
     const docs = await readApplicationDir("Acme_Engineer", fix("applications"));
     expect(docs.jobPosting).toContain("Acme");
     expect(docs.outcome).toContain("Onsite");
+  });
+});
+
+describe("readProvenance", () => {
+  const apps = fix("applications");
+
+  it("returns null when the application has no ledger (the common case)", async () => {
+    expect(await readProvenance("Nope", "Role", apps)).toBeNull();
+  });
+
+  it("reads and normalizes the ledger, deriving the summary from claims", async () => {
+    const prov = await readProvenance("Acme", "Engineer", apps);
+    expect(prov).not.toBeNull();
+    expect(prov!.company).toBe("Acme");
+    expect(prov!.claims).toHaveLength(2);
+    expect(prov!.summary).toEqual({ total: 2, backed: 1, flagged: 1 });
+    const flagged = prov!.claims.find((c) => !c.backed)!;
+    expect(flagged.claim).toBe("Fluent in Rust");
+    expect(flagged.source).toBeNull();
+  });
+
+  it("does not throw on a company/role with traversal segments", async () => {
+    expect(await readProvenance("..", "..", apps)).toBeNull();
   });
 });
 

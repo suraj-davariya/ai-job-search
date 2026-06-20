@@ -1,0 +1,22 @@
+{
+  "title": "Salaire",
+  "description": "Parcourez vos références salariales et lancez une recherche par entreprise.",
+  "empty": {
+    "title": "Aucune donnée salariale",
+    "hint": "Ajoutez salary_data.json à la racine du dépôt (ou importez une feuille Excel avec tools/convert_salary_excel.py). En attendant, la recherche ci-dessous fonctionne quand même.",
+    "milestone": "REQ-5014"
+  },
+  "tableCaption": "{key} ({count})",
+  "lookupHeading": "Rechercher une entreprise",
+  "company": "Entreprise",
+  "companyPlaceholder": "Nom de l'entreprise",
+  "lookUp": "Rechercher",
+  "looking": "Recherche…",
+  "noMatch": "Aucun résultat trouvé pour « {query} ».",
+  "unnamed": "(sans nom)",
+  "noOutput": "Aucune sortie.",
+  "tip": {
+    "readOnly": "Mode lecture seule — les actions sont désactivées",
+    "pythonMissing": "python3 introuvable dans le PATH"
+  }
+}

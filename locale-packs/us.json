@@ -1,0 +1,13 @@
+{
+  "code": "US",
+  "name": "United States",
+  "documentTerm": "Résumé",
+  "pageSize": "Letter",
+  "pageCountExpectation": "1-2",
+  "photo": "forbidden",
+  "discouragedPersonalFields": ["dateOfBirth", "maritalStatus", "nationality", "photo", "gender"],
+  "nameOrder": "given-family",
+  "dateFormat": "MMM yyyy",
+  "currency": "USD",
+  "notes": "EEOC anti-discrimination norms: do NOT include a photo, age/date of birth, marital status, nationality, or gender. Including such fields can expose employers to discrimination-claim risk, so they are conventionally omitted. Use US Letter paper and keep to 1-2 pages."
+}

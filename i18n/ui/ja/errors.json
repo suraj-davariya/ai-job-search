@@ -1,0 +1,6 @@
+{
+  "requestFailed": "リクエストに失敗しました",
+  "lookupFailed": "ルックアップに失敗しました",
+  "csvParse": "トラッカーファイルを読み込めませんでした。job_search_tracker.csv が有効なCSVであることを確認してください。",
+  "generic": "問題が発生しました。"
+}

@@ -45,3 +45,11 @@ Use LaTeX with lualatex (CV) and xelatex (cover letter).
 ## Two Compilers
 - **lualatex** for CVs: Handles fontawesome5 font-expansion correctly (pdflatex fails on modern MiKTeX)
 - **xelatex** for cover letters: Required by the custom class for fontspec/custom font loading (Lato, Raleway)
+
+## Revisited 2026-06-18 — ATS exports alongside the PDF (REQ-2063)
+
+The LaTeX→PDF decision stands as the **primary, human-facing** output. It is now **augmented**, not replaced: the CV is *also* exported as plain-text (`.txt`) and `.docx` for applicant-tracking-system parsers, which can choke on typeset PDFs (see the "DOCX" column above — viable for machine parsing, just never for typographic quality). All three artifacts derive from the same tailored content (no divergent re-authoring). See REQ-2063/REQ-2064 and ADR-0007 (locale-aware fonts/scripts for non-Latin CVs).
+
+## Revisited 2026-06-18 — multilingual typesetting (ADR-0007)
+
+Non-Latin/RTL/Indic CVs require shaping-capable fonts in the LaTeX pipeline (`polyglossia`/`babel` + Noto family). Tracked under NFR-0019; the compiler choice is unaffected.

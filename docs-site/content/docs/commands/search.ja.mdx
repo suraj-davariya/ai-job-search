@@ -1,0 +1,58 @@
+---
+title: /search
+description: 選んだ求人サイトを一掃し、見たものはスキップし、新しいマッチのランク付けされたリストを得る。
+---
+
+`/search` はあなたの斥候です。さもなければ手作業で行う検索を、設定したすべての
+求人サイトにわたって実行し、重複とすでに見た募集を捨て、残ったものを*あなた*への
+適合度でランク付けします。
+
+## 実行の様子
+
+```text
+you:    /search
+claude: Searching your configured portals for the last 14 days…
+        Found 7 new positions (2 high, 3 medium, 2 low match)
+
+         #  Fit     Title                  Company     Location
+         1  High    Senior Data Engineer   Acme Corp   Amsterdam, NL
+         2  High    ML Platform Engineer   Beta Labs   Remote (EU)
+         3  Medium  Data Analyst           Gamma AG    Berlin, DE
+        …
+        Want me to evaluate any of these in detail? Just give me the number(s).
+```
+
+番号で返信すると、その募集はすぐに[`/apply`](/ja/docs/commands/apply)に渡され、
+完全な評価が行われます。
+
+## 検索を絞り込む
+
+| 入力 | 何をするか |
+|----------|--------------|
+| `/search` | 優先度の高い上位 3 つのクエリカテゴリを実行 |
+| `/search data science` | 「data science」に一致するカテゴリを優先 |
+| `/search broad` | 設定したすべてのクエリカテゴリを実行 ― 広い網 |
+
+## 何を表示するかをどう決めるか
+
+1. **あなたの設定がすべてを駆動します。** 求人サイト、検索フレーズ、所在地、距離の
+   段階はすべて、`/setup` があなたと共に構築した検索設定から来ます。サイトや国は
+   ハードコードされていません ― LinkedIn、Indeed、あなたの国の国内ポータル、すべて
+   等しく歓迎されます。
+2. **見たものを記憶します。** これまでに表示したすべての募集が記録されるので、同じ
+   職種が二度あなたの注意を無駄にすることはありません ― 別の日の別の実行をまたいでも。
+3. **適合度を事前にランク付けします。** 各新規募集には、あなたのプロフィールに
+   対する素早い High / Medium / Low のシグナルが付き、High のマッチには*なぜ*かを
+   説明する 2、3 個の箇条書きが付きます。そのシグナルの隣には、素早い正当性フラグも
+   表示されます ― 詐欺やゴーストジョブのように見える募集には **⚠ Suspicious** の
+   マーカーが付きます ― そのため、リスクのあるリストに完全な[`/apply`](/ja/docs/commands/apply)を
+   投じる前に見つけられます。（徹底した正当性チェックは依然として `/apply` の内部で
+   行われます。これは早めの注意喚起にすぎません。）
+4. **あなたの境界を尊重します。** あなたの許容できる所在地の外、または 14 日より
+   古い募集は、あなたが見る前に除外されます。
+
+素早いシグナルはあえて大まかです ― その仕事はトリアージです。完全な 5 つの観点の
+スコアリングは、募集を `/apply` に送ったときに行われます。
+
+**次に何が起こるか:** 番号を選ぶと、[/apply](/ja/docs/commands/apply)が適切な評価で
+引き継ぎ、あなたが承認すれば、ドキュメントを作成します。

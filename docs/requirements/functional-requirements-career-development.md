@@ -22,7 +22,7 @@ Related documents:
 
 ### REQ-3001: Dual-Mode Invocation
 **Priority:** Must
-**Description:** The upskill skill invocation shall support two modes: aggregate (all tracked jobs) and targeted (single posting). Note: upskill is a Plane 1 skill (ARCH-0008), not a standalone command — it is activated by the trigger keyword "upskill" within the `job-application-assistant` skill context.
+**Description:** The upskill workflow shall support two modes: aggregate (all tracked jobs) and targeted (single posting). It is delivered as the `/upskill` command (`.claude/commands/upskill.md`), which activates the dedicated `career-development` Plane-1 skill (ARCH-0008, ARCH-0040) — mirroring how `/search` activates `job-scraper`. The skill also activates on the trigger keyword "upskill" directly. (Superseded note: earlier drafts modelled upskill as a non-command keyword inside `job-application-assistant`; the command form was chosen for consistency with `/search` and because the dashboard console invokes `/upskill` as a slash command.)
 **Acceptance Criteria:**
 - `upskill` with no argument → aggregate mode (analyzes all jobs in tracker)
 - `upskill <URL>` → targeted mode (analyzes single fetched posting); if URL cannot be fetched, user may paste the posting text (DEC-011)

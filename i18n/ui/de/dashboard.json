@@ -1,0 +1,104 @@
+{
+  "overview": {
+    "title": "Übersicht",
+    "description": "Pipeline-Status auf einen Blick, live aus Ihrem Tracker berechnet.",
+    "empty": {
+      "title": "Noch keine Bewerbungen",
+      "hint": "Führen Sie /apply <Stellenanzeige> aus oder verwenden Sie + Neue Bewerbung auf der Seite Bewerbungen. Ihre KPIs und Diagramme erscheinen hier, sobald der Tracker Einträge enthält.",
+      "milestone": "Übersicht"
+    }
+  },
+  "kpi": {
+    "total": "Bewerbungen gesamt",
+    "applied": "Beworben · {window} T",
+    "appliedWindow": "Bewerbungszeitraum",
+    "windowDays": "{days} T",
+    "avgFit30": "Ø Passung · 30 T",
+    "interviewRate90": "Gesprächsquote · 90 T",
+    "floorHint": "Benötigt ≥3 im Zeitraum"
+  },
+  "charts": {
+    "noData": "Noch keine Daten",
+    "weekly": {
+      "title": "Bewerbungen pro Woche",
+      "caption": "Bewerbungen pro ISO-Woche",
+      "colWeek": "Woche",
+      "colApplications": "Bewerbungen"
+    },
+    "activity": {
+      "title": "Aktivität",
+      "caption": "Bewerbungen pro Kalendertag",
+      "colDay": "Tag",
+      "colApplications": "Bewerbungen"
+    },
+    "status": {
+      "title": "Statusverteilung",
+      "caption": "Bewerbungen nach Status",
+      "colStatus": "Status",
+      "colCount": "Anzahl"
+    },
+    "fit": {
+      "title": "Passungsverteilung",
+      "caption": "Anzahl der Bewerbungen pro Passungsbereich",
+      "colRange": "Passungsbereich",
+      "colCount": "Anzahl"
+    },
+    "top": {
+      "title": "Top-Unternehmen",
+      "label": "Unternehmen",
+      "caption": "{label} nach Anzahl der Bewerbungen",
+      "colApplications": "Bewerbungen"
+    }
+  },
+  "recent": {
+    "title": "Letzte Aktivität",
+    "mode": "Modus für letzte Aktivität",
+    "new": "Neu",
+    "updated": "Aktualisiert"
+  },
+  "companies": {
+    "title": "Unternehmen",
+    "description": "{count, plural, one {# Unternehmen} other {# Unternehmen}} in Ihrem Tracker.",
+    "empty": {
+      "title": "Noch keine Unternehmen",
+      "hint": "Unternehmen werden aus dem Tracker abgeleitet. Fügen Sie eine Bewerbung hinzu, um diese Ansicht zu füllen.",
+      "milestone": "Unternehmen"
+    },
+    "col": {
+      "company": "Unternehmen",
+      "sector": "Branche",
+      "apps": "Bew.",
+      "bestFit": "Beste Passung",
+      "statusMix": "Statusverteilung"
+    },
+    "salaryHeading": "Gehalts-Benchmarks",
+    "salaryAvailable": "Benchmark-Daten sind verfügbar – ",
+    "salaryLink": "auf der Gehaltsseite ansehen",
+    "noSalary": {
+      "title": "Keine Gehaltsdaten",
+      "hint": "Fügen Sie salary_data.json hinzu (oder führen Sie eine Suche auf der Gehaltsseite aus), um Unternehmen mit Benchmarks anzureichern.",
+      "milestone": "REQ-5012"
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "description": "Schreibgeschütztes Kandidatenprofil, zusammengestellt aus Ihren Skill-Dateien.",
+    "projectMemory": "Projektgedächtnis",
+    "empty": {
+      "title": "Kein Profil gefunden",
+      "hint": "Führen Sie /setup aus, um Ihr Kandidatenprofil zu erstellen (Skill-Dateien 01–07). Sobald es vorhanden ist, werden seine Abschnitte hier schreibgeschützt angezeigt.",
+      "milestone": "Profil"
+    }
+  },
+  "upskill": {
+    "title": "Weiterbildung",
+    "description": "Ihre Weiterbildungsberichte sowie eine Auslösung zur Erstellung eines neuen Berichts.",
+    "run": "/upskill in der Konsole ausführen",
+    "unreadable": "(dieser Bericht konnte nicht gelesen werden)",
+    "empty": {
+      "title": "Noch keine Weiterbildungsberichte",
+      "hint": "Führen Sie /upskill (oben) aus, um einen Bericht zu Qualifikationslücken zu erstellen. Neue Berichte erscheinen hier, sobald sie in upskill/report-*.md geschrieben wurden.",
+      "milestone": "Weiterbildung"
+    }
+  }
+}

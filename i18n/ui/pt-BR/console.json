@@ -1,0 +1,32 @@
+{
+  "title": "Console",
+  "description": "Execute comandos de CLI da lista permitida e acompanhe a saída ao vivo.",
+  "demo": {
+    "title": "Disponível no painel local",
+    "hint": "O Console executa /apply, /upskill e consultas salariais na sua máquina e transmite a saída. Isso exige o painel rodando localmente — não funciona nesta demonstração estática. Instale o CareerForge e inicie o painel para usá-lo.",
+    "milestone": "Console",
+    "note": "Versão de demonstração — a execução de comandos está desativada."
+  },
+  "rerunApply": "Reexecutar /apply",
+  "runUpskill": "Executar /upskill",
+  "salaryLookup": "Consulta salarial",
+  "company": "Empresa",
+  "companyPlaceholder": "Empresa",
+  "lookUp": "Consultar",
+  "stop": "Parar",
+  "running": "Executando…",
+  "idle": "Ocioso",
+  "status": "Saída {code} · {result}",
+  "elapsed": " · {seconds}s",
+  "ok": "ok",
+  "failed": "falhou",
+  "noOutput": "Nenhuma saída ainda. Acione um comando acima.",
+  "recentRuns": "Execuções recentes",
+  "refreshRuns": "Atualizar execuções",
+  "noRuns": "Nenhuma execução ainda.",
+  "exitCode": "saída {code}",
+  "tip": {
+    "readOnly": "Modo somente leitura — as ações estão desativadas",
+    "binMissing": "{bin} não encontrado no PATH"
+  }
+}

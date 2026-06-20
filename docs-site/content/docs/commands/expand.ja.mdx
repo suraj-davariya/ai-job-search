@@ -1,0 +1,54 @@
+---
+title: /expand
+description: あなたのドキュメント、GitHub、Web を掘り起こして、すでに持っているのに書き留めていなかったスキルを見つけ出し、プロフィールに安全に追加します。
+---
+
+`/expand` はあなたのプロフィールの考古学者です。あなたはプロフィールに書かれている以上のことをしてきました。ここで受けた講座、あそこで作ったサイドプロジェクト、仕事で身につけたツール。`/expand` はたどり着けるあらゆる場所からそうしたコンピテンシーを探し出し、プロフィールに**追加**します。すでにあるものを編集したり削除したりすることは決してないので、実行はいつでも安全です。
+
+## どこを探すのか
+
+1. **あなたのドキュメント** — `documents/cv`、`linkedin`、`diplomas`、`references`。
+2. **あなたの GitHub** — ピン留めされているかどうかにかかわらず、すべての公開リポジトリ。README を読み、言語とトピックを記録します。
+3. **その他のリンク** — ポートフォリオ、Kaggle、Google Scholar、個人サイト。
+
+## 見つけたものをどうやってスキルに変えるのか
+
+発見したものごとに、Web を 2 つの方法で同時に検索します。
+
+- **直接検索** — 名前のついた講座の実際のシラバス、資格の背後にあるスキル、ツールのドキュメント。
+- **推論** — その種の仕事が通常必要とする手法やツールチェーン。
+
+推論された項目は常に推論として明記されるので、文書化されたスキルと推論によるスキルを見分けることができます。
+
+## 何かが書き込まれる前に、すべてを確認できます
+
+```text
+you:    /expand
+claude: Read your profile. Scanning documents/, GitHub (14 repos), and your Kaggle…
+
+        Competency Map (new items only)
+        ── Technical — Primary ────────────────────────────────────
+        PyTorch          GitHub: vision-experiments        direct
+        ── Methods & Practices ────────────────────────────────────
+        MLflow tracking  Coursera: MLOps Specialisation    both
+        ── Domain Knowledge ───────────────────────────────────────
+        Time-series forecasting   GitHub: demand-forecaster inference
+
+        Add these? (all / review each / skip / skip a group)
+you:    all
+claude: Added 7 competencies across 2 files. Report below.
+```
+
+選択肢は **all**（すべて）、**review**（グループごとに確認）、**skip**（スキップ）、または特定のカテゴリだけをスキップする、です。あなたが了承するまで何も書き込まれません。
+
+## 設計上、追加的かつ冪等
+
+- **追加するだけ。** 既存の行が変更されたり削除されたりすることは決してありません。
+- **すべての追加にはソースの注記が付きます。** 例えば *(Coursera — Deep Learning Specialisation)* や *(GitHub — repo: demand-forecaster)* のように。この注記は `/expand` が冪等性を保つ仕組みでもあります。来月もう一度実行すれば、新しいものだけを取り込みます。
+- **何も捏造しません。** すべてのコンピテンシーは実在するソースまでたどれるか、推論として明示されます。読み取れなかったドキュメントは推測されるのではなく報告されます。
+
+## 最後に得られるもの
+
+**拡張レポート**です。各ファイルに何が追加されたか（ソース付き）、スキャンしたすべてのソースとそれぞれがいくつのコンピテンシーをもたらしたか、スキップしたものとその理由、そして手動で確認する価値のある項目。実行後のよい次の一手は [`/upskill`](/ja/docs/commands/upskill) です。スキルセットが豊かになった今、改めてギャップを確認しましょう。
+
+`/expand` はダッシュボードのコンソールからも起動できます。同じコマンドが実行されます。

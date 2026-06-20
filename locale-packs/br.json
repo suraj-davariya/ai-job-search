@@ -1,0 +1,13 @@
+{
+  "code": "BR",
+  "name": "Brazil",
+  "documentTerm": "Currículo",
+  "pageSize": "A4",
+  "pageCountExpectation": "2-3",
+  "photo": "optional",
+  "includedPersonalFields": ["dateOfBirth", "maritalStatus", "nationalId"],
+  "nameOrder": "given-family",
+  "dateFormat": "MM/yyyy",
+  "currency": "BRL",
+  "notes": "The CPF (Cadastro de Pessoas Físicas taxpayer ID) and marital status are commonly included in the personal-details section, along with date of birth. A photo is optional but common for client-facing roles."
+}

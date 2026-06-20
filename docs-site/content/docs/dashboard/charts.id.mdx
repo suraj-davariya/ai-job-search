@@ -1,0 +1,83 @@
+---
+title: Grafik
+description: Enam gambar pencarian Anda — apa yang diceritakan masing-masing dan cara membacanya.
+---
+
+Enam grafik, masing-masing menjawab satu pertanyaan tentang pencarian Anda. Semuanya
+langsung di bawah ini, digambar dari pelacak fiktif yang sama dengan seluruh panduan ini —
+gulir, arahkan kursor, dan klik di sekitarnya.
+
+## Lamaran per minggu
+
+*Apakah saya menjaga ritme?*
+
+<WeeklyBarDemo />
+
+Setiap batang adalah satu minggu (minggu dimulai pada hari Senin), dan tingginya adalah
+berapa banyak lamaran yang Anda tanggali di dalamnya. Pencarian kerja hidup dan mati oleh
+ritme, dan inilah grafik yang menunjukkan ritme Anda — termasuk celah-celahnya. Batang yang
+hilang bukanlah aib, itu adalah informasi.
+
+## Kalender aktivitas
+
+*Seperti apa sebenarnya konsistensi saya?*
+
+<ActivityCalendarDemo />
+
+Data yang sama dengan batang mingguan, tetapi hari demi hari, seperti diari sekilas-setahun.
+Kotak yang lebih hangat berarti lebih banyak lamaran pada hari itu. Pola-pola yang dilewatkan
+oleh grafik batang muncul di sini: jeda dua minggu pada bulan April, kebiasaan hanya-Minggu,
+sprint akhir bulan.
+
+## Komposisi status
+
+*Di mana posisi semuanya sekarang?*
+
+<StatusDonutDemo />
+
+Setiap lamaran di pelacak Anda, dikelompokkan menurut status saat ini. Angka di tengah adalah
+total sepanjang waktu Anda. Cincin yang sehat berubah bentuk seiring waktu: di awal sebagian
+besar Sent; kemudian, Interview dan keadaan tertutup bertumbuh. Cincin yang seluruhnya Draft
+adalah tumpukan surat yang belum terkirim — berguna untuk diperhatikan.
+
+## Distribusi kecocokan
+
+*Apakah saya membidik pekerjaan yang tepat?*
+
+<FitHistogramDemo />
+
+Skor kecocokan setiap lamaran (0–100), dikelompokkan ke dalam lima pita. Massa di pita 60–100
+berarti Anda melamar di tempat Anda benar-benar bersaing. Ekor 0–39 yang tinggi biasanya
+berarti pencarian perlu dipersempit — atau bahwa Anda memaksakan lamaran yang sudah Anda
+curigai sebagai harapan tipis.
+
+## Perusahaan teratas
+
+*Ke mana perhatian saya tertuju?*
+
+<TopCompaniesDemo />
+
+Lima perusahaan yang paling sering Anda lamar. Lamaran berulang ke satu perusahaan bisa
+berupa ketekunan atau sinyal untuk memvariasikan pendekatan — apa pun itu, lebih baik tahu
+daripada terkejut.
+
+## Strip alur
+
+*Ringkasan satu baris.*
+
+<PipelineStripDemo />
+
+Jumlah status yang sama dengan donat, sebagai strip ringkas yang berada di atas tabel lamaran.
+Di dashboard yang sebenarnya keduanya tetap sinkron: klik sebuah status di sini dan tabel
+memfilter agar cocok. Status terminal (Rejected, Withdrawn, Closed) ditampilkan redup —
+menyingkir, tidak pernah dihapus.
+
+---
+
+Catatan tentang kepercayaan: setiap grafik di atas dihitung dengan aritmetika yang sama dengan
+dashboard yang sebenarnya, diuji otomatis terhadapnya, dan setiap grafik membawa tabel data
+tersembunyi untuk pembaca layar — sehingga apa yang Anda *lihat* selalu didukung oleh angka
+yang dapat Anda baca dengan cara lain.
+
+**Berikutnya:** [tabel lamaran](/id/docs/dashboard/applications-table), tempat pekerjaan
+sehari-hari terjadi.

@@ -1,0 +1,22 @@
+{
+  "title": "الراتب",
+  "description": "تصفّح مقاييس رواتبك المرجعية وشغّل عملية بحث عن شركة.",
+  "empty": {
+    "title": "لا توجد بيانات رواتب",
+    "hint": "أضِف salary_data.json إلى جذر المستودع (أو استورد جدول Excel باستخدام tools/convert_salary_excel.py). وحتى ذلك الحين، يظل البحث أدناه يعمل.",
+    "milestone": "REQ-5014"
+  },
+  "tableCaption": "{key} ({count})",
+  "lookupHeading": "ابحث عن شركة",
+  "company": "الشركة",
+  "companyPlaceholder": "اسم الشركة",
+  "lookUp": "بحث",
+  "looking": "جارٍ البحث…",
+  "noMatch": "لم يُعثر على نتيجة مطابقة لـ ‏“{query}”‏.",
+  "unnamed": "(بلا اسم)",
+  "noOutput": "لا توجد مخرجات.",
+  "tip": {
+    "readOnly": "وضع القراءة فقط — الإجراءات معطّلة",
+    "pythonMissing": "python3 غير موجود في PATH"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "title": "设置",
+  "description": "仅本地偏好设置 — 无密钥、无账户。仅回环、单用户。",
+  "theme": "主题",
+  "themeHint": "默认为深色。",
+  "repoPath": "仓库路径",
+  "repoPathHint": "面板读写的文件夹（下次启动时生效）。",
+  "port": "默认端口",
+  "portHint": "回环端口（下次启动时生效）。",
+  "readOnly": "只读模式",
+  "readOnlyHint": "禁用所有编辑和操作。",
+  "on": "开",
+  "off": "关",
+  "language": "语言",
+  "languageHint": "选择面板的显示语言。未翻译的文本将回退为英文。",
+  "save": "保存设置",
+  "saving": "保存中…",
+  "saved": "设置已保存",
+  "saveError": "无法保存设置：{error}"
+}

@@ -1,0 +1,112 @@
+{
+  "page": {
+    "title": "Applications",
+    "description": "{count, plural, one {# application} other {# applications}} tracked."
+  },
+  "table": {
+    "date": "Date",
+    "company": "Company",
+    "role": "Role",
+    "type": "Type",
+    "channel": "Channel",
+    "status": "Status",
+    "fit": "Fit",
+    "contact": "Contact",
+    "notes": "Notes",
+    "cv": "CV",
+    "cover": "Cover",
+    "source": "Source",
+    "pdf": "PDF",
+    "open": "Open"
+  },
+  "empty": {
+    "title": "No applications yet",
+    "hintBefore": "Run",
+    "hintAfter": "to add one.",
+    "newApplication": "New application"
+  },
+  "filter": {
+    "search": "Search applications",
+    "searchPlaceholder": "Search company, role, or notes…",
+    "roleType": "Role type",
+    "allTypes": "All types",
+    "channel": "Channel",
+    "allChannels": "All channels",
+    "minFit": "Minimum fit",
+    "fitPlaceholder": "Fit ≥",
+    "fromDate": "From date",
+    "toDate": "To date",
+    "clear": "Clear",
+    "resultCount": "{count} of {total}"
+  },
+  "pipeline": {
+    "group": "Pipeline counts",
+    "statusCount": "{status}: {count}",
+    "total": "{count} total"
+  },
+  "new": {
+    "button": "New application",
+    "title": "New application",
+    "add": "Add application",
+    "cancel": "Cancel",
+    "close": "Close",
+    "readOnlyTip": "Read-only mode — editing is disabled"
+  },
+  "fields": {
+    "date": "Date",
+    "status": "Status",
+    "company": "Company",
+    "role": "Role",
+    "sector": "Sector",
+    "roleType": "Role type",
+    "channel": "Channel",
+    "contact": "Contact",
+    "fit": "Fit (0–100)",
+    "source": "Source URL"
+  },
+  "validation": {
+    "dateRequired": "Date is required",
+    "companyRequired": "Company is required",
+    "roleRequired": "Role is required"
+  },
+  "aria": {
+    "statusFor": "Status for {company}",
+    "notesFor": "Notes for {company}"
+  },
+  "notes": {
+    "placeholder": "—"
+  },
+  "drawer": {
+    "closeDetails": "Close details",
+    "date": "Date",
+    "lastUpdated": "Last updated",
+    "sector": "Sector",
+    "roleType": "Role type",
+    "channel": "Channel",
+    "contact": "Contact",
+    "notes": "Notes",
+    "documents": "Documents",
+    "cv": "CV",
+    "coverLetter": "Cover letter",
+    "noCv": "No CV",
+    "noCover": "No cover letter",
+    "sourcePosting": "Source posting",
+    "rerunApply": "Re-run /apply",
+    "fileNotFound": "{label}: file not found"
+  },
+  "provenance": {
+    "title": "Provenance",
+    "none": "No provenance recorded",
+    "summary": "{total, plural, one {# claim} other {# claims}} · {flagged, plural, =0 {none flagged} one {# flagged} other {# flagged}}",
+    "backedBy": "{source} › {location}",
+    "backedBySource": "{source}",
+    "flagged": "Flagged — no profile backing"
+  },
+  "toast": {
+    "updated": "Updated · {time}",
+    "statusError": "Couldn't update status: {error}",
+    "notesError": "Couldn't save notes: {error}",
+    "added": "Application added",
+    "addError": "Couldn't add application: {error}"
+  }
+}

@@ -1,0 +1,81 @@
+---
+title: Vos données
+description: Un seul fichier lisible par un humain contient toute votre recherche — voici chaque colonne, et qui écrit quoi.
+---
+
+La plupart des outils de recherche d'emploi conservent votre historique dans
+*leur* base de données. CareerForge le conserve dans **un seul fichier sur
+votre ordinateur** : `job_search_tracker.csv`. Le CSV est le format de données
+le plus simple qui soit — ouvrez-le dans Excel, Numbers, Google Sheets ou un
+éditeur de texte et vous verrez exactement ce que voit chaque partie de
+CareerForge. Rien ne se cache derrière un bouton d'export, parce qu'il n'y a
+rien d'où exporter.
+
+Cela mérite un instant d'appréciation : si vous arrêtez d'utiliser CareerForge
+demain, vous ne perdez rien. Le fichier est à vous, lisible pour toujours, par
+n'importe quoi.
+
+## Les 14 colonnes
+
+Chaque candidature est une ligne avec ces champs, dans cet ordre :
+
+| # | Colonne | Ce qu'elle contient | Qui la remplit |
+|---|--------|---------------|-----------------|
+| 1 | `date` | La date de candidature (`YYYY-MM-DD`) | `/apply` |
+| 2 | `company` | Nom de l'entreprise | `/apply` |
+| 3 | `sector` | Secteur, p. ex. *Software*, *Fintech* | `/apply` |
+| 4 | `role` | L'intitulé du poste | `/apply` |
+| 5 | `role_type` | p. ex. *Full-time*, *Contract* | `/apply` |
+| 6 | `channel` | Comment vous avez postulé — *LinkedIn*, *Referral*, *Company site*… | `/apply` |
+| 7 | `status` | L'une des sept étapes du pipeline | **Vous**, via le tableau de bord |
+| 8 | `contact_person` | Votre contact là-bas, le cas échéant | `/apply`, ou vous dans les notes |
+| 9 | `fit_rating` | Le score d'adéquation 0–100 de l'évaluation | `/apply` |
+| 10 | `notes` | Tout ce que vous voulez retenir | **Vous**, via le tableau de bord |
+| 11 | `cv_file` | Chemin vers le PDF exact du CV envoyé | `/apply` |
+| 12 | `cover_letter_file` | Chemin vers le PDF exact de la lettre de motivation | `/apply` |
+| 13 | `source` | Lien vers l'offre originale | `/apply` |
+| 14 | `last_updated` | Quand la ligne a changé pour la dernière fois | Horodaté automatiquement |
+
+## Qui écrit quoi — le contrat
+
+Trois acteurs touchent à ce fichier, chacun avec un rôle strictement limité :
+
+1. **`/apply` ne fait qu'ajouter.** Une candidature terminée devient une
+   *nouvelle* ligne en bas (statut **Draft**). Il ne modifie jamais une ligne
+   existante — votre historique ne peut pas être réécrit par une exécution
+   ultérieure.
+2. **Le tableau de bord modifie exactement trois cellules :** `status`
+   (uniquement les transitions légales), `notes`, et le `last_updated`
+   auto-horodaté. Toutes les autres colonnes sont en lecture seule dans
+   l'interface.
+3. **Vous pouvez tout modifier,** à tout moment, dans n'importe quel tableur.
+   C'est votre fichier. Le tableau de bord le relit simplement et les
+   graphiques suivent.
+
+Cette discipline est la raison pour laquelle les chiffres du tableau de bord
+sont dignes de confiance : le relevé factuel est écrit une fois au moment de la
+candidature, et seules les choses qui changent réellement — l'état de la
+candidature, ce que vous avez appris — changent un jour.
+
+## Les valeurs de statut
+
+La colonne `status` accepte exactement sept valeurs — `Draft`, `Sent`,
+`Interview`, `Offer`, `Rejected`, `Withdrawn`, `Closed` — et le tableau de bord
+fait respecter [quelles transitions entre elles sont
+légales](/fr/docs/dashboard/applications-table#the-status-state-machine). Si
+vous modifiez le fichier à la main, vous en tenir à ces sept valeurs garde les
+graphiques significatifs.
+
+## Les compagnons de l'outil de suivi
+
+Quelques autres fichiers vivent à ses côtés, tous locaux, tous ignorés par git :
+
+- **Votre profil** — les documents que `/setup` a construits ; la source de
+  vérité pour chaque CV.
+- **Le registre des emplois vus** — chaque offre que `/search` vous a montrée,
+  pour que les doublons ne reviennent jamais.
+- **Vos PDF générés** — le CV et la lettre de motivation de chaque candidature,
+  exactement tels que produits, liés depuis les colonnes 11 et 12.
+
+Où chacun d'eux réside — et pourquoi aucun ne quitte jamais votre machine — est
+couvert ensuite, dans [Confidentialité](/fr/docs/privacy).

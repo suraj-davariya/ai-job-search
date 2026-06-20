@@ -1,0 +1,32 @@
+{
+  "title": "Konsole",
+  "description": "Führen Sie zugelassene CLI-Befehle aus und verfolgen Sie ihre Ausgabe live.",
+  "demo": {
+    "title": "Im lokalen Dashboard verfügbar",
+    "hint": "Die Konsole führt /apply, /upskill und Gehaltssuchen auf Ihrem Rechner aus und streamt deren Ausgabe. Dafür muss das Dashboard lokal laufen – in dieser statischen Demo funktioniert das nicht. Installieren Sie CareerForge und starten Sie das Dashboard, um sie zu nutzen.",
+    "milestone": "Konsole",
+    "note": "Demo-Build – die Befehlsausführung ist deaktiviert."
+  },
+  "rerunApply": "/apply erneut ausführen",
+  "runUpskill": "/upskill ausführen",
+  "salaryLookup": "Gehaltssuche",
+  "company": "Unternehmen",
+  "companyPlaceholder": "Unternehmen",
+  "lookUp": "Suchen",
+  "stop": "Stoppen",
+  "running": "Läuft…",
+  "idle": "Inaktiv",
+  "status": "Exit {code} · {result}",
+  "elapsed": " · {seconds} s",
+  "ok": "ok",
+  "failed": "fehlgeschlagen",
+  "noOutput": "Noch keine Ausgabe. Lösen Sie oben einen Befehl aus.",
+  "recentRuns": "Letzte Ausführungen",
+  "refreshRuns": "Ausführungen aktualisieren",
+  "noRuns": "Noch keine Ausführungen.",
+  "exitCode": "Exit {code}",
+  "tip": {
+    "readOnly": "Schreibgeschützter Modus – Aktionen sind deaktiviert",
+    "binMissing": "{bin} nicht im PATH gefunden"
+  }
+}

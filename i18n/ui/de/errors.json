@@ -1,0 +1,6 @@
+{
+  "requestFailed": "Anfrage fehlgeschlagen",
+  "lookupFailed": "Suche fehlgeschlagen",
+  "csvParse": "Die Tracker-Datei konnte nicht gelesen werden. Prüfen Sie, ob job_search_tracker.csv gültiges CSV ist.",
+  "generic": "Etwas ist schiefgelaufen."
+}

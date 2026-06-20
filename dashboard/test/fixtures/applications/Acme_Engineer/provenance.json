@@ -1,0 +1,21 @@
+{
+  "generated": "2026-06-18",
+  "company": "Acme",
+  "role": "Engineer",
+  "claims": [
+    {
+      "claim": "Led migration to Kubernetes",
+      "source": "01-candidate-profile.md",
+      "location": "Experience › Acme",
+      "backed": true
+    },
+    {
+      "claim": "Fluent in Rust",
+      "source": null,
+      "location": null,
+      "backed": false,
+      "note": "flagged — no profile backing"
+    }
+  ],
+  "summary": { "total": 2, "backed": 1, "flagged": 1 }
+}

@@ -11,7 +11,32 @@ with two print-ready PDFs and a new row in your application tracker.
 /apply https://careers.acme.com/jobs/senior-data-engineer-42
 ```
 
-## First, it scores the fit — and asks
+## First, it checks the posting is real
+
+Scams, ghost jobs, and harvesting fronts are everywhere, and a polished
+listing tells you nothing on its own. So before it drafts anything, `/apply`
+assesses whether the posting is genuine and safe to engage with, and gives you
+a plain verdict:
+
+| Verdict | What it means |
+|---------|---------------|
+| **Verified** | The signals line up — real company, real-looking role, no red flags worth pausing for. |
+| **Caution** | Something's a little off — a vague employer, an odd channel, a too-good salary. Worth a second look. |
+| **Suspicious** | Multiple red flags — upfront fees, personal-data harvesting, a domain that doesn't match the company. |
+
+Each verdict comes with the **reasons behind it**, cited from what it actually
+found, so you can judge for yourself rather than trust a label.
+
+This is kept deliberately **separate from the fit score**. A scam can be a
+perfect skills match, and if legitimacy were folded into the 0–100 number, a
+great match could average a warning away into invisibility. Two questions —
+*is this a good fit?* and *is this posting real?* — deserve two answers.
+
+The system warns; **you decide**. It never auto-blocks a posting. A
+**Suspicious** verdict does ask for your explicit confirmation before it will
+spend effort drafting — a speed bump, not a wall.
+
+## Then it scores the fit — and asks
 
 Before writing a word, it evaluates the role against your profile across five
 dimensions:
@@ -34,8 +59,9 @@ and nothing is written; the evaluation alone is often worth the run.
 
 ## Then it writes — within strict rules
 
-- **The CV** is always in English, tailored to the posting, and exactly two
-  pages when compiled.
+- **The CV** is tailored to the posting, and its language and page count follow
+  the active [locale pack](/docs/languages) — a Letter-size one-pager where
+  that's the norm, an A4 two-pager where it isn't.
 - **The cover letter** is written in *the posting's language* — a Danish
   posting gets a Danish letter — exactly one page, focused on the problems
   you'd solve rather than re-listing your CV.
@@ -67,6 +93,37 @@ application is recorded in [your tracker file](/docs/your-data) with status
 **Draft**, the fit score, and the paths to both PDFs. A final verification
 checklist (factual accuracy, targeting, consistency, layout) runs once, and
 you get a short summary of the tailoring decisions it made.
+
+## Exports a robot can read, too
+
+A beautiful LaTeX PDF is for the human at the other end — but the first reader
+is often an **applicant-tracking system (ATS)** that parses text, not layout.
+So alongside the PDF (still the primary, polished output), `/apply` produces
+two machine-friendly versions from the *same* content:
+
+- A plain-text **`.txt`** — the most reliable thing an ATS can ingest.
+- A Word **`.docx`** — for portals that ask for an editable document.
+
+It then runs a **parse self-check**: it pulls the text back out of the PDF and
+confirms your name, the section headings, and the key skills are all
+recoverable. If the parser would choke, you'll know before a recruiter's
+software does.
+
+These extras degrade gracefully when their tools aren't installed. The `.txt`
+always works. The `.docx` needs [`pandoc`](https://pandoc.org/); the parse
+check needs `poppler` (`pdftotext`). Missing either just skips that step with a
+note — your PDF is never blocked on them.
+
+## Every claim, traced to its source
+
+CareerForge's firmest promise is that it never invents experience. `/apply`
+makes that *auditable*: it emits a **provenance ledger** — every claim on your
+CV mapped back to the profile file that backs it. Anything it couldn't trace to
+your real profile is **flagged for your review**, never quietly shipped.
+
+You read the same ledger later in [the dashboard's Provenance
+panel](/docs/dashboard/provenance), claim by claim, with the unbacked ones
+highlighted.
 
 ## What it will not do
 

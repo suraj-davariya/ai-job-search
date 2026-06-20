@@ -63,6 +63,16 @@ If `search-queries.md` still contains `[UPPER_SNAKE_CASE]` placeholder tokens, t
 - Issue multiple searches in **parallel** where useful for efficiency.
 - All `site:` targeting, portal names, and country/region terms come **verbatim from the user's config** — never write a literal portal name or `site:` string into this skill. If the user configured `site:<portal>` entries, use them as-is; if they listed bare portal names, fold them into the query text.
 
+### Deterministic Listing Tier (REQ-1013, NFR-0021)
+
+If a configured portal has an adapter (ADR-0004) exposing a deterministic `list()` pass,
+**prefer it**: it returns structured postings (title, company, location, URL, date)
+**without spending tokens**, pre-filtering candidates before any LLM work. Feed its
+results into the same dedup + quick-fit steps below. Adapters are optional — when none
+exists, web search (above) is the universal fallback (ARCH-0005). Prefer the cheap
+deterministic pass over LLM calls for the listing stage wherever available (cost-aware
+search, NFR-0021).
+
 ### Fetch & Parse (REQ-1004)
 
 - **Pre-filter before fetching** (token efficiency): inspect search-result titles and snippets, discard obvious non-matches, and only `WebFetch` the promising ones.
@@ -81,6 +91,16 @@ Assign each new job a lightweight **three-level** signal used only for sorting:
 - **Low** — role requires significant skills the user lacks.
 
 This is explicitly **NOT** the full 5-dimension evaluation and **NOT** a numeric score — it is a sorting signal only. The full evaluation happens later in `/apply`.
+
+### Quick Legitimacy Flag (REQ-8003)
+
+Alongside the fit signal, run a **cheap** legitimacy scan of each posting's title and
+snippet against the high-severity signals in `trust-safety/scam-patterns.json` (upfront
+fees, personal-data/ID/banking harvesting, off-platform redirects, money-movement, offer
+without process). If a strong signal appears, mark the job **⚠ Suspicious** in the
+results so the user sees it **before** investing in `/apply`. This is a heuristic flag
+only — the full legitimacy gate runs in `/apply` (REQ-8001). Never auto-skip a flagged
+job (ARCH-0006); never invent a flag without the matching text (ARCH-0007).
 
 ### Deduplication & State Update (REQ-1006, data-req §10, business-rules §6)
 
@@ -123,6 +143,13 @@ Sort by fit (high → medium → low). Present:
 - When the user picks a number (or numbers), pass that job's **URL or pasted posting text** to **`/apply`** for the full 5-dimension fit evaluation.
 - Mark the handed-off job's `status` as `evaluated` in `seen_jobs.json` — the dedup registry must stay in sync with downstream handoffs.
 - The **application tracker write stays in `/apply`** (REQ-1009) — this skill never writes to `job_search_tracker.csv`.
+
+### Provider Resilience (NFR-0022)
+
+If the AI provider rate-limits, errors, or becomes unavailable mid-search, stop
+**gracefully** with a clear message and whatever partial results exist — never retry-spam
+or spin. Keep parallelism modest; do not run high-volume headless batches that can trip
+provider abuse heuristics (ARCH-0005).
 
 ### No Fabrication (REQ-1012, ARCH-0007)
 

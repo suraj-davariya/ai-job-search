@@ -1,0 +1,52 @@
+---
+title: The Provenance Panel
+description: Every CV claim, traced back to the profile file that backs it — the fabrication audit, made visible.
+---
+
+CareerForge's oldest promise is that it never invents experience. The
+**Provenance panel** is where you can *check* that promise, application by
+application, instead of taking it on trust.
+
+It lives inside an application's detail drawer: open a row in [the applications
+table](/docs/dashboard/applications-table) and the Provenance panel sits
+alongside the record. It lays out every claim the tailored CV makes and, next
+to each, the **profile source** that backs it.
+
+## What it shows
+
+Each line pairs a claim with its origin:
+
+- **The claim** — a skill, a result, a responsibility, exactly as it appears on
+  the generated CV.
+- **Its source** — the profile file that claim was drawn from, so you can see
+  *why* the document is allowed to say it.
+- **A flag, when there isn't one.** Any claim `/apply` couldn't trace back to
+  your real profile is **highlighted for review** rather than hidden. That's
+  the whole point: an unbacked claim is something to look at, not something to
+  ship silently.
+
+## A mirror, like the rest of the dashboard
+
+The panel is **read-only**. It doesn't edit your CV, your profile, or your
+tracker — it only reflects the audit `/apply` already produced. It reads from a
+plain file written alongside the application's documents:
+
+```text
+documents/applications/<company>_<role>/provenance.json
+```
+
+That's [file-as-DB](/docs/your-data) again: the ledger is a human-readable
+file on your machine, generated once when the documents were, and never
+phoned home. If the file is missing — say for an application added by hand —
+the panel simply shows nothing to audit rather than failing.
+
+## Why it's worth a look
+
+A flagged claim isn't an accusation; it's an invitation. Maybe the profile is
+just missing something you genuinely did — fix the profile and re-run. Maybe a
+phrasing drifted past what you can comfortably defend — soften or cut it before
+you send. Either way, the Provenance panel turns *"trust me, nothing's made
+up"* into something you can verify line by line.
+
+**Related:** [`/apply`](/docs/commands/apply#every-claim-traced-to-its-source)
+is where the ledger is produced; this panel is where you read it back.

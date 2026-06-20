@@ -1,0 +1,66 @@
+---
+title: /search
+description: Balayez les sites d'emploi que vous choisissez, ignorez ce que vous avez vu, et obtenez une liste classée de nouvelles correspondances.
+---
+
+`/search` est votre éclaireur. Il exécute les recherches que vous feriez
+autrement à la main sur chaque site d'emploi que vous avez configuré, jette les
+doublons et les offres déjà vues, et classe ce qui reste selon leur adéquation
+avec *vous*.
+
+## À quoi ressemble une exécution
+
+```text
+you:    /search
+claude: Searching your configured portals for the last 14 days…
+        Found 7 new positions (2 high, 3 medium, 2 low match)
+
+         #  Fit     Title                  Company     Location
+         1  High    Senior Data Engineer   Acme Corp   Amsterdam, NL
+         2  High    ML Platform Engineer   Beta Labs   Remote (EU)
+         3  Medium  Data Analyst           Gamma AG    Berlin, DE
+        …
+        Want me to evaluate any of these in detail? Just give me the number(s).
+```
+
+Répondez avec un numéro et cette offre est transmise directement à
+[`/apply`](/fr/docs/commands/apply) pour l'évaluation complète.
+
+## Cibler une recherche
+
+| Vous tapez | Ce que cela fait |
+|----------|--------------|
+| `/search` | Exécute vos trois catégories de requêtes les plus prioritaires |
+| `/search data science` | Priorise les catégories correspondant à « data science » |
+| `/search broad` | Exécute *toutes* vos catégories de requêtes configurées — le grand filet |
+
+## Comment il décide de ce que vous voyez
+
+1. **Votre configuration pilote tout.** Les sites d'emploi, les expressions de
+   recherche, les localisations et les paliers de distance proviennent tous de
+   la configuration de recherche que `/setup` a construite avec vous. Aucun site
+   ni pays n'est codé en dur — LinkedIn, Indeed, un portail national de votre
+   pays, tous également bienvenus.
+2. **Il se souvient de ce que vous avez vu.** Chaque offre qu'il vous a déjà
+   montrée est enregistrée, de sorte que le même poste ne gaspille jamais votre
+   attention deux fois — même entre différentes exécutions des différents jours.
+3. **Il préclasse l'adéquation.** Chaque nouvelle offre reçoit un signal rapide
+   Élevée / Moyenne / Faible par rapport à votre profil, et les correspondances
+   Élevée s'accompagnent de deux ou trois points expliquant *pourquoi*.
+   À côté de ce signal, vous verrez aussi un indicateur rapide de légitimité —
+   un marqueur **⚠ Suspicious** sur les offres qui ressemblent à des arnaques ou
+   à des emplois fantômes — pour que vous puissiez repérer une annonce risquée
+   avant d'y investir un [`/apply`](/fr/docs/commands/apply) complet. (Le
+   contrôle de légitimité approfondi a toujours lieu à l'intérieur de `/apply` ;
+   ceci n'est qu'un avertissement précoce.)
+4. **Il respecte vos limites.** Les offres en dehors de vos localisations
+   acceptables ou datant de plus de quatorze jours sont filtrées avant que vous
+   ne les voyiez.
+
+Le signal rapide est délibérément approximatif — son rôle est le tri. Le
+scoring complet à cinq dimensions a lieu lorsque vous envoyez une offre à
+`/apply`.
+
+**Ce qui se passe ensuite :** choisissez un numéro, et
+[/apply](/fr/docs/commands/apply) prend le relais avec une véritable évaluation
+et, si vous approuvez, les documents.

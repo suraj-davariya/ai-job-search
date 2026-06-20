@@ -1,0 +1,164 @@
+---
+title: クイックスタート
+description: 何もインストールしていない状態から、最初のあなたに合わせた応募まで、ステップ・バイ・ステップで。
+---
+
+このページでは、まっさらなマシンから最初のあなたに合わせた CV とカバーレターまでを
+案内します。初回はおよそ 30 分を見込んでください。その大半は、LaTeX のインストールが
+静かに進行している時間です。
+
+## まず必要なもの
+
+次の 3 つの前提条件について、自分に正直になりましょう ― それぞれが適切な
+インストールガイドにリンクしており、どれもプログラミングを必要としません。
+
+1. **Claude Code** ― CareerForge が動作する AI アシスタント。一度インストールして
+   ターミナルウィンドウから開くプログラムです。ターミナルを使ったことがない？
+   大丈夫です。このページに示される短いコマンドを入力するだけです。
+2. **LaTeX** ― あなたの CV を洗練された PDF に変換する組版システム。ダウンロードは
+   大きいですが、インストールしたら忘れていて構いません。
+3. **Python 3.10+** *(任意)* ― 後で給与のベンチマークにのみ必要です。今日は
+   スキップしてください。
+
+<Steps>
+
+<Step>
+
+### Claude Code をインストールする
+
+```bash title="Terminal"
+npm install -g @anthropic-ai/claude-code
+```
+
+その後、一度起動してログインします。
+
+```bash title="Terminal"
+claude
+```
+
+[Anthropic アカウント](https://claude.ai)が必要です ― Free プランも Pro プランも
+どちらでも動作します。
+
+**次に何が起こるか:** ターミナルでチャットが開きます。そのチャットウィンドウが、
+以下のすべてを実行する場所です。
+
+</Step>
+
+<Step>
+
+### LaTeX をインストールする
+
+2 つのコンパイラが使われます ― CV 用の `lualatex` と、カバーレター用の
+`xelatex` です。以下のインストールには両方が含まれています。
+
+<Tabs items={["macOS", "Linux", "Windows"]}>
+
+<Tab value="macOS">
+
+```bash title="Terminal"
+brew install --cask mactex
+sudo tlmgr install fontawesome lato tcolorbox dashrule enumitem multirow \
+                   ifmtarg fontaxes mweights pgfopts
+```
+
+</Tab>
+
+<Tab value="Linux">
+
+```bash title="Terminal"
+sudo apt-get install texlive-full
+```
+
+</Tab>
+
+<Tab value="Windows">
+
+[MiKTeX](https://miktex.org/download) をインストールしてください ― 初回コンパイル
+時に不足しているパッケージを自動的に取得します。
+
+</Tab>
+
+</Tabs>
+
+**次に何が起こるか:** 目に見えることは何もありません ― LaTeX は `/apply` が PDF を
+生成する必要が出るまで、準備した状態で待機しているだけです。
+
+</Step>
+
+<Step>
+
+### CareerForge を取得して開く
+
+```bash title="Terminal"
+git clone https://github.com/suraj-davariya/ai-job-search.git
+cd ai-job-search
+claude
+```
+
+**次に何が起こるか:** Claude Code が CareerForge フォルダの*内部*で開きます。
+つまり、以下の 3 つのコマンドがあなたのチャットで利用できるようになります。
+
+</Step>
+
+<Step>
+
+### プロフィールを構築する
+
+```text title="In the Claude Code chat"
+/setup
+```
+
+3 つの方法を提示します。ドキュメントのフォルダをスキャンする、1 つの CV を
+インポートする、あるいは AI が質問しあなたが答える親しみやすいインタビュー。
+手元にあるものに合った方法を選んでください。何かが保存される前に、提案された
+内容を表示してあなたの承認を求めます。
+
+**次に何が起こるか:** あなたのプロフィールファイルが作成されます ― 経験、スキル、
+目標、検索の設定、すべてがあなたのマシン上に。これは一度だけ行います。
+
+</Step>
+
+<Step>
+
+### 求人を見つける
+
+```text title="In the Claude Code chat"
+/search
+```
+
+**次に何が起こるか:** 設定した求人サイトからの新しい募集のランク付けされた表が
+表示され、それぞれ High・Medium・Low の適合度が付き、すでに見た募集は除外されます。
+番号で返信すると、1 つを詳しく評価します。
+
+</Step>
+
+<Step>
+
+### 1 つに応募する
+
+```text title="In the Claude Code chat"
+/apply https://company.com/jobs/the-role-you-want
+```
+
+リンクがない場合は、求人内容を直接貼り付けることもできます。AI は 5 つの観点で
+適合度をスコア化し、進めてよいか尋ねます ― それは形式ではなく、あなたの
+チェックポイントです。
+
+**次に何が起こるか:** あなたに合わせた 2 ページの CV と 1 ページのカバーレター。
+どちらも PDF として、2 つ目の AI によってレビューされ、検証リストに照らして
+チェックされます。応募はステータス **Draft** であなたのトラッカーに記録されます。
+両方の PDF を読んでから、あなた自身が送信します ― CareerForge はあなたの代わりに
+何かを提出することは決してありません。
+
+</Step>
+
+</Steps>
+
+## 最初の応募の後で
+
+- [ダッシュボード](/ja/docs/dashboard)を開いて、パイプラインが成長していく様子を
+  見守りましょう。
+- [あなたのデータ](/ja/docs/your-data)を読んで、何が記録されたかを正確に確認
+  しましょう ― それは 1 つの人間が読めるファイルです。
+- 何かで詰まった？ [FAQ](/ja/docs/faq) が最初の 1 週間によくある質問をカバー
+  しています。

@@ -1,0 +1,73 @@
+---
+title: /expand
+description: Garimpe seus documentos, seu GitHub e a web em busca de habilidades que você já tem mas nunca registrou — e adicione-as ao seu perfil, com segurança.
+---
+
+O `/expand` é o arqueólogo do seu perfil. Você fez mais do que o seu perfil diz —
+um curso aqui, um projeto paralelo ali, uma ferramenta que você pegou no
+trabalho. O `/expand` sai à procura dessas competências em tudo que ele consegue
+alcançar e as **adiciona** ao seu perfil. Ele nunca edita ou apaga o que já está
+lá, então executá-lo é sempre seguro.
+
+## Onde ele procura
+
+1. **Seus documentos** — `documents/cv`, `linkedin`, `diplomas`, `references`.
+2. **Seu GitHub** — todo repositório público, fixado ou não: ele lê os READMEs e
+   anota as linguagens e tópicos.
+3. **Seus outros links** — portfólio, Kaggle, Google Scholar, um site pessoal.
+
+## Como ele transforma um achado em uma habilidade
+
+Para cada coisa que descobre, ele busca na web de duas maneiras ao mesmo tempo:
+
+- **Consulta direta** — a ementa real de um curso citado, as habilidades por
+  trás de uma certificação, a documentação de uma ferramenta.
+- **Inferência** — quais métodos e cadeias de ferramentas esse tipo de trabalho
+  normalmente exige.
+
+Itens inferidos são sempre rotulados como inferidos, para que você consiga
+distinguir uma habilidade documentada de uma deduzida.
+
+## Você vê tudo antes de qualquer coisa ser escrita
+
+```text
+you:    /expand
+claude: Read your profile. Scanning documents/, GitHub (14 repos), and your Kaggle…
+
+        Competency Map (new items only)
+        ── Technical — Primary ────────────────────────────────────
+        PyTorch          GitHub: vision-experiments        direct
+        ── Methods & Practices ────────────────────────────────────
+        MLflow tracking  Coursera: MLOps Specialisation    both
+        ── Domain Knowledge ───────────────────────────────────────
+        Time-series forecasting   GitHub: demand-forecaster inference
+
+        Add these? (all / review each / skip / skip a group)
+you:    all
+claude: Added 7 competencies across 2 files. Report below.
+```
+
+Suas opções são **all**, **review** (percorrer grupo por grupo), **skip**, ou
+pular apenas uma categoria. Nada é escrito até você dizer.
+
+## Aditivo e idempotente — por design
+
+- **Ele só adiciona.** Linhas existentes nunca são alteradas ou removidas.
+- **Toda adição carrega uma nota de fonte**, como *(Coursera — Deep Learning
+  Specialisation)* ou *(GitHub — repo: demand-forecaster)*. Essa nota é também
+  como o `/expand` se mantém idempotente: execute-o de novo no mês seguinte e ele
+  traz apenas o que é novo.
+- **Nada é inventado.** Toda competência remonta a uma fonte real ou é sinalizada
+  como inferência, e qualquer documento que ele não consiga ler é relatado em vez
+  de adivinhado.
+
+## O que você obtém no fim
+
+Um **relatório de expansão**: o que foi adicionado a cada arquivo (com fontes),
+toda fonte que ele escaneou e quantas competências cada uma rendeu, qualquer
+coisa que ele pulou e por quê, e quaisquer itens que valham uma olhada manual. Um
+bom próximo passo depois é o [`/upskill`](/pt-BR/docs/commands/upskill) — reavalie
+suas lacunas agora que seu conjunto de habilidades está mais rico.
+
+O `/expand` também pode ser iniciado a partir do Console do painel; ele executa
+este mesmo comando.

@@ -1,0 +1,104 @@
+{
+  "overview": {
+    "title": "Ikhtisar",
+    "description": "Kesehatan alur secara sekilas, dihitung langsung dari pelacak Anda.",
+    "empty": {
+      "title": "Belum ada lamaran",
+      "hint": "Jalankan /apply <posting> atau gunakan + Lamaran baru di halaman Lamaran. KPI dan grafik Anda muncul di sini setelah pelacak memiliki baris data.",
+      "milestone": "Ikhtisar"
+    }
+  },
+  "kpi": {
+    "total": "Total lamaran",
+    "applied": "Dilamar · {window}h",
+    "appliedWindow": "Rentang waktu lamaran",
+    "windowDays": "{days}h",
+    "avgFit30": "Rata-rata kecocokan · 30h",
+    "interviewRate90": "Tingkat wawancara · 90h",
+    "floorHint": "Perlu ≥3 dalam rentang"
+  },
+  "charts": {
+    "noData": "Belum ada data",
+    "weekly": {
+      "title": "Lamaran per minggu",
+      "caption": "Lamaran per minggu ISO",
+      "colWeek": "Minggu",
+      "colApplications": "Lamaran"
+    },
+    "activity": {
+      "title": "Aktivitas",
+      "caption": "Lamaran per hari kalender",
+      "colDay": "Hari",
+      "colApplications": "Lamaran"
+    },
+    "status": {
+      "title": "Komposisi status",
+      "caption": "Lamaran menurut status",
+      "colStatus": "Status",
+      "colCount": "Jumlah"
+    },
+    "fit": {
+      "title": "Distribusi kecocokan",
+      "caption": "Jumlah lamaran per rentang nilai kecocokan",
+      "colRange": "Rentang kecocokan",
+      "colCount": "Jumlah"
+    },
+    "top": {
+      "title": "Perusahaan teratas",
+      "label": "Perusahaan",
+      "caption": "{label} menurut jumlah lamaran",
+      "colApplications": "Lamaran"
+    }
+  },
+  "recent": {
+    "title": "Aktivitas terbaru",
+    "mode": "Mode aktivitas terbaru",
+    "new": "Baru",
+    "updated": "Diperbarui"
+  },
+  "companies": {
+    "title": "Perusahaan",
+    "description": "{count, plural, other {# perusahaan}} di seluruh pelacak Anda.",
+    "empty": {
+      "title": "Belum ada perusahaan",
+      "hint": "Perusahaan diturunkan dari pelacak. Tambahkan lamaran untuk mengisi tampilan ini.",
+      "milestone": "Perusahaan"
+    },
+    "col": {
+      "company": "Perusahaan",
+      "sector": "Sektor",
+      "apps": "Lamaran",
+      "bestFit": "Kecocokan terbaik",
+      "statusMix": "Komposisi status"
+    },
+    "salaryHeading": "Tolok ukur gaji",
+    "salaryAvailable": "Data tolok ukur tersedia — ",
+    "salaryLink": "telusuri di halaman Gaji",
+    "noSalary": {
+      "title": "Tidak ada data gaji",
+      "hint": "Tambahkan salary_data.json (atau jalankan pencarian di halaman Gaji) untuk memperkaya perusahaan dengan tolok ukur.",
+      "milestone": "REQ-5012"
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "description": "Profil kandidat hanya-baca, disusun dari berkas keterampilan Anda.",
+    "projectMemory": "Memori proyek",
+    "empty": {
+      "title": "Profil tidak ditemukan",
+      "hint": "Jalankan /setup untuk membangun profil kandidat Anda (berkas keterampilan 01–07). Setelah tersedia, bagian-bagiannya ditampilkan di sini secara hanya-baca.",
+      "milestone": "Profil"
+    }
+  },
+  "upskill": {
+    "title": "Upskill",
+    "description": "Laporan upskill Anda, plus pemicu untuk membuat laporan baru.",
+    "run": "Jalankan /upskill di konsol",
+    "unreadable": "(tidak dapat membaca laporan ini)",
+    "empty": {
+      "title": "Belum ada laporan upskill",
+      "hint": "Jalankan /upskill (di atas) untuk membuat laporan kesenjangan keterampilan. Laporan baru muncul di sini setelah ditulis ke upskill/report-*.md.",
+      "milestone": "Upskill"
+    }
+  }
+}

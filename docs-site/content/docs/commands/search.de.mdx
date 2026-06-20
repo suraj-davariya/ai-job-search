@@ -1,0 +1,67 @@
+---
+title: /search
+description: Durchforste deine gewählten Jobbörsen, überspringe Gesehenes und erhalte eine bewertete Liste neuer Treffer.
+---
+
+`/search` ist dein Späher. Es führt die Suchen aus, die du sonst von Hand
+machen würdest, über jede von dir konfigurierte Jobbörse, wirft Duplikate und
+bereits gesehene Anzeigen weg und bewertet den Rest danach, wie gut er zu *dir*
+passt.
+
+## Wie ein Lauf aussieht
+
+```text
+you:    /search
+claude: Searching your configured portals for the last 14 days…
+        Found 7 new positions (2 high, 3 medium, 2 low match)
+
+         #  Fit     Title                  Company     Location
+         1  High    Senior Data Engineer   Acme Corp   Amsterdam, NL
+         2  High    ML Platform Engineer   Beta Labs   Remote (EU)
+         3  Medium  Data Analyst           Gamma AG    Berlin, DE
+        …
+        Want me to evaluate any of these in detail? Just give me the number(s).
+```
+
+Antworte mit einer Zahl, und diese Anzeige wird direkt an
+[`/apply`](/de/docs/commands/apply) zur vollständigen Bewertung übergeben.
+
+## Eine Suche fokussieren
+
+| Du tippst | Was es tut |
+|----------|--------------|
+| `/search` | Führt deine drei wichtigsten Prioritäts-Abfragekategorien aus |
+| `/search data science` | Priorisiert die Kategorien, die zu „data science" passen |
+| `/search broad` | Führt *alle* deine konfigurierten Abfragekategorien aus — das weite Netz |
+
+## Wie es entscheidet, was du siehst
+
+1. **Deine Konfiguration treibt alles an.** Die Jobbörsen, Suchphrasen,
+   Standorte und Entfernungsstufen kommen alle aus der Suchkonfiguration, die
+   `/setup` mit dir gebaut hat. Keine Seite und kein Land ist fest
+   einprogrammiert — LinkedIn, Indeed, ein nationales Portal in deinem Land,
+   alle gleichermaßen willkommen.
+2. **Es merkt sich, was du gesehen hast.** Jede Anzeige, die es dir jemals
+   gezeigt hat, wird aufgezeichnet, sodass dieselbe Stelle deine Aufmerksamkeit
+   nie zweimal verschwendet — selbst über verschiedene Läufe an verschiedenen
+   Tagen hinweg.
+3. **Es bewertet die Passung vorab.** Jede neue Anzeige erhält ein schnelles
+   Signal Hoch / Mittel / Niedrig gegen dein Profil, und Hoch-Treffer kommen mit
+   zwei oder drei Stichpunkten, die *warum* erklären.
+   Neben diesem Signal siehst du auch eine schnelle Legitimitäts-Markierung —
+   eine **⚠ Suspicious**-Markierung bei Anzeigen, die wie Betrug oder Ghost Jobs
+   aussehen — sodass du eine riskante Anzeige erkennen kannst, bevor du ein
+   volles [`/apply`](/de/docs/commands/apply) hineinsteckst. (Die gründliche
+   Legitimitätsprüfung passiert weiterhin innerhalb von `/apply`; dies ist nur
+   der frühe Hinweis.)
+4. **Es respektiert deine Grenzen.** Anzeigen außerhalb deiner akzeptablen
+   Standorte oder älter als vierzehn Tage werden herausgefiltert, bevor du sie
+   siehst.
+
+Das schnelle Signal ist absichtlich grob — seine Aufgabe ist Triage. Die
+vollständige Fünf-Dimensionen-Bewertung passiert, wenn du eine Anzeige an
+`/apply` sendest.
+
+**Was als Nächstes passiert:** Wähle eine Zahl, und
+[/apply](/de/docs/commands/apply) übernimmt mit einer ordentlichen Bewertung
+und, wenn du zustimmst, den Dokumenten.
