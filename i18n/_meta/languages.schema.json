@@ -17,7 +17,7 @@
           "dir": { "type": "string", "enum": ["ltr", "rtl"], "description": "Text direction" },
           "script": { "type": "string", "description": "ISO 15924 script code (Latn, Arab, Hans, Deva, ...)" },
           "tier": { "type": "integer", "enum": [1, 2], "description": "Rollout tier" },
-          "status": { "type": "string", "enum": ["released", "beta"], "description": "released = meets NFR-0020 completeness after human review; beta = machine-seeded or incomplete" },
+          "status": { "type": "string", "enum": ["released", "beta"], "description": "released = shipped Tier-1 launch language, complete catalog on disk + guaranteed English fallback (English canonical until human review); beta = machine-seeded, incomplete, or planned (no catalog yet)" },
           "quality": { "type": "string", "enum": ["high", "low-resource"], "description": "REQ-7011: low-resource flags languages where LLM generation needs extra human review" }
         }
       }

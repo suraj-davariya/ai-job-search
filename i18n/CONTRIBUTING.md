@@ -44,9 +44,12 @@ node scripts/i18n-parity-check.mjs --stamp <code>   # record the English baselin
 node scripts/i18n-parity-check.mjs                  # confirm completeness
 ```
 
-When a language reaches the completeness threshold and passes human review, flip its
-`status` to `released` in the registry. Until then it ships as **beta** with a
-"needs review" note — which is fine; a beta translation still helps real people.
+A language is flipped to `released` in the registry once it ships a complete
+catalog (English fallback guaranteed) — the Tier-1 launch set is already
+released as machine translation, with English canonical until human review
+lands. New or partial languages ship as **beta** with a "needs review" note
+until their catalog is complete — which is fine; a beta translation still helps
+real people.
 
 ## A note on machine translation
 

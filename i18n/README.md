@@ -40,9 +40,13 @@ i18n/
 ## Quality & status
 
 Every language has a `status` (`released` / `beta`) and `quality` (`high` /
-`low-resource`) in the registry. Machine-seeded translations start as **beta** and
-become **released** only after human review meets the completeness threshold
-(NFR-0020). `low-resource` languages (REQ-7011) need extra human review because LLM
+`low-resource`) in the registry. A language is **released** once it ships a
+complete catalog with guaranteed per-key English fallback — the Tier-1 launch
+languages are released as machine translations, with **English remaining
+canonical** until human review lands. **beta** covers anything machine-seeded,
+incomplete, or planned (no catalog yet). The completeness threshold (NFR-0020)
+and human review still govern when a translation is trusted over English.
+`low-resource` languages (REQ-7011) need extra human review because LLM
 output quality is lower there.
 
 ## Checking translation health
