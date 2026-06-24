@@ -13,6 +13,7 @@
   "off": "Off",
   "language": "Language",
   "languageHint": "Choose the dashboard display language. Untranslated text falls back to English.",
+  "languageBeta": "beta",
   "save": "Save settings",
   "saving": "Saving…",
   "saved": "Settings saved",

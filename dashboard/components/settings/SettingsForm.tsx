@@ -72,7 +72,9 @@ export function SettingsForm({
         >
           {languages.map((l) => (
             <option key={l.code} value={l.code}>
-              {l.endonym}
+              {l.status === "released"
+                ? l.endonym
+                : `${l.endonym} — ${t("languageBeta")}`}
             </option>
           ))}
         </select>

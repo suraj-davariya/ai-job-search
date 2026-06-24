@@ -34,6 +34,21 @@ function registryFile(): string {
   return path.join(process.cwd(), "..", "i18n", "_meta", "languages.json");
 }
 
+/** Absolute path to the shared UI-catalog root (repo-root `i18n/ui`). */
+function uiRoot(): string {
+  return path.join(process.cwd(), "..", "i18n", "ui");
+}
+
+/** Locale codes that actually have a UI-catalog directory on disk. */
+async function localesWithCatalog(): Promise<Set<string>> {
+  try {
+    const entries = await fs.readdir(uiRoot(), { withFileTypes: true });
+    return new Set(entries.filter((e) => e.isDirectory()).map((e) => e.name));
+  } catch {
+    return new Set([DEFAULT_LOCALE]);
+  }
+}
+
 function isLanguage(v: unknown): v is Language {
   const l = v as Record<string, unknown>;
   return (
@@ -57,11 +72,21 @@ export async function readLanguages(): Promise<Language[]> {
   }
 }
 
-/** Languages a user may switch to (released only). */
+/**
+ * Languages a user may switch to: English plus every registered language that
+ * actually has a UI catalog on disk (`i18n/ui/<code>/`). A language's `status`
+ * (`released` vs `beta`) only controls how the switcher LABELS it (NFR-0020) —
+ * it never hides a usable translation. Registry entries with no catalog yet
+ * (planned languages) are excluded so the switcher never offers an all-English
+ * shell. English is always present. The `status` is preserved for the label.
+ */
 export async function readAvailableLanguages(): Promise<Language[]> {
   const all = await readLanguages();
-  const released = all.filter((l) => l.status === "released");
-  return released.length > 0 ? released : FALLBACK;
+  const onDisk = await localesWithCatalog();
+  const available = all.filter(
+    (l) => l.code === DEFAULT_LOCALE || onDisk.has(l.code),
+  );
+  return available.length > 0 ? available : FALLBACK;
 }
 
 /** Text direction for a locale, defaulting to ltr when unknown. */

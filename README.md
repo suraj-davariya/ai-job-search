@@ -4,7 +4,7 @@
 
 **An AI job-search assistant that finds postings, writes tailored CVs and cover letters, and compiles them to print-ready PDFs — all on your own machine.**
 
-**🌍 Read this in your language** _(alphabetical · 12 available · all beta, English is canonical):_
+**🌍 Read this in your language** _(alphabetical · 12 available · machine-translated, English is canonical):_
 
 [العربية (Arabic)](i18n/readme/README.ar.md) · [বাংলা (Bengali)](i18n/readme/README.bn.md) · [简体中文 (Chinese, Simplified)](i18n/readme/README.zh-Hans.md) · [Deutsch (German)](i18n/readme/README.de.md) · [English](README.md) · [Español (Spanish)](i18n/readme/README.es.md) · [Français (French)](i18n/readme/README.fr.md) · [हिन्दी (Hindi)](i18n/readme/README.hi.md) · [Bahasa Indonesia (Indonesian)](i18n/readme/README.id.md) · [日本語 (Japanese)](i18n/readme/README.ja.md) · [Português BR (Portuguese)](i18n/readme/README.pt-BR.md) · [Русский (Russian)](i18n/readme/README.ru.md)
 
@@ -626,7 +626,7 @@ xelatex main_example.tex
 | **v1.0 — Dashboard** (Epic 9) | ✅ Complete | Local tracking dashboard at `127.0.0.1:4480` — view/edit tracker, analytics, run commands from the browser |
 | **v1.1** (Epics 10–11) | ✅ Complete | `/upskill` skill-gap analysis + learning plan, and `/expand` competency expansion from your docs, GitHub, and the web |
 | **v1.2** (Epic 12) | ✅ Complete | `/reset`, interview-prep framework, ADR-0004 portal-adapter pattern + example, research agent |
-| **v1.3 — Global Reach & Trust** (Epics 13–19) | ✅ Complete | UI + README in 12 languages (beta) + pluggable locale packs (CV conventions per market); posting-legitimacy gate (scam/ghost-job shield); ATS-safe CV exports (`.txt`/`.docx`) + parse self-check; fabrication-audit **Provenance** panel; token-free scan tier |
+| **v1.3 — Global Reach & Trust** (Epics 13–19) | ✅ Complete | UI + README in 12 languages (machine-translated, English canonical) + pluggable locale packs (CV conventions per market); posting-legitimacy gate (scam/ghost-job shield); ATS-safe CV exports (`.txt`/`.docx`) + parse self-check; fabrication-audit **Provenance** panel; token-free scan tier |
 | **v2.0** | 💡 Future | Template marketplace, community portal adapters, GUI |
 
 See the full plan in [`docs/plan/delivery-strategy.md`](docs/plan/delivery-strategy.md).
